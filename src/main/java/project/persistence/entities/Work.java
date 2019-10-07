@@ -1,6 +1,7 @@
 package project.persistence.entities;
 
 import javax.persistence.*;
+import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @Entity
@@ -19,6 +20,10 @@ public class Work {
     private Long owner;
     private int payout;
     private String interest;
+    private Integer zipcode;
+    @Transient
+    private MultipartFile image;
+    private String imageName;
 
 
     // Þarf að finna leið til að búa til list í db
@@ -94,6 +99,29 @@ public class Work {
 
     public String getInterest() {
         return interest;
+    }
+
+    public MultipartFile getImage() {
+        return image;
+    }
+    public void setImage(MultipartFile image) {
+        this.image = image;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public Integer getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(Integer zipcode) {
+        this.zipcode = zipcode;
     }
 
   /*  public List<User> getApplicants() {
