@@ -1,6 +1,5 @@
 package project.persistence.entities;
 
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class Work {
     private String description;
     private Long owner;
     private int payout;
-    private String interest
+    private String interest;
     private List<User> applicants;
     private List<User> accepted;
     private List<User> rejected;
