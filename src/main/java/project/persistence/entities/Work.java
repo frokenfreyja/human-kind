@@ -19,10 +19,12 @@ public class Work {
     private Long owner;
     private int payout;
     private String interest;
-    private List<User> applicants;
+
+    // Þarf að finna leið til að búa til list í db
+    /*  private List<User> applicants;
     private List<User> accepted;
     private List<User> rejected;
-
+*/
     public Long getId() {
         return id;
     }
@@ -87,7 +89,7 @@ public class Work {
         return interest;
     }
 
-    public List<User> getApplicants() {
+  /*  public List<User> getApplicants() {
         return applicants;
     }
 
@@ -98,5 +100,5 @@ public class Work {
     public List<User> getRejected() {
         return rejected;
     }
-
+*/
 }

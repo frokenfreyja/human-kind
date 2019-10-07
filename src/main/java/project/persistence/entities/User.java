@@ -16,7 +16,8 @@ public class User{
     private String bio;
     private int points;
     private Boolean isOrgi;
-    private List<Course> courses;
+    // Þarf að finna leið til að búa til list í db
+   // private List<Course> courses;
 
     public User(){
 
@@ -74,8 +75,8 @@ public class User{
         isOrgi = orgi;
     }
 
-    public List<Course> getCourses() {
+  /*  public List<Course> getCourses() {
         return courses;
     }
-
+*/
 }
