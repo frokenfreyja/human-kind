@@ -10,6 +10,6 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 
     List<Course> findAll();
 
-    @Query(value = "SELECT c FROM course c WHERE c.id = ?1")
+    @Query(value = "SELECT c FROM Course c WHERE c.id = ?1")
     Course findOne(Long id);
 }

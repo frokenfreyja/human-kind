@@ -10,6 +10,6 @@ public interface DealRepository extends JpaRepository<Deal, Long> {
 
     List<Deal> findAll();
 
-    @Query(value = "SELECT d FROM deal d WHERE d.id = ?1")
+    @Query(value = "SELECT d FROM Deal d WHERE d.id = ?1")
     Deal findOne(Long id);
 }
