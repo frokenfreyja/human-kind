@@ -22,6 +22,13 @@ public class AccountController {
         this.userService = userService;
     }
 
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    public String signupGet(Model model) {
+        //model.addAttribute("user", new User());
+
+        return "SignUp";
+    }
+
     //@RequestMapping
     public String createAccount(User user, Model model) {
         return "";
