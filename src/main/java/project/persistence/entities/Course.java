@@ -4,7 +4,7 @@ package project.persistence.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "courses")
+@Table(name = "course")
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
