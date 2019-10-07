@@ -20,11 +20,18 @@ public class Work {
     private int payout;
     private String interest;
 
+
     // Þarf að finna leið til að búa til list í db
     /*  private List<User> applicants;
     private List<User> accepted;
     private List<User> rejected;
 */
+
+    public Work(){
+
+    }
+
+
     public Long getId() {
         return id;
     }

@@ -9,9 +9,12 @@ public class Deal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private int cost;
+
+    public Deal(){
+
+    }
 
     public Long getId() {
         return id;
