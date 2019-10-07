@@ -6,12 +6,14 @@
 <html lang="en">
 
     <head>
-        <title>Project Title</title>
+        <title>Human-Kind</title>
+
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/index.css"/>"/>
     </head>
     <body>
 
-    <h1>HBV501G Project Spring Boot Skeleton</h1>
-    <p>This skeleton of a Spring Boot Web project was made to help groups get started on their projects without to much hassle.</p>
+    <h1>HUMAN - KIND</h1>
+    <p>Be kind, be human.</p>
 
     <ul>
         <li><a href="/postit">Click here for Persistence Layer Demo</a></li>
