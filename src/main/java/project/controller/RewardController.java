@@ -1,5 +1,6 @@
 package project.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import project.persistence.entities.Deal;
@@ -12,6 +13,7 @@ public class RewardController {
     private DealService dealService;
     private UserService userService;
 
+    @Autowired
     public RewardController(DealService dealService, UserService userService) {
      this.dealService = dealService;
      this.userService = userService;
