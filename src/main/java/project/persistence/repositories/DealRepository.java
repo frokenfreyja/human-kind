@@ -6,7 +6,7 @@ import project.persistence.entities.Deal;
 
 import java.util.List;
 
-public interface DealRepository {
+public interface DealRepository extends JpaRepository<Deal, Long> {
 
     List<Deal> findAll();
 
