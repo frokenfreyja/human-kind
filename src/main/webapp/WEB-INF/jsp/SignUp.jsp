@@ -10,28 +10,51 @@
 </head>
 <body>
 
-<h1>Sign up</h1>
-<p>Here could be some user information</p>
+    <h1>Sign up</h1>
+    <p>Here could be some user information</p>
 
-<table border="1px gray">
-    <thead>
-    <tr style="font-weight: 600;">
-        <td>Name</td>
-        <td>Job</td>
-        <td>email</td>
-        <td>Description</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>${name}</td>
-        <td>${job}</td>
-        <td>${email}</td>
-        <td>${description}</td>
-    </tr>
-    </tbody>
-</table>
+    <sf:form method="POST" modelAttribute="user" action="/signup" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td> Name: </td>
+                <td> <sf:input path="name" type="text" placeholder="Gimme Your name"/> </td>
+            </tr>
+             <tr>
+                <td> Phone: </td>
+                <td> <sf:input path="phone" type="number" placeholder="Gimme number ;D"/> </td>
+            </tr>
 
+            <tr>
+                <td> Email: </td>
+                <td> <sf:input path="email" type="email" placeholder="Gimme Your Electronic mail"/> </td>
+            </tr>
+            <tr>
+                <td> Password: </td>
+                <td> <sf:input path="password" type="password" placeholder="Gimme Your password"/> </td>
+            </tr>
+            <tr>
+                <td> <sf:radiobutton path="Orgi" name="orginization" value="false" label="Volunteer"/> </td>
+                <td> <sf:radiobutton path="Orgi" name="orginization" value="true" label="Orginization"/> </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="imgbutton">
+                        <sf:label for="image" path="image" style="cursor: pointer;">Upload your ugly mug here</sf:label>
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        <sf:input path="image" type="file" id="image" accept="image/*" name="image" onchange="loadFile(event)" style="display: none;" multiple="multiple" />
+                    </p>
+                    <p><img path="output" id="output" width="200"></p>
+                </td>
+            </tr>
+
+        </table>
+
+        <input type="submit" VALUE="Become Human"/>
+
+    </sf:form>
 
 </body>
 
