@@ -66,6 +66,7 @@ public class AccountController {
                 e.printStackTrace();
             }
         }
+        
         //Debug
         System.out.println(user);
         userService.save(user);

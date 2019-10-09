@@ -21,7 +21,7 @@ public class User{
     private String imageName;
     private String bio;
     private int points;
-    private Boolean isOrgi;
+    private Boolean Orgi;
     // Þarf að finna leið til að búa til list í db
    // private List<Course> courses;
 
@@ -35,7 +35,7 @@ public class User{
         this.password = password;
         this.phone = phone;
         this.bio = bio;
-        this.isOrgi = isOrgi;
+        this.Orgi = Orgi;
         this.image = image;
         this.imageName = imageName;
 
@@ -94,11 +94,11 @@ public class User{
     }
 
     public Boolean getOrgi() {
-        return isOrgi;
+        return Orgi;
     }
 
-    public void setOrgi(Boolean orgi) {
-        isOrgi = orgi;
+    public void setOrgi(Boolean Orgi) {
+        this.Orgi = Orgi;
     }
 
     public MultipartFile getImage() {
@@ -135,7 +135,7 @@ public class User{
                 ", imageName='" + imageName + '\'' +
                 ", bio='" + bio + '\'' +
                 ", points=" + points +
-                ", isOrgi=" + isOrgi +
+                ", Orgi=" + Orgi +
                 '}';
     }
 }

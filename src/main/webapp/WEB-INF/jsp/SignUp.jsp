@@ -34,6 +34,10 @@
                 <td> <sf:input path="password" type="password" placeholder="Gimme Your password"/> </td>
             </tr>
             <tr>
+                <td> <sf:radiobutton path="Orgi" name="orginization" value="false" label="Volunteer"/> </td>
+                <td> <sf:radiobutton path="Orgi" name="orginization" value="true" label="Orginization"/> </td>
+            </tr>
+            <tr>
                 <td>
                     <p class="imgbutton">
                         <sf:label for="image" path="image" style="cursor: pointer;">Upload your ugly mug here</sf:label>
