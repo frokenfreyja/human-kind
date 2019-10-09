@@ -24,8 +24,14 @@
             </div>
         </div>
     </header>
-    </body>
+    <div class="about" style="background-color: ">
+        <p>HAKK</p>
+    </div>
+    <div class="ads">
+        <p>SPAGETTI</p>
+    </div>
 
+    </body>
     <footer>
         <div class="footer_content">
             <a class="footer__link" href="/facebook"><img src="/resources/images/facebook.png" class="footer_icon"/></a>
