@@ -19,9 +19,8 @@
             <div class="subtitle">
                 <p>Be kind, be human.</p>
             </div>
-            <div class="login_btn">
-                <span>SIGN IN</span>
-                <a href="/new_ad"></a>
+            <div class="btn">
+                <a href="/new_ad" class="login_btn">SIGN IN</a>
             </div>
         </div>
     </header>
