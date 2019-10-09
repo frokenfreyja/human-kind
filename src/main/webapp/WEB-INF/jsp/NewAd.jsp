@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i|Raleway:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Old+Standard+TT:400,700|Oswald:400,600|Vidaloka" rel="stylesheet">
-    <title>Create new ad</title>
+    <title>Create ad</title>
     <script>
         var loadFile = function(event) {
             var image = document.getElementById('output');
@@ -125,7 +125,6 @@
             </div>
         </div>
     </div>
-    <p class="footer__credit">© 2019 HUMAN-KIND</p>
 </footer>
 </body>
 </html>
