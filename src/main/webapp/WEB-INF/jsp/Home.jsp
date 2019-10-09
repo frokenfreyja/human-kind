@@ -12,7 +12,7 @@
     </head>
     <body>
 
-    <header>
+    <div class="section1">
         <div class="header_content">
             <div class="title">
                 <h1>HUMAN - KIND</h1>
@@ -24,11 +24,17 @@
                 <a href="/login" class="login_btn">SIGN IN</a>
             </div>
         </div>
-    </header>
-    <div class="about" style="background-color: ">
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section2">
         <p>HAKK</p>
     </div>
-    <div class="ads">
+
+    <div class="divider"></div>
+
+    <div class="section3">
         <p>SPAGETTI</p>
     </div>
 
