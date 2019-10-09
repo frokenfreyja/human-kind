@@ -20,7 +20,7 @@
                 <p>Be kind, be human.</p>
             </div>
             <div class="btn">
-                <a href="/new_ad" class="login_btn">SIGN IN</a>
+                <a href="/login" class="login_btn">SIGN IN</a>
             </div>
         </div>
     </header>
