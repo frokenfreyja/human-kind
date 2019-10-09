@@ -47,8 +47,8 @@
                                 <sf:textarea path="description" class="formbox" type="text" placeholder="" required="required" />
                             </td>
                             <td>Duration:</td>
-                                <%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
                             <td>
+                                <sf:textarea path="duration" class="formbox" type="number" />
                             </td>
                         </tr>
                         <tr>
