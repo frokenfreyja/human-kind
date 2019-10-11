@@ -22,9 +22,18 @@ public class LoginController {
         this.userService = userService;
     }
 
-    //@RequestMapping
-    public String login(User user, Model model) {
-        return "";
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String loginGet(User user, Model model) {
+        model.addAttribute("user", new User());
+
+        return "Login";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String loginPost(User user, Model model) {
+        model.addAttribute("user", new User());
+
+        return "Login";
     }
 
     //@RequestMapping
