@@ -23,4 +23,11 @@ public interface UserService {
      * @return A {@link User} with {@link Long id}
      */
     User findOne(Long id);
+
+    /**
+     * Find a {@link User} based in {@link String email}
+     * @param email {@link String}
+     * @return A {@link User} with {@link String email}
+     */
+    User findByEmail(String email);
 }

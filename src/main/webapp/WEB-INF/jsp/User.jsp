@@ -11,7 +11,7 @@
     <body>
 
     <h1>User Page</h1>
-
+    <img src="/resources/images/ricardo.gif">
     </body>
 
 </html>

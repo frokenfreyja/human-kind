@@ -38,9 +38,9 @@ public class HomeControllerGamla {
     }
 
     // To call this method, enter "localhost:8080/user" into a browser
-    /*@RequestMapping(value = "/user", method = RequestMethod.GET)
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String user(@ModelAttribute("user") User user, Model model){
 
         return "User";
-    }*/
+    }
 }

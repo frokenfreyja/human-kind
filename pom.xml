@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>HBV501G</groupId>
+    <groupId>Lokaverkefni</groupId>
     <artifactId>Human_Kind</artifactId>
     <version>0.2</version>
 
@@ -61,6 +61,12 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <version>5.1.6.RELEASE</version>
         </dependency>
 
     </dependencies>
