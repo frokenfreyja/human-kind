@@ -46,7 +46,6 @@ public class LoginController {
             }
         }
 
-
         model.addAttribute("loginDenied", "Access Denied");
 
         return "Login";
