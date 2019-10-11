@@ -114,6 +114,8 @@ input:focus {
     display: flex;
     justify-content: center;
     align-items: center;
+    bottom: 0;
+    position: fixed;
     width: 100vw;
     height: 5vh;
     background-color: #f85548;
