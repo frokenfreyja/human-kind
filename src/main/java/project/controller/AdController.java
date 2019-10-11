@@ -72,7 +72,7 @@ public class AdController {
                 e.printStackTrace();
             }
 
-        //work.setOwner(userID);
+        work.setOwner(userID);
 
         String location = work.getLocation();
         work.setLocation(location);
