@@ -36,17 +36,15 @@ public class LoginController {
     public String loginPost(User user, Model model) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
-        User loginUser = userService.findByEmail(user.getEmail());
-
-        //Debug
-        System.out.println("Login: " + loginUser.toString());
-
-        if(loginUser != null && bCryptPasswordEncoder.matches(user.getPassword(), loginUser.getPassword())){
-            return "redirect:/user";
+        if(!user.getEmail().isEmpty()) {
+            System.out.println("yeo");
+            User loginUser = userService.findByEmail(user.getEmail());
+            
+            if(loginUser != null && bCryptPasswordEncoder.matches(user.getPassword(), loginUser.getPassword())){
+                return "redirect:/user";
+            }
         }
 
-        //Debug
-        System.out.println("Login: " + loginUser.toString());
 
         model.addAttribute("loginDenied", "Access Denied");
 
