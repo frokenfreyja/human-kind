@@ -45,13 +45,13 @@ public class AdController {
 
     @RequestMapping(value = "/new_ad", method = RequestMethod.POST)
     public String newItem(@ModelAttribute("work") Work work, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) throws IOException {
-        /*
-        String userName = (String) httpSession.getAttribute("loggedInUsername");
 
-        if (userName == null) {
+        Long userID = (Long) httpSession.getAttribute("currentUser");
+
+        if (userID == null) {
             return "redirect:/login";
         }
-        */
+
 
         MultipartFile imagefile = work.getImage();
         String fileName;
@@ -72,8 +72,7 @@ public class AdController {
                 e.printStackTrace();
             }
 
-
-        //work.setUserName(userName);
+        //work.setOwner(userID);
 
         String location = work.getLocation();
         work.setLocation(location);
