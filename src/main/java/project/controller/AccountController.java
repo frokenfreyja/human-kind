@@ -49,10 +49,7 @@ public class AccountController {
 
         if(user.getImage()==null) throw new NullPointerException("unable to get" + imagefile);
 
-
         String rootDir = httpServletRequest.getSession().getServletContext().getRealPath("/");
-
-        System.out.println("yep " + rootDir);
         if(user.getImage() != null && !user.getImage().isEmpty()) {
             try {
 

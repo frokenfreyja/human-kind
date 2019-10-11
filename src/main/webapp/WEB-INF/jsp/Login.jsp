@@ -13,7 +13,7 @@
 
     <h1>Login Page</h1>
 
-    <c:if test="${not empty loginDenied}">
+   <c:if test="${not empty loginDenied}">
         ${loginDenied}
         <audio autoplay>
             <source src="/resources/sounds/doorlocked_buzz1.wav" type="audio/wav">

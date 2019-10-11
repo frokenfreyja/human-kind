@@ -10,6 +10,8 @@ import project.persistence.entities.User;
 import project.service.StringManipulationService;
 import project.service.UserService;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class HomeControllerGamla {
 
@@ -36,8 +38,10 @@ public class HomeControllerGamla {
 
     // To call this method, enter "localhost:8080/user" into a browser
     @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public String user(@ModelAttribute("user") User user, Model model){
-
+    public String user(@ModelAttribute("user") User user, HttpSession session, Model model){
+        if(session.getAttribute("currentUser")==null){
+            return "redirect:/login";
+        }
         return "User";
     }
 }

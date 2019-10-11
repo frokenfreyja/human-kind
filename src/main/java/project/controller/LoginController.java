@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import project.persistence.entities.User;
 import project.service.UserService;
 
+import javax.servlet.http.HttpSession;
+
 
 @Controller
 public class LoginController {
@@ -33,14 +35,13 @@ public class LoginController {
 
     //Login process
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginPost(User user, Model model) {
+    public String loginPost(User user, HttpSession httpSession, Model model) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
         if(!user.getEmail().isEmpty()) {
-            System.out.println("yeo");
             User loginUser = userService.findByEmail(user.getEmail());
-            
             if(loginUser != null && bCryptPasswordEncoder.matches(user.getPassword(), loginUser.getPassword())){
+                httpSession.setAttribute("currentUser", loginUser.getId());
                 return "redirect:/user";
             }
         }
