@@ -83,7 +83,7 @@ public class AdController {
         model.addAttribute("works", workService.findAllReverseOrder());
         model.addAttribute("work", new Work());
 
-        return "Index";
+        return "Home";
     }
 
     //@RequestMapping
