@@ -68,9 +68,9 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <p class="imgbutton">
-                                        <sf:label for="image" path="image" style="cursor: pointer;">Upload photo</sf:label>
-                                    </p>
+                                    <h3 class="imgbutton">
+                                        <sf:label for="image" path="image" style="cursor: pointer;">UPLOAD PHOTO</sf:label>
+                                    </h3>
                                 </td>
                                 <td>
                                     <p>
