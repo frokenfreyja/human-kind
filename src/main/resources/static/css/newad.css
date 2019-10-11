@@ -32,18 +32,28 @@ main {
 /* SÍÐAN SETT UPP Í GRID */
 .row {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
+    width: 100%;
 }
 
 /* FORM FYRIR NÝJA AUGLÝSINGU */
+table.newadvertise tr td {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
 .newadvert {
     font-size: 2.5em;
     letter-spacing: 2px;
+    width: 100%;
+    text-align: center;
 }
+
 .formbox {
     font-size: 0.8em;
 }
@@ -60,7 +70,8 @@ main {
 }
 
 .imgbutton {
-    padding: 5px 10px 5px 10px;
+    padding: 10px 20px;
+    margin: 8px 0;
     background-color: white;
     color: black;
     text-align: center;
@@ -85,16 +96,14 @@ main {
     letter-spacing: 2px;
     font-size: 1.5em;
     transition: all 0.1s ease;
+    padding: 10px 20px;
+    margin: 8px 0;
 }
 
 .formbutton:hover {
     background-color: #5548f8;
     color: white;
     border-color: #5548f8;
-}
-table.newadvertise tr td {
-    padding: 20px 20px 20px 0;
-    font-size: 1em;
 }
 
 input {
@@ -105,6 +114,7 @@ input {
     border-color: white;
     border-radius: 5px;
 }
+
 input:focus {
     outline: none !important;
     border:1px #5a5a5a;
