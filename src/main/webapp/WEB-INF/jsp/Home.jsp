@@ -13,14 +13,14 @@
     <body>
 
     <div class="section1">
-        <div class="header_content">
+        <div class="section1_content">
             <div class="title">
                 <h1>HUMAN - KIND</h1>
             </div>
             <div class="subtitle">
                 <p>Be kind, be human.</p>
             </div>
-            <div class="btn">
+            <div class="section1_btn">
                 <a href="/login" class="login_btn">SIGN IN</a>
             </div>
         </div>
@@ -39,9 +39,9 @@
     </div>
 
     </body>
-    <footer>
+    <footer class="footer">
         <div class="footer_content">
-            <a class="footer__link" href="/facebook"><img src="/resources/images/facebook.png" class="footer_icon"/></a>
+            <a class="footer__link" href="/facebook"><img src="/resources/images/facebook.svg" class="footer_icon"/></a>
             <a class="footer__link" href="/instagram"><img src="/resources/images/instagram.png" class="footer_icon"/></a>
             <a class="footer__link" href="/twitter"><img src="/resources/images/twitter.png" class="footer_icon"/></a>
             <a class="footer__link" href="/email"><img src="/resources/images/mailbox.png" class="footer_icon"/></a>
