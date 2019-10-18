@@ -10,8 +10,16 @@
     </head>
     <body>
 
+    <nav>
+        <a href="/"> E.T. go home </a>
+    </nav>
+
     <h1>User Page</h1>
     <img src="/resources/images/ricardo.gif">
+    <div>
+        <a href="/logout"> Sign me out home boii </a>
+    </div>
+
     </body>
 
 </html>

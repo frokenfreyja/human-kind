@@ -52,8 +52,11 @@ public class LoginController {
         return "Login";
     }
 
-    //@RequestMapping
-    public String logout() {
-        return "";
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpSession session) {
+
+        session.removeAttribute("currentUser");
+
+        return "redirect:/";
     }
 }
