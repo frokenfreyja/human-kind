@@ -38,4 +38,13 @@ public class HomeController {
 
         return "Home";
     }
+
+    @RequestMapping(value = "/all_ads", method = RequestMethod.GET)
+    public String viewAllAds(Model model, HttpSession httpSession){
+
+        model.addAttribute("work_list", workService.findAllReverseOrder());
+
+        return "AllAds";
+    }
+
 }

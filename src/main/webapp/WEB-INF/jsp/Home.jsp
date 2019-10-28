@@ -6,7 +6,6 @@
 <jsp:include page="Header.jsp" />
 <jsp:include page="Footer.jsp" />
 
-
 <html lang="en">
 
     <head>
@@ -25,7 +24,7 @@
             <div class="subtitle">
                 <p>Be kind, be human.</p>
             </div>
-            <div class="section1_btn">
+            <div>
                 <a href="/login" class="login_btn">SIGN IN</a>
             </div>
         </div>
@@ -43,20 +42,25 @@
 
             <%-- Ef til eru auglýsingar, birtir lista af öllum auglýsingum í töflu --%>
             <%--Fyrir hvert Item, sem er á listanum sem var sett í módelið er búin til röð í töflunni--%>
-                <p class="advert">AVAILABLE JOBS</p>
-                <div class="advertlist">
+                <h3 class="advert">AVAILABLE JOBS</h3>
                 <c:choose>
                     <c:when test="${not empty work_list}">
-                            <c:forEach var="job_details" items="${work_list}">
-                                <div class="all_ads">
-                                    <div class="ad">
-                                        <div class="img"><img src="${pageContext.request.contextPath}/resources/images/${job_details.imageName}" /></div>
-                                        <div class="name"><a href="/ad/${job_details.id}">${job_details.name}</a></div>
-                                        <div class="date">${job_details.date}</div>
-                                        <div class="cat">${job_details.interest}</div>
-                                    </div>
+                        <div class="advertlist">
+
+                        <c:forEach begin="0" end="9" var="job_details" items="${work_list}">
+                            <div class="all_ads">
+                                <div class="ad">
+                                    <div class="img"><img src="${pageContext.request.contextPath}/resources/images/${job_details.imageName}" /></div>
+                                    <div class="name"><a href="/ad/${job_details.id}">${job_details.name}</a></div>
+                                    <div class="date">${job_details.date}</div>
+                                    <div class="cat">${job_details.interest}</div>
                                 </div>
-                            </c:forEach>
+                            </div>
+                        </c:forEach>
+                        <div>
+                            <a href="/all_ads" class="ads_btn">VIEW ALL</a>
+                        </div>
+                    </div>
                     </c:when>
                     <%--If all tests are false, then do this--%>
                     <c:otherwise>
@@ -64,7 +68,6 @@
                     </c:otherwise>
                 </c:choose>
             </div>
-    </div>
 
     </body>
 </html>

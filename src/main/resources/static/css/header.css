@@ -16,8 +16,9 @@
 }
 
 #sidebar.active{
-    right: 0px;
+    right: 0;
 }
+
 #sidebar ul li{
     color: white;
     list-style: none;
@@ -30,6 +31,7 @@
     top: 20px;
     cursor: pointer;
 }
+
 #sidebar .toggle-btn span {
     display: block;
     width: 30px;
