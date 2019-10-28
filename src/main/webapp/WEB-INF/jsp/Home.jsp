@@ -46,7 +46,7 @@
                                 <div class="all_ads">
                                     <div class="ad">
                                         <div class="img"><img src="${pageContext.request.contextPath}/resources/images/${job_details.imageName}" /></div>
-                                        <div class="name"><a href="/job_details/${job_details.id}">${job_details.name}</a></div>
+                                        <div class="name"><a href="/ad/${job_details.id}">${job_details.name}</a></div>
                                         <div class="date">${job_details.date}</div>
                                         <div class="cat">${job_details.interest}</div>
                                     </div>

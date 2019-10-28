@@ -7,12 +7,14 @@
     </head>
 
     <body>
-        <p>name: "${ad.name}"</p>
-        <p>owner: "${ad.owner}"</p>
-        <p>date: "${ad.date}"</p>
-        <p>duration: "${ad.duration}"</p>
-        <p>location: "${ad.location}"</p>
-        <p>zip: "${ad.zipcode}"</p>
+        <p>Name: "${ad.name}"</p>
+        <p>Image:<img src="${pageContext.request.contextPath}/resources/images/${ad.imageName}" />
+        <p>Owner: "${owner.name}"</p>
+        <p>Date: "${ad.date}"</p>
+        <p>Duration: "${ad.duration}"</p>
+        <p>Location: "${ad.location}"</p>
+        <p>Zip: "${ad.zipcode}"</p>
         <p>Description: "${ad.description}"</p>
+        <p>Payout:
     </body>
 </html>
