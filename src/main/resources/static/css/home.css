@@ -82,6 +82,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
+    margin: 20px 0;
 }
 .advert {
     text-align: center;
@@ -96,6 +97,11 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     overflow: auto;
+    margin-bottom: 20px;
+}
+
+.all_ads {
+    margin: 5px 0;
 }
 
 .ad {
@@ -134,4 +140,26 @@ body {
     object-fit: cover;
     width: 100%;
     height: 100%;
+}
+
+.ads_btn {
+    position: relative;
+    float: bottom;
+    color: black;
+    width: 100%;
+    height: 100%;
+    padding: 5px 15px;
+    border-radius: 10px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 1em;
+    letter-spacing: 1px;
+    transition: all 0.1s ease;
+    text-decoration: none;
+}
+
+.ads_btn:hover {
+    color: white;
+    background-color: #5548f8;
+    text-decoration: none;
 }
