@@ -32,8 +32,9 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String workList(Model model, HttpSession httpSession){
 
-        //model.addAttribute("work_list", workService.findAllReverseOrder());
-        model.addAttribute("work_list", workService.findAll());
+        model.addAttribute("userID", httpSession.getAttribute("currentUser"));
+        model.addAttribute("userName", httpSession.getAttribute("currentUsername"));
+        model.addAttribute("work_list", workService.findAllReverseOrder());
 
         return "Home";
     }

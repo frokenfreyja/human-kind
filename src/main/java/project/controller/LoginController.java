@@ -42,6 +42,7 @@ public class LoginController {
             User loginUser = userService.findByEmail(user.getEmail());
             if(loginUser != null && bCryptPasswordEncoder.matches(user.getPassword(), loginUser.getPassword())){
                 httpSession.setAttribute("currentUser", loginUser.getId());
+                httpSession.setAttribute("currentUsername", loginUser.getName());
                 return "redirect:/user";
             }
         }
