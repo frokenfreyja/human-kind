@@ -36,7 +36,13 @@ public class AdController {
     }
 
     @RequestMapping(value = "/new_ad", method = RequestMethod.GET)
-    public String newAdForm(Model model) {
+    public String newAdForm(Model model, HttpSession httpSession) {
+
+        Long userID = (Long) httpSession.getAttribute("currentUser");
+        if(userID == null) {
+            return "redirect:/login";
+        }
+
         model.addAttribute("work", new Work());
         model.addAttribute("work_list", workService.findAllReverseOrder());
 
@@ -47,11 +53,6 @@ public class AdController {
     public String newItem1(@ModelAttribute("work") Work work, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) throws IOException {
 
         Long userID = (Long) httpSession.getAttribute("currentUser");
-
-        if (userID == null) {
-            return "redirect:/login";
-        }
-
         work.setOwner(userID);
 
         httpSession.setAttribute("ad_name", work.getName());
