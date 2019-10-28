@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Roboto+Condensed:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/newad.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/footer.css"/>"/>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/header.css"/>"/>
 
     <title>New ad</title>
     <script>
