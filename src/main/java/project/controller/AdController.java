@@ -119,9 +119,16 @@ public class AdController {
         return "";
     }
 
-    //@RequestMapping
-    public String viewAd(Work work, Model model) {
-        return "";
+    @RequestMapping(value = "/ad/{id}", method = RequestMethod.GET)
+    public String viewAd(@PathVariable Long id, Model model) {
+
+        Work ad = new Work();
+        ad = workService.findOne(id);
+        User owner = userService.findOne(ad.getOwner());
+        model.addAttribute("ad", ad);
+        model.addAttribute("owner", owner);
+
+        return "AdDetail";
     }
 
     //@RequestMapping
