@@ -38,7 +38,7 @@ public class AdController {
     @RequestMapping(value = "/new_ad", method = RequestMethod.GET)
     public String newAdForm(Model model) {
         model.addAttribute("work", new Work());
-        model.addAttribute("works", workService.findAllReverseOrder());
+        model.addAttribute("work_list", workService.findAllReverseOrder());
 
         return "NewAd1";
     }
@@ -103,7 +103,7 @@ public class AdController {
         work.setInterest(cat);
 
         workService.save(work);
-        model.addAttribute("works", workService.findAllReverseOrder());
+        model.addAttribute("work_list", workService.findAllReverseOrder());
         model.addAttribute("work", new Work());
 
         return "Home";
