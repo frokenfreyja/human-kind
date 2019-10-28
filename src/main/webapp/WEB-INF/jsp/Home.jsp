@@ -6,7 +6,6 @@
 <jsp:include page="Header.jsp" />
 <jsp:include page="Footer.jsp" />
 
-
 <html lang="en">
 
     <head>
@@ -43,7 +42,7 @@
 
             <%-- Ef til eru auglýsingar, birtir lista af öllum auglýsingum í töflu --%>
             <%--Fyrir hvert Item, sem er á listanum sem var sett í módelið er búin til röð í töflunni--%>
-                <p class="advert">AVAILABLE JOBS</p>
+                <h3 class="advert">AVAILABLE JOBS</h3>
                 <div class="advertlist">
                 <c:choose>
                     <c:when test="${not empty work_list}">
