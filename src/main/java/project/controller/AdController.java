@@ -96,9 +96,14 @@ public class AdController {
         return "";
     }
 
-    //@RequestMapping
-    public String viewAd(Work work, Model model) {
-        return "";
+    @RequestMapping(value = "/ad/{id}", method = RequestMethod.GET)
+    public String viewAd(@PathVariable Long id, Model model) {
+
+        model.addAttribute("ad", workService.findOne(id));
+
+
+
+        return "AdDetail";
     }
 
     //@RequestMapping
