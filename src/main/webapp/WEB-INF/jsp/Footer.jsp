@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <footer class="footer">
     <div class="footer_content">
         <a class="footer__link" href="/facebook"><img src="/resources/images/facebook.svg" class="footer_icon"/></a>

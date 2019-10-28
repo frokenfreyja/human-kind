@@ -47,7 +47,7 @@
                 <div class="advertlist">
                 <c:choose>
                     <c:when test="${not empty work_list}">
-                            <c:forEach var="job_details" items="${work_list}">
+                            <c:forEach begin="0" end="9" var="job_details" items="${work_list}">
                                 <div class="all_ads">
                                     <div class="ad">
                                         <div class="img"><img src="${pageContext.request.contextPath}/resources/images/${job_details.imageName}" /></div>
