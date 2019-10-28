@@ -40,7 +40,7 @@ public class AdController {
         model.addAttribute("work", new Work());
         model.addAttribute("works", workService.findAllReverseOrder());
 
-        return "NewAd";
+        return "NewAd1";
     }
 
     @RequestMapping(value = "/new_ad", method = RequestMethod.POST)
