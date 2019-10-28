@@ -41,6 +41,20 @@
                             <sf:input path="date" class="formbox" type="text" placeholder="DD-MM-YYYY" required="required" />
                         </td>
                     </tr>
+                    <tr>
+                            <%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
+                        <td>
+                            <sf:select path="interest" class="checkcategories">
+                                <sf:option value="cat" style="display: none;">Category</sf:option>
+                                <sf:option value="none" disabled="true">-</sf:option>
+                                <sf:option value="Nature">Nature</sf:option>
+                                <sf:option value="Animals">Animals</sf:option>
+                                <sf:option value="People">People</sf:option>
+                                <sf:option value="Clothing">Clothing</sf:option>
+                                <sf:option value="Food">Food</sf:option>
+                            </sf:select>
+                        </td>
+                    </tr>
                 </table>
                 <input type="submit" class="formbutton" value="NEXT" />
             </sf:form>

@@ -44,9 +44,34 @@ public class AdController {
     }
 
     @RequestMapping(value = "/new_ad", method = RequestMethod.POST)
-    public String newItem(@ModelAttribute("work") Work work, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) throws IOException {
+    public String newItem1(@ModelAttribute("work") Work work, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) throws IOException {
 
         Long userID = (Long) httpSession.getAttribute("currentUser");
+
+        if (userID == null) {
+            return "redirect:/login";
+        }
+
+        work.setOwner(userID);
+
+        httpSession.setAttribute("ad_name", work.getName());
+        httpSession.setAttribute("ad_desc", work.getDescription());
+        httpSession.setAttribute("ad_date", work.getDate());
+        httpSession.setAttribute("ad_cat", work.getInterest());
+
+        return "NewAd2";
+    }
+
+    @RequestMapping(value = "/new_ad/2", method = RequestMethod.POST)
+    public String newItem2(@ModelAttribute("work") Work work, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) throws IOException {
+
+        Long userID = (Long) httpSession.getAttribute("currentUser");
+
+        String name = (String) httpSession.getAttribute("ad_name");
+        String desc = (String) httpSession.getAttribute("ad_desc");
+        String date = (String) httpSession.getAttribute("ad_date");
+        String cat = (String) httpSession.getAttribute("ad_cat");
+
 
         if (userID == null) {
             return "redirect:/login";
@@ -72,9 +97,10 @@ public class AdController {
             }
 
         work.setOwner(userID);
-
-        String location = work.getLocation();
-        work.setLocation(location);
+        work.setName(name);
+        work.setDescription(desc);
+        work.setDate(date);
+        work.setInterest(cat);
 
         workService.save(work);
         model.addAttribute("works", workService.findAllReverseOrder());
