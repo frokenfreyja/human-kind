@@ -8,6 +8,7 @@
     <head>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Roboto+Condensed:400,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/home.css"/>"/>
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/footer.css"/>"/>
         <title>Human-Kind</title>
     </head>
     <body>
@@ -62,12 +63,5 @@
     </div>
 
     </body>
-    <footer class="footer">
-        <div class="footer_content">
-            <a class="footer__link" href="/facebook"><img src="/resources/images/facebook.svg" class="footer_icon"/></a>
-            <a class="footer__link" href="/instagram"><img src="/resources/images/instagram.png" class="footer_icon"/></a>
-            <a class="footer__link" href="/twitter"><img src="/resources/images/twitter.png" class="footer_icon"/></a>
-            <a class="footer__link" href="/email"><img src="/resources/images/mailbox.png" class="footer_icon"/></a>
-        </div>
-    </footer>
+    <jsp:include page="Footer.jsp" />
 </html>

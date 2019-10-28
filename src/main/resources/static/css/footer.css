@@ -1,0 +1,41 @@
+/* FOOTER */
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    position: fixed;
+    width: 100vw;
+    height: 5vh;
+    background-color: #f85548;
+    color: white;
+}
+
+.footer_content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+
+    height: 100%;
+    width: 20%;
+}
+
+.footer__link {
+    color: white;
+    transition-timing-function: ease-in-out;
+    transition-duration: 300ms;
+    transition-property: color;
+
+    padding: 7px 10px 7px 10px;
+}
+
+.footer__link:hover {
+    color: black;
+}
+
+.footer_icon {
+    color: white;
+    max-width: 100%;
+    max-height: 100%;
+}
