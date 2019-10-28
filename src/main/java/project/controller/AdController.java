@@ -52,7 +52,6 @@ public class AdController {
             return "redirect:/login";
         }
 
-
         MultipartFile imagefile = work.getImage();
         String fileName;
 
@@ -76,7 +75,6 @@ public class AdController {
 
         String location = work.getLocation();
         work.setLocation(location);
-
 
         workService.save(work);
         model.addAttribute("works", workService.findAllReverseOrder());

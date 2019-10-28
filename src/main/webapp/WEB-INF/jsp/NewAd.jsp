@@ -15,7 +15,6 @@
             image.src = URL.createObjectURL(event.target.files[0]);
         }
     </script>
-
 </head>
 <body>
 <main>
@@ -58,7 +57,7 @@
                         <td>
                             <sf:select path="interest" class="checkcategories">
                                 <sf:option value="cat" style="display: none;">Category</sf:option>
-                                <sf:option value="none">-</sf:option>
+                                <sf:option value="none" disabled="true">-</sf:option>
                                 <sf:option value="Nature">Nature</sf:option>
                                 <sf:option value="Animals">Animals</sf:option>
                                 <sf:option value="People">People</sf:option>
@@ -79,7 +78,7 @@
                         </td>
                     </tr>
                 </table>
-                <input type="submit" class="formbutton" VALUE="OK" />
+                <input type="submit" class="formbutton" value="OK" />
             </sf:form>
         </div>
 </main>
