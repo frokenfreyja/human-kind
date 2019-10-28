@@ -1,5 +1,7 @@
 package project.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,5 +27,14 @@ public class HomeController {
     //@RequestMapping
     public String home(Work work, Model model) {
         return "";
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String workList(Model model, HttpSession httpSession){
+
+        //model.addAttribute("work_list", workService.findAllReverseOrder());
+        model.addAttribute("work_list", workService.findAll());
+
+        return "Home";
     }
 }

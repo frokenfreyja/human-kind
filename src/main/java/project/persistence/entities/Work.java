@@ -100,6 +100,7 @@ public class Work {
     public String getInterest() {
         return interest;
     }
+    public void setInterest(String interest) { this.interest = interest; }
 
     public MultipartFile getImage() {
         return image;
