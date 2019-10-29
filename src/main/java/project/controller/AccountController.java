@@ -78,19 +78,14 @@ public class AccountController {
                 e.printStackTrace();
             }
         }
-        String email = user.getEmail();
-        User registeredUser = userService.findByEmail(email);
 
         if (userService.findByEmail(user.getEmail()) != null) {
-            model.addAttribute("error", "There is already an account with this email: " + email);
+            model.addAttribute("error", "There is already an account with this email: " + user.getEmail());
+        } else {
+            userService.save(user);
+            return "redirect:/login";
         }
-
-        //Debug
-        System.out.println(user);
-        userService.save(user);
-
-
-        return "redirect:/login";
+        return "SignUp";
     }
 
     //@RequestMapping
