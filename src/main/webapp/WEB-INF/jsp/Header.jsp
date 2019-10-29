@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/header.css"/>"/>
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,600,700|Muli:600|Rubik:400,700&display=swap" rel="stylesheet">
+
     <script type="text/javascript">
         function toggleSidebar(){
             document.getElementById("sidebar").classList.toggle('active');
@@ -22,14 +24,14 @@
         <ul>
             <c:choose>
                 <c:when test="${not empty currentUser}">
-                <li><a href="/all_ads">AVAILABLE JOBS</a></li>
-                <li><a href="/my_account">MY ACCOUNT</a></li>
-                <li><a href="/logout">SIGN OUT (${currentUsername})</a></li>
+                <li><a href="/all_ads">Available jobs</a></li>
+                <li><a href="/my_account">My account</a></li>
+                <li><a href="/logout">Sign out (${currentUsername})</a></li>
             </c:when>
             <c:otherwise>
-                <li><a href="/all_ads">AVAILABLE JOBS</a></li>
-                <li><a href="/about">ABOUT US</a></li>
-                <li><a href="/login">SIGN IN</a></li>
+                <li><a href="/all_ads">Available jobs</a></li>
+                <li><a href="/about">About us</a></li>
+                <li><a href="/login">Sign in</a></li>
             </c:otherwise>
             </c:choose>
         </ul>

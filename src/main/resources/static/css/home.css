@@ -14,9 +14,9 @@ html {
 body {
     margin: auto;
     overflow-x: hidden;
-    font-family: 'Roboto Condensed', sans-serif;
     width: 100vw;
     height: 100vh;
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .section1, .section2, .section3 {
@@ -34,6 +34,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 .title {
@@ -83,7 +84,9 @@ body {
     align-items: center;
     padding: 20px 0;
     margin: 20px 0;
+    font-family: 'IBM Plex Sans', sans-serif;
 }
+
 .advert {
     text-align: center;
     font-size: 2em;

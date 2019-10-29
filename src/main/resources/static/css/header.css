@@ -2,7 +2,6 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto Condensed', sans-serif;
 }
 
 #sidebar {
@@ -13,6 +12,7 @@
     right: -200px;
     transition: all 300ms linear;
     padding-top: 13px;
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 #sidebar.active{
