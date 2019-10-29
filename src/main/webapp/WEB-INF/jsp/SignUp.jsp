@@ -14,6 +14,13 @@
     <h1>Sign up</h1>
     <p>Here could be some user information</p>
 
+    <c:if test="${not empty error}">
+        ${error}
+        <audio autoplay>
+            <source src="/resources/sounds/doorlocked_buzz1.wav" type="audio/wav">
+        </audio>
+    </c:if>
+
     <sf:form method="POST" modelAttribute="user" action="/signup" enctype="multipart/form-data">
         <table>
             <tr>

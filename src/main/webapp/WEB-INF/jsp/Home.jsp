@@ -47,13 +47,13 @@
                     <c:when test="${not empty work_list}">
                         <div class="advertlist">
 
-                        <c:forEach begin="0" end="9" var="job_details" items="${work_list}">
+                        <c:forEach begin="0" end="9" var="work" items="${work_list}">
                             <div class="all_ads">
                                 <div class="ad">
-                                    <div class="img"><img src="${pageContext.request.contextPath}/resources/images/${job_details.imageName}" /></div>
-                                    <div class="name"><a href="/ad/${job_details.id}">${job_details.name}</a></div>
-                                    <div class="date">${job_details.date}</div>
-                                    <div class="cat">${job_details.interest}</div>
+                                    <div class="img"><img src="${pageContext.request.contextPath}/resources/images/${work.imageName}" /></div>
+                                    <div class="name"><a href="/ad/${work.id}">${work.name}</a></div>
+                                    <div class="date">${work.date}</div>
+                                    <div class="cat">${work.interest}</div>
                                 </div>
                             </div>
                         </c:forEach>

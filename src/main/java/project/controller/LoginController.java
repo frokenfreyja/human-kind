@@ -44,10 +44,12 @@ public class LoginController {
                 httpSession.setAttribute("currentUser", loginUser.getId());
                 httpSession.setAttribute("currentUsername", loginUser.getName());
                 return "redirect:/user";
+            } else if (loginUser != null && !bCryptPasswordEncoder.matches(user.getPassword(), loginUser.getPassword())) {
+                model.addAttribute("loginDenied", "The password you entered is incorrect.");
+            } else {
+                model.addAttribute("loginDenied", "The email or password you entered is incorrect.");
             }
         }
-
-        model.addAttribute("loginDenied", "Access Denied");
 
         return "Login";
     }
