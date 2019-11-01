@@ -14,32 +14,23 @@ html {
 body {
     margin: auto;
     overflow-x: hidden;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     width: 100vw;
     height: 100vh;
 }
 /* SECTION - AD LIST */
-.section {
-    width: 100%;
-    height: 100%;
+main {
     background-color: #f85548;
     background-position: center;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px 0;
-}
-
-.advert {
-    text-align: center;
-    font-size: 2em;
+    padding: 60px 0 20px 0;
 }
 
 .advertlist {
-    width: 100%;
-    height: 100%;
-    font-size: 1.5em;
+    font-size: 1em;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
