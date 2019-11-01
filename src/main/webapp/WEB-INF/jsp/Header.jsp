@@ -13,6 +13,14 @@
     </script>
 </head>
 <header class="header">
+    <c:choose>
+        <c:when test="${header_type eq 'no_home_btn'}">
+
+        </c:when>
+        <c:otherwise>
+            <h2 class="home_btn"><a href="/">HUMAN-KIND</a></h2>
+        </c:otherwise>
+    </c:choose>
     <div id="sidebar">
         <div class="toggle-btn" onclick="toggleSidebar()">
             <a>

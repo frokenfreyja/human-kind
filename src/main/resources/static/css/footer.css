@@ -12,6 +12,7 @@
     bottom: 0;
     background-color: #f85548;
     color: white;
+    z-index: 1;
 }
 
 .footer_content {
