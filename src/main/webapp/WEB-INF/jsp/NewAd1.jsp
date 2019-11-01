@@ -2,13 +2,19 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
-
 <%@ page contentType="text/html; charset=UTF-8" %>
+
+<jsp:include page="Header.jsp" />
+<jsp:include page="Footer.jsp" />
+
 <html class="grid" lang="en">
 <head>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Roboto+Condensed:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,600,700|Muli:600|Rubik:400,700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/newad.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/footer.css"/>"/>
+
     <title>New ad</title>
     <script>
         var loadFile = function(event) {
@@ -25,7 +31,7 @@
             <sf:form method="POST" modelAttribute="work" action="/new_ad" enctype="multipart/form-data">
                 <table class="newadvertise">
                     <tr>
-                            <%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
+                    <%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
                         <td>
                             <sf:input path="name" class="formbox" type="text" placeholder="Title" required="required" autofocus="autofocus"/>
                         </td>
@@ -61,6 +67,5 @@
             </sf:form>
         </div>
 </main>
-<jsp:include page="Footer.jsp" />
 </body>
 </html>

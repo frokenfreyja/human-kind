@@ -42,11 +42,14 @@ public class LoginController {
             User loginUser = userService.findByEmail(user.getEmail());
             if(loginUser != null && bCryptPasswordEncoder.matches(user.getPassword(), loginUser.getPassword())){
                 httpSession.setAttribute("currentUser", loginUser.getId());
+                httpSession.setAttribute("currentUsername", loginUser.getName());
                 return "redirect:/user";
+            } else if (loginUser == null) {
+                model.addAttribute("loginDenied", "This account does not exist");
+            } else {
+                model.addAttribute("loginDenied", "The email or password you entered is incorrect");
             }
         }
-
-        model.addAttribute("loginDenied", "Access Denied");
 
         return "Login";
     }

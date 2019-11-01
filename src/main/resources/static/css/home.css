@@ -14,9 +14,9 @@ html {
 body {
     margin: auto;
     overflow-x: hidden;
-    font-family: 'Roboto Condensed', sans-serif;
     width: 100vw;
     height: 100vh;
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .section1, .section2, .section3 {
@@ -34,10 +34,11 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .title {
-    font-size: 4.5em;
+    font-size: 3.5em;
     letter-spacing: 10px;
 }
 
@@ -82,7 +83,10 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
+    margin: 20px 0;
+    font-family: 'IBM Plex Sans', sans-serif;
 }
+
 .advert {
     text-align: center;
     font-size: 2em;
@@ -96,6 +100,11 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     overflow: auto;
+    margin-bottom: 20px;
+}
+
+.all_ads {
+    margin: 5px 0;
 }
 
 .ad {
@@ -134,4 +143,26 @@ body {
     object-fit: cover;
     width: 100%;
     height: 100%;
+}
+
+.ads_btn {
+    position: relative;
+    float: bottom;
+    color: black;
+    width: 100%;
+    height: 100%;
+    padding: 5px 15px;
+    border-radius: 10px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 1em;
+    letter-spacing: 1px;
+    transition: all 0.1s ease;
+    text-decoration: none;
+}
+
+.ads_btn:hover {
+    color: white;
+    background-color: #5548f8;
+    text-decoration: none;
 }

@@ -2,13 +2,19 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
-
 <%@ page contentType="text/html; charset=UTF-8" %>
+
+<jsp:include page="Header.jsp" />
+<jsp:include page="Footer.jsp" />
+
 <html class="grid" lang="en">
 <head>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Roboto+Condensed:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,600,700|Muli:600|Rubik:400,700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/newad.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/footer.css"/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/header.css"/>"/>
     <title>New ad</title>
     <script>
         var loadFile = function(event) {
@@ -47,10 +53,9 @@
                     </td>
                 </tr>
             </table>
-            <input type="submit" class="formbutton" value="OK" />
+            <input type="submit" class="formbutton" value="SUBMIT" />
         </sf:form>
     </div>
 </main>
-<jsp:include page="Footer.jsp" />
 </body>
 </html>
