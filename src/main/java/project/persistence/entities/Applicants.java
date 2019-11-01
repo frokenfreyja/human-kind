@@ -1,11 +1,15 @@
 package project.persistence.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "applicants")
 public class Applicants {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private Long workID;
     private Long userID;
 

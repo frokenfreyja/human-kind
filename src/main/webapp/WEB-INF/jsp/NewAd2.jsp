@@ -25,9 +25,9 @@
         <sf:form method="POST" modelAttribute="work" action="/new_ad/2" enctype="multipart/form-data">
             <table class="newadvertise">
                 <tr>
-                    <td>
-                        <sf:input path="location" class="formbox" type="text" placeholder="Location" required="required" />
-                    </td>
+                        <td>
+                            <sf:input path="location" class="formbox" type="text" placeholder="Location" required="required" />
+                        </td>
                 </tr>
                 <tr>
                         <%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>

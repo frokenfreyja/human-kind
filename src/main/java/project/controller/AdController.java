@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import project.persistence.entities.Applicants;
 import project.persistence.entities.Work;
 import project.persistence.entities.User;
 import project.service.UserService;
@@ -131,9 +132,14 @@ public class AdController {
         return "AdDetail";
     }
 
-    //@RequestMapping
-    public String register(Work work, User user, Model model) {
-        return "";
+    @RequestMapping(value = "/ad/apply", method = RequestMethod.POST)
+    public String register(@PathVariable Long id, Applicants applicants, Work work, User user, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) {
+        Long userID = (Long) httpSession.getAttribute("currentUser");
+        Applicants applicant = new Applicants();
+        applicant.setWorkID(id);
+        applicant.setUserID(userID);
+
+        return "redirect:/ad/{id}";
     }
 
     //@RequestMapping

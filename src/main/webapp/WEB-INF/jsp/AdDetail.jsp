@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+
 <html lang="en">
 
     <head>
@@ -16,5 +20,7 @@
         <p>Zip: "${ad.zipcode}"</p>
         <p>Description: "${ad.description}"</p>
         <p>Payout:
+
+         <a href="/"> E.T. go home </a>
     </body>
 </html>
