@@ -18,7 +18,7 @@
 
         </c:when>
         <c:otherwise>
-            <h2 class="home_btn"><a href="/">HUMAN-KIND</a></h2>
+            <h3 class="home_btn"><a href="/">HUMAN-KIND</a></h3>
         </c:otherwise>
     </c:choose>
     <div id="sidebar">

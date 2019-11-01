@@ -7,14 +7,15 @@
 .home_btn {
     display: flex;
     align-content: center;
-    justify-content: center;
+    align-items: center;
+    justify-content: flex-start;
 
     position: fixed;
     width: 100vw;
     height: auto;
     background: #F85548;
-    padding-top: 13px;
     font-family: 'IBM Plex Sans', sans-serif;
+    padding: 13px 0 10px 20px;
     z-index: 1;
 }
 

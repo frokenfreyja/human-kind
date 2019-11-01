@@ -43,7 +43,7 @@
 
             <%-- Ef til eru auglýsingar, birtir lista af öllum auglýsingum í töflu --%>
             <%--Fyrir hvert Item, sem er á listanum sem var sett í módelið er búin til röð í töflunni--%>
-                <h3 class="advert">AVAILABLE JOBS</h3>
+                <h2 class="advert">AVAILABLE JOBS</h2>
                 <c:choose>
                     <c:when test="${not empty work_list}">
                         <div class="advertlist">
@@ -58,10 +58,10 @@
                                 </div>
                             </div>
                         </c:forEach>
+                    </div>
                         <div>
                             <a href="/all_ads" class="ads_btn">VIEW ALL</a>
                         </div>
-                    </div>
                     </c:when>
                     <%--If all tests are false, then do this--%>
                     <c:otherwise>
