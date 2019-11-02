@@ -114,3 +114,11 @@ img .img {
     background-color: #5548f8;
     text-decoration: none;
 }
+
+.user_img {
+    background-size: cover;
+    background-color: white;
+    border-radius:50%;
+    width: 100px;
+    height: 100px;
+}

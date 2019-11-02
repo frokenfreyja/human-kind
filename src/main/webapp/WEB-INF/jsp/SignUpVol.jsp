@@ -12,6 +12,12 @@
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,600,700|Muli:600|Rubik:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/signup_form.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/footer.css"/>"/>
+    <script>
+        var loadFile = function(event) {
+            var image = document.getElementById('output');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        }
+    </script>
     <title>Sign up</title>
 </head>
 <body>
@@ -58,7 +64,7 @@
             <p>
                 <sf:input path="image" type="file" id="image" accept="image/*" name="image" onchange="loadFile(event)" style="display: none;" multiple="multiple" />
             </p>
-            <p><img path="output" id="output" width="200"></p>
+            <p><img path="output" id="output" class="user_img" src="${pageContext.request.contextPath}/resources/images/account.png"></p>
         </div>
     </div>
 
