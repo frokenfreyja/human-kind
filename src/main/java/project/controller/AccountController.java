@@ -51,7 +51,23 @@ public class AccountController {
         return "SignUp";
     }
 
-    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    @RequestMapping(value = "/org", method = RequestMethod.GET)
+    public String createAsOrg(Model model) {
+
+        model.addAttribute("user", new User());
+
+        return "SignUpOrg";
+    }
+
+    @RequestMapping(value = "/vol", method = RequestMethod.GET)
+    public String createAsVol(Model model) {
+
+        model.addAttribute("user", new User());
+
+        return "SignUpVol";
+    }
+
+    @RequestMapping(value = "/org", method = RequestMethod.POST)
     public String createAccountPost(@ModelAttribute("user") User user, Model model, HttpServletRequest httpServletRequest){
         MultipartFile imagefile = user.getImage();
         String fileName;
@@ -85,7 +101,7 @@ public class AccountController {
             userService.save(user);
             return "redirect:/login";
         }
-        return "SignUp";
+        return "SignUpOrg";
     }
 
     //@RequestMapping
