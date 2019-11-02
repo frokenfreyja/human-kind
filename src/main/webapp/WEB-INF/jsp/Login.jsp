@@ -20,7 +20,7 @@
     <body>
     <main>
         <div class="row">
-    <h1 class="title">Login</h1>
+    <h1 class="title">LOGIN</h1>
     <sf:form method="POST" modelAttribute="user" action="/login">
         <div class="login_table">
             <div class="input">
@@ -38,9 +38,6 @@
             <div class="error">
                     ${loginDenied}
             </div>
-            <audio autoplay>
-                <source src="/resources/sounds/doorlocked_buzz1.wav" type="audio/wav">
-            </audio>
         </c:if>
 
         <div class="login_btn">
