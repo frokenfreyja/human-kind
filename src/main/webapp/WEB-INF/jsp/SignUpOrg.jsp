@@ -21,59 +21,56 @@
     <title>Sign up</title>
 </head>
 <body>
+<main>
+    <div class="row">
+        <h1 class="title">ORGANIZATION</h1>
+        <sf:form method="POST" modelAttribute="user" action="/org" enctype="multipart/form-data">
+            <div class="signup_table">
+                <div class="input">
+                    <img src="${pageContext.request.contextPath}/resources/images/name.png" class="img"/>
+                    <sf:input path="name" type="text" placeholder="Full name" class="signup_text"/>
+                </div>
 
-<h1>ORGANIZATION</h1>
-<p>Here could be some user information</p>
+                <div class="input">
+                    <img src="${pageContext.request.contextPath}/resources/images/email.png" class="img"/>
+                    <sf:input path="email" type="email" placeholder="Email" class="signup_text"/>
+                </div>
 
-<sf:form method="POST" modelAttribute="user" action="/org" enctype="multipart/form-data">
-    <table>
-        <tr>
-            <td> Name: </td>
-            <td> <sf:input path="name" type="text" placeholder="Gimme Your name"/> </td>
-        </tr>
-        <tr>
-            <td> Phone: </td>
-            <td> <sf:input path="phone" type="number" placeholder="Gimme number ;D"/> </td>
-        </tr>
+                <div class="input">
+                    <img src="${pageContext.request.contextPath}/resources/images/phone.png" class="img"/>
+                    <sf:input path="phone" type="number" placeholder="Phone number" class="signup_text"/>
+                </div>
 
-        <tr>
-            <td> Email: </td>
-            <td> <sf:input path="email" type="email" placeholder="Gimme Your Electronic mail"/> </td>
-        </tr>
-        <tr>
-            <td> Password: </td>
-            <td> <sf:input path="password" type="password" placeholder="Gimme Your password"/> </td>
-        </tr>
-        <tr>
-            <td> <sf:radiobutton path="Orgi" name="orginization" value="false" label="Volunteer"/> </td>
-            <td> <sf:radiobutton path="Orgi" name="orginization" value="true" label="Orginization"/> </td>
-        </tr>
-        <tr>
-            <td>
-                <p class="imgbutton">
-                    <sf:label for="image" path="image" style="cursor: pointer;">Upload your ugly mug here</sf:label>
-                </p>
-            </td>
-            <td>
-                <p>
+                <div class="input">
+                    <img src="${pageContext.request.contextPath}/resources/images/lock2.png" class="img"/>
+                    <sf:input path="password" type="password" placeholder="Password" class="signup_text"/>
+                </div>
+
+                <div class="account_img">
+                    <div class="imgbutton">
+                        <sf:label for="image" path="image" style="cursor: pointer;">Upload your photo
+                            <div class="output">
+                                <img path="output" id="output" class="user_img" src="${pageContext.request.contextPath}/resources/images/account.png">
+                            </div>
+                        </sf:label>
+                    </div>
                     <sf:input path="image" type="file" id="image" accept="image/*" name="image" onchange="loadFile(event)" style="display: none;" multiple="multiple" />
-                </p>
-                <p><img path="output" id="output" width="200"></p>
-            </td>
-        </tr>
+                </div>
+            </div>
 
-    </table>
+            <c:if test="${not empty error}">
+                <div class="error">
+                        ${error}
+                </div>
+            </c:if>
 
-    <c:if test="${not empty error}">
-        <div class="error">
-                ${error}
-        </div>
-    </c:if>
+            <div class="signup_btn">
+                <input class="btn" type="submit" VALUE="REGISTER"/>
+            </div>
 
-    <input type="submit" VALUE="Become Human"/>
-
-</sf:form>
-
+        </sf:form>
+    </div>
+</main>
 </body>
 <jsp:include page="Footer.jsp" />
 </html>
