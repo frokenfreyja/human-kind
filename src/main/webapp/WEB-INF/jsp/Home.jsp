@@ -17,6 +17,7 @@
     </head>
     <body>
 
+    <div class="container">
     <div class="section1">
         <div class="section1_content">
             <div class="title">
@@ -31,7 +32,7 @@
                         <a href="/login" class="login_btn">SIGN IN</a>
                     </c:when>
                     <c:otherwise>
-                        
+
                     </c:otherwise>
                 </c:choose>
             </div>
@@ -75,6 +76,6 @@
                     </c:otherwise>
                 </c:choose>
             </div>
-
+    </div>
     </body>
 </html>
