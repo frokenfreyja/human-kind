@@ -48,19 +48,21 @@ body {
 }
 
 .login_btn {
+    width: 250px;
     position: relative;
     top: 90%;
     color: black;
-    width: 100%;
-    height: 100%;
     padding: 5px 15px;
-    border-radius: 10px;
+    border-radius: 30px;
     background-color: white;
     cursor: pointer;
     font-size: 2em;
     letter-spacing: 1px;
     transition: all 0.1s ease;
     text-decoration: none;
+
+    border: 1px #B13C33;
+    box-shadow: 2px 2px 3px 2px #B13C33;
 }
 
 .login_btn:hover {
@@ -139,13 +141,16 @@ body {
     width: 100%;
     height: 100%;
     padding: 5px 15px;
-    border-radius: 10px;
+    border-radius: 30px;
     background-color: white;
     cursor: pointer;
     font-size: 1em;
     letter-spacing: 1px;
     transition: all 0.1s ease;
     text-decoration: none;
+
+    border: 1px #B13C33;
+    box-shadow: 2px 2px 3px 2px #B13C33;
 }
 
 .ads_btn:hover {
