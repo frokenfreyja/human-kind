@@ -26,7 +26,14 @@
                 <p>Be kind, be human.</p>
             </div>
             <div>
-                <a href="/login" class="login_btn">SIGN IN</a>
+                <c:choose>
+                    <c:when test="${empty currentUser}">
+                        <a href="/login" class="login_btn">SIGN IN</a>
+                    </c:when>
+                    <c:otherwise>
+                        
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </div>
@@ -49,16 +56,15 @@
                         <div class="advertlist">
 
                         <c:forEach begin="0" end="9" var="work" items="${work_list}">
-                            <div class="all_ads">
                                 <div class="ad">
                                     <div class="img"><img src="${pageContext.request.contextPath}/resources/images/${work.imageName}" /></div>
                                     <div class="name"><a href="/ad/${work.id}">${work.name}</a></div>
                                     <div class="date">${work.date}</div>
                                     <div class="cat">${work.interest}</div>
                                 </div>
-                            </div>
                         </c:forEach>
-                    </div>
+
+                        </div>
                         <div>
                             <a href="/all_ads" class="ads_btn">VIEW ALL</a>
                         </div>

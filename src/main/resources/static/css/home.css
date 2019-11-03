@@ -84,12 +84,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px 0 60px 0;
+    padding: 35px 0 60px 0;
     font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .advertlist {
-    width: 100%;
+    width: 90%;
     height: 100%;
     font-size: 1em;
     display: flex;
@@ -103,7 +103,10 @@ body {
     flex-direction: column;
     align-items: center;
 
-    margin: 20px;
+    margin: 50px 20px 0 20px;
+}
+.ad:nth-child(6), .ad:nth-child(7), .ad:nth-child(8), .ad:nth-child(9), .ad:nth-child(10) {
+    margin-top: 0;
 }
 
 .ad a:link {
@@ -122,8 +125,8 @@ body {
     text-decoration: underline;
 }
 .img {
-    width: 220px;
-    height: 220px;
+    width: 180px;
+    height: 180px;
     display: flex;
     justify-content: center;
     align-items: center;
