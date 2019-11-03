@@ -39,13 +39,10 @@
         </div>
     </div>
 
-    <div class="divider"></div>
 
     <div class="section2">
-        <p>HAKK</p>
+        <div class="onepager"><img src="${pageContext.request.contextPath}/resources/images/onepager.png" class="onepager_img"/></div>
     </div>
-
-    <div class="divider"></div>
 
     <div class="section3">
 

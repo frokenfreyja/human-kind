@@ -39,7 +39,7 @@
     background: #F85548;
     right: -200px;
     transition: all 300ms linear;
-    padding-top: 13px;
+    padding-top: 10px;
     font-family: 'IBM Plex Sans', sans-serif;
     z-index: 1;
 }

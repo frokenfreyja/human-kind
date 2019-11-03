@@ -15,7 +15,7 @@
 <header class="header">
     <c:choose>
         <c:when test="${header_type eq 'no_home_btn'}">
-
+            <h3 class="home_btn"><a href="/">HUMAN-KIND</a></h3>
         </c:when>
         <c:otherwise>
             <h3 class="home_btn"><a href="/">HUMAN-KIND</a></h3>
