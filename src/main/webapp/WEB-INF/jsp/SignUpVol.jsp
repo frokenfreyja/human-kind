@@ -24,12 +24,10 @@
 <main>
     <div class="row">
     <h1 class="title">VOLUNTEER</h1>
-<p>Here could be some user information</p>
-
 <sf:form method="POST" modelAttribute="user" action="/vol" enctype="multipart/form-data">
     <div class="signup_table">
         <div class="input">
-            <img src="${pageContext.request.contextPath}/resources/images/email.png" class="img"/>
+            <img src="${pageContext.request.contextPath}/resources/images/name.png" class="img"/>
             <sf:input path="name" type="text" placeholder="Full name" class="signup_text"/>
         </div>
 
@@ -40,14 +38,17 @@
         --%>
 
         <div class="input">
+            <img src="${pageContext.request.contextPath}/resources/images/email.png" class="img"/>
             <sf:input path="email" type="email" placeholder="Email" class="signup_text"/>
         </div>
 
         <div class="input">
+            <img src="${pageContext.request.contextPath}/resources/images/phone.png" class="img"/>
             <sf:input path="phone" type="number" placeholder="Phone number" class="signup_text"/>
         </div>
 
         <div class="input">
+            <img src="${pageContext.request.contextPath}/resources/images/lock2.png" class="img"/>
             <sf:input path="password" type="password" placeholder="Password" class="signup_text"/>
         </div>
 
@@ -58,13 +59,14 @@
         --%>
 
         <div class="account_img">
-            <p class="imgbutton">
-                <sf:label for="image" path="image" style="cursor: pointer;">Upload your ugly mug here</sf:label>
-            </p>
-            <p>
-                <sf:input path="image" type="file" id="image" accept="image/*" name="image" onchange="loadFile(event)" style="display: none;" multiple="multiple" />
-            </p>
-            <p><img path="output" id="output" class="user_img" src="${pageContext.request.contextPath}/resources/images/account.png"></p>
+            <div class="imgbutton">
+                <sf:label for="image" path="image" style="cursor: pointer;">Upload your photo
+                    <div class="output">
+                        <img path="output" id="output" class="user_img" src="${pageContext.request.contextPath}/resources/images/account.png">
+                    </div>
+                </sf:label>
+            </div>
+            <sf:input path="image" type="file" id="image" accept="image/*" name="image" onchange="loadFile(event)" style="display: none;" multiple="multiple" />
         </div>
     </div>
 
