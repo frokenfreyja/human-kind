@@ -61,8 +61,11 @@
 
                         <c:forEach begin="0" end="9" var="work" items="${work_list}">
                                 <div class="ad">
-                                    <div class="img"><img src="${pageContext.request.contextPath}/resources/images/${work.imageName}" /></div>
-                                    <div class="name"><a href="/ad/${work.id}">${work.name}</a></div>
+                                    <div class="name">
+                                        <a href="/ad/${work.id}">${work.name}
+                                            <div class="img"><img src="${pageContext.request.contextPath}/resources/images/${work.imageName}" /></div>
+                                        </a>
+                                    </div>
                                     <div class="date">${work.date}</div>
                                     <div class="cat">${work.interest}</div>
                                 </div>
