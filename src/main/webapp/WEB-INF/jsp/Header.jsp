@@ -33,7 +33,7 @@
             <c:choose>
                 <c:when test="${not empty currentUser}">
                 <li><a href="/all_ads">Available jobs</a></li>
-                <li><a href="/my_account">My account</a></li>
+                <li><a href="/user">My account</a></li>
                 <li><a href="/logout">Sign out (${currentUsername})</a></li>
             </c:when>
             <c:otherwise>

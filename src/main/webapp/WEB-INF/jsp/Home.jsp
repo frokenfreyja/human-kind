@@ -31,6 +31,9 @@
                     <c:when test="${empty currentUser}">
                         <a href="/login" class="login_btn">SIGN IN</a>
                     </c:when>
+                    <c:when test="${currentUserOrgi}">
+                        <a href="/new_ad" class="login_btn">POST AD</a>
+                    </c:when>
                     <c:otherwise>
 
                     </c:otherwise>
@@ -48,7 +51,7 @@
     </div>
 
     <div class="section3">
-
+        <div class="section3_content">
             <%-- Ef til eru auglýsingar, birtir lista af öllum auglýsingum í töflu --%>
             <%--Fyrir hvert Item, sem er á listanum sem var sett í módelið er búin til röð í töflunni--%>
                 <h2 class="advert">AVAILABLE JOBS</h2>
@@ -76,6 +79,7 @@
                     </c:otherwise>
                 </c:choose>
             </div>
+    </div>
     </div>
     </body>
 </html>
