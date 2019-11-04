@@ -41,7 +41,10 @@
 
 
     <div class="section2">
+        <div class="section2_content">
+
         <div class="onepager"><img src="${pageContext.request.contextPath}/resources/images/onepager.png" class="onepager_img"/></div>
+        </div>
     </div>
 
     <div class="section3">
