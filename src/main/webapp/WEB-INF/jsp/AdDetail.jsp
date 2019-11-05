@@ -19,8 +19,10 @@
         <p>Location: "${ad.location}"</p>
         <p>Zip: "${ad.zipcode}"</p>
         <p>Description: "${ad.description}"</p>
-        <p>Payout:
-
-         <a href="/"> E.T. go home </a>
+        <p>Payout:</p>
+        <a href="/ad/${id}/apply"> apply </a>
+        <div>
+        <a href="/"> E.T. go home </a>
+        </div>
     </body>
 </html>

@@ -2,8 +2,6 @@ package project.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,9 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
-import project.persistence.entities.Applicants;
+import project.persistence.entities.Applicant;
 import project.persistence.entities.Work;
 import project.persistence.entities.User;
+import project.service.ApplicantService;
 import project.service.UserService;
 import project.service.WorkService;
 
@@ -28,6 +27,7 @@ public class AdController {
     // Instance Variables
     private WorkService workService;
     private UserService userService;
+    private ApplicantService applicantService;
 
     // Dependency Injection
     @Autowired
@@ -133,13 +133,18 @@ public class AdController {
         return "AdDetail";
     }
 
-    @RequestMapping(value = "/ad/apply", method = RequestMethod.POST)
-    public String register(@PathVariable Long id, Applicants applicants, Work work, User user, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) {
+    @RequestMapping(value = "/ad/{id}/apply", method = RequestMethod.GET)
+    public String register(@PathVariable Long id,  Work work, User user, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) {
         Long userID = (Long) httpSession.getAttribute("currentUser");
-        Applicants applicant = new Applicants();
-        applicant.setWorkID(id);
-        applicant.setUserID(userID);
+        if(userID == null){
+            return "redirect:/login";
+        }
 
+     /*   Applicant applicant = new Applicant();
+        applicant.setWork(id);
+        applicant.setUser(userID);
+        applicantService.save(applicant);
+*/
         return "redirect:/ad/{id}";
     }
 
