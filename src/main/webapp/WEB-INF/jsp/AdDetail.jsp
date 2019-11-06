@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+
 <html lang="en">
 
     <head>
@@ -15,6 +19,20 @@
         <p>Location: "${ad.location}"</p>
         <p>Zip: "${ad.zipcode}"</p>
         <p>Description: "${ad.description}"</p>
-        <p>Payout:
+        <p>Payout:</p>
+        <a href="/ad/${id}/apply"> apply </a>
+        <c:choose>
+            <c:when test="${not empty applicants}">
+                <c:forEach var="applicant_list" items="${applicants}">
+                    <p>${applicant_list.name}<p>
+                </c:forEach>
+            </c:when>
+            <c:otherwise>
+                <h3>No volunteers have applied</h3>
+            </c:otherwise>
+        </c:choose>
+        <div>
+        <a href="/"> E.T. go home </a>
+        </div>
     </body>
 </html>

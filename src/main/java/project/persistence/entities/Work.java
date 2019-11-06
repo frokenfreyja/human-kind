@@ -27,10 +27,10 @@ public class Work {
 
 
     // Þarf að finna leið til að búa til list í db
-    /*  private List<User> applicants;
-    private List<User> accepted;
-    private List<User> rejected;
-*/
+   // private List<User> applicants;
+  //  private List<User> accepted;
+  //  private List<User> rejected;
+
 
     public Work(){
 
