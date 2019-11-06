@@ -1,9 +1,11 @@
 package project.persistence.entities;
 
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Date;
 
 @Entity
 @Table(name = "users")
@@ -14,9 +16,14 @@ public class User{
 
     private String name;
     private String email;
+    private String gender;
     private String password;
     private String confirmPassword;
     private String phone;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date birthDate;
+
     @Transient
     private MultipartFile image;
     private String imageName;
@@ -30,11 +37,13 @@ public class User{
 
     }
 
-    public User(String name, String email, String password, String phone, String bio, Boolean isOrgi, MultipartFile image) {
+    public User(String name, String email, String gender, String password, String phone, Date birthDate, String bio, Boolean isOrgi, MultipartFile image) {
         this.name = name;
         this.email = email;
+        this.gender = gender;
         this.password = password;
         this.phone = phone;
+        this.birthDate = birthDate;
         this.bio = bio;
         this.Orgi = Orgi;
         this.image = image;
@@ -76,6 +85,22 @@ public class User{
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getPhone() {
@@ -138,8 +163,10 @@ public class User{
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", gender='" + gender + '\'' +
                 ", password='" + password + '\'' +
                 ", phone='" + phone + '\'' +
+                ", birthDate='" + birthDate + '\'' +
                 ", image=" + image +
                 ", imageName='" + imageName + '\'' +
                 ", bio='" + bio + '\'' +
