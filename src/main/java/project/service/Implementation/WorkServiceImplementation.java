@@ -8,6 +8,8 @@ import project.service.WorkService;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Date;
+
 
 @Service
 public class WorkServiceImplementation implements WorkService {
@@ -62,7 +64,7 @@ public class WorkServiceImplementation implements WorkService {
     }
 
     @Override
-    public List<Work> findByDate(String date) {
+    public List<Work> findByDate(Date date) {
         return repository.findByDate(date);
     }
 

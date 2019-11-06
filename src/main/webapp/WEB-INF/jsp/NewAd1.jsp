@@ -45,7 +45,7 @@
                     <tr>
                             <%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
                         <td>
-                            <sf:input path="date" class="formbox" type="text" placeholder="DD-MM-YYYY" required="required" />
+                            <sf:input path="date" class="formbox" type="date" placeholder="Date" required="required" />
                         </td>
                     </tr>
                     <tr>

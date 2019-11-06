@@ -3,6 +3,8 @@ package project.service;
 import project.persistence.entities.Work;
 
 import java.util.List;
+import java.util.Date;
+
 
 public interface WorkService {
 
@@ -53,11 +55,11 @@ public interface WorkService {
     List<Work> findByLocation(String location);
 
     /**
-     * Find all {@link Work}s with {@link String date}
-     * @param date {@link String}
-     * @return All {@link Work}s with the {@link String date} passed
+     * Find all {@link Work}s with {@link Date date}
+     * @param date {@link Date}
+     * @return All {@link Work}s with the {@link Date date} passed
      */
-    List<Work> findByDate(String date);
+    List<Work> findByDate(Date date);
 
     /**
      * Find all {@link Work}s with {@link int duration}

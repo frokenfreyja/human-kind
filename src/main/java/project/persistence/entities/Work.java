@@ -1,8 +1,11 @@
 package project.persistence.entities;
 
 import javax.persistence.*;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
+import java.util.Date;
 
 @Entity
 @Table(name = "work")
@@ -14,7 +17,10 @@ public class Work {
 
     private String name;
     private String location;
-    private String date;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date date;
+
     private String duration;
     private String description;
     private Long owner;
@@ -57,11 +63,11 @@ public class Work {
         this.location = location;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

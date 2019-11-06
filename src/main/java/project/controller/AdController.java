@@ -22,6 +22,8 @@ import project.persistence.entities.User;
 import project.service.ApplicantService;
 import project.service.UserService;
 import project.service.WorkService;
+import java.util.Date;
+
 
 @Controller
 public class AdController {
@@ -76,7 +78,7 @@ public class AdController {
 
         String name = (String) httpSession.getAttribute("ad_name");
         String desc = (String) httpSession.getAttribute("ad_desc");
-        String date = (String) httpSession.getAttribute("ad_date");
+        Date date = (Date) httpSession.getAttribute("ad_date");
         String cat = (String) httpSession.getAttribute("ad_cat");
 
 
