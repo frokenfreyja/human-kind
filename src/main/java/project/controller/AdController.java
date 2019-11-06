@@ -132,8 +132,7 @@ public class AdController {
         ad = workService.findOne(id);
         User owner = userService.findOne(ad.getOwner());
         ArrayList<Applicant> app = applicantService.findAllApplicants(id);
-        int k = app.size();
-        ArrayList<User> use = new ArrayList<User>(k);
+        ArrayList<User> use = new ArrayList<User>(app.size());
         for (Applicant applicant : app) use.add(userService.findOne(applicant.getUser()));
 
         model.addAttribute("ad", ad);
