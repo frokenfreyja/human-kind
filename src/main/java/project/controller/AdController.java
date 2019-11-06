@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import project.persistence.entities.Applicant;
 import project.persistence.entities.Work;
 import project.persistence.entities.User;
+import project.service.ApplicantService;
 import project.service.UserService;
 import project.service.WorkService;
 
@@ -27,12 +29,16 @@ public class AdController {
     // Instance Variables
     private WorkService workService;
     private UserService userService;
+    private ApplicantService applicantService;
 
-    // Dependency Injection
+    /*
+     * MUNA AÐ SETJA NÝ SERVICE Í SMIÐ
+     */
     @Autowired
-    public AdController(WorkService workService, UserService userService) {
+    public AdController(WorkService workService, UserService userService, ApplicantService applicantService) {
         this.workService = workService;
         this.userService = userService;
+        this.applicantService = applicantService;
     }
 
     @RequestMapping(value = "/new_ad", method = RequestMethod.GET)
@@ -122,19 +128,34 @@ public class AdController {
 
     @RequestMapping(value = "/ad/{id}", method = RequestMethod.GET)
     public String viewAd(@PathVariable Long id, Model model) {
-
         Work ad = new Work();
         ad = workService.findOne(id);
         User owner = userService.findOne(ad.getOwner());
+        ArrayList<Applicant> app = applicantService.findAllApplicants(id);
+        int k = app.size();
+        ArrayList<User> use = new ArrayList<User>(k);
+        for (Applicant applicant : app) use.add(userService.findOne(applicant.getUser()));
+
         model.addAttribute("ad", ad);
         model.addAttribute("owner", owner);
+        model.addAttribute("applicants", use);
 
         return "AdDetail";
     }
 
-    //@RequestMapping
-    public String register(Work work, User user, Model model) {
-        return "";
+    @RequestMapping(value = "/ad/{id}/apply", method = RequestMethod.GET)
+    public String register(@PathVariable Long id,  Work work, User user, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) {
+        Long userID = (Long) httpSession.getAttribute("currentUser");
+        if(userID == null){
+            return "redirect:/login";
+        }
+
+        Applicant applicant = new Applicant();
+        applicant.setWork(id);
+        applicant.setUser(userID);
+        applicantService.save(applicant);
+
+        return "redirect:/ad/{id}";
     }
 
     //@RequestMapping
