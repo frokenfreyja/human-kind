@@ -2,6 +2,7 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 <jsp:include page="Header.jsp" />
 <jsp:include page="Footer.jsp" />
@@ -63,6 +64,7 @@
                                 <div class="ad">
                                         <a href="/ad/${work.id}">
                                             <div class="img"><img src="${pageContext.request.contextPath}/resources/images/${work.imageName}" /></div>
+                                            ${fn:substring(work.date, 0,10)}
                                             <div class="card_title">
                                                     ${work.name}
                                             </div>
