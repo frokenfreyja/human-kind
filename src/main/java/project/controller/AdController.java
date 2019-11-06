@@ -29,11 +29,14 @@ public class AdController {
     private UserService userService;
     private ApplicantService applicantService;
 
-    // Dependency Injection
+    /*
+     * MUNA AÐ SETJA NÝ SERVICE Í SMIÐ
+     */
     @Autowired
-    public AdController(WorkService workService, UserService userService) {
+    public AdController(WorkService workService, UserService userService, ApplicantService applicantService) {
         this.workService = workService;
         this.userService = userService;
+        this.applicantService = applicantService;
     }
 
     @RequestMapping(value = "/new_ad", method = RequestMethod.GET)
@@ -129,6 +132,7 @@ public class AdController {
         User owner = userService.findOne(ad.getOwner());
         model.addAttribute("ad", ad);
         model.addAttribute("owner", owner);
+        model.addAttribute("applicants", applicantService.findAll());
 
         return "AdDetail";
     }
@@ -140,11 +144,12 @@ public class AdController {
             return "redirect:/login";
         }
 
-     /*   Applicant applicant = new Applicant();
+        Applicant applicant = new Applicant();
         applicant.setWork(id);
         applicant.setUser(userID);
         applicantService.save(applicant);
-*/
+        applicant.toString();
+
         return "redirect:/ad/{id}";
     }
 

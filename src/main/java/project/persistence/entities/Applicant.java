@@ -8,8 +8,8 @@ public class Applicant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long workid;
-    private Long userid;
+    private Long work;
+    private Long users;
 
     public Applicant(){
 
@@ -20,18 +20,27 @@ public class Applicant {
     }
 
     public Long getWork() {
-        return workid;
+        return work;
     }
 
-    public void setWork(Long workid) {
-        this.workid = workid;
+    public void setWork(Long work) {
+        this.work = work;
     }
 
     public Long getUser() {
-        return userid;
+        return users;
     }
 
-    public void setUser(Long userid) {
-        this.userid = userid;
+    public void setUser(Long users) {
+        this.users = users;
+    }
+
+    @Override
+    public String toString() {
+        return "Applicant{" +
+                "id=" + id +
+                ", workID=" + work +
+                ", userID=" + users +
+                '}';
     }
 }
