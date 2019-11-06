@@ -31,11 +31,16 @@
             <sf:input path="name" type="text" placeholder="Full name" class="signup_text"/>
         </div>
 
-        <%--
         <div class="input">
-            gender
+            <img src="${pageContext.request.contextPath}/resources/images/name.png" class="img"/>
+            <sf:select path="gender" class="signup_text">
+                <sf:option value="gender" style="display: none;">Gender</sf:option>
+                <sf:option value="none" disabled="true">Gender</sf:option>
+                <sf:option value="Female">Female</sf:option>
+                <sf:option value="Male">Male</sf:option>
+                <sf:option value="Other">Not specified</sf:option>
+            </sf:select>
         </div>
-        --%>
 
         <div class="input">
             <img src="${pageContext.request.contextPath}/resources/images/email.png" class="img"/>
@@ -57,17 +62,17 @@
             <sf:input path="confirmPassword" type="password" placeholder="Confirm your password" class="signup_text" required="required"/>
         </div>
 
+        <div class="input">
+            <img src="${pageContext.request.contextPath}/resources/images/calendar.png" class="img"/>
+            <sf:input path="birthDate" type="date" placeholder="Date of birth" class="signup_text"/>
+        </div>
+
         <c:if test="${not empty error}">
             <div class="error">
                     ${error}
             </div>
         </c:if>
 
-        <%--
-        <div class="input">
-            date of birth
-        </div>
-        --%>
 
         <div class="account_img">
             <div class="imgbutton">
