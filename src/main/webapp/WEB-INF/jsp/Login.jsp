@@ -4,7 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 
-<jsp:include page="Header.jsp" />
 <jsp:include page="Footer.jsp" />
 
 <html lang="en">
@@ -14,13 +13,14 @@
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,600,700|Muli:600|Rubik:400,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/login.css"/>"/>
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/footer.css"/>"/>
+        <jsp:include page="Header.jsp" />
 
         <title>Login</title>
     </head>
     <body>
     <main>
         <div class="row">
-    <h1 class="title">Login</h1>
+    <h1 class="title">LOGIN</h1>
     <sf:form method="POST" modelAttribute="user" action="/login">
         <div class="login_table">
             <div class="input">
@@ -38,9 +38,6 @@
             <div class="error">
                     ${loginDenied}
             </div>
-            <audio autoplay>
-                <source src="/resources/sounds/doorlocked_buzz1.wav" type="audio/wav">
-            </audio>
         </c:if>
 
         <div class="login_btn">

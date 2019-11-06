@@ -29,6 +29,7 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginGet(User user, Model model) {
         model.addAttribute("user", new User());
+        model.addAttribute("header_type", "home_btn");
 
         return "Login";
     }
@@ -43,6 +44,8 @@ public class LoginController {
             if(loginUser != null && bCryptPasswordEncoder.matches(user.getPassword(), loginUser.getPassword())){
                 httpSession.setAttribute("currentUser", loginUser.getId());
                 httpSession.setAttribute("currentUsername", loginUser.getName());
+                httpSession.setAttribute("currentUserEmail", loginUser.getEmail());
+                httpSession.setAttribute("currentUserOrgi", loginUser.getOrgi());
                 return "redirect:/user";
             } else if (loginUser == null) {
                 model.addAttribute("loginDenied", "This account does not exist");

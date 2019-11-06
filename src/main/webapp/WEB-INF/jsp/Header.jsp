@@ -13,6 +13,14 @@
     </script>
 </head>
 <header class="header">
+    <c:choose>
+        <c:when test="${header_type eq 'no_home_btn'}">
+            <h3 class="home_btn"><a href="/">HUMAN-KIND</a></h3>
+        </c:when>
+        <c:otherwise>
+            <h3 class="home_btn"><a href="/">HUMAN-KIND</a></h3>
+        </c:otherwise>
+    </c:choose>
     <div id="sidebar">
         <div class="toggle-btn" onclick="toggleSidebar()">
             <a>
@@ -25,7 +33,7 @@
             <c:choose>
                 <c:when test="${not empty currentUser}">
                 <li><a href="/all_ads">Available jobs</a></li>
-                <li><a href="/my_account">My account</a></li>
+                <li><a href="/user">My account</a></li>
                 <li><a href="/logout">Sign out (${currentUsername})</a></li>
             </c:when>
             <c:otherwise>

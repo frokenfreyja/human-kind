@@ -13,18 +13,27 @@ html {
 
 body {
     margin: auto;
-    overflow-x: hidden;
+    font-family: 'IBM Plex Sans', sans-serif;
+    overflow: hidden;
+    background-color: #f85548;
+    background-position: center;
+}
+
+.container {
+    padding-right: 17px;
+    box-sizing: content-box;
+    overflow-y: scroll;
     width: 100vw;
     height: 100vh;
-    font-family: 'IBM Plex Sans', sans-serif;
+    scroll-snap-type: y mandatory;
 }
+
 
 .section1, .section2, .section3 {
     width: 100%;
     height: 100%;
-    background-color: #f85548;
-    background-position: center;
     color: white;
+    scroll-snap-align: start;
 }
 
 /* SECTION 1 */
@@ -48,19 +57,21 @@ body {
 }
 
 .login_btn {
+    width: 250px;
     position: relative;
     top: 90%;
     color: black;
-    width: 100%;
-    height: 100%;
     padding: 5px 15px;
-    border-radius: 10px;
+    border-radius: 30px;
     background-color: white;
     cursor: pointer;
     font-size: 2em;
     letter-spacing: 1px;
     transition: all 0.1s ease;
     text-decoration: none;
+
+    border: 1px #B13C33;
+    box-shadow: 2px 2px 3px 2px #B13C33;
 }
 
 .login_btn:hover {
@@ -69,96 +80,133 @@ body {
     text-decoration: none;
 }
 
-/* DIVIDER */
-.divider {
-    margin: 20px;
-}
 /* SECTION 2 */
-
-/* DIVIDER */
-
-/* SECTION 3 - AD LIST */
-.section3 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    margin: 20px 0;
-    font-family: 'IBM Plex Sans', sans-serif;
-}
-
-.advert {
-    text-align: center;
-    font-size: 2em;
-}
-
-.advertlist {
-    width: 100%;
-    height: 100%;
-    font-size: 1.5em;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    overflow: auto;
-    margin-bottom: 20px;
-}
-
-.all_ads {
-    margin: 5px 0;
-}
-
-.ad {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-
-    margin: 20px;
-}
-
-.ad a:link {
-    text-decoration: none;
-    color: white;
-}
-.ad a:visited {
-    text-decoration: none;
-    color: white;
-}
-.ad a:hover {
-    text-decoration: none;
-    color: #5548f8;
-}
-.ad a:active {
-    text-decoration: underline;
-}
-.img {
-    width: 220px;
-    height: 220px;
+/*
+.onepager {
+    width: 90%;
+    height: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
 }
-.img img {
+.onepager img {
     object-fit: cover;
     width: 100%;
     height: 100%;
 }
+ */
+.section2 {
+    background-color: white;
+    padding-right: 17px;
+}
+.section2_content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100vh;
+    width: 100vw;
+}
+
+.onepager {
+    height: 40%;
+    width: 70%;
+    overflow: hidden;
+}
+
+.onepager_img {
+    height: 100%;
+    width: 100%;
+    object-fit: inherit;
+    background-color: white;
+}
+
+/* SECTION 3 - AD LIST */
+.section3 {
+    font-family: 'IBM Plex Sans', sans-serif;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.section3_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.advertlist {
+    width: 90%;
+    height: 100%;
+    font-size: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.ad {
+    margin: 20px;
+    font-size: 1.2em;
+}
+
+.ad:nth-child(6), .ad:nth-child(7), .ad:nth-child(8), .ad:nth-child(9), .ad:nth-child(10) {
+    margin-top: 0;
+}
+
+.ad a {
+    text-decoration: none;
+    color: white;
+    transition: all 0.1s ease;
+}
+
+.ad a:hover {
+    color: black;
+}
+
+.img {
+    width: 200px;
+    height: 220px;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px #B13C33;
+    box-shadow: 2px 2px 3px 2px #B13C33;
+}
+
+.card_title {
+}
+
+.img img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    transition: all 0.1s ease;
+    opacity: 0.8;
+}
+
+.img img:hover {
+    opacity: 1.0;
+}
 
 .ads_btn {
     position: relative;
-    float: bottom;
     color: black;
     width: 100%;
     height: 100%;
     padding: 5px 15px;
-    border-radius: 10px;
+    border-radius: 30px;
     background-color: white;
     cursor: pointer;
     font-size: 1em;
     letter-spacing: 1px;
     transition: all 0.1s ease;
     text-decoration: none;
+
+    border: 1px #B13C33;
+    box-shadow: 2px 2px 3px 2px #B13C33;
 }
 
 .ads_btn:hover {

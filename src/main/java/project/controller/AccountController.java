@@ -51,8 +51,16 @@ public class AccountController {
         return "SignUp";
     }
 
-    @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public String createAccountPost(@ModelAttribute("user") User user, Model model, HttpServletRequest httpServletRequest){
+    @RequestMapping(value = "/org", method = RequestMethod.GET)
+    public String createAsOrg(Model model) {
+
+        model.addAttribute("user", new User());
+
+        return "SignUpOrg";
+    }
+
+    @RequestMapping(value = "/org", method = RequestMethod.POST)
+    public String createAsOrgPost(@ModelAttribute("user") User user, Model model, HttpServletRequest httpServletRequest){
         MultipartFile imagefile = user.getImage();
         String fileName;
 
@@ -80,12 +88,63 @@ public class AccountController {
         }
 
         if (userService.findByEmail(user.getEmail()) != null) {
-            model.addAttribute("error", "There is already an account with this email: " + user.getEmail());
+            model.addAttribute("error", "A user with the email address " + user.getEmail() + " already exists");
+        } else if(!(user.getPassword().equals(user.getConfirmPassword()))) {
+            model.addAttribute("error", "Passwords don't match.");
         } else {
+            user.setOrgi(true);
             userService.save(user);
             return "redirect:/login";
         }
-        return "SignUp";
+        return "SignUpOrg";
+    }
+
+    @RequestMapping(value = "/vol", method = RequestMethod.GET)
+    public String createAsVol(Model model) {
+
+        model.addAttribute("user", new User());
+
+        return "SignUpVol";
+    }
+
+    @RequestMapping(value = "/vol", method = RequestMethod.POST)
+    public String createAsVolPost(@ModelAttribute("user") User user, Model model, HttpServletRequest httpServletRequest){
+        MultipartFile imagefile = user.getImage();
+        String fileName;
+
+        try {
+            imagefile.getInputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if(user.getImage()==null) throw new NullPointerException("unable to get" + imagefile);
+
+        String rootDir = httpServletRequest.getSession().getServletContext().getRealPath("/");
+        if(user.getImage() != null && !user.getImage().isEmpty()) {
+            try {
+
+                File path = new File(rootDir + "resources/images/" + imagefile.getOriginalFilename());
+                imagefile.transferTo(path);
+
+                fileName = imagefile.getOriginalFilename();
+                user.setImageName(fileName);
+
+            } catch (IllegalStateException | IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (userService.findByEmail(user.getEmail()) != null) {
+            model.addAttribute("error", "A user with the email address " + user.getEmail() + " already exists");
+        } else if(!(user.getPassword().equals(user.getConfirmPassword()))) {
+            model.addAttribute("error", "Passwords don't match.");
+        } else {
+            user.setOrgi(false);
+            userService.save(user);
+            return "redirect:/login";
+        }
+        return "SignUpVol";
     }
 
     //@RequestMapping

@@ -4,15 +4,44 @@
     padding: 0;
 }
 
+.home_btn {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-start;
+
+    position: fixed;
+    width: 100vw;
+    height: auto;
+    background: #F85548;
+    font-family: 'IBM Plex Sans', sans-serif;
+    padding: 13px 0 10px 20px;
+    z-index: 1;
+}
+
+.home_btn a {
+    text-decoration: none;
+    color: white;
+}
+
+.home_btn a:hover {
+    text-decoration: none;
+    color: black;
+}
+
 #sidebar {
+    display: flex;
+    align-content: center;
+
     position: fixed;
     width: 180px;
     height: auto;
     background: #F85548;
     right: -200px;
     transition: all 300ms linear;
-    padding-top: 13px;
+    padding-top: 10px;
     font-family: 'IBM Plex Sans', sans-serif;
+    z-index: 1;
 }
 
 #sidebar.active{
@@ -22,13 +51,12 @@
 #sidebar ul li{
     color: white;
     list-style: none;
-    padding: 15px 10px;
+    padding: 5px 10px 15px 10px;
 }
 
 #sidebar .toggle-btn{
     position: absolute;
     right: 230px;
-    top: 20px;
     cursor: pointer;
 }
 

@@ -113,7 +113,7 @@ public class AdController {
         model.addAttribute("work_list", workService.findAllReverseOrder());
         model.addAttribute("work", new Work());
 
-        return "Home";
+        return "redirect:/";
     }
 
     //@RequestMapping
