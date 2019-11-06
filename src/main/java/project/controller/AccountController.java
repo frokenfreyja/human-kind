@@ -89,6 +89,8 @@ public class AccountController {
 
         if (userService.findByEmail(user.getEmail()) != null) {
             model.addAttribute("error", "A user with the email address " + user.getEmail() + " already exists");
+        } else if(!(user.getPassword().equals(user.getConfirmPassword()))) {
+            model.addAttribute("error", "Passwords don't match.");
         } else {
             user.setOrgi(true);
             userService.save(user);
@@ -135,6 +137,8 @@ public class AccountController {
 
         if (userService.findByEmail(user.getEmail()) != null) {
             model.addAttribute("error", "A user with the email address " + user.getEmail() + " already exists");
+        } else if(!(user.getPassword().equals(user.getConfirmPassword()))) {
+            model.addAttribute("error", "Passwords don't match.");
         } else {
             user.setOrgi(false);
             userService.save(user);

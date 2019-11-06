@@ -28,23 +28,34 @@
             <div class="signup_table">
                 <div class="input">
                     <img src="${pageContext.request.contextPath}/resources/images/name.png" class="img"/>
-                    <sf:input path="name" type="text" placeholder="Full name" class="signup_text"/>
+                    <sf:input path="name" type="text" placeholder="Full name" class="signup_text" required="required"/>
                 </div>
 
                 <div class="input">
                     <img src="${pageContext.request.contextPath}/resources/images/email.png" class="img"/>
-                    <sf:input path="email" type="email" placeholder="Email" class="signup_text"/>
+                    <sf:input path="email" type="email" placeholder="Email" class="signup_text" required="required"/>
                 </div>
 
                 <div class="input">
                     <img src="${pageContext.request.contextPath}/resources/images/phone.png" class="img"/>
-                    <sf:input path="phone" type="number" placeholder="Phone number" class="signup_text"/>
+                    <sf:input path="phone" type="number" placeholder="Phone number" class="signup_text" required="required"/>
                 </div>
 
                 <div class="input">
                     <img src="${pageContext.request.contextPath}/resources/images/lock2.png" class="img"/>
-                    <sf:input path="password" type="password" placeholder="Password" class="signup_text"/>
+                    <sf:input path="password" type="password" placeholder="Password" class="signup_text" required="required"/>
                 </div>
+
+                <div class="input">
+                    <img src="${pageContext.request.contextPath}/resources/images/lock2.png" class="img"/>
+                    <sf:input path="confirmPassword" type="password" placeholder="Confirm your password" class="signup_text" required="required"/>
+                </div>
+
+                <c:if test="${not empty error}">
+                    <div class="error">
+                            ${error}
+                    </div>
+                </c:if>
 
                 <div class="account_img">
                     <div class="imgbutton">
@@ -57,12 +68,6 @@
                     <sf:input path="image" type="file" id="image" accept="image/*" name="image" onchange="loadFile(event)" style="display: none;" multiple="multiple" />
                 </div>
             </div>
-
-            <c:if test="${not empty error}">
-                <div class="error">
-                        ${error}
-                </div>
-            </c:if>
 
             <div class="signup_btn">
                 <input class="btn" type="submit" VALUE="REGISTER"/>
