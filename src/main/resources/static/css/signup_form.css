@@ -38,7 +38,6 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 90%;
     position: relative;
 }
 
@@ -52,7 +51,7 @@ main {
     align-content: center;
 
     padding: 15px 5px 15px 20px;
-    margin: 30px 0 50px 0;
+    margin: 30px 0;
 
     border-radius: 3px;
     background-color: white;
@@ -92,13 +91,13 @@ img .img {
      display: flex;
      justify-content: center;
      width: 100%;
-     margin: 30px 0;
+     margin: 20px 0 60px 0;
 }
 
 .btn {
     position: relative;
     color: black;
-    width: 80%;
+    width: 60%;
     padding: 15px 15px;
     border-radius: 30px;
     background-color: white;
