@@ -34,4 +34,12 @@ public interface ApplicantService {
      * @return list of {@link Applicant}s with {@link Long work}
      */
     ArrayList<Applicant> findAllApplicants(Long work);
+
+    /**
+     * Get list of {@link Applicant}s
+     * @param work {@link Long}
+     * @param users {@link Long}
+     * @return list of {@link Applicant}s with {@link Long work} and {@link Long users}
+     */
+    ArrayList<Applicant> findByWorkAndUser(Long work, Long users);
 }
