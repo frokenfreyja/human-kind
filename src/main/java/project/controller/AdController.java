@@ -2,6 +2,8 @@ package project.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -126,13 +128,17 @@ public class AdController {
 
     @RequestMapping(value = "/ad/{id}", method = RequestMethod.GET)
     public String viewAd(@PathVariable Long id, Model model) {
-
         Work ad = new Work();
         ad = workService.findOne(id);
         User owner = userService.findOne(ad.getOwner());
+        ArrayList<Applicant> app = applicantService.findAllApplicants(id);
+        int k = app.size();
+        ArrayList<User> use = new ArrayList<User>(k);
+        for (Applicant applicant : app) use.add(userService.findOne(applicant.getUser()));
+
         model.addAttribute("ad", ad);
         model.addAttribute("owner", owner);
-        model.addAttribute("applicants", applicantService.findAll());
+        model.addAttribute("applicants", use);
 
         return "AdDetail";
     }
@@ -148,7 +154,6 @@ public class AdController {
         applicant.setWork(id);
         applicant.setUser(userID);
         applicantService.save(applicant);
-        applicant.toString();
 
         return "redirect:/ad/{id}";
     }

@@ -1,7 +1,9 @@
 package project.service;
 
 import project.persistence.entities.Applicant;
+import project.persistence.entities.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface ApplicantService {
@@ -31,5 +33,5 @@ public interface ApplicantService {
      * @param work {@link Long}
      * @return list of {@link Applicant}s with {@link Long work}
      */
-    List<Applicant> findAllApplicants(Long work);
+    ArrayList<Applicant> findAllApplicants(Long work);
 }

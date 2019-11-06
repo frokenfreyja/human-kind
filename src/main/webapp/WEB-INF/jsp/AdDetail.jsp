@@ -24,7 +24,7 @@
         <c:choose>
             <c:when test="${not empty applicants}">
                 <c:forEach var="applicant_list" items="${applicants}">
-                    <p>${applicant_list.work}<p>
+                    <p>${applicant_list.name}<p>
                 </c:forEach>
             </c:when>
             <c:otherwise>
