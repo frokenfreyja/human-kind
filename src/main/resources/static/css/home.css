@@ -81,45 +81,59 @@ body {
 }
 
 /* SECTION 2 */
-/*
-.onepager {
-    width: 90%;
-    height: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-.onepager img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-}
- */
 .section2 {
     background-color: white;
-    padding-right: 17px;
+    padding: 20px 17px 0 8px;
+    color: black;
+    position: relative;
 }
-.section2_content {
+.row {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
-
-    height: 100vh;
-    width: 100vw;
+    align-content: center;
+    position: relative;
 }
 
-.onepager {
-    height: 40%;
-    width: 70%;
-    overflow: hidden;
+.sub {
+    color: #5548f8;
+    padding: 40px 40px 0 40px;
+    font-size: 2em;
 }
 
-.onepager_img {
-    height: 100%;
-    width: 100%;
-    object-fit: inherit;
-    background-color: white;
+.col {
+    width: 22%;
+    margin: 15px;
+    text-align: justify;
+}
+
+.bil {
+    margin: 245px;
+}
+
+.onepager img {
+    object-fit: cover;
+    width: 46%;
+    position: absolute;
+    top: 36%;
+    margin-left: -328px;
+}
+
+.quote {
+    position: absolute;
+    top: 61%;
+    left: 27%;
+    color: #5548f8;
+    width: 46%;
+}
+
+.textbox_title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+p {
+    font-weight: normal;
 }
 
 /* SECTION 3 - AD LIST */
@@ -183,12 +197,13 @@ body {
     object-fit: cover;
     width: 100%;
     height: 100%;
-    transition: all 0.1s ease;
-    opacity: 0.8;
+    transition: transform .5s, filter 0.5s ease-in-out;
+    filter: grayscale(100%);
 }
 
-.img img:hover {
-    opacity: 1.0;
+.img:hover img {
+    filter: grayscale(0);
+    transform: scale(1.1);
 }
 
 .ads_btn {
