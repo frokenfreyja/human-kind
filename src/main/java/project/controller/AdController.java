@@ -129,7 +129,7 @@ public class AdController {
     }
 
     @RequestMapping(value = "/ad/{id}", method = RequestMethod.GET)
-    public String viewAd(@PathVariable Long id, Model model) {
+    public String viewAd(@PathVariable Long id, Model model, HttpSession httpSession) {
         Work ad = new Work();
         ad = workService.findOne(id);
         User owner = userService.findOne(ad.getOwner());
@@ -137,10 +137,17 @@ public class AdController {
         ArrayList<User> use = new ArrayList<User>(app.size());
         for (Applicant applicant : app) use.add(userService.findOne(applicant.getUser()));
 
+        Long userID = (Long) httpSession.getAttribute("currentUser");
+        User currUser = userService.findOne(userID);
 
         model.addAttribute("ad", ad);
         model.addAttribute("owner", owner);
-        model.addAttribute("applicants", use);
+        model.addAttribute("currUser", currUser);
+
+        if(owner == currUser) {
+            model.addAttribute("applicants", use);
+        }
+
         return "AdDetail";
     }
 

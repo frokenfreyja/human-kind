@@ -29,7 +29,7 @@ public class User{
     private String imageName;
     private String bio;
     private int points;
-    private Boolean Orgi;
+    private Boolean orgi;
     // Þarf að finna leið til að búa til list í db
    // private List<Course> courses;
 
@@ -37,7 +37,7 @@ public class User{
 
     }
 
-    public User(String name, String email, String gender, String password, String phone, Date birthDate, String bio, Boolean isOrgi, MultipartFile image) {
+    public User(String name, String email, String gender, String password, String phone, Date birthDate, String bio, Boolean orgi, MultipartFile image) {
         this.name = name;
         this.email = email;
         this.gender = gender;
@@ -45,10 +45,8 @@ public class User{
         this.phone = phone;
         this.birthDate = birthDate;
         this.bio = bio;
-        this.Orgi = Orgi;
+        this.orgi = orgi;
         this.image = image;
-        this.imageName = imageName;
-
     }
 
     public Long getId() {
@@ -128,11 +126,11 @@ public class User{
     }
 
     public Boolean getOrgi() {
-        return Orgi;
+        return orgi;
     }
 
     public void setOrgi(Boolean Orgi) {
-        this.Orgi = Orgi;
+        this.orgi = orgi;
     }
 
     public MultipartFile getImage() {
@@ -171,7 +169,7 @@ public class User{
                 ", imageName='" + imageName + '\'' +
                 ", bio='" + bio + '\'' +
                 ", points=" + points +
-                ", Orgi=" + Orgi +
+                ", orgi=" + orgi +
                 '}';
     }
 }
