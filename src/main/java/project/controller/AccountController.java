@@ -51,13 +51,13 @@ public class AccountController {
 
         user = userService.findOne(userId);
         model.addAttribute("user", user);
-        System.out.println("APPLIED ID: " + user.getJobs().get(0));
 
         ArrayList<Work> jobs = new ArrayList<Work>(user.getJobs().size());
         for(int i = 0; i<user.getJobs().size(); i++) {
             jobs.add(workService.findOne(user.getJobs().get(i)));
         }
         model.addAttribute("jobs", jobs);
+
 
         return "User";
     }
