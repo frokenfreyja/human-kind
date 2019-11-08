@@ -10,7 +10,6 @@
     </head>
     <body>
 
-
     <nav>
         <a href="/"> E.T. go home </a>
     </nav>
@@ -20,9 +19,20 @@
   
     <img src="/resources/images/ricardo.gif">
     <div>
+        <c:choose>
+            <c:when test="${not empty jobs}">
+                <c:forEach var="job" items="${jobs}">
+                    <p>${job.name}<p>
+                </c:forEach>
+            </c:when>
+                <c:otherwise>
+                    No jobs applied for
+                </c:otherwise>
+        </c:choose>
+    </div>
+    <div>
         <a href="/logout"> Sign me out home boii </a>
     </div>
-
     </body>
 
 </html>

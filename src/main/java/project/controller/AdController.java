@@ -161,8 +161,15 @@ public class AdController {
         Applicant applicant = new Applicant();
         applicant.setWork(id);
         applicant.setUser(userID);
-        if(applicantService.findByWorkAndUser(id,userID).size() == 0)
+
+        System.out.println("JOB ID: " + id);
+        User currUser = userService.findOne(userID);
+        currUser.setJobs(id);
+
+        if(applicantService.findByWorkAndUser(id,userID).size() == 0) {
             applicantService.save(applicant);
+            userService.save(currUser);
+        }
 
         return "redirect:/ad/{id}";
     }

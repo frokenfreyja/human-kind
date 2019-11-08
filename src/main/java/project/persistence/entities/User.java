@@ -6,6 +6,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.util.List;
 import java.util.Date;
+import java.util.ArrayList;
+import project.persistence.entities.Work;
+
 
 @Entity
 @Table(name = "users")
@@ -30,14 +33,23 @@ public class User{
     private String bio;
     private int points;
     private Boolean orgi;
+
     // Þarf að finna leið til að búa til list í db
    // private List<Course> courses;
+
+    @ElementCollection
+    @CollectionTable(
+            name="workname"
+    )
+    @Column(name="WORK_NAMES")
+    private List<Long> jobs;
 
     public User(){
 
     }
 
-    public User(String name, String email, String gender, String password, String phone, Date birthDate, String bio, Boolean orgi, MultipartFile image) {
+    public User(String name, String email, String gender, String password, String phone, Date birthDate, String bio, Boolean orgi,
+                MultipartFile image, List<Long> jobs) {
         this.name = name;
         this.email = email;
         this.gender = gender;
@@ -47,6 +59,7 @@ public class User{
         this.bio = bio;
         this.orgi = orgi;
         this.image = image;
+        this.jobs = jobs;
     }
 
     public Long getId() {
@@ -129,7 +142,7 @@ public class User{
         return orgi;
     }
 
-    public void setOrgi(Boolean Orgi) {
+    public void setOrgi(Boolean orgi) {
         this.orgi = orgi;
     }
 
@@ -147,6 +160,15 @@ public class User{
 
     public void setImageName(String imageName) {
         this.imageName = imageName;
+    }
+
+
+    public List<Long> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(Long job) {
+        this.jobs.add(job);
     }
 
     /*  public List<Course> getCourses() {
@@ -170,6 +192,7 @@ public class User{
                 ", bio='" + bio + '\'' +
                 ", points=" + points +
                 ", orgi=" + orgi +
-                '}';
+                ", jobs=" + jobs +
+-                '}';
     }
 }
