@@ -12,6 +12,8 @@ public interface ApplicantRepository extends JpaRepository<Applicant, Long> {
 
     Applicant save(Applicant applicant);
 
+    void delete(Applicant applicant);
+
     List<Applicant> findAll();
 
     @Query(value = "SELECT a FROM Applicant a WHERE a.id = ?1")
@@ -22,5 +24,7 @@ public interface ApplicantRepository extends JpaRepository<Applicant, Long> {
 
     @Query(value = "SELECT a FROM Applicant a WHERE a.work = ?1 and a.users = ?2")
     ArrayList<Applicant> findByWorkAndUser(Long work, Long users);
+
+
 
 }

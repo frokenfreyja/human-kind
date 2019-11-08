@@ -137,10 +137,10 @@ public class AdController {
         ArrayList<User> use = new ArrayList<User>(app.size());
         for (Applicant applicant : app) use.add(userService.findOne(applicant.getUser()));
 
+
         model.addAttribute("ad", ad);
         model.addAttribute("owner", owner);
         model.addAttribute("applicants", use);
-
         return "AdDetail";
     }
 
@@ -154,14 +154,24 @@ public class AdController {
         Applicant applicant = new Applicant();
         applicant.setWork(id);
         applicant.setUser(userID);
-        if(applicantService.findByWorkAndUser(id,userID) == null)
+        if(applicantService.findByWorkAndUser(id,userID).size() == 0)
             applicantService.save(applicant);
 
         return "redirect:/ad/{id}";
     }
 
-    //@RequestMapping
-    public String deregister(Work work, User user, Model model) {
+    @RequestMapping(value = "/ad/{id}/unapply", method = RequestMethod.GET)
+    public String deregister(@PathVariable Long id,  Work work, User user, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) {
+        Long userID = (Long) httpSession.getAttribute("currentUser");
+        if(userID == null){
+            return "redirect:/login";
+        }
+
+        Applicant applicant = new Applicant();
+        applicant.setWork(id);
+        applicant.setUser(userID);
+        if(applicantService.findByWorkAndUser(id,userID).size() > 0)
+            applicantService.delete(applicant);
         return "";
     }
 
