@@ -5,26 +5,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import project.persistence.entities.Applicant;
 import project.persistence.entities.User;
+import project.persistence.entities.Work;
 import project.service.UserService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import project.service.WorkService;
+import project.service.ApplicantService;
+
 
 @Controller
 public class AccountController {
 
     // Instance Variables
     private UserService userService;
+    private WorkService workService;
+    private ApplicantService applicantService;
 
     // Dependency Injection
     @Autowired
-    public AccountController(UserService userService) {
+    public AccountController(UserService userService, WorkService workService, ApplicantService applicantService) {
+
         this.userService = userService;
+        this.workService = workService;
+        this.applicantService = applicantService;
     }
 
     @RequestMapping(value ="/user", method = RequestMethod.GET)
@@ -38,9 +51,15 @@ public class AccountController {
 
         user = userService.findOne(userId);
         model.addAttribute("user", user);
+        System.out.println("APPLIED ID: " + user.getJobs().get(0));
+
+        ArrayList<Work> jobs = new ArrayList<Work>(user.getJobs().size());
+        for(int i = 0; i<user.getJobs().size(); i++) {
+            jobs.add(workService.findOne(user.getJobs().get(i)));
+        }
+        model.addAttribute("jobs", jobs);
 
         return "User";
-
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
