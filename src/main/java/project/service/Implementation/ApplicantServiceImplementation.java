@@ -31,6 +31,11 @@ public class ApplicantServiceImplementation implements ApplicantService {
     }
 
     @Override
+    public void delete(Applicant applicant) {
+        repository.delete(applicant);
+    }
+
+    @Override
     public List<Applicant> findAll() {
         return repository.findAll();
     }
@@ -49,4 +54,5 @@ public class ApplicantServiceImplementation implements ApplicantService {
     public ArrayList<Applicant> findByWorkAndUser(Long work, Long users){
         return repository.findByWorkAndUser(work, users);
     }
+
 }

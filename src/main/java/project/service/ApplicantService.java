@@ -16,6 +16,13 @@ public interface ApplicantService {
     Applicant save(Applicant applicant);
 
     /**
+     * delete a {@link Applicant}
+     * @param applicant {@link Applicant} to be deleted
+     * @return {@link Applicant} that was deleted
+     */
+    void delete(Applicant applicant);
+
+    /**
      * Get all {@link Applicant}s
      * @return A list of {@link Applicant}s
      */
@@ -42,4 +49,5 @@ public interface ApplicantService {
      * @return list of {@link Applicant}s with {@link Long work} and {@link Long users}
      */
     ArrayList<Applicant> findByWorkAndUser(Long work, Long users);
+
 }
