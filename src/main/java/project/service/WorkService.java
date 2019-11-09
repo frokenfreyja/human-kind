@@ -69,11 +69,11 @@ public interface WorkService {
     List<Work> findByDuration(int duration);
 
     /**
-     * Find all {@link Work}s with {@link String owner}
-     * @param owner {@link String}
-     * @return All {@link Work}s with the {@link String owner} passed
+     * Find all {@link Work}s with {@link Long owner}
+     * @param owner {@link Long}
+     * @return All {@link Work}s with the {@link Long owner} passed
      */
-    List<Work> findByOwner(String owner);
+    List<Work> findByOwner(Long owner);
 
     /**
      * Find all {@link Work}s with {@link String interest}

@@ -41,7 +41,7 @@ public class AccountController {
     }
 
     @RequestMapping(value ="/user", method = RequestMethod.GET)
-    public String accountView(@ModelAttribute("user") User user, @ModelAttribute("work") Work work, Model model, HttpSession session){
+    public String accountView(@ModelAttribute("user") User user, Model model, HttpSession session){
 
         Long userID = (Long)session.getAttribute("currentUser");
 
@@ -57,6 +57,8 @@ public class AccountController {
             jobs.add(workService.findOne(user.getJobs().get(i)));
         }
         model.addAttribute("jobs", jobs);
+
+        model.addAttribute("own_ads", workService.findByOwner(user.getId()));
 
         return "User";
     }

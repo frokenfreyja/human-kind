@@ -74,7 +74,7 @@ public class WorkServiceImplementation implements WorkService {
     }
 
     @Override
-    public List<Work> findByOwner(String owner) {
+    public List<Work> findByOwner(Long owner) {
         return repository.findByOwner(owner);
     }
 

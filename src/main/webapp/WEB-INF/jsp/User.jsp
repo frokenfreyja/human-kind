@@ -31,6 +31,18 @@
         </c:choose>
     </div>
     <div>
+        <c:choose>
+            <c:when test="${not empty own_ads}">
+                <c:forEach var="job" items="${own_ads}">
+                    <p>${job.name}<p>
+                </c:forEach>
+            </c:when>
+            <c:otherwise>
+                No jobs applied for
+            </c:otherwise>
+        </c:choose>
+    </div>
+    <div>
         <a href="/logout"> Sign me out home boii </a>
     </div>
     </body>

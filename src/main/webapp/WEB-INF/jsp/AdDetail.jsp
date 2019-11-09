@@ -32,7 +32,7 @@
         <c:choose>
             <c:when test="${not empty applicants}">
                 <c:forEach var="applicant_list" items="${applicants}">
-                    <p>${applicant_list.name}<p>
+                    <p><a href="/user">${applicant_list.name}</a><p>
                 </c:forEach>
             </c:when>
         </c:choose>

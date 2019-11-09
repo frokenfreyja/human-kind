@@ -27,7 +27,7 @@ public interface WorkRepository extends JpaRepository<Work, Long> {
 
     List<Work> findByDuration(int duration);
 
-    List<Work> findByOwner(String owner);
+    List<Work> findByOwner(Long owner);
 
     List<Work> findByInterest(String interest);
 }
