@@ -41,23 +41,22 @@ public class AccountController {
     }
 
     @RequestMapping(value ="/user", method = RequestMethod.GET)
-    public String accountView(@ModelAttribute("user") User user, Model model, HttpSession session){
+    public String accountView(@ModelAttribute("user") User user, @ModelAttribute("work") Work work, Model model, HttpSession session){
 
-        Long userId = (Long)session.getAttribute("currentUser");
+        Long userID = (Long)session.getAttribute("currentUser");
 
-        if(userId==null){
+        if(userID==null){
             return "redirect:/login";
         }
 
-        user = userService.findOne(userId);
+        user = userService.findOne(userID);
         model.addAttribute("user", user);
 
-        ArrayList<Work> jobs = new ArrayList<Work>(user.getJobs().size());
+        ArrayList<Work> jobs = new ArrayList<>(user.getJobs().size());
         for(int i = 0; i<user.getJobs().size(); i++) {
             jobs.add(workService.findOne(user.getJobs().get(i)));
         }
         model.addAttribute("jobs", jobs);
-
 
         return "User";
     }

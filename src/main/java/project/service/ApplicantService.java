@@ -35,6 +35,7 @@ public interface ApplicantService {
      */
     Applicant findOne(Long id);
 
+
     /**
      * Get list of {@link Applicant}s
      * @param work {@link Long}

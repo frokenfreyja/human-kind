@@ -49,6 +49,8 @@ public class LoginController {
                 return "redirect:/user";
             } else if (loginUser == null) {
                 model.addAttribute("loginDenied", "This account does not exist");
+            } else if (!bCryptPasswordEncoder.matches(user.getPassword(), loginUser.getPassword())) {
+                System.out.println("EKKI RÉTT PASSWORD " + user.getPassword() + " : " + loginUser.getPassword());
             } else {
                 model.addAttribute("loginDenied", "The email or password you entered is incorrect");
             }

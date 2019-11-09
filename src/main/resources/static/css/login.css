@@ -74,8 +74,8 @@ img .img {
 
 .login_text {
     margin-left: 10px;
-    padding-right: 5em;
     font-size: 1em;
+    width: 250px;
 }
 
 .error {
