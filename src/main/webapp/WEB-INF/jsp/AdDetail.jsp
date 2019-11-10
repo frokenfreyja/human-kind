@@ -32,6 +32,7 @@
                     </a>
                 </div>
             </div>
+            <p>${genLoc}</p>
             <p class="ad_date">Date: <fmt:formatDate type="both" value="${ad.date}"/></p>
             <p class="ad_duration">Duration: ${ad.duration}</p>
             <p class="ad_location">Location: ${ad.location}</p>

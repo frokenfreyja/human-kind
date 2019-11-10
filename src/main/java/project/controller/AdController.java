@@ -143,6 +143,7 @@ public class AdController {
         model.addAttribute("ad", ad);
         model.addAttribute("owner", owner);
         model.addAttribute("currUser", currUser);
+        model.addAttribute("genLoc", ad.getGeneralLoc(ad.getZipcode()));
 
         if(owner == currUser) {
             model.addAttribute("applicants", use);
