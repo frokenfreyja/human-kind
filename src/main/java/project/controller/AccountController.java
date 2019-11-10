@@ -57,7 +57,6 @@ public class AccountController {
             jobs.add(workService.findOne(user.getJobs().get(i)));
         }
         model.addAttribute("jobs", jobs);
-
         model.addAttribute("own_ads", workService.findByOwner(user.getId()));
 
         return "User";

@@ -26,8 +26,8 @@
         <p>Zip: "${ad.zipcode}"</p>
         <p>Description: "${ad.description}"</p>
         <p>Payout:</p>
-        <c:if test="${not currUser.orgi}">
-            <a href="/ad/${id}/apply"> apply </a>
+        <c:if test="${not empty currUser && not currUser.orgi}">
+            <a href="/ad/${id}/apply"> Apply </a>
         </c:if>
         <c:choose>
             <c:when test="${not empty applicants}">

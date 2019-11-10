@@ -153,6 +153,10 @@ p {
     justify-items: center;
 }
 
+.advert {
+    z-index: 1;
+}
+
 .advertlist {
     width: 90%;
     height: 100%;
@@ -222,6 +226,8 @@ p {
 
     border: 1px #B13C33;
     box-shadow: 2px 2px 3px 2px #B13C33;
+
+    z-index: 1;
 }
 
 .ads_btn:hover {
