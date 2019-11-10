@@ -66,6 +66,7 @@ public class AccountController {
     public String createAccountGet(Model model) {
 
         model.addAttribute("user", new User());
+        model.addAttribute("header_type", "red_bar");
 
         return "SignUp";
     }

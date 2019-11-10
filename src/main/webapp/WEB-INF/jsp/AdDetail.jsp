@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:include page="Header.jsp" />
 <jsp:include page="Footer.jsp" />
@@ -17,27 +18,38 @@
     </head>
 
     <body>
-        <p>Name: "${ad.name}"</p>
-        <p>Image:<img src="${pageContext.request.contextPath}/resources/images/${ad.imageName}" />
-        <p>Owner: "${owner.name}"</p>
-        <p>Date: "${ad.date}"</p>
-        <p>Duration: "${ad.duration}"</p>
-        <p>Location: "${ad.location}"</p>
-        <p>Zip: "${ad.zipcode}"</p>
-        <p>Description: "${ad.description}"</p>
-        <p>Payout:</p>
-        <c:if test="${not empty currUser && not currUser.orgi}">
-            <a href="/ad/${id}/apply"> Apply </a>
-        </c:if>
-        <c:choose>
-            <c:when test="${not empty applicants}">
-                <c:forEach var="applicant_list" items="${applicants}">
-                    <p><a href="/user">${applicant_list.name}</a><p>
-                </c:forEach>
-            </c:when>
-        </c:choose>
-        <div>
-        <a href="/"> E.T. go home </a>
+    <main>
+        <div class="ad_content">
+            <div class="ad_img"><img src="${pageContext.request.contextPath}/resources/images/${ad.imageName}" /></div>
+            <div class="row">
+                <h2 class="ad_title">${ad.name}</h2>
+                <div class="ad_owner">
+                    <a href="/">
+                        <div class="owner_img">
+                            <img class="img" src="${pageContext.request.contextPath}/resources/images/${owner.imageName}"/>
+                        </div>
+                ${owner.name}
+                    </a>
+                </div>
+            </div>
+            <p class="ad_date">Date: <fmt:formatDate type="both" value="${ad.date}"/></p>
+            <p class="ad_duration">Duration: ${ad.duration}</p>
+            <p class="ad_location">Location: ${ad.location}</p>
+            <p class="ad_zip">Zip: ${ad.zipcode}</p>
+            <p class="ad_description">${ad.description}</p>
+            <c:if test="${not empty currUser && not currUser.orgi}">
+                <a href="/ad/${id}/apply"> Apply </a>
+            </c:if>
+            <c:choose>
+                <c:when test="${not empty applicants}">
+                    <c:forEach var="applicant_list" items="${applicants}">
+                        <p><a href="/user">${applicant_list.name}</a><p>
+                    </c:forEach>
+                </c:when>
+            </c:choose>
+            <div>
         </div>
+        </div>
+    </main>
     </body>
 </html>

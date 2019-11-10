@@ -29,7 +29,7 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginGet(User user, Model model) {
         model.addAttribute("user", new User());
-        model.addAttribute("header_type", "home_btn");
+        model.addAttribute("header_type", "red_bar");
 
         return "Login";
     }

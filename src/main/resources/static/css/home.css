@@ -28,7 +28,6 @@ body {
     scroll-snap-type: y mandatory;
 }
 
-
 .section1, .section2, .section3 {
     width: 100%;
     height: 100%;
