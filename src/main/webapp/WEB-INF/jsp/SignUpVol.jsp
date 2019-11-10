@@ -87,7 +87,7 @@
     </div>
 
         <div class="signup_btn">
-            <input class="btn" type="submit" VALUE="REGISTER"/>
+            <input class="btn" type="submit" VALUE="SIGN UP"/>
         </div>
 
 </sf:form>

@@ -34,12 +34,12 @@
                 <c:when test="${not empty currentUser}">
                 <li><a href="/all_ads">Available jobs</a></li>
                 <li><a href="/user">My account</a></li>
-                <li><a href="/logout">Sign out (${currentUsername})</a></li>
+                <li><a href="/logout">Log out (${currentUsername})</a></li>
             </c:when>
             <c:otherwise>
                 <li><a href="/all_ads">Available jobs</a></li>
                 <li><a href="/about">About us</a></li>
-                <li><a href="/login">Sign in</a></li>
+                <li><a href="/login">Log in</a></li>
             </c:otherwise>
             </c:choose>
         </ul>

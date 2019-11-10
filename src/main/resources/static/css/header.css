@@ -4,6 +4,11 @@
     padding: 0;
 }
 
+::selection {
+    background-color: #5548f8;
+    color: #f1f1f1;
+}
+
 .home_btn {
     display: flex;
     align-content: center;

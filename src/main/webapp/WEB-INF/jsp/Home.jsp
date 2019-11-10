@@ -31,7 +31,7 @@
             <div>
                 <c:choose>
                     <c:when test="${empty currentUser}">
-                        <a href="/login" class="login_btn">SIGN IN</a>
+                        <a href="/login" class="login_btn">LOG IN</a>
                     </c:when>
                     <c:when test="${currentUserOrgi}">
                         <a href="/new_ad" class="login_btn">POST AD</a>

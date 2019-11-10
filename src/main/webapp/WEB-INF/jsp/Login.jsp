@@ -15,12 +15,12 @@
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/footer.css"/>"/>
         <jsp:include page="Header.jsp" />
 
-        <title>Login</title>
+        <title>Log in</title>
     </head>
     <body>
     <main>
         <div class="row">
-    <h1 class="title">LOGIN</h1>
+    <h1 class="title">LOG IN</h1>
     <sf:form method="POST" modelAttribute="user" action="/login">
         <div class="login_table">
             <div class="input">
@@ -41,7 +41,7 @@
         </c:if>
 
         <div class="login_btn">
-            <input class="btn" type="submit" VALUE="LOGIN"/>
+            <input class="btn" type="submit" VALUE="LOG IN"/>
         </div>
     </sf:form>
             <div class="newaccount">
