@@ -19,10 +19,13 @@
 
     <body>
     <main>
-        <div class="ad_content">
+        <div class="row">
             <div class="ad_img"><img src="${pageContext.request.contextPath}/resources/images/${ad.imageName}" /></div>
-            <div class="row">
-                <h2 class="ad_title">${ad.name}</h2>
+            <div class="first_row">
+                <div class="ad_info">
+                    <h2 class="ad_title">${ad.name}</h2>
+                    <p>${genLoc}</p>
+                </div>
                 <div class="ad_owner">
                     <a href="/">
                         <div class="owner_img">
@@ -32,17 +35,31 @@
                     </a>
                 </div>
             </div>
-            <p>${genLoc}</p>
-            <p class="ad_date">Date: <fmt:formatDate type="both" value="${ad.date}"/></p>
-            <p class="ad_duration">Duration: ${ad.duration}</p>
-            <p class="ad_location">Location: ${ad.location}</p>
-            <p class="ad_zip">Zip: ${ad.zipcode}</p>
-            <p class="ad_description">${ad.description}</p>
-            <c:if test="${not empty currUser && not currUser.orgi}">
-                <a href="/ad/${id}/apply"> Apply </a>
+            <div class="info_section">
+                <p class="info_section_title">Date and time</p>
+                <fmt:formatDate type="both" value="${ad.date}"/>
+            </div>
+            <div class="info_section">
+                <p class="info_section_title">Location</p>
+                <p>${ad.location}</p>
+            </div>
+            <div class="info_section">
+                <p class="info_section_title">Zip</p>
+                <p>${ad.zipcode}</p>
+            </div>
+            <div class="info_section">
+                <p class="info_section_title">Description</p>
+                <p>${ad.description}</p>
+            </div>
+
+            <c:if test="${not empty currUser && not currUser.orgi && not alreadyApplied}">
+            <div class="apply_btn">
+                <a href="/ad/${id}/apply" class="btn">Apply</a>
+            </div>
             </c:if>
             <c:choose>
                 <c:when test="${not empty applicants}">
+                    <p>List of applicants</p>
                     <c:forEach var="applicant_list" items="${applicants}">
                         <p><a href="/user">${applicant_list.name}</a><p>
                     </c:forEach>

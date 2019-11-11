@@ -22,8 +22,9 @@ public class Work {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
-
     private String duration;
+
+    @Column(length=2048)
     private String description;
     private Long owner;
     private int payout;

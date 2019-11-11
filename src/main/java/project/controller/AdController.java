@@ -145,6 +145,10 @@ public class AdController {
         model.addAttribute("currUser", currUser);
         model.addAttribute("genLoc", ad.getGeneralLoc(ad.getZipcode()));
 
+        if(currUser.getJobs().contains(ad.getId())) {
+            model.addAttribute("alreadyApplied", true);
+        }
+
         if(owner == currUser) {
             model.addAttribute("applicants", use);
         }
