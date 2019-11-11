@@ -59,10 +59,15 @@
             </c:if>
             <c:choose>
                 <c:when test="${not empty applicants}">
-                    <p>List of applicants</p>
-                    <c:forEach var="applicant_list" items="${applicants}">
-                        <p><a href="/user">${applicant_list.name}</a><p>
-                    </c:forEach>
+                <div class="info_section">
+                    <p class="info_section_title">List of applicants</p>
+                        <c:forEach var="applicant_list" items="${applicants}" varStatus="status">
+                            <p class="applicants">
+                                <a href="/user">
+                                        ${status.index+1}. ${applicant_list.name}
+                                </a>
+                        </c:forEach>
+                </div>
                 </c:when>
             </c:choose>
             <div>

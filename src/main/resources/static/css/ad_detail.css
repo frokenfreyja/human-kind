@@ -123,6 +123,11 @@ main {
     font-weight: 600;
 }
 
+.applicants a {
+    text-decoration: none;
+    color: black;
+}
+
 .apply_btn {
     margin-top: 30px;
 }
