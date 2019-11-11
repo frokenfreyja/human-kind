@@ -56,8 +56,14 @@ public class AccountController {
         for(int i = 0; i<user.getJobs().size(); i++) {
             jobs.add(workService.findOne(user.getJobs().get(i)));
         }
-        model.addAttribute("jobs", jobs);
-        model.addAttribute("own_ads", workService.findByOwner(user.getId()));
+
+        if(!user.getOrgi()) {
+            model.addAttribute("jobs", jobs);
+        }
+
+        if(user.getOrgi()) {
+            model.addAttribute("own_ads", workService.findByOwner(user.getId()));
+        }
 
         return "User";
     }

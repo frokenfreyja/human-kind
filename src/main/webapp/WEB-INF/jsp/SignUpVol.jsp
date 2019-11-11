@@ -48,11 +48,6 @@
         </div>
 
         <div class="input">
-            <img src="${pageContext.request.contextPath}/resources/images/phone.png" class="img"/>
-            <sf:input path="phone" type="number" placeholder="Phone number" class="signup_text" required="required"/>
-        </div>
-
-        <div class="input">
             <img src="${pageContext.request.contextPath}/resources/images/lock2.png" class="img"/>
             <sf:input path="password" type="password" placeholder="Password" class="signup_text" required="required"/>
         </div>
@@ -60,6 +55,11 @@
         <div class="input">
             <img src="${pageContext.request.contextPath}/resources/images/lock2.png" class="img"/>
             <sf:input path="confirmPassword" type="password" placeholder="Confirm your password" class="signup_text" required="required"/>
+        </div>
+
+        <div class="input">
+            <img src="${pageContext.request.contextPath}/resources/images/phone.png" class="img"/>
+            <sf:input path="phone" type="number" placeholder="Phone number" class="signup_text" required="required"/>
         </div>
 
         <div class="input">
