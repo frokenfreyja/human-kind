@@ -38,7 +38,7 @@ public class HomeController {
         model.addAttribute("userName", httpSession.getAttribute("currentUsername"));
         model.addAttribute("userOrgi", httpSession.getAttribute("currentUserOrgi"));
         model.addAttribute("work_list", workService.findAllReverseOrder());
-        model.addAttribute("header_type", "no_home_btn");
+        model.addAttribute("header_type", "red_bar");
 
         return "Home";
     }

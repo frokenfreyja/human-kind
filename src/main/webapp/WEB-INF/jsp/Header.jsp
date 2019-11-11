@@ -14,34 +14,64 @@
 </head>
 <header class="header">
     <c:choose>
-        <c:when test="${header_type eq 'no_home_btn'}">
-            <h3 class="home_btn"><a href="/">HUMAN-KIND</a></h3>
+        <c:when test="${header_type eq 'red_bar'}">
+            <h3 class="home_btn" id="red"><a href="/">HUMAN-KIND</a></h3>
         </c:when>
         <c:otherwise>
-            <h3 class="home_btn"><a href="/">HUMAN-KIND</a></h3>
+            <h3 class="home_btn" id="not_red"><a href="/">HUMAN-KIND</a></h3>
         </c:otherwise>
     </c:choose>
-    <div id="sidebar">
-        <div class="toggle-btn" onclick="toggleSidebar()">
-            <a>
-                <span></span>
-                <span></span>
-                <span></span>
-            </a>
+    <c:choose>
+    <c:when test="${header_type eq 'red_bar'}">
+        <div class="red_sidebar" id="sidebar">
+            <div class="toggle-btn" onclick="toggleSidebar()">
+                <a>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </div>
+            <ul>
+                <c:choose>
+                    <c:when test="${not empty currentUser}">
+                    <li><a href="/all_ads">Available jobs</a></li>
+                    <li><a href="/user">My account</a></li>
+                    <li><a href="/logout">Log out (${currentUsername})</a></li>
+                </c:when>
+                <c:otherwise>
+                    <li><a href="/all_ads">Available jobs</a></li>
+                    <li><a href="/about">About us</a></li>
+                    <li><a href="/login">Log in</a></li>
+                </c:otherwise>
+                </c:choose>
+            </ul>
         </div>
-        <ul>
-            <c:choose>
-                <c:when test="${not empty currentUser}">
-                <li><a href="/all_ads">Available jobs</a></li>
-                <li><a href="/user">My account</a></li>
-                <li><a href="/logout">Sign out (${currentUsername})</a></li>
-            </c:when>
-            <c:otherwise>
-                <li><a href="/all_ads">Available jobs</a></li>
-                <li><a href="/about">About us</a></li>
-                <li><a href="/login">Sign in</a></li>
-            </c:otherwise>
-            </c:choose>
-        </ul>
-    </div>
+    </c:when>
+    <c:otherwise>
+        <div class="not_red_sidebar" id="sidebar">
+            <div class="toggle-btn" onclick="toggleSidebar()">
+                <a>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </div>
+            <ul>
+                <c:choose>
+                    <c:when test="${not empty currentUser}">
+                        <li><a href="/all_ads">Available jobs</a></li>
+                        <li><a href="/user">My account</a></li>
+                        <li><a href="/logout">Log out (${currentUsername})</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="/all_ads">Available jobs</a></li>
+                        <li><a href="/about">About us</a></li>
+                        <li><a href="/login">Log in</a></li>
+                    </c:otherwise>
+                </c:choose>
+            </ul>
+        </div>
+    </c:otherwise>
+    </c:choose>
+
 </header>

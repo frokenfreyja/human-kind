@@ -57,7 +57,6 @@ public class AccountController {
             jobs.add(workService.findOne(user.getJobs().get(i)));
         }
         model.addAttribute("jobs", jobs);
-
         model.addAttribute("own_ads", workService.findByOwner(user.getId()));
 
         return "User";
@@ -67,6 +66,7 @@ public class AccountController {
     public String createAccountGet(Model model) {
 
         model.addAttribute("user", new User());
+        model.addAttribute("header_type", "red_bar");
 
         return "SignUp";
     }

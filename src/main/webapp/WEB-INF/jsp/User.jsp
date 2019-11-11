@@ -22,7 +22,7 @@
         <c:choose>
             <c:when test="${not empty jobs}">
                 <c:forEach var="job" items="${jobs}">
-                    <p>${job.name}<p>
+            <p><a href="/ad/${job.id}">${job.name}</a><p>
                 </c:forEach>
             </c:when>
                 <c:otherwise>
@@ -34,12 +34,9 @@
         <c:choose>
             <c:when test="${not empty own_ads}">
                 <c:forEach var="job" items="${own_ads}">
-                    <p>${job.name}<p>
+                    <p><a href="/ad/${job.id}">${job.name}</a><p>
                 </c:forEach>
             </c:when>
-            <c:otherwise>
-                No jobs applied for
-            </c:otherwise>
         </c:choose>
     </div>
     <div>
