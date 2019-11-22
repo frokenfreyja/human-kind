@@ -49,6 +49,7 @@ public class AccountController {
             return "redirect:/login";
         }
 
+        User currUser = userService.findOne(userID);
         user = userService.findOne(id);
         model.addAttribute("user", user);
 
@@ -65,6 +66,7 @@ public class AccountController {
             model.addAttribute("own_ads", workService.findByOwner(user.getId()));
         }
 
+        model.addAttribute("currUser", currUser);
         model.addAttribute("header_type", "red_bar");
 
         return "User";
