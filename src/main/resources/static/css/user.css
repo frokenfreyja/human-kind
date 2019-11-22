@@ -1,0 +1,147 @@
+/* setjum box-sizing: border-box; á allt */
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+body {
+    margin: auto;
+    overflow-x: hidden;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    overflow-y: auto;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    top: 7%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+/* SÍÐAN SETT UPP Í GRID */
+.row {
+    width: 50%;
+    height: 100%;
+    margin-bottom: 7%;
+}
+
+/*
+.col {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    width: 50%;
+}
+ */
+.banner {
+    width: 100%;
+    background-color: lightgrey;
+    padding: 10px;
+}
+
+.row_info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    padding: 0 10px;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
+.user_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-items: center;
+    margin: 20px 0;
+}
+
+.col {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+}
+
+.user_img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.user_title {
+    margin: 20px 0;
+}
+
+.img {
+    object-fit: cover;
+    background-position: 50% 50%;
+    background-color: white;
+    border-radius: 50%;
+    width: 240px;
+    height: 240px;
+}
+
+.list {
+    margin: 10px 0;
+    padding: 0 10px;
+}
+
+.info_title {
+    color: dimgray;
+    font-weight: 600;
+}
+
+.list_items a {
+    text-decoration: none;
+    color: black;
+}
+
+.edit {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.edit_btn {
+    margin: 20px 0;
+}
+
+.logout_btn {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    position: relative;
+    color: white;
+    padding: 7px 30px;
+    border-radius: 30px;
+    background-color: #5548f8;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.1s ease;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: black;
+    text-decoration: none;
+}
