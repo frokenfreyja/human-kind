@@ -139,7 +139,7 @@ public class AdController {
 
         Long userID = (Long) httpSession.getAttribute("currentUser");
         User currUser = userService.findOne(userID);
-
+        
         model.addAttribute("ad", ad);
         model.addAttribute("owner", owner);
         model.addAttribute("currUser", currUser);

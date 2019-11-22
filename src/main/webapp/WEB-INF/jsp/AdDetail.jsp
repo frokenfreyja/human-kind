@@ -27,7 +27,7 @@
                     <p>${genLoc}</p>
                 </div>
                 <div class="ad_owner">
-                    <a href="/">
+                    <a href="/user/${ad.owner}">
                         <div class="owner_img">
                             <img class="img" src="${pageContext.request.contextPath}/resources/images/${owner.imageName}"/>
                         </div>
