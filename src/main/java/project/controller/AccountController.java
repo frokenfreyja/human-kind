@@ -40,8 +40,8 @@ public class AccountController {
         this.applicantService = applicantService;
     }
 
-    @RequestMapping(value ="/user", method = RequestMethod.GET)
-    public String accountView(@ModelAttribute("user") User user, Model model, HttpSession session){
+    @RequestMapping(value ="/user/{id}", method = RequestMethod.GET)
+    public String accountView(@PathVariable Long id, @ModelAttribute("user") User user, Model model, HttpSession session){
 
         Long userID = (Long)session.getAttribute("currentUser");
 
@@ -49,7 +49,7 @@ public class AccountController {
             return "redirect:/login";
         }
 
-        user = userService.findOne(userID);
+        user = userService.findOne(id);
         model.addAttribute("user", user);
 
         ArrayList<Work> jobs = new ArrayList<>(user.getJobs().size());
@@ -64,6 +64,8 @@ public class AccountController {
         if(user.getOrgi()) {
             model.addAttribute("own_ads", workService.findByOwner(user.getId()));
         }
+
+        model.addAttribute("header_type", "red_bar");
 
         return "User";
     }

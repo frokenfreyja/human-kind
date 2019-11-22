@@ -63,7 +63,7 @@
                     <p class="info_section_title">List of applicants</p>
                         <c:forEach var="applicant_list" items="${applicants}" varStatus="status">
                             <p class="applicants">
-                                <a href="/user">
+                                <a href="/user/${applicant_list.id}">
                                         ${status.index+1}. ${applicant_list.name}
                                 </a>
                         </c:forEach>

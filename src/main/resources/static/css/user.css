@@ -24,7 +24,7 @@ body {
 main {
     width: 100%;
     height: 100%;
-    top: 10%;
+    top: 7%;
     display: flex;
     justify-content: center;
     position: relative;
@@ -32,13 +32,12 @@ main {
 
 /* SÍÐAN SETT UPP Í GRID */
 .row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    position: absolute;
-    width: 80%;
+    width: 50%;
+    height: 100%;
+    margin-bottom: 7%;
 }
 
+/*
 .col {
     display: flex;
     flex-direction: column;
@@ -46,11 +45,19 @@ main {
     align-items: center;
     width: 50%;
 }
+ */
+.banner {
+    width: 100%;
+    background-color: lightgrey;
+    padding: 10px;
+}
 
 .row_info {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     margin: 10px 0;
+    padding: 0 10px;
 }
 
 .icon {
@@ -60,15 +67,27 @@ main {
 
 .user_info {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     justify-items: center;
     margin: 20px 0;
 }
 
+.col {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+}
+
 .user_img {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 20px;
+}
+
+.user_title {
+    margin: 20px 0;
 }
 
 .img {
@@ -76,12 +95,13 @@ main {
     background-position: 50% 50%;
     background-color: white;
     border-radius: 50%;
-    width: 250px;
-    height: 250px;
+    width: 240px;
+    height: 240px;
 }
 
 .list {
     margin: 10px 0;
+    padding: 0 10px;
 }
 
 .info_title {
@@ -94,8 +114,18 @@ main {
     color: black;
 }
 
+.edit {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .edit_btn {
     margin: 20px 0;
+}
+
+.logout_btn {
+    display: flex;
+    justify-content: center;
 }
 
 .btn {
