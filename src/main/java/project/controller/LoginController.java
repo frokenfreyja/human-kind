@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import project.persistence.entities.User;
 import project.service.UserService;
 
@@ -36,7 +38,7 @@ public class LoginController {
 
     //Login process
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginPost(User user, HttpSession httpSession, Model model) {
+    public String loginPost(User user, HttpSession httpSession, Model model, RedirectAttributes redirectAttrs) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
         if(!user.getEmail().isEmpty()) {
@@ -46,7 +48,8 @@ public class LoginController {
                 httpSession.setAttribute("currentUsername", loginUser.getName());
                 httpSession.setAttribute("currentUserEmail", loginUser.getEmail());
                 httpSession.setAttribute("currentUserOrgi", loginUser.getOrgi());
-                return "redirect:/user";
+                redirectAttrs.addAttribute("id", loginUser.getId());
+                return "redirect:/user/{id}";
             } else if (loginUser == null) {
                 model.addAttribute("loginDenied", "This account does not exist");
             } else if (!bCryptPasswordEncoder.matches(user.getPassword(), loginUser.getPassword())) {
