@@ -81,6 +81,7 @@ public class AccountController {
     public String createAsOrg(Model model) {
 
         model.addAttribute("user", new User());
+        model.addAttribute("header_type", "red_bar");
 
         return "SignUpOrg";
     }
@@ -129,6 +130,7 @@ public class AccountController {
     public String createAsVol(Model model) {
 
         model.addAttribute("user", new User());
+        model.addAttribute("header_type", "red_bar");
 
         return "SignUpVol";
     }
@@ -173,8 +175,16 @@ public class AccountController {
         return "SignUpVol";
     }
 
-    //@RequestMapping
-    public String deleteAccount(User user, Model model) {
-        return "";
+    /*
+     * Delete account - POST
+     */
+    @RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
+    public String deleteAccount(@ModelAttribute("user") User user, Model model, HttpSession httpSession) {
+        Long userID = (Long)httpSession.getAttribute("currentUser");
+        User currUser = userService.findOne(userID);
+        userService.delete(currUser);
+        httpSession.removeAttribute("currentUser");
+
+        return "redirect:/";
     }
 }

@@ -58,6 +58,7 @@ public class LoginController {
                 model.addAttribute("loginDenied", "The email or password you entered is incorrect");
             }
         }
+        model.addAttribute("header_type", "red_bar");
 
         return "Login";
     }

@@ -98,6 +98,7 @@
                         </c:choose>
                     </div>
                     <div class="logout_btn">
+                        <a href="/delete/${user.id}" class="btn" onclick="return confirm('Are you sure you want to delete this account?');">Delete account</a>
                         <a href="/logout" class="btn">Log out</a>
                     </div>
                 </c:when>

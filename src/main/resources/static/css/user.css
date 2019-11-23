@@ -146,7 +146,7 @@ main {
 
 .logout_btn {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     margin: 20px 0;
 }
 
