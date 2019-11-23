@@ -44,12 +44,8 @@ public class AccountController {
     public String accountView(@PathVariable Long id, @ModelAttribute("user") User user, Model model, HttpSession session){
 
         Long userID = (Long)session.getAttribute("currentUser");
-
-        if(userID==null){
-            return "redirect:/login";
-        }
-
         User currUser = userService.findOne(userID);
+
         user = userService.findOne(id);
         model.addAttribute("user", user);
 
