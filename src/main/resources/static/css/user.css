@@ -23,9 +23,9 @@ body {
 
 main {
     width: 100%;
-    height: calc(100vh - 92px);
+    height: calc(100vh - 89px);
     overflow-y: auto;
-    top: 7%;
+    top: 6.7%;
     display: flex;
     justify-content: center;
     position: relative;
@@ -86,6 +86,10 @@ main {
     border-radius: 50%;
     width: 240px;
     height: 240px;
+}
+
+.section2 {
+    margin-top: 20px;
 }
 
 .list {

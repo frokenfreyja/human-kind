@@ -22,6 +22,7 @@
                 <img src="${pageContext.request.contextPath}/resources/images/${user.imageName}" class="img">
                 <h3 class="user_title">${user.name}</h3>
             </div>
+            <div class="section1">
             <c:choose>
                 <c:when test="${user.id eq currUser.id}">
                     <div class="banner">
@@ -54,6 +55,8 @@
                             </div>
                         </div>
                     </div>
+                    </div>
+                    <div class="section2">
                         <c:choose>
                             <c:when test="${not empty jobs}">
                                 <div class="banner">
@@ -93,6 +96,7 @@
                             </div>
                             </c:when>
                         </c:choose>
+                    </div>
                     <div class="logout_btn">
                         <a href="/logout" class="btn">Log out</a>
                     </div>
