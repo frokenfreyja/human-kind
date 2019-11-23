@@ -22,6 +22,7 @@
                 <img src="${pageContext.request.contextPath}/resources/images/${user.imageName}" class="img">
                 <h3 class="user_title">${user.name}</h3>
             </div>
+            <div class="section1">
             <c:choose>
                 <c:when test="${user.id eq currUser.id}">
                     <div class="banner">
@@ -54,6 +55,8 @@
                             </div>
                         </div>
                     </div>
+                    </div>
+                    <div class="section2">
                         <c:choose>
                             <c:when test="${not empty jobs}">
                                 <div class="banner">
@@ -61,11 +64,14 @@
                                 </div>
                                 <div class="list">
                                     <c:forEach var="job" items="${jobs}" varStatus="status">
-                                        <p class="list_items">
-                                            <a href="/ad/${job.id}">
-                                                    ${status.index+1}. ${job.name}
-                                            </a>
-                                        </p>
+                                        <a href="/ad/${job.id}">
+                                            <div class="list_item">
+                                                <p class="job_title">
+                                                        ${status.index+1}. ${job.name}
+                                                </p>
+                                                <div class="job_img"><img src="${pageContext.request.contextPath}/resources/images/${job.imageName}"></div>
+                                            </div>
+                                        </a>
                                     </c:forEach>
                                 </div>
                             </c:when>
@@ -78,15 +84,19 @@
                                 </div>
                             <div class="list">
                                  <c:forEach var="job" items="${own_ads}" varStatus="status">
-                                    <p class="list_items">
-                                        <a href="/ad/${job.id}">
-                                            ${status.index+1}. ${job.name}
-                                        </a>
-                                    </p>
+                                     <a href="/ad/${job.id}">
+                                    <div class="list_item">
+                                        <p class="job_title">
+                                                ${status.index+1}. ${job.name}
+                                        </p>
+                                        <div class="job_img"><img src="${pageContext.request.contextPath}/resources/images/${job.imageName}"></div>
+                                    </div>
+                                     </a>
                                 </c:forEach>
                             </div>
                             </c:when>
                         </c:choose>
+                    </div>
                     <div class="logout_btn">
                         <a href="/logout" class="btn">Log out</a>
                     </div>
@@ -96,7 +106,7 @@
                 </c:otherwise>
             </c:choose>
             </div>
-    </main>
+        </main>
     </body>
 <jsp:include page="Footer.jsp" />
 </html>

@@ -23,8 +23,9 @@ body {
 
 main {
     width: 100%;
-    height: 100%;
-    top: 7%;
+    height: calc(100vh - 89px);
+    overflow-y: auto;
+    top: 6.7%;
     display: flex;
     justify-content: center;
     position: relative;
@@ -33,30 +34,19 @@ main {
 /* SÍÐAN SETT UPP Í GRID */
 .row {
     width: 50%;
-    height: 100%;
-    margin-bottom: 7%;
+    position: absolute;
 }
 
-/*
-.col {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
-    width: 50%;
-}
- */
 .banner {
     width: 100%;
-    background-color: lightgrey;
+    background-color: darkgrey;
     padding: 10px;
 }
 
 .row_info {
-    width: 100%;
     display: flex;
     justify-content: space-between;
-    margin: 10px 0;
+    margin: 8px 0;
     padding: 0 10px;
 }
 
@@ -70,7 +60,6 @@ main {
     flex-direction: row;
     justify-content: space-between;
     justify-items: center;
-    margin: 20px 0;
 }
 
 .col {
@@ -99,9 +88,11 @@ main {
     height: 240px;
 }
 
+.section2 {
+    margin-top: 20px;
+}
+
 .list {
-    margin: 10px 0;
-    padding: 0 10px;
 }
 
 .info_title {
@@ -109,9 +100,39 @@ main {
     font-weight: 600;
 }
 
-.list_items a {
+.list_item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 130px;
+    background-color: #D3D3D3;
+    margin: 10px 0;
+}
+
+.list_item:hover {
+    background-color: #E8E8E8;
+}
+
+.list a {
     text-decoration: none;
     color: black;
+}
+
+.job_title {
+    padding: 0 10px;
+}
+
+.job_img {
+    width: 130px;
+    height: 130px;
+}
+
+.job_img img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
 }
 
 .edit {
@@ -126,6 +147,7 @@ main {
 .logout_btn {
     display: flex;
     justify-content: center;
+    margin: 20px 0;
 }
 
 .btn {
