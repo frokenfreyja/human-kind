@@ -61,11 +61,14 @@
                                 </div>
                                 <div class="list">
                                     <c:forEach var="job" items="${jobs}" varStatus="status">
-                                        <p class="list_items">
-                                            <a href="/ad/${job.id}">
-                                                    ${status.index+1}. ${job.name}
-                                            </a>
-                                        </p>
+                                        <a href="/ad/${job.id}">
+                                            <div class="list_item">
+                                                <p class="job_title">
+                                                        ${status.index+1}. ${job.name}
+                                                </p>
+                                                <div class="job_img"><img src="${pageContext.request.contextPath}/resources/images/${job.imageName}"></div>
+                                            </div>
+                                        </a>
                                     </c:forEach>
                                 </div>
                             </c:when>
@@ -78,11 +81,14 @@
                                 </div>
                             <div class="list">
                                  <c:forEach var="job" items="${own_ads}" varStatus="status">
-                                    <p class="list_items">
-                                        <a href="/ad/${job.id}">
-                                            ${status.index+1}. ${job.name}
-                                        </a>
-                                    </p>
+                                     <a href="/ad/${job.id}">
+                                    <div class="list_item">
+                                        <p class="job_title">
+                                                ${status.index+1}. ${job.name}
+                                        </p>
+                                        <div class="job_img"><img src="${pageContext.request.contextPath}/resources/images/${job.imageName}"></div>
+                                    </div>
+                                     </a>
                                 </c:forEach>
                             </div>
                             </c:when>
@@ -96,7 +102,7 @@
                 </c:otherwise>
             </c:choose>
             </div>
-    </main>
+        </main>
     </body>
 <jsp:include page="Footer.jsp" />
 </html>
