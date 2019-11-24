@@ -189,7 +189,7 @@ public class AdController {
         applicant.setUser(userID);
         if(applicantService.findByWorkAndUser(id,userID).size() > 0)
             applicantService.delete(applicant);
-        return "";
+        return "redirect:/ad/{id}";
     }
 
     //@RequestMapping

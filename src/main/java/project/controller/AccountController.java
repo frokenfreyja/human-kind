@@ -49,9 +49,13 @@ public class AccountController {
         user = userService.findOne(id);
         model.addAttribute("user", user);
 
-        ArrayList<Work> jobs = new ArrayList<>(user.getJobs().size());
-        for(int i = 0; i<user.getJobs().size(); i++) {
-            jobs.add(workService.findOne(user.getJobs().get(i)));
+        // Get all of user's applications
+        ArrayList<Work> jobs = new ArrayList<>(applicantService.findAllApplications(user.getId()).size());
+        ArrayList<Applicant> applications = applicantService.findAllApplications(user.getId());
+        for(int i=0; i<applications.size(); i++) {
+            Long workID = applications.get(i).getWork();
+            Work work = workService.findOne(workID);
+            jobs.add(work);
         }
 
         if(!user.getOrgi()) {
@@ -81,6 +85,7 @@ public class AccountController {
     public String createAsOrg(Model model) {
 
         model.addAttribute("user", new User());
+        model.addAttribute("header_type", "red_bar");
 
         return "SignUpOrg";
     }
@@ -129,6 +134,7 @@ public class AccountController {
     public String createAsVol(Model model) {
 
         model.addAttribute("user", new User());
+        model.addAttribute("header_type", "red_bar");
 
         return "SignUpVol";
     }
@@ -173,8 +179,50 @@ public class AccountController {
         return "SignUpVol";
     }
 
-    //@RequestMapping
-    public String deleteAccount(User user, Model model) {
-        return "";
+    /*
+     * Delete account - POST
+     */
+    @RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
+    public String deleteAccount(@PathVariable Long id, @ModelAttribute("user") User user, Model model, HttpSession httpSession) {
+        Long userID = (Long)httpSession.getAttribute("currentUser");
+        User currUser = userService.findOne(userID);
+        // Delete user
+        userService.delete(currUser);
+
+        // Delete all of user's applications
+        ArrayList<Applicant> applications = applicantService.findAllApplications(id);
+        for (Applicant application : applications) applicantService.delete(application);
+
+        // Delete all of user's ads
+        List<Work> works = workService.findByOwner(currUser.getId());
+        if(works.size() != 0) {
+            for (Work work : works) {
+                workService.delete(work);
+
+                // Delete all applicants of user's ads
+                ArrayList<Applicant> applicants = applicantService.findAllApplicants(work.getId());
+                if(applicants.size() != 0) {
+                    for (Applicant applicant : applicants) {
+                        applicantService.delete(applicant);
+                    }
+                }
+            }
+        }
+
+        /*
+        ArrayList<Work> jobs = new ArrayList<>(user.getJobs().size());
+        for(int i = 0; i<user.getJobs().size(); i++) {
+            jobs.add(workService.findOne(user.getJobs().get(i)));
+        }
+         */
+
+        //Applicant applicant = applicantService.findOne(userID);
+        //System.out.println("applicant user: " + applicant.getUser() + " applicant work: " + applicant.getWork());
+
+        //applicantService.delete(applicant);
+
+        httpSession.removeAttribute("currentUser");
+
+        return "redirect:/";
     }
 }
