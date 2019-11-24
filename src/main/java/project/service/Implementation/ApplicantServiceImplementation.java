@@ -54,7 +54,7 @@ public class ApplicantServiceImplementation implements ApplicantService {
     public ArrayList<Applicant> findAllApplications (Long users) { return repository.findAllApplications(users); }
 
     @Override
-    public ArrayList<Applicant> findByWorkAndUser(Long work, Long users){
+    public Applicant findByWorkAndUser(Long work, Long users){
         return repository.findByWorkAndUser(work, users);
     }
 

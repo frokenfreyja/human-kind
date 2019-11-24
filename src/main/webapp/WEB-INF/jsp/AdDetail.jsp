@@ -59,7 +59,7 @@
                 </c:if>
                 <c:if test="${not empty currUser && not currUser.orgi && alreadyApplied}">
                     <div class="apply_btn">
-                        <a href="/ad/${id}/apply" class="btn">Unapply</a>
+                        <a href="/ad/${id}/unapply" class="btn">Unapply</a>
                     </div>
                 </c:if>
             <c:choose>

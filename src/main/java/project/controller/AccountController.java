@@ -63,6 +63,7 @@ public class AccountController {
         }
 
         if(user.getOrgi()) {
+            model.addAttribute("organization", true);
             model.addAttribute("own_ads", workService.findByOwner(user.getId()));
         }
 

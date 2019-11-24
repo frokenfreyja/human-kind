@@ -40,7 +40,6 @@ public class HomeController {
         model.addAttribute("work_list", workService.findAllReverseOrder());
         model.addAttribute("header_type", "red_bar");
 
-        System.out.println("currentUser: " + httpSession.getAttribute("currentUsername"));
         return "Home";
     }
 
