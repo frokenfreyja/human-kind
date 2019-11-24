@@ -209,18 +209,6 @@ public class AccountController {
             }
         }
 
-        /*
-        ArrayList<Work> jobs = new ArrayList<>(user.getJobs().size());
-        for(int i = 0; i<user.getJobs().size(); i++) {
-            jobs.add(workService.findOne(user.getJobs().get(i)));
-        }
-         */
-
-        //Applicant applicant = applicantService.findOne(userID);
-        //System.out.println("applicant user: " + applicant.getUser() + " applicant work: " + applicant.getWork());
-
-        //applicantService.delete(applicant);
-
         httpSession.removeAttribute("currentUser");
 
         return "redirect:/";
