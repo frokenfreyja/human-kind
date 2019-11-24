@@ -34,8 +34,13 @@
             <ul>
                 <c:choose>
                     <c:when test="${not empty currentUser}">
-                    <li><a href="/all_ads">Available jobs</a></li>
+                    <c:if test="${not currentUserOrgi}">
+                        <li><a href="/all_ads">Available jobs</a></li>
+                    </c:if>
                     <li><a href="/user/${currentUser}">My account</a></li>
+                    <c:if test="${currentUserOrgi}">
+                        <li><a href="/new_ad">Post ad</a></li>
+                    </c:if>
                     <li><a href="/logout">Log out (${currentUsername})</a></li>
                 </c:when>
                 <c:otherwise>

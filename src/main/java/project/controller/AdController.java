@@ -145,7 +145,7 @@ public class AdController {
         model.addAttribute("currUser", currUser);
         model.addAttribute("genLoc", ad.getGeneralLoc(ad.getZipcode()));
 
-        if(currUser !=null && currUser.getJobs().contains(ad.getId())) {
+        if(currUser != null && applicantService.findByWorkAndUser(ad.getId(), currUser.getId()) != null) {
             model.addAttribute("alreadyApplied", true);
         }
 
@@ -170,7 +170,7 @@ public class AdController {
         User currUser = userService.findOne(userID);
         currUser.setJobs(id);
 
-        if(applicantService.findByWorkAndUser(id,userID).size() == 0) {
+        if(applicantService.findByWorkAndUser(id,userID) == null) {
             applicantService.save(applicant);
         }
 
@@ -184,11 +184,17 @@ public class AdController {
             return "redirect:/login";
         }
 
-        Applicant applicant = new Applicant();
+        /*Applicant applicant = new Applicant();
         applicant.setWork(id);
-        applicant.setUser(userID);
-        if(applicantService.findByWorkAndUser(id,userID).size() > 0)
+        applicant.setUser(userID);*/
+        //ArrayList<Applicant> app = applicantService.findAllApplicants(id);
+
+        Applicant applicant = applicantService.findByWorkAndUser(id, userID);
+        if(applicantService.findByWorkAndUser(id,userID) != null) {
+            System.out.println("Fer inn í if: " + applicant.getUser());
             applicantService.delete(applicant);
+            System.out.println("Eftir delete: " + applicant.getWork());
+        }
         return "redirect:/ad/{id}";
     }
 

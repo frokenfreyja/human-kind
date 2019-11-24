@@ -73,6 +73,8 @@ main {
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
+    background-image: none;
+
 }
 
 .user_title {
@@ -103,7 +105,7 @@ main {
 .list_item {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 
     height: 130px;
@@ -138,6 +140,12 @@ main {
 .edit {
     display: flex;
     justify-content: flex-end;
+}
+
+.ad_btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .edit_btn {

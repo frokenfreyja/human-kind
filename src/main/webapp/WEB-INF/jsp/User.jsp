@@ -38,13 +38,17 @@
                             <img src="${pageContext.request.contextPath}/resources/images/phone.png" class="icon"/>
                             <p>${user.phone}</p>
                         </div>
-                        <div class="row_info">
-                            <img src="${pageContext.request.contextPath}/resources/images/calendar.png" class="icon"/>
-                            <p>${fn:substring(user.birthDate, 0, 10)}</p>
-                        </div>
-                        <div class="row_info">
-                            <p>Bio: ${user.bio}</p>
-                        </div>
+                        <c:if test="${not organization}">
+                            <div class="row_info">
+                                <img src="${pageContext.request.contextPath}/resources/images/calendar.png" class="icon"/>
+                                <p>${fn:substring(user.birthDate, 0, 10)}</p>
+                            </div>
+                        </c:if>
+                        <c:if test="${organization}">
+                            <div class="row_info">
+                                <p>Bio: ${user.bio}</p>
+                            </div>
+                        </c:if>
                         </div>
                         <div class="col"></div>
                         <div class="col">
@@ -72,6 +76,8 @@
                                                 <div class="job_img"><img src="${pageContext.request.contextPath}/resources/images/${job.imageName}"></div>
                                             </div>
                                         </a>
+                                        <a href="/ad/${job.id}/unapply" class="btn">Unapply</a>
+
                                     </c:forEach>
                                 </div>
                             </c:when>
