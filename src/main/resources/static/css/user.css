@@ -94,18 +94,29 @@ main {
     margin-top: 20px;
 }
 
-.list {
-}
-
 .info_title {
     color: dimgray;
     font-weight: 600;
 }
 
+.edit {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+}
+
+.edit_btn {
+    margin: 20px 0;
+}
+
+.list a {
+    text-decoration: none;
+    color: black;
+}
+
 .list_item {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     align-items: center;
 
     height: 130px;
@@ -115,11 +126,25 @@ main {
 
 .list_item:hover {
     background-color: #E8E8E8;
+    cursor: pointer;
 }
 
-.list a {
-    text-decoration: none;
-    color: black;
+.ad_btn {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+}
+
+.ad_btn .btn {
+    color: white;
+}
+
+.ad_info {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .job_title {
@@ -135,21 +160,6 @@ main {
     object-fit: cover;
     width: 100%;
     height: 100%;
-}
-
-.edit {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.ad_btn {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.edit_btn {
-    margin: 20px 0;
 }
 
 .logout_btn {

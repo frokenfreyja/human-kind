@@ -66,20 +66,19 @@
                                 <div class="banner">
                                     <h3>List of applications</h3>
                                 </div>
-                                <div class="list">
                                     <c:forEach var="job" items="${jobs}" varStatus="status">
-                                        <a href="/ad/${job.id}">
+                                        <div class="list">
                                             <div class="list_item">
-                                                <p class="job_title">
+                                                <a href="/ad/${job.id}" class="ad_info">
+                                                    <p class="job_title">
                                                         ${status.index+1}. ${job.name}
-                                                </p>
-                                                <div class="job_img"><img src="${pageContext.request.contextPath}/resources/images/${job.imageName}"></div>
+                                                    </p>
+                                                    <div class="job_img"><img src="${pageContext.request.contextPath}/resources/images/${job.imageName}"></div>
+                                                    <div class="ad_btn"><a href="/ad/${job.id}/unapply" class="btn">Unapply</a></div>
+                                                </a>
                                             </div>
-                                        </a>
-                                        <a href="/ad/${job.id}/unapply" class="btn">Unapply</a>
-
+                                        </div>
                                     </c:forEach>
-                                </div>
                             </c:when>
                         </c:choose>
 
@@ -88,18 +87,19 @@
                                 <div class="banner">
                                     <h3>List of ads</h3>
                                 </div>
-                            <div class="list">
-                                 <c:forEach var="job" items="${own_ads}" varStatus="status">
-                                     <a href="/ad/${job.id}">
-                                    <div class="list_item">
-                                        <p class="job_title">
-                                                ${status.index+1}. ${job.name}
-                                        </p>
-                                        <div class="job_img"><img src="${pageContext.request.contextPath}/resources/images/${job.imageName}"></div>
-                                    </div>
-                                     </a>
-                                </c:forEach>
-                            </div>
+                                     <c:forEach var="job" items="${own_ads}" varStatus="status">
+                                         <div class="list">
+                                             <div class="list_item">
+                                                 <a href="/ad/${job.id}" class="ad_info">
+                                                    <p class="job_title">
+                                                            ${status.index+1}. ${job.name}
+                                                    </p>
+                                                    <div class="job_img"><img src="${pageContext.request.contextPath}/resources/images/${job.imageName}"></div>
+                                                     <div class="ad_btn"><a href="/ad/${job.id}/delete" class="btn">Remove</a></div>
+                                                 </a>
+                                             </div>
+                                         </div>
+                                     </c:forEach>
                             </c:when>
                         </c:choose>
                     </div>

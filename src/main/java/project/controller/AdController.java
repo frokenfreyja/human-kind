@@ -53,6 +53,8 @@ public class AdController {
 
         model.addAttribute("work", new Work());
         model.addAttribute("work_list", workService.findAllReverseOrder());
+        model.addAttribute("header_type", "red_bar");
+
 
         return "NewAd1";
     }
@@ -118,9 +120,19 @@ public class AdController {
         return "redirect:/";
     }
 
-    //@RequestMapping
-    public String deleteAd(Work work, Model model) {
-        return "";
+    @RequestMapping(value = "/ad/{id}/delete", method = RequestMethod.GET)
+    public String deleteAd(@PathVariable Long id, Work work, Model model, HttpSession httpSession) {
+        Long userID = (Long) httpSession.getAttribute("currentUser");
+        if(userID == null){
+            return "redirect:/login";
+        }
+
+        Work ad = workService.findOne(id);
+        if(ad != null) {
+            workService.delete(ad);
+        }
+
+        return "redirect:/";
     }
 
     //@RequestMapping
@@ -157,7 +169,7 @@ public class AdController {
     }
 
     @RequestMapping(value = "/ad/{id}/apply", method = RequestMethod.GET)
-    public String register(@PathVariable Long id,  Work work, User user, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) {
+    public String register(@PathVariable Long id, HttpSession httpSession) {
         Long userID = (Long) httpSession.getAttribute("currentUser");
         if(userID == null){
             return "redirect:/login";
@@ -178,23 +190,17 @@ public class AdController {
     }
 
     @RequestMapping(value = "/ad/{id}/unapply", method = RequestMethod.GET)
-    public String deregister(@PathVariable Long id,  Work work, User user, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) {
+    public String deregister(@PathVariable Long id, HttpSession httpSession) {
         Long userID = (Long) httpSession.getAttribute("currentUser");
         if(userID == null){
             return "redirect:/login";
         }
 
-        /*Applicant applicant = new Applicant();
-        applicant.setWork(id);
-        applicant.setUser(userID);*/
-        //ArrayList<Applicant> app = applicantService.findAllApplicants(id);
-
         Applicant applicant = applicantService.findByWorkAndUser(id, userID);
-        if(applicantService.findByWorkAndUser(id,userID) != null) {
-            System.out.println("Fer inn í if: " + applicant.getUser());
+        if(applicant != null) {
             applicantService.delete(applicant);
-            System.out.println("Eftir delete: " + applicant.getWork());
         }
+
         return "redirect:/ad/{id}";
     }
 
