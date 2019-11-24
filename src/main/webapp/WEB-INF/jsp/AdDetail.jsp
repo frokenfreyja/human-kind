@@ -52,18 +52,16 @@
                 <p>${ad.description}</p>
             </div>
 
-            <c:choose>
-                <c:when test="${not empty currUser && not currUser.orgi && not alreadyApplied}">
+                <c:if test="${not empty currUser && not currUser.orgi && not alreadyApplied}">
                     <div class="apply_btn">
                         <a href="/ad/${id}/apply" class="btn">Apply</a>
                     </div>
-                </c:when>
-                <c:otherwise>
+                </c:if>
+                <c:if test="${not empty currUser && not currUser.orgi && alreadyApplied}">
                     <div class="apply_btn">
                         <a href="/ad/${id}/apply" class="btn">Unapply</a>
                     </div>
-                </c:otherwise>
-            </c:choose>
+                </c:if>
             <c:choose>
                 <c:when test="${not empty applicants}">
                 <div class="info_section">
