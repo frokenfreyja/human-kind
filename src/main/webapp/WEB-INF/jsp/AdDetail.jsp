@@ -75,6 +75,11 @@
                 </div>
                 </c:when>
             </c:choose>
+            <c:if test="${currUser.orgi && currUser eq owner}">
+                <div class="apply_btn">
+                    <a href="/ad/${id}/delete" class="btn">Remove</a>
+                </div>
+            </c:if>
             <div>
         </div>
         </div>
