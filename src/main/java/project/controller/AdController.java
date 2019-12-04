@@ -56,7 +56,7 @@ public class AdController {
         model.addAttribute("header_type", "red_bar");
 
 
-        return "NewAd1";
+        return "NewAd";
     }
 
     @RequestMapping(value = "/new_ad", method = RequestMethod.POST)
@@ -64,25 +64,6 @@ public class AdController {
 
         Long userID = (Long) httpSession.getAttribute("currentUser");
         work.setOwner(userID);
-
-        httpSession.setAttribute("ad_name", work.getName());
-        httpSession.setAttribute("ad_desc", work.getDescription());
-        httpSession.setAttribute("ad_date", work.getDate());
-        httpSession.setAttribute("ad_cat", work.getInterest());
-
-        return "NewAd2";
-    }
-
-    @RequestMapping(value = "/new_ad/2", method = RequestMethod.POST)
-    public String newItem2(@ModelAttribute("work") Work work, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) throws IOException {
-
-        Long userID = (Long) httpSession.getAttribute("currentUser");
-
-        String name = (String) httpSession.getAttribute("ad_name");
-        String desc = (String) httpSession.getAttribute("ad_desc");
-        Date date = (Date) httpSession.getAttribute("ad_date");
-        String cat = (String) httpSession.getAttribute("ad_cat");
-
 
         if (userID == null) {
             return "redirect:/login";
@@ -106,12 +87,6 @@ public class AdController {
             } catch (IllegalStateException | IOException e) {
                 e.printStackTrace();
             }
-
-        work.setOwner(userID);
-        work.setName(name);
-        work.setDescription(desc);
-        work.setDate(date);
-        work.setInterest(cat);
 
         workService.save(work);
         model.addAttribute("work_list", workService.findAllReverseOrder());

@@ -24,8 +24,7 @@
 <main>
     <div class="row">
     <h1 class="title">VOLUNTEER</h1>
-<sf:form method="POST" modelAttribute="user" action="/vol" enctype="multipart/form-data">
-    <div class="signup_table">
+<sf:form method="POST" modelAttribute="user" action="/vol" enctype="multipart/form-data" class="form">
         <div class="input">
             <img src="${pageContext.request.contextPath}/resources/images/name.png" class="img"/>
             <sf:input path="name" type="text" placeholder="Full name" class="signup_text"/>
@@ -84,7 +83,6 @@
             </div>
             <sf:input path="image" type="file" id="image" accept="image/*" name="image" onchange="loadFile(event)" style="display: none;" multiple="multiple" />
         </div>
-    </div>
 
         <div class="signup_btn">
             <input class="btn" type="submit" VALUE="SIGN UP"/>
