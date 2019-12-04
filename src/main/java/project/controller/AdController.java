@@ -43,6 +43,14 @@ public class AdController {
         this.applicantService = applicantService;
     }
 
+    @RequestMapping(value = "/all_ads", method = RequestMethod.GET)
+    public String viewAllAds(Model model, HttpSession httpSession) {
+
+        model.addAttribute("work_list", workService.findAllReverseOrder());
+
+        return "AllAds";
+    }
+
     @RequestMapping(value = "/new_ad", method = RequestMethod.GET)
     public String newAdForm(Model model, HttpSession httpSession) {
 
@@ -50,11 +58,12 @@ public class AdController {
         if(userID == null) {
             return "redirect:/login";
         }
+        User currUser = userService.findOne(userID);
 
         model.addAttribute("work", new Work());
         model.addAttribute("work_list", workService.findAllReverseOrder());
         model.addAttribute("header_type", "red_bar");
-
+        model.addAttribute("currUser", currUser);
 
         return "NewAd";
     }
@@ -68,6 +77,8 @@ public class AdController {
         if (userID == null) {
             return "redirect:/login";
         }
+
+        User currUser = userService.findOne(userID);
 
         MultipartFile imagefile = work.getImage();
         String fileName;
@@ -87,6 +98,10 @@ public class AdController {
             } catch (IllegalStateException | IOException e) {
                 e.printStackTrace();
             }
+
+        if (work.getImageName() == null) {
+            work.setImageName(currUser.getImageName());
+        }
 
         workService.save(work);
         model.addAttribute("work_list", workService.findAllReverseOrder());
