@@ -130,6 +130,14 @@ public class AdController {
         Work ad = workService.findOne(id);
         if(ad != null) {
             workService.delete(ad);
+
+            // Delete all applicants of ad
+            ArrayList<Applicant> applicants = applicantService.findAllApplicants(ad.getId());
+            if(applicants.size() != 0) {
+                for (Applicant applicant : applicants) {
+                    applicantService.delete(applicant);
+                }
+            }
         }
 
         return "redirect:/";
@@ -178,9 +186,6 @@ public class AdController {
         Applicant applicant = new Applicant();
         applicant.setWork(id);
         applicant.setUser(userID);
-
-        User currUser = userService.findOne(userID);
-        currUser.setJobs(id);
 
         if(applicantService.findByWorkAndUser(id,userID) == null) {
             applicantService.save(applicant);

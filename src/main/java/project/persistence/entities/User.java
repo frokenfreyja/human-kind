@@ -37,19 +37,12 @@ public class User{
     // Þarf að finna leið til að búa til list í db
    // private List<Course> courses;
 
-    @ElementCollection
-    @CollectionTable(
-            name="workname"
-    )
-    @Column(name="WORK_NAMES")
-    private List<Long> jobs;
-
     public User(){
 
     }
 
     public User(String name, String email, String gender, String password, String phone, Date birthDate, String bio, Boolean orgi,
-                MultipartFile image, List<Long> jobs) {
+                MultipartFile image) {
         this.name = name;
         this.email = email;
         this.gender = gender;
@@ -59,7 +52,6 @@ public class User{
         this.bio = bio;
         this.orgi = orgi;
         this.image = image;
-        this.jobs = jobs;
     }
 
     public Long getId() {
@@ -162,15 +154,6 @@ public class User{
         this.imageName = imageName;
     }
 
-
-    public List<Long> getJobs() {
-        return jobs;
-    }
-
-    public void setJobs(Long job) {
-        this.jobs.add(job);
-    }
-
     /*  public List<Course> getCourses() {
         return courses;
     }
@@ -192,7 +175,6 @@ public class User{
                 ", bio='" + bio + '\'' +
                 ", points=" + points +
                 ", orgi=" + orgi +
-                ", jobs=" + jobs +
--                '}';
+                '}';
     }
 }
