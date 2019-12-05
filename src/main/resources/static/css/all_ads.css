@@ -26,18 +26,21 @@ main {
     align-items: center;
     padding: 60px 0 20px 0;
 }
-
 .advertlist {
-    width: 90%;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+}
+.list {
     height: 100%;
     font-size: 1em;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: left;
 }
 
 .ad {
-    margin: 20px;
+    margin: 10px;
 }
 
 .ad a {
@@ -51,7 +54,7 @@ main {
 }
 
 .img {
-    width: 220px;
+    width: 150px;
     height: 220px;
     overflow: hidden;
     background-color: white;

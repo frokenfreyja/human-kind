@@ -140,16 +140,14 @@ p {
     font-family: 'IBM Plex Sans', sans-serif;
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .section3_content {
+    background-position: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-items: center;
+    padding: 60px 0 20px 0;
 }
 
 .advert {
@@ -157,16 +155,20 @@ p {
 }
 
 .advertlist {
-    width: 90%;
-    height: 100%;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+}
+
+.list {
     font-size: 1em;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: left;
 }
 
 .ad {
-    margin: 20px;
+    margin: 15px;
 }
 
 .ad:nth-child(6), .ad:nth-child(7), .ad:nth-child(8), .ad:nth-child(9), .ad:nth-child(10) {
@@ -184,7 +186,7 @@ p {
 }
 
 .img {
-    width: 200px;
+    width: 198px;
     height: 220px;
     overflow: hidden;
     background-color: white;
