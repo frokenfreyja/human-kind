@@ -115,7 +115,6 @@ select {
     justify-content: center;
     font-size: 1.1em;
     transition: all 0.1s ease;
-    margin-top: 10px;
 }
 
 .imgbutton:hover {
@@ -123,16 +122,17 @@ select {
     color: black;
 }
 
-.label{
+.label {
     text-align: center;
 }
 
 .output {
     display: flex;
     justify-content: center;
+    margin-top: 10px;
 }
 
-.user_img {
+.ad_img {
     object-fit: cover;
     background-color: white;
     border-radius: 3%;
