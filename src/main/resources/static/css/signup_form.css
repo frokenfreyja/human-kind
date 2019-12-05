@@ -46,6 +46,10 @@ main {
     letter-spacing: 2px;
 }
 
+.form {
+    width: 150%;
+}
+
 .input {
     display: flex;
     align-content: center;
@@ -84,8 +88,7 @@ img .img {
 }
 
 .signup_text {
-    margin-left: 10px;
-    padding-right: 5em;
+    margin: 0 10px;
     font-size: 1em;
     width: 100%;
 }

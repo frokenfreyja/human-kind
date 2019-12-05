@@ -24,8 +24,7 @@
 <main>
     <div class="row">
     <h1 class="title">VOLUNTEER</h1>
-<sf:form method="POST" modelAttribute="user" action="/vol" enctype="multipart/form-data">
-    <div class="signup_table">
+    <sf:form method="POST" modelAttribute="user" action="/vol" enctype="multipart/form-data" class="form">
         <div class="input">
             <img src="${pageContext.request.contextPath}/resources/images/name.png" class="img"/>
             <sf:input path="name" type="text" placeholder="Full name" class="signup_text"/>
@@ -54,7 +53,7 @@
 
         <div class="input">
             <img src="${pageContext.request.contextPath}/resources/images/lock2.png" class="img"/>
-            <sf:input path="confirmPassword" type="password" placeholder="Confirm your password" class="signup_text" required="required"/>
+            <sf:input path="confirmPassword" type="password" placeholder="Confirm password" class="signup_text" required="required"/>
         </div>
 
         <div class="input">
@@ -73,10 +72,9 @@
             </div>
         </c:if>
 
-
         <div class="account_img">
             <div class="imgbutton">
-                <sf:label for="image" path="image" style="cursor: pointer;">Upload your photo
+                <sf:label for="image" path="image" style="cursor: pointer;">Upload photo
                     <div class="output">
                         <img path="output" id="output" class="user_img" src="${pageContext.request.contextPath}/resources/images/account.png">
                     </div>
@@ -84,14 +82,13 @@
             </div>
             <sf:input path="image" type="file" id="image" accept="image/*" name="image" onchange="loadFile(event)" style="display: none;" multiple="multiple" />
         </div>
-    </div>
 
         <div class="signup_btn">
             <input class="btn" type="submit" VALUE="SIGN UP"/>
         </div>
 
-</sf:form>
-        </div>
+    </sf:form>
+    </div>
 </main>
 </body>
 <jsp:include page="Footer.jsp" />

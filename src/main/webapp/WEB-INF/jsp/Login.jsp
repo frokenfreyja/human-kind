@@ -20,30 +20,30 @@
     <body>
     <main>
         <div class="row">
-    <h1 class="title">LOG IN</h1>
-    <sf:form method="POST" modelAttribute="user" action="/login">
-        <div class="login_table">
-            <div class="input">
-                <img src="${pageContext.request.contextPath}/resources/images/email.png" class="img"/>
-                <sf:input path="email" type="email" placeholder="Email Address" class="login_text" />
-            </div>
+            <h1 class="title">LOG IN</h1>
+            <sf:form method="POST" modelAttribute="user" action="/login">
+                <div class="login_table">
+                    <div class="input">
+                        <img src="${pageContext.request.contextPath}/resources/images/email.png" class="img"/>
+                        <sf:input path="email" type="email" placeholder="Email Address" class="login_text" />
+                    </div>
 
-            <div class="input">
-                <img src="${pageContext.request.contextPath}/resources/images/lock.png" class="img"/>
-                <sf:input path="password" type="password" placeholder="Password" class="login_text"/>
-            </div>
-        </div>
+                    <div class="input">
+                        <img src="${pageContext.request.contextPath}/resources/images/lock.png" class="img"/>
+                        <sf:input path="password" type="password" placeholder="Password" class="login_text"/>
+                    </div>
+                </div>
 
-        <c:if test="${not empty loginDenied}">
-            <div class="error">
-                    ${loginDenied}
-            </div>
-        </c:if>
+                <c:if test="${not empty loginDenied}">
+                    <div class="error">
+                            ${loginDenied}
+                    </div>
+                </c:if>
 
-        <div class="login_btn">
-            <input class="btn" type="submit" VALUE="LOG IN"/>
-        </div>
-    </sf:form>
+                <div class="login_btn">
+                    <input class="btn" type="submit" VALUE="LOG IN"/>
+                </div>
+            </sf:form>
             <div class="newaccount">
                 <p>Don't have an account yet? <br/> No problem!</p>
                 <a href="/signup" class="signup_btn">CREATE ACCOUNT</a>

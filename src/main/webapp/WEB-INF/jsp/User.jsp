@@ -70,12 +70,15 @@
                                         <div class="list">
                                             <div class="list_item">
                                                 <a href="/ad/${job.id}" class="ad_info">
-                                                    <p class="job_title">
-                                                        ${status.index+1}. ${job.name}
-                                                    </p>
-                                                    <div class="job_img"><img src="${pageContext.request.contextPath}/resources/images/${job.imageName}"></div>
-                                                    <div class="ad_btn"><a href="/ad/${job.id}/unapply" class="btn">Unapply</a></div>
+                                                    <div class="col">
+                                                        <div class="job_img"><img src="${pageContext.request.contextPath}/resources/images/${job.imageName}"></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <h3 class="job_title">${job.name}</h3>
+                                                        <p class="job_desc">${fn:substring(job.description, 0,210)}</p>
+                                                    </div>
                                                 </a>
+                                                <div class="ad_btn"><a href="/ad/${job.id}/unapply" class="btn">Unapply</a></div>
                                             </div>
                                         </div>
                                     </c:forEach>
@@ -91,12 +94,16 @@
                                          <div class="list">
                                              <div class="list_item">
                                                  <a href="/ad/${job.id}" class="ad_info">
-                                                    <p class="job_title">
-                                                            ${status.index+1}. ${job.name}
-                                                    </p>
-                                                    <div class="job_img"><img src="${pageContext.request.contextPath}/resources/images/${job.imageName}"></div>
-                                                     <div class="ad_btn"><a href="/ad/${job.id}/delete" class="btn">Remove</a></div>
+                                                     <div class="col">
+                                                         <div class="job_img"><img src="${pageContext.request.contextPath}/resources/images/${job.imageName}"></div>
+                                                     </div>
+                                                     <div class="col">
+                                                         <h3 class="job_title">${job.name}</h3>
+                                                         <p class="job_desc">${fn:substring(job.description, 0,210)}</p>
+                                                     </div>
                                                  </a>
+                                                 <div class="ad_btn"><a href="/ad/${job.id}/delete" class="btn">Remove</a></div>
+
                                              </div>
                                          </div>
                                      </c:forEach>

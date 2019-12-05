@@ -23,19 +23,20 @@
         <c:choose>
             <c:when test="${not empty work_list}">
             <div class="advertlist">
+                <div class="list">
+                    <c:forEach var="work" items="${work_list}">
+                        <div class="ad">
+                            <a href="/ad/${work.id}">
+                                <div class="img"><img src="${pageContext.request.contextPath}/resources/images/${work.imageName}" /></div>
+                                    ${fn:substring(work.date, 0,10)}
+                                <div class="card_title">
+                                        ${work.name}
+                                </div>
+                            </a>
 
-            <c:forEach var="work" items="${work_list}">
-                    <div class="ad">
-                        <a href="/ad/${work.id}">
-                            <div class="img"><img src="${pageContext.request.contextPath}/resources/images/${work.imageName}" /></div>
-                                ${fn:substring(work.date, 0,10)}
-                            <div class="card_title">
-                                    ${work.name}
-                            </div>
-                        </a>
-
-                    </div>
-                </c:forEach>
+                        </div>
+                    </c:forEach>
+                </div>
             </c:when>
             <%--If all tests are false, then do this--%>
             <c:otherwise>
