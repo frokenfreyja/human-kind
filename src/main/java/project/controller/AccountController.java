@@ -214,4 +214,86 @@ public class AccountController {
 
         return "redirect:/";
     }
+
+    /**
+     * Edit account - GET
+     */
+    @RequestMapping(value ="/edit_user/{id}", method = RequestMethod.GET)
+    public String editAccount(@PathVariable Long id, @ModelAttribute("user") User user, Model model, HttpSession session){
+
+        Long userID = (Long)session.getAttribute("currentUser");
+        User currUser = userService.findOne(userID);
+
+        if(userID==null)
+            return "Login";
+
+        user = userService.findOne(id);
+        model.addAttribute("user", user);
+
+        // Get all of user's applications
+        ArrayList<Work> jobs = new ArrayList<>(applicantService.findAllApplications(user.getId()).size());
+        ArrayList<Applicant> applications = applicantService.findAllApplications(user.getId());
+        for(int i=0; i<applications.size(); i++) {
+            Long workID = applications.get(i).getWork();
+            Work work = workService.findOne(workID);
+            jobs.add(work);
+        }
+
+        if(!user.getOrgi()) {
+            model.addAttribute("jobs", jobs);
+        }
+
+        if(user.getOrgi()) {
+            model.addAttribute("organization", true);
+            model.addAttribute("own_ads", workService.findByOwner(user.getId()));
+        }
+
+        model.addAttribute("edit", true);
+        model.addAttribute("currUser", currUser);
+        model.addAttribute("header_type", "red_bar");
+
+        return "User";
+    }
+    /**
+     * Edit account - POST
+     */
+    @RequestMapping(value = "/edit_user/{id}", method = RequestMethod.POST)
+    public String editAccountPost(@PathVariable Long id, Model model, HttpSession httpSession) {
+
+        Long userId = (Long)httpSession.getAttribute("currentUser");
+
+        if(userId==null)
+            return "Login";
+
+
+        User user = userService.findOne(userId);
+        /*
+        User exist = this.userService.findOneByName(user);
+        if (exist != null && !user.getUserName().equals(theuser.getUserName())) {
+            model.addAttribute("user", theuser);
+            model.addAttribute("stillingarError", "Notendanafn er nú þegar til.");
+            return "Settings";
+        }
+
+        // Finnur öll Item sem User-inn bjó til og breytir userName breytunni í nýja nafnið
+        // Finnur einnig öll Item sem User-inn var í röð fyrir og breytir gamla nafninu í röðinni í nýja nafnið
+        itemService.changeName(userName,user.getUserName());
+        theuser.setUserName(user.getUserName());
+        theuser.setPassword(user.getPassword());
+        theuser.setEmail(user.getEmail());
+        theuser.setPhone(user.getPhone());
+        theuser.setLocation(user.getLocation());
+        theuser.setZipcode(user.getZipcode());
+
+        httpSession.setAttribute("loggedInUsername", theuser.getUserName());
+
+        userService.save(theuser);
+
+        model.addAttribute("user", theuser);
+         */
+
+        return "User";
+    }
+
+
 }
