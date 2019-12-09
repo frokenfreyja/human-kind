@@ -258,15 +258,43 @@ public class AccountController {
      * Edit account - POST
      */
     @RequestMapping(value = "/edit_user/{id}", method = RequestMethod.POST)
-    public String editAccountPost(@PathVariable Long id, Model model, HttpSession httpSession) {
+    public String editAccountPost(@PathVariable Long id, @ModelAttribute("user") User user, Model model, HttpSession httpSession) {
+        Long userID = (Long) httpSession.getAttribute("currentUser");
+        User currUser = userService.findOne(userID);
 
-        Long userId = (Long)httpSession.getAttribute("currentUser");
-
-        if(userId==null)
+        if(userID==null)
             return "Login";
 
+        user = userService.findOne(id);
+        model.addAttribute("user", user);
 
-        User user = userService.findOne(userId);
+        // Get all of user's applications
+        ArrayList<Work> jobs = new ArrayList<>(applicantService.findAllApplications(user.getId()).size());
+        ArrayList<Applicant> applications = applicantService.findAllApplications(user.getId());
+        for(int i=0; i<applications.size(); i++) {
+            Long workID = applications.get(i).getWork();
+            Work work = workService.findOne(workID);
+            jobs.add(work);
+        }
+
+        if(!user.getOrgi()) {
+            model.addAttribute("jobs", jobs);
+        }
+
+        if(user.getOrgi()) {
+            model.addAttribute("organization", true);
+            model.addAttribute("own_ads", workService.findByOwner(user.getId()));
+        }
+
+        model.addAttribute("edit", true);
+        model.addAttribute("currUser", currUser);
+        model.addAttribute("header_type", "red_bar");
+
+        if (userService.findByEmail(user.getEmail()) != null) {
+            model.addAttribute("error", "Email already exists");
+            return "User";
+        }
+
         /*
         User exist = this.userService.findOneByName(user);
         if (exist != null && !user.getUserName().equals(theuser.getUserName())) {

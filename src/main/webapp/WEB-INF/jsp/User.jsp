@@ -63,7 +63,13 @@
                                             </div>
                                         </c:if>
                                     </div>
-                                    <div class="col"></div>
+                                    <div class="col">
+                                        <c:if test="${not empty error}">
+                                            <div class="error">
+                                                    ${error}
+                                            </div>
+                                        </c:if>
+                                    </div>
                                     <div class="col">
                                         <div class="edit">
                                             <div class="edit_btn">
