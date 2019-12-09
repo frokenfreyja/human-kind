@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import project.persistence.entities.Applicant;
 import project.persistence.entities.Work;
@@ -47,6 +48,17 @@ public class AdController {
     public String viewAllAds(Model model, HttpSession httpSession) {
 
         model.addAttribute("work_list", workService.findAllReverseOrder());
+
+        return "AllAds";
+    }
+
+    /**
+     * Search for ads that contain search word in title or description
+     */
+    @RequestMapping(value = "searchlistx", method = RequestMethod.GET)
+    public String searchItems(@RequestParam (value = "searching", required = false) String searchwords, Model model) {
+
+        model.addAttribute("work_list", workService.findByNameContainsIgnoreCaseOrDescriptionContainsIgnoreCase(searchwords, searchwords));
 
         return "AllAds";
     }
