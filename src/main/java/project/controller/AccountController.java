@@ -2,6 +2,7 @@ package project.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,6 +31,9 @@ public class AccountController {
     private UserService userService;
     private WorkService workService;
     private ApplicantService applicantService;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     // Dependency Injection
     @Autowired
@@ -125,6 +129,7 @@ public class AccountController {
             model.addAttribute("error", "Passwords don't match.");
         } else {
             user.setOrgi(true);
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             userService.save(user);
             return "redirect:/login";
         }
@@ -174,6 +179,7 @@ public class AccountController {
             model.addAttribute("error", "Passwords don't match.");
         } else {
             user.setOrgi(false);
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             userService.save(user);
             return "redirect:/login";
         }
@@ -214,4 +220,98 @@ public class AccountController {
 
         return "redirect:/";
     }
+
+    /**
+     * Edit account - GET
+     */
+    @RequestMapping(value ="/edit_user/{id}", method = RequestMethod.GET)
+    public String editAccount(@PathVariable Long id, @ModelAttribute("user") User user, Model model, HttpSession session){
+
+        Long userID = (Long)session.getAttribute("currentUser");
+        User currUser = userService.findOne(userID);
+
+        if(userID==null)
+            return "Login";
+
+        user = userService.findOne(id);
+        model.addAttribute("user", user);
+
+        // Get all of user's applications
+        ArrayList<Work> jobs = new ArrayList<>(applicantService.findAllApplications(user.getId()).size());
+        ArrayList<Applicant> applications = applicantService.findAllApplications(user.getId());
+        for(int i=0; i<applications.size(); i++) {
+            Long workID = applications.get(i).getWork();
+            Work work = workService.findOne(workID);
+            jobs.add(work);
+        }
+
+        if(!user.getOrgi()) {
+            model.addAttribute("jobs", jobs);
+        }
+
+        if(user.getOrgi()) {
+            model.addAttribute("organization", true);
+            model.addAttribute("own_ads", workService.findByOwner(user.getId()));
+        }
+
+        model.addAttribute("edit", true);
+        model.addAttribute("currUser", currUser);
+        model.addAttribute("header_type", "red_bar");
+
+        return "User";
+    }
+    /**
+     * Edit account - POST
+     */
+    @RequestMapping(value = "/edit_user/{id}", method = RequestMethod.POST)
+    public String editAccountPost(@PathVariable Long id, User user, Model model, HttpSession httpSession) {
+        Long userID = (Long) httpSession.getAttribute("currentUser");
+        User currUser = userService.findOne(userID);
+
+        if(userID==null)
+            return "Login";
+
+        System.out.println(user.getId() + " : " + user.getName());
+
+        model.addAttribute("currUser", currUser);
+        model.addAttribute("header_type", "red_bar");
+
+        // Get all of user's applications
+        ArrayList<Work> jobs = new ArrayList<>(applicantService.findAllApplications(currUser.getId()).size());
+        ArrayList<Applicant> applications = applicantService.findAllApplications(currUser.getId());
+        for(int i=0; i<applications.size(); i++) {
+            Long workID = applications.get(i).getWork();
+            Work work = workService.findOne(workID);
+            jobs.add(work);
+        }
+
+        if(!currUser.getOrgi()) {
+            model.addAttribute("jobs", jobs);
+        }
+
+        if(currUser.getOrgi()) {
+            model.addAttribute("organization", true);
+            model.addAttribute("own_ads", workService.findByOwner(user.getId()));
+        }
+
+        if (userService.findByEmail(user.getEmail()) != null && !currUser.getEmail().equals(user.getEmail())) {
+            model.addAttribute("error", "Email already exists");
+            return "User";
+        }
+
+        currUser.setName(user.getName());
+        currUser.setEmail(user.getEmail());
+        currUser.setPhone(user.getPhone());
+        currUser.setBirthDate(user.getBirthDate());
+        currUser.setBio(user.getBio());
+
+        httpSession.setAttribute("currentUser", currUser.getId());
+        httpSession.setAttribute("currentUsername", currUser.getName());
+
+        userService.save(currUser);
+
+        return "redirect:/user/{id}";
+    }
+
+
 }

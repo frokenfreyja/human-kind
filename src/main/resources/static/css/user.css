@@ -55,6 +55,10 @@ main {
     height: 20px;
 }
 
+.edit_icon {
+    margin-right: 10px;
+}
+
 .user_info {
     display: flex;
     flex-direction: row;
@@ -62,10 +66,32 @@ main {
     justify-items: center;
 }
 
+form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-items: center;
+    width: 100%;
+}
+
 .col {
-    width: 33%;
+    width: 50%;
     display: flex;
     flex-direction: column;
+}
+
+.edit_col {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit_col:nth-child(1) {
+    width: 80%;
+}
+
+.error {
+    margin-top: 10px;
 }
 
 .user_img {
@@ -108,6 +134,11 @@ main {
     margin: 20px 0;
 }
 
+.edit_btn .btn {
+    border: none;
+    font-size: 1em;
+}
+
 .list a {
     text-decoration: none;
     color: black;
@@ -138,14 +169,21 @@ main {
     color: white;
 }
 
-.col:nth-child(1) {
+.col2:nth-child(1) {
     width: 25%;
     height: 100%;
 }
 
-.col:nth-child(2) {
+.col2:nth-child(2) {
     width: 75%;
     height: 100%;
+}
+
+input {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1em;
+    width: 100%;
 }
 
 .ad_info {

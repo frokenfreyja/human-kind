@@ -22,6 +22,22 @@
     <h2 class="advert">AVAILABLE JOBS</h2>
         <c:choose>
             <c:when test="${not empty work_list}">
+            <%-- Leitargluggi sem leitar í auglýsingalista eftir leitarorðum--%>
+        <div class="searchfield">
+            <form object="${items}" id="searchlist" action="searchlistx" method="get">
+                <table class="search">
+                    <tr>
+                        <td class="searchicon">
+                            <i class="fa fa-search"></i>
+                        </td>
+                        <td>
+                            <input type="text" class="searcher" value="${search}" name="searching" placeholder=" Setjið inn leitarorð.." onChange="this.form.submit()" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
             <div class="advertlist">
                 <div class="list">
                     <c:forEach var="work" items="${work_list}">

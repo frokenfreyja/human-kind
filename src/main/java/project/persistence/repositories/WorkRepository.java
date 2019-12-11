@@ -21,6 +21,8 @@ public interface WorkRepository extends JpaRepository<Work, Long> {
 
     List<Work> findByName(String name);
 
+    List<Work> findByDescription(String description);
+
     List<Work> findByLocation(String location);
 
     List<Work> findByDate(Date date);
@@ -30,4 +32,6 @@ public interface WorkRepository extends JpaRepository<Work, Long> {
     List<Work> findByOwner(Long owner);
 
     List<Work> findByInterest(String interest);
+
+    List<Work> findByNameContainsIgnoreCaseOrDescriptionContainsIgnoreCase(String title, String description);
 }

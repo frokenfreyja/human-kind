@@ -59,6 +59,11 @@ public class WorkServiceImplementation implements WorkService {
     }
 
     @Override
+    public List<Work> findByDescription(String description) {
+        return repository.findByName(description);
+    }
+
+    @Override
     public List<Work> findByLocation(String location) {
         return repository.findByLocation(location);
     }
@@ -81,5 +86,10 @@ public class WorkServiceImplementation implements WorkService {
     @Override
     public List<Work> findByInterest(String interest) {
         return repository.findByInterest(interest);
+    }
+
+    @Override
+    public List<Work> findByNameContainsIgnoreCaseOrDescriptionContainsIgnoreCase(String title, String description) {
+        return repository.findByNameContainsIgnoreCaseOrDescriptionContainsIgnoreCase(title, description);
     }
 }

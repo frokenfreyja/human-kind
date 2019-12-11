@@ -48,6 +48,13 @@ public interface WorkService {
     List<Work> findByName(String name);
 
     /**
+     * Find all {@link Work}s with {@link String description}
+     * @param description {@link String}
+     * @return All {@link Work}s with the {@link String description} passed
+     */
+    List<Work> findByDescription(String description);
+
+    /**
      * Find all {@link Work}s with {@link String location}
      * @param location {@link String}
      * @return All {@link Work}s with the {@link String location} passed
@@ -81,4 +88,12 @@ public interface WorkService {
      * @return All {@link Work}s with the {@link String interest} passed
      */
     List<Work> findByInterest(String interest);
+
+    /**
+     * Find all {@link Work}s with {@link String title, @link String description}
+     * @param title {@link String}
+     * @param description {@link String}
+     * @return All {@link Work}s with the {@link String title, @link description} passed
+     */
+    List<Work> findByNameContainsIgnoreCaseOrDescriptionContainsIgnoreCase(String title, String description);
 }

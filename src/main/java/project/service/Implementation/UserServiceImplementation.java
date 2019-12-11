@@ -13,8 +13,6 @@ public class UserServiceImplementation implements UserService {
 
     // Instance Variables
     UserRepository repository;
-     @Autowired
-     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     // Dependency Injection
     @Autowired
@@ -24,7 +22,6 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public User save(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return repository.save(user);
     }
 
