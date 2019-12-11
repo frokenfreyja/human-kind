@@ -36,23 +36,37 @@
                         <c:choose>
                             <c:when test="${edit}">
                                 <sf:form method="POST" modelAttribute="user" action="/edit_user/${currUser.id}">
-                                    <div class="col">
+                                    <div class="edit_col">
                                         <div class="row_info">
-                                            <img src="${pageContext.request.contextPath}/resources/images/email.png"
+                                            <div class="edit_icon">
+                                                <img src="${pageContext.request.contextPath}/resources/images/name.png"
                                                  class="icon"/>
+                                            </div>
+                                            <sf:input path="name" type="text" placeholder="Name"
+                                                      class="edit_text"/>
+                                        </div>
+                                        <div class="row_info">
+                                            <div class="edit_icon">
+                                                <img src="${pageContext.request.contextPath}/resources/images/email.png"
+                                                 class="icon"/>
+                                            </div>
                                             <sf:input path="email" type="email" placeholder="Email Address"
                                                       class="edit_text"/>
                                         </div>
                                         <div class="row_info">
-                                            <img src="${pageContext.request.contextPath}/resources/images/phone.png"
+                                            <div class="edit_icon">
+                                                <img src="${pageContext.request.contextPath}/resources/images/phone.png"
                                                  class="icon"/>
+                                            </div>
                                             <sf:input path="phone" type="number" placeholder="Phone number"
                                                       class="edit_text" required="required"/>
                                         </div>
                                         <c:if test="${not organization}">
                                             <div class="row_info">
-                                                <img src="${pageContext.request.contextPath}/resources/images/calendar.png"
+                                                <div class="edit_icon">
+                                                    <img src="${pageContext.request.contextPath}/resources/images/calendar.png"
                                                      class="icon"/>
+                                                </div>
                                                 <sf:input path="birthDate" type="date" placeholder="Date of birth"
                                                           class="edit_text"/>
                                             </div>
@@ -63,14 +77,14 @@
                                             </div>
                                         </c:if>
                                     </div>
-                                    <div class="col">
+                                    <div class="edit_col">
                                         <c:if test="${not empty error}">
                                             <div class="error">
                                                     ${error}
                                             </div>
                                         </c:if>
                                     </div>
-                                    <div class="col">
+                                    <div class="edit_col">
                                         <div class="edit">
                                             <div class="edit_btn">
                                                 <input class="btn" type="submit" VALUE="OK"/>
@@ -81,6 +95,11 @@
                             </c:when>
                             <c:otherwise>
                                 <div class="col">
+                                    <div class="row_info">
+                                        <img src="${pageContext.request.contextPath}/resources/images/name.png"
+                                             class="icon"/>
+                                        <p>${user.name}</p>
+                                    </div>
                                     <div class="row_info">
                                         <img src="${pageContext.request.contextPath}/resources/images/email.png"
                                              class="icon"/>

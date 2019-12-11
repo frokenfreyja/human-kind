@@ -55,6 +55,10 @@ main {
     height: 20px;
 }
 
+.edit_icon {
+    margin-right: 10px;
+}
+
 .user_info {
     display: flex;
     flex-direction: row;
@@ -71,9 +75,23 @@ form {
 }
 
 .col {
-    width: 33%;
+    width: 50%;
     display: flex;
     flex-direction: column;
+}
+
+.edit_col {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit_col:nth-child(1) {
+    width: 80%;
+}
+
+.error {
+    margin-top: 10px;
 }
 
 .user_img {
@@ -161,8 +179,9 @@ form {
     height: 100%;
 }
 
-.edit_text {
-    margin: 0 10px;
+input {
+    display: flex;
+    justify-content: space-between;
     font-size: 1em;
     width: 100%;
 }

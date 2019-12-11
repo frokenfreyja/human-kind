@@ -2,6 +2,7 @@ package project.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,6 +31,9 @@ public class AccountController {
     private UserService userService;
     private WorkService workService;
     private ApplicantService applicantService;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     // Dependency Injection
     @Autowired
@@ -125,6 +129,7 @@ public class AccountController {
             model.addAttribute("error", "Passwords don't match.");
         } else {
             user.setOrgi(true);
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             userService.save(user);
             return "redirect:/login";
         }
@@ -174,6 +179,7 @@ public class AccountController {
             model.addAttribute("error", "Passwords don't match.");
         } else {
             user.setOrgi(false);
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             userService.save(user);
             return "redirect:/login";
         }
@@ -258,69 +264,53 @@ public class AccountController {
      * Edit account - POST
      */
     @RequestMapping(value = "/edit_user/{id}", method = RequestMethod.POST)
-    public String editAccountPost(@PathVariable Long id, @ModelAttribute("user") User user, Model model, HttpSession httpSession) {
+    public String editAccountPost(@PathVariable Long id, User user, Model model, HttpSession httpSession) {
         Long userID = (Long) httpSession.getAttribute("currentUser");
         User currUser = userService.findOne(userID);
 
         if(userID==null)
             return "Login";
 
-        user = userService.findOne(id);
-        model.addAttribute("user", user);
+        System.out.println(user.getId() + " : " + user.getName());
+
+        model.addAttribute("currUser", currUser);
+        model.addAttribute("header_type", "red_bar");
 
         // Get all of user's applications
-        ArrayList<Work> jobs = new ArrayList<>(applicantService.findAllApplications(user.getId()).size());
-        ArrayList<Applicant> applications = applicantService.findAllApplications(user.getId());
+        ArrayList<Work> jobs = new ArrayList<>(applicantService.findAllApplications(currUser.getId()).size());
+        ArrayList<Applicant> applications = applicantService.findAllApplications(currUser.getId());
         for(int i=0; i<applications.size(); i++) {
             Long workID = applications.get(i).getWork();
             Work work = workService.findOne(workID);
             jobs.add(work);
         }
 
-        if(!user.getOrgi()) {
+        if(!currUser.getOrgi()) {
             model.addAttribute("jobs", jobs);
         }
 
-        if(user.getOrgi()) {
+        if(currUser.getOrgi()) {
             model.addAttribute("organization", true);
             model.addAttribute("own_ads", workService.findByOwner(user.getId()));
         }
 
-        model.addAttribute("edit", true);
-        model.addAttribute("currUser", currUser);
-        model.addAttribute("header_type", "red_bar");
-
-        if (userService.findByEmail(user.getEmail()) != null) {
+        if (userService.findByEmail(user.getEmail()) != null && !currUser.getEmail().equals(user.getEmail())) {
             model.addAttribute("error", "Email already exists");
             return "User";
         }
 
-        /*
-        User exist = this.userService.findOneByName(user);
-        if (exist != null && !user.getUserName().equals(theuser.getUserName())) {
-            model.addAttribute("user", theuser);
-            model.addAttribute("stillingarError", "Notendanafn er nú þegar til.");
-            return "Settings";
-        }
+        currUser.setName(user.getName());
+        currUser.setEmail(user.getEmail());
+        currUser.setPhone(user.getPhone());
+        currUser.setBirthDate(user.getBirthDate());
+        currUser.setBio(user.getBio());
 
-        // Finnur öll Item sem User-inn bjó til og breytir userName breytunni í nýja nafnið
-        // Finnur einnig öll Item sem User-inn var í röð fyrir og breytir gamla nafninu í röðinni í nýja nafnið
-        itemService.changeName(userName,user.getUserName());
-        theuser.setUserName(user.getUserName());
-        theuser.setPassword(user.getPassword());
-        theuser.setEmail(user.getEmail());
-        theuser.setPhone(user.getPhone());
-        theuser.setLocation(user.getLocation());
-        theuser.setZipcode(user.getZipcode());
+        httpSession.setAttribute("currentUser", currUser.getId());
+        httpSession.setAttribute("currentUsername", currUser.getName());
 
-        httpSession.setAttribute("loggedInUsername", theuser.getUserName());
+        userService.save(currUser);
 
-        userService.save(theuser);
-
-        model.addAttribute("user", theuser);
-         */
-
-        return "User";
+        return "redirect:/user/{id}";
     }
 
 
