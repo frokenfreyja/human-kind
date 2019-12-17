@@ -68,9 +68,21 @@
                     <p class="info_section_title">List of applicants</p>
                         <c:forEach var="applicant_list" items="${applicants}" varStatus="status">
                             <p class="applicants">
-                                <a href="/user/${applicant_list.id}">
+                                <div  class="applicant_item">
+                                    <a href="/user/${applicant_list.id}">
                                         ${status.index+1}. ${applicant_list.name}
-                                </a>
+                                    </a>
+                                    <c:if test="${not empty currUser && currUser.orgi && not alreadyAccepted}">
+                                        <div class="accept_btn">
+                                            <a href="/ad/${id}/accepted">Accept</a>
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${not empty currUser && currUser.orgi && alreadyAccepted}">
+                                        <div class ="accept_btn">
+                                            <a href="/ad/${id}/reject">Reject</a>
+                                        </div>
+                                    </c:if>
+                                <div>
                         </c:forEach>
                 </div>
                 </c:when>

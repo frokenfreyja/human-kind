@@ -2,16 +2,17 @@ package project.persistence.entities;
 
 import javax.persistence.*;
 
+
 @Entity
-@Table(name = "applicant")
-public class Applicant {
+@Table(name = "accepted")
+public class Accepted {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long work;
     private Long users;
 
-    public Applicant(){}
+    public Accepted() {}
 
     public Long getId() {
         return id;
@@ -25,20 +26,11 @@ public class Applicant {
         this.work = work;
     }
 
-    public Long getUser() {
+    public Long getUsers() {
         return users;
     }
 
-    public void setUser(Long users) {
+    public void setUsers(Long users) {
         this.users = users;
-    }
-
-    @Override
-    public String toString() {
-        return "Applicant{" +
-                "id=" + id +
-                ", workID=" + work +
-                ", userID=" + users +
-                '}';
     }
 }

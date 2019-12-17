@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import project.persistence.entities.Accepted;
 import project.persistence.entities.Applicant;
 import project.persistence.entities.Work;
 import project.persistence.entities.User;
+import project.service.AcceptedService;
 import project.service.ApplicantService;
 import project.service.UserService;
 import project.service.WorkService;
@@ -33,15 +35,17 @@ public class AdController {
     private WorkService workService;
     private UserService userService;
     private ApplicantService applicantService;
+    private AcceptedService acceptedService;
 
     /*
      * MUNA AÐ SETJA NÝ SERVICE Í SMIÐ
      */
     @Autowired
-    public AdController(WorkService workService, UserService userService, ApplicantService applicantService) {
+    public AdController(WorkService workService, UserService userService, ApplicantService applicantService, AcceptedService acceptedService) {
         this.workService = workService;
         this.userService = userService;
         this.applicantService = applicantService;
+        this.acceptedService = acceptedService;
     }
 
     @RequestMapping(value = "/all_ads", method = RequestMethod.GET)
@@ -156,6 +160,7 @@ public class AdController {
         ad = workService.findOne(id);
         User owner = userService.findOne(ad.getOwner());
         ArrayList<Applicant> app = applicantService.findAllApplicants(id);
+        
         ArrayList<User> use = new ArrayList<User>(app.size());
         for (Applicant applicant : app) use.add(userService.findOne(applicant.getUser()));
 
@@ -169,6 +174,10 @@ public class AdController {
 
         if(currUser != null && applicantService.findByWorkAndUser(ad.getId(), currUser.getId()) != null) {
             model.addAttribute("alreadyApplied", true);
+        }
+
+        if(currUser != null && acceptedService.findByWorkAndUser(ad.getId(), currUser.getId()) != null) {
+            model.addAttribute("alreadyAccepted", true);
         }
 
         if(owner == currUser) {
@@ -211,9 +220,22 @@ public class AdController {
         return "redirect:/ad/{id}";
     }
 
-    //@RequestMapping
-    public String acceptApplicant(Work work, User user, Model model) {
-        return "";
+    @RequestMapping(value = "/ad/{id}/accept", method = RequestMethod.GET)
+    public String acceptApplicant(@PathVariable Long id, HttpSession httpSession) {
+        Long userID = (Long) httpSession.getAttribute("currentUser");
+        if(userID == null){
+            return "redirect:/login";
+        }
+
+        Accepted accepted= new Accepted();
+        accepted.setWork(id);
+        accepted.setUsers(userID);
+
+        if(acceptedService.findByWorkAndUser(id,userID) == null) {
+            acceptedService.save(accepted);
+        }
+
+        return "redirect:/ad/{id}";
     }
 
     //@RequestMapping
