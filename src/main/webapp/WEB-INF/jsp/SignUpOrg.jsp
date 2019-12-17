@@ -13,7 +13,6 @@
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,600,700|Muli:600|Rubik:400,700&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/signup_form.css"/>"/>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/footer.css"/>"/>
     <script>
         var loadFile = function (event) {
             var image = document.getElementById('output');
@@ -82,5 +81,4 @@
     </div>
 </main>
 </body>
-<jsp:include page="Footer.jsp"/>
 </html>

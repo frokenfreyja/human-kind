@@ -39,8 +39,9 @@ main {
 
 .banner {
     width: 100%;
-    background-color: darkgrey;
-    padding: 10px;
+    background-color: #F85548;
+    color: white;
+    padding: 5px 10px;
 }
 
 .row_info {

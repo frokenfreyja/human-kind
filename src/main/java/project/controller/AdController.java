@@ -3,7 +3,7 @@ package project.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -47,7 +47,9 @@ public class AdController {
     @RequestMapping(value = "/all_ads", method = RequestMethod.GET)
     public String viewAllAds(Model model, HttpSession httpSession) {
 
+        model.addAttribute("work", new Work());
         model.addAttribute("work_list", workService.findAllReverseOrder());
+        httpSession.removeAttribute("interest");
 
         return "AllAds";
     }
@@ -58,10 +60,50 @@ public class AdController {
     @RequestMapping(value = "searchlistx", method = RequestMethod.GET)
     public String searchItems(@RequestParam (value = "searching", required = false) String searchwords, Model model) {
 
+        model.addAttribute("work", new Work());
         model.addAttribute("work_list", workService.findByNameContainsIgnoreCaseOrDescriptionContainsIgnoreCase(searchwords, searchwords));
 
         return "AllAds";
     }
+
+
+    @RequestMapping(value = "sortcategory" , method = RequestMethod. POST)
+    public String selectInterest(@RequestParam("interest") String Value, @ModelAttribute("work") Work work, HttpSession httpSession, Model model)
+    {
+        httpSession.setAttribute("interest", Value);
+
+        if (Value.equals("All")) {
+            httpSession.removeAttribute("interest");
+        }
+
+        return "redirect:sorter";
+    }
+
+    @RequestMapping(value = "sorter" , method = RequestMethod. GET)
+    public String sortZipInterest(HttpSession httpSession, Model model, Work work)
+    {
+        httpSession.getAttribute("interest");
+
+        String interest = (String)httpSession.getAttribute("interest");
+        String zip = (String)httpSession.getAttribute("zip");
+
+        if( (zip != null) && ( interest == null)){
+            model.addAttribute("work_list", workService.findByZipcodeReverseOrder(Integer.parseInt(zip)));
+        }
+        else if((interest != null) && (zip == null)) {
+            model.addAttribute("work_list", workService.findByInterestReverseOrder(interest));
+        }
+        else if((interest != null) && (zip != null)) {
+            model.addAttribute("work_list", workService.findByZipcodeAndInterestReverseOrder(Integer.parseInt(zip), interest));
+        }
+        else {
+            model.addAttribute("work",new Work());
+            model.addAttribute("work_list", workService.findAllReverseOrder());
+        }
+
+        return "AllAds";
+    }
+
 
     @RequestMapping(value = "/new_ad", method = RequestMethod.GET)
     public String newAdForm(Model model, HttpSession httpSession) {
@@ -81,7 +123,7 @@ public class AdController {
     }
 
     @RequestMapping(value = "/new_ad", method = RequestMethod.POST)
-    public String newItem1(@ModelAttribute("work") Work work, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) throws IOException {
+    public String newItem(@ModelAttribute("work") Work work, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) throws IOException {
 
         Long userID = (Long) httpSession.getAttribute("currentUser");
         work.setOwner(userID);

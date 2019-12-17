@@ -4,7 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 
-<jsp:include page="Footer.jsp" />
 
 <html lang="en">
 
@@ -12,7 +11,6 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Roboto+Condensed:400,700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,600,700|Muli:600|Rubik:400,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/login.css"/>"/>
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/footer.css"/>"/>
         <jsp:include page="Header.jsp" />
 
         <title>Log in</title>

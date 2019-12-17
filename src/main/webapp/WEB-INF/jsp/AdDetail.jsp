@@ -6,7 +6,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:include page="Header.jsp" />
-<jsp:include page="Footer.jsp" />
 
 <html lang="en">
 
@@ -14,7 +13,6 @@
            <title>${ad.name}</title>
            <link rel="stylesheet" type="text/css" href="<c:url value="/css/ad_detail.css"/>"/>
            <link rel="stylesheet" type="text/css" href="<c:url value="/css/grid.css"/>"/>
-           <link rel="stylesheet" type="text/css" href="<c:url value="/css/footer.css"/>"/>
     </head>
 
     <body>

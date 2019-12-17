@@ -72,7 +72,6 @@ public class AccountController {
         }
 
         model.addAttribute("currUser", currUser);
-        model.addAttribute("header_type", "red_bar");
 
         return "User";
     }
@@ -256,7 +255,6 @@ public class AccountController {
 
         model.addAttribute("edit", true);
         model.addAttribute("currUser", currUser);
-        model.addAttribute("header_type", "red_bar");
 
         return "User";
     }
@@ -274,7 +272,6 @@ public class AccountController {
         System.out.println(user.getId() + " : " + user.getName());
 
         model.addAttribute("currUser", currUser);
-        model.addAttribute("header_type", "red_bar");
 
         // Get all of user's applications
         ArrayList<Work> jobs = new ArrayList<>(applicantService.findAllApplications(currUser.getId()).size());

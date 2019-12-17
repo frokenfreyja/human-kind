@@ -5,7 +5,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <jsp:include page="Header.jsp" />
-<jsp:include page="Footer.jsp" />
 
 <html class="grid" lang="en">
 <head>
@@ -13,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,600,700|Muli:600|Rubik:400,700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/newad.css"/>"/>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/footer.css"/>"/>
 
     <title>New ad</title>
     <script>

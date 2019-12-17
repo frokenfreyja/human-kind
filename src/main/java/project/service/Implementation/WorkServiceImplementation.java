@@ -92,4 +92,34 @@ public class WorkServiceImplementation implements WorkService {
     public List<Work> findByNameContainsIgnoreCaseOrDescriptionContainsIgnoreCase(String title, String description) {
         return repository.findByNameContainsIgnoreCaseOrDescriptionContainsIgnoreCase(title, description);
     }
+
+    @Override
+    public List<Work> findByZipcodeAndInterest(Integer zipcode, String interest) {
+        return repository.findByZipcodeAndInterest(zipcode, interest);
+    }
+
+
+    @Override
+    public List<Work> findByZipcodeAndInterestReverseOrder(Integer zipcode, String interest) {
+        List<Work> items = repository.findByZipcodeAndInterest(zipcode, interest);
+        // Reverse the list
+        Collections.reverse(items);
+        return items;
+    }
+
+    @Override
+    public List<Work> findByZipcodeReverseOrder(Integer zipcode) {
+        List<Work> items = repository.findByZipcode(zipcode);
+        // Reverse the list
+        Collections.reverse(items);
+        return items;
+    }
+
+    @Override
+    public List<Work> findByInterestReverseOrder(String interest) {
+        List<Work> items = repository.findByInterest(interest);
+        // Reverse the list
+        Collections.reverse(items);
+        return items;
+    }
 }

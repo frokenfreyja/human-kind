@@ -96,4 +96,13 @@ public interface WorkService {
      * @return All {@link Work}s with the {@link String title, @link description} passed
      */
     List<Work> findByNameContainsIgnoreCaseOrDescriptionContainsIgnoreCase(String title, String description);
+
+
+    List<Work> findByZipcodeAndInterest(Integer zipcode, String interest);
+
+    List<Work> findByZipcodeAndInterestReverseOrder(Integer zipcode, String interest);
+
+    List<Work> findByZipcodeReverseOrder(Integer zipcode);
+
+    List<Work> findByInterestReverseOrder(String interest);
 }

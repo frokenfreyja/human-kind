@@ -14,7 +14,6 @@
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,600,700|Muli:600|Rubik:400,700&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/user.css"/>"/>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/footer.css"/>"/>
     <jsp:include page="Header.jsp"/>
 
     <title>Account</title>
@@ -204,5 +203,4 @@
     </div>
 </main>
 </body>
-<jsp:include page="Footer.jsp"/>
 </html>

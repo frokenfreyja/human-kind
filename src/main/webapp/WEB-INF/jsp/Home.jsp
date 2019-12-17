@@ -5,7 +5,6 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 <jsp:include page="Header.jsp" />
-<jsp:include page="Footer.jsp" />
 
 <html lang="en">
 
@@ -14,7 +13,6 @@
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,600,700|Muli:600|Rubik:400,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/home.css"/>"/>
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/grid.css"/>"/>
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/footer.css"/>"/>
         <title>Human-Kind</title>
     </head>
     <body>

@@ -27,6 +27,54 @@ main {
     padding: 60px 0 20px 0;
 }
 
+.sort_search {
+    margin-left: 35px;
+
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+    padding: 5px 0;
+}
+
+.search input {
+    border-radius: 5px;
+    border: 1px solid black;
+    font-size: 1em;
+    padding: 0 5px;
+    width: 15%;
+}
+
+.sort {
+    display: flex;
+    flex-direction: row;
+    padding: 5px 0;
+}
+
+option {
+}
+
+select {
+    -webkit-appearance: inherit;
+    cursor: pointer;
+    border: none!important;
+    background-color: white;
+}
+
+.ad_text {
+    font-size: 1em;
+    padding: 0 5px;
+    width: 15%;
+}
+
+.label {
+    width: 6%;
+}
+
 .advertlist {
     display: flex;
     justify-content: center;
