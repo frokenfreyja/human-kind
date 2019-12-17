@@ -138,7 +138,6 @@ public class AccountController {
 
     @RequestMapping(value = "/vol", method = RequestMethod.GET)
     public String createAsVol(Model model) {
-
         model.addAttribute("user", new User());
         model.addAttribute("header_type", "red_bar");
 

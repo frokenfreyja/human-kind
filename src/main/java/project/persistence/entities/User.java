@@ -21,6 +21,7 @@ public class User{
     private String email;
     private String gender;
     private String password;
+    @Transient
     private String confirmPassword;
     private String phone;
 
