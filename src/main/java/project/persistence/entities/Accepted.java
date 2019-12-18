@@ -11,8 +11,11 @@ public class Accepted {
     private Long id;
     private Long work;
     private Long users;
+    private boolean accept;
 
-    public Accepted() {}
+    public Accepted() {
+        this.accept = false;
+    }
 
     public Long getId() {
         return id;
@@ -32,5 +35,23 @@ public class Accepted {
 
     public void setUsers(Long users) {
         this.users = users;
+    }
+
+    public boolean isAccept() {
+        return accept;
+    }
+
+    public void setAccept(boolean accept) {
+        this.accept = accept;
+    }
+
+    @Override
+    public String toString() {
+        return "Accepted{" +
+                "id=" + id +
+                ", work=" + work +
+                ", users=" + users +
+                ", accept=" + accept +
+                '}';
     }
 }

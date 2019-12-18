@@ -229,14 +229,21 @@ public class AdController {
         return "redirect:/ad/{id}";
     }
 
-    @RequestMapping(value = "/ad/{id}//accept", method = RequestMethod.GET)
-    public String acceptApplicant(@PathVariable Long id, HttpSession httpSession) {
+    @RequestMapping(value = "/ad/{id}/{userid}/accept", method = RequestMethod.GET)
+    public String acceptApplicant(@PathVariable Long id, @PathVariable Long userid, HttpSession httpSession) {
         Long userID = (Long) httpSession.getAttribute("currentUser");
         if(userID == null){
             return "redirect:/login";
         }
 
-        Applicant applicant = applicantService.findOne(id);
+        System.out.println("test:");
+        System.out.println(id);
+        System.out.println(userid);
+
+        Applicant applicant = applicantService.findByWorkAndUser(id,userid);
+
+        System.out.println("accept:");
+        System.out.println(applicant.toString());
 
         applicant.setAccepted(true);
 
@@ -254,16 +261,23 @@ public class AdController {
         return "redirect:/ad/{id}";
     }
 
-    @RequestMapping(value = "ad/{id}/reject")
-    public String rejectApplicant(@PathVariable Long id, HttpSession httpSession) {
+    @RequestMapping(value = "ad/{id}/{userid}/reject")
+    public String rejectApplicant(@PathVariable Long id, @PathVariable Long userid, HttpSession httpSession) {
         Long userID = (Long) httpSession.getAttribute("currentUser");
         if(userID == null){
             return "redirect:/login";
         }
 
-        Applicant applicant = applicantService.findOne(id);
+        System.out.println("test:");
+        System.out.println(id);
+        System.out.println(userid);
+
+        Applicant applicant = applicantService.findByWorkAndUser(id,userid);
 
         applicant.setAccepted(false);
+
+        System.out.println("reject:");
+        System.out.println(applicant.toString());
 
         applicantService.save(applicant);
 
