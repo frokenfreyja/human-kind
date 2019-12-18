@@ -194,9 +194,9 @@ public class AdController {
         Work ad = new Work();
         ad = workService.findOne(id);
         User owner = userService.findOne(ad.getOwner());
-        ArrayList<Applicant> app = applicantService.findAllApplicants(id);
-        ArrayList<User> use = new ArrayList<User>(app.size());
-        for (Applicant applicant : app) use.add(userService.findOne(applicant.getUser()));
+        ArrayList<Applicant> applicantList = applicantService.findAllApplicants(id);
+        ArrayList<User> userList = new ArrayList<User>(applicantList.size());
+        for (Applicant applicant : applicantList) userList.add(userService.findOne(applicant.getUser()));
 
         Long userID = (Long) httpSession.getAttribute("currentUser");
         User currUser = userService.findOne(userID);
@@ -211,8 +211,8 @@ public class AdController {
         }
 
         if(owner == currUser) {
-            model.addAttribute("applicants", use);
-            model.addAttribute("accepted", app);
+            model.addAttribute("applicants", userList);
+            model.addAttribute("accepted", applicantList);
         }
 
         return "AdDetail";
