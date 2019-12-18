@@ -2,18 +2,19 @@ package project.persistence.entities;
 
 import javax.persistence.*;
 
+
 @Entity
-@Table(name = "applicant")
-public class Applicant {
+@Table(name = "accepted")
+public class Accepted {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long work;
     private Long users;
-    private boolean accepted;
+    private boolean accept;
 
-    public Applicant(){
-        this.accepted = false;
+    public Accepted() {
+        this.accept = false;
     }
 
     public Long getId() {
@@ -28,29 +29,29 @@ public class Applicant {
         this.work = work;
     }
 
-    public Long getUser() {
+    public Long getUsers() {
         return users;
     }
 
-    public void setUser(Long users) {
+    public void setUsers(Long users) {
         this.users = users;
     }
 
-    public boolean isAccepted() {
-        return accepted;
+    public boolean isAccept() {
+        return accept;
     }
 
-    public void setAccepted(boolean accepted) {
-        this.accepted = accepted;
+    public void setAccept(boolean accept) {
+        this.accept = accept;
     }
 
     @Override
     public String toString() {
-        return "Applicant{" +
+        return "Accepted{" +
                 "id=" + id +
                 ", work=" + work +
                 ", users=" + users +
-                ", accepted=" + accepted +
+                ", accept=" + accept +
                 '}';
     }
 }
