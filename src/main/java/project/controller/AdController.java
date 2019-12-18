@@ -160,7 +160,6 @@ public class AdController {
         ad = workService.findOne(id);
         User owner = userService.findOne(ad.getOwner());
         ArrayList<Applicant> app = applicantService.findAllApplicants(id);
-        
         ArrayList<User> use = new ArrayList<User>(app.size());
         for (Applicant applicant : app) use.add(userService.findOne(applicant.getUser()));
 
@@ -176,12 +175,13 @@ public class AdController {
             model.addAttribute("alreadyApplied", true);
         }
 
-        if(currUser != null && acceptedService.findByWorkAndUser(ad.getId(), currUser.getId()) != null) {
+      /*  if(currUser != null && acceptedService.findByWorkAndUser(ad.getId(), currUser.getId()) != null) {
             model.addAttribute("alreadyAccepted", true);
         }
-
+*/
         if(owner == currUser) {
             model.addAttribute("applicants", use);
+            model.addAttribute("accepted", app);
         }
 
         return "AdDetail";
@@ -198,8 +198,14 @@ public class AdController {
         applicant.setWork(id);
         applicant.setUser(userID);
 
+        //tímabundið, fann betri optimization leið
+        Accepted accepted = new Accepted();
+        accepted.setWork(id);
+        accepted.setUsers(userID);
+
         if(applicantService.findByWorkAndUser(id,userID) == null) {
             applicantService.save(applicant);
+            acceptedService.save(accepted);
         }
 
         return "redirect:/ad/{id}";
@@ -213,33 +219,54 @@ public class AdController {
         }
 
         Applicant applicant = applicantService.findByWorkAndUser(id, userID);
+        //tímabundið, fann betri optimization leið
+        Accepted accepted = acceptedService.findByWorkAndUser(id, userID);
         if(applicant != null) {
             applicantService.delete(applicant);
+            acceptedService.delete(accepted);
         }
 
         return "redirect:/ad/{id}";
     }
 
-    @RequestMapping(value = "/ad/{id}/accept", method = RequestMethod.GET)
+    @RequestMapping(value = "/ad/{id}//accept", method = RequestMethod.GET)
     public String acceptApplicant(@PathVariable Long id, HttpSession httpSession) {
         Long userID = (Long) httpSession.getAttribute("currentUser");
         if(userID == null){
             return "redirect:/login";
         }
 
-        Accepted accepted= new Accepted();
+        Applicant applicant = applicantService.findOne(id);
+
+        applicant.setAccepted(true);
+
+        applicantService.save(applicant);
+
+
+        /*Accepted accepted= new Accepted();
         accepted.setWork(id);
         accepted.setUsers(userID);
 
         if(acceptedService.findByWorkAndUser(id,userID) == null) {
             acceptedService.save(accepted);
         }
-
+*/
         return "redirect:/ad/{id}";
     }
 
-    //@RequestMapping
-    public String rejectApplicant(Work work, User user, Model model) {
-        return "";
+    @RequestMapping(value = "ad/{id}/reject")
+    public String rejectApplicant(@PathVariable Long id, HttpSession httpSession) {
+        Long userID = (Long) httpSession.getAttribute("currentUser");
+        if(userID == null){
+            return "redirect:/login";
+        }
+
+        Applicant applicant = applicantService.findOne(id);
+
+        applicant.setAccepted(false);
+
+        applicantService.save(applicant);
+
+        return "redirect:/ad/{id}";
     }
 }
