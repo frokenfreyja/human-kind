@@ -3,7 +3,6 @@ package project.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,15 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import project.persistence.entities.Accepted;
 import project.persistence.entities.Applicant;
 import project.persistence.entities.Work;
 import project.persistence.entities.User;
-import project.service.AcceptedService;
 import project.service.ApplicantService;
 import project.service.UserService;
 import project.service.WorkService;
-import java.util.Date;
 
 
 @Controller
