@@ -41,10 +41,16 @@ public class WorkServiceImplementation implements WorkService {
     @Override
     public List<Work> findAllReverseOrder() {
         List<Work> work = repository.findAll();
-
         // Reverse the list
         Collections.reverse(work);
 
+        return work;
+    }
+
+    @Override
+    public List<Work> findAllActive(Date date) {
+        List<Work> work = repository.findAllActive(date);
+        Collections.reverse(work);
         return work;
     }
 

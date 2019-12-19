@@ -2,7 +2,10 @@ package project.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -45,8 +48,11 @@ public class AdController {
     @RequestMapping(value = "/all_ads", method = RequestMethod.GET)
     public String viewAllAds(Model model, HttpSession httpSession) {
 
+        Date currentDate = new Date();
+
         model.addAttribute("work", new Work());
-        model.addAttribute("work_list", workService.findAllReverseOrder());
+        //model.addAttribute("work_list", workService.findAllReverseOrder());
+        model.addAttribute("work_list", workService.findAllActive(currentDate));
         httpSession.removeAttribute("interest");
 
         return "AllAds";

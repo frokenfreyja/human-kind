@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import project.persistence.entities.Work;
 import project.service.WorkService;
+
+import java.util.Date;
 import java.util.List;
 
 
@@ -34,10 +36,13 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String workList(Model model, HttpSession httpSession){
 
+        Date currentDate = new Date();
+
         model.addAttribute("userID", httpSession.getAttribute("currentUser"));
         model.addAttribute("userName", httpSession.getAttribute("currentUsername"));
         model.addAttribute("userOrgi", httpSession.getAttribute("currentUserOrgi"));
-        model.addAttribute("work_list", workService.findAllReverseOrder());
+        //model.addAttribute("work_list", workService.findAllReverseOrder());
+        model.addAttribute("work_list", workService.findAllActive(currentDate));
         model.addAttribute("header_type", "red_bar");
 
         return "Home";

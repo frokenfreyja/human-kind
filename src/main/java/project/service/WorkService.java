@@ -34,6 +34,13 @@ public interface WorkService {
     List<Work> findAllReverseOrder();
 
     /**
+     * Get all {@link Work}s that are active in reverse order
+     * @param date {@link Date}
+     * @return A reversed list of {@link Work}s
+     */
+    List<Work> findAllActive(Date date);
+
+    /**
      * Find a {@link Work} based on {@link Long id}
      * @param id {@link Long}
      * @return A {@link Work} with {@link Long id}
