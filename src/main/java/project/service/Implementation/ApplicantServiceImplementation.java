@@ -3,7 +3,6 @@ package project.service.Implementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.persistence.entities.Applicant;
-import project.persistence.entities.User;
 import project.persistence.repositories.ApplicantRepository;
 import project.persistence.repositories.UserRepository;
 import project.service.ApplicantService;
@@ -16,13 +15,11 @@ public class ApplicantServiceImplementation implements ApplicantService {
 
     // Instance Variables
     ApplicantRepository repository;
-    UserRepository userRepository;
 
     // Dependency Injection
     @Autowired
     public ApplicantServiceImplementation(ApplicantRepository repository, UserRepository userRepository) {
         this.repository = repository;
-        this.userRepository = userRepository;
     }
 
     @Override
