@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import project.persistence.entities.User;
 import project.persistence.repositories.UserRepository;
 import project.service.UserService;
+import java.util.List;
 
 @Service
 public class UserServiceImplementation implements UserService {
@@ -31,10 +32,23 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
+    public List<User> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
+    public List<User> findAllByOrderByNameAsc() {
+        return repository.findAllByOrderByNameAsc();
+    }
+
+    @Override
     public User findOne(Long id) {
         return repository.findOne(id);
     }
 
     @Override
     public User findByEmail(String email){ return repository.findByEmail(email);}
+
+    @Override
+    public User findByName(String name){ return repository.findByName(name);}
 }

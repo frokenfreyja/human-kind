@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.LinkedHashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -24,7 +27,6 @@ import project.service.ApplicantService;
 import project.service.UserService;
 import project.service.WorkService;
 import java.util.Date;
-
 
 @Controller
 public class AdController {
@@ -49,7 +51,19 @@ public class AdController {
 
         model.addAttribute("work", new Work());
         model.addAttribute("work_list", workService.findAllReverseOrder());
+
         httpSession.removeAttribute("interest");
+        httpSession.removeAttribute("organization");
+
+        // Get list of organizations and send to view
+        Map<Long, String> organizationList = new LinkedHashMap<Long, String>();
+        List<User> users = userService.findAllByOrderByNameAsc();
+        for (int i=0; i<users.size(); i++) {
+            if(users.get(i).getOrgi()) {
+                organizationList.put(users.get(i).getId(), users.get(i).getName());
+            }
+        }
+        model.addAttribute("organizationValues", organizationList.values());
 
         return "AllAds";
     }
@@ -66,28 +80,52 @@ public class AdController {
         return "AllAds";
     }
 
-
     @RequestMapping(value = "sortcategory" , method = RequestMethod. POST)
-    public String selectInterest(@RequestParam("interest") String Value, @ModelAttribute("work") Work work, HttpSession httpSession, Model model)
+    public String selectInterest(@RequestParam("interest") String Value, @RequestParam("organization") String organization, @ModelAttribute("work") Work work, HttpSession httpSession, Model model)
     {
         httpSession.setAttribute("interest", Value);
-
         if (Value.equals("All")) {
             httpSession.removeAttribute("interest");
+        }
+
+        httpSession.setAttribute("organization", organization);
+        if (organization.equals("All")) {
+            httpSession.removeAttribute("organization");
         }
 
         return "redirect:sorter";
     }
 
     @RequestMapping(value = "sorter" , method = RequestMethod. GET)
-    public String sortZipInterest(HttpSession httpSession, Model model, Work work)
-    {
-        httpSession.getAttribute("interest");
+    public String sortZipTag(HttpSession httpSession, Model model, Work work) {
+        // Get list of organizations and send to view
+        Map<Long, String> organizationList = new LinkedHashMap<Long, String>();
+        List<User> users = userService.findAllByOrderByNameAsc();
+        for (int i=0; i<users.size(); i++) {
+            if(users.get(i).getOrgi()) {
+                organizationList.put(users.get(i).getId(), users.get(i).getName());
+            }
+        }
+        model.addAttribute("organizationValues", organizationList.values());
 
+        // Sort by functionality
         String interest = (String)httpSession.getAttribute("interest");
         String zip = (String)httpSession.getAttribute("zip");
+        String orgi = (String) httpSession.getAttribute("organization");
+        User user = userService.findByName(orgi);
 
-        if( (zip != null) && ( interest == null)){
+        if(orgi != null) {
+            //model.addAttribute("work_list", workService.findByOwner(user.getId()));
+            //model.addAttribute("work_list", workService.findByOwner(Long.parseLong(orgi)));
+            model.addAttribute("work_list", workService.findByOrganization(orgi));
+        } else {
+            model.addAttribute("work",new Work());
+            model.addAttribute("work_list", workService.findAllReverseOrder());
+        }
+
+         /*
+
+        if( (zip != null) && ( interest == null)) {
             model.addAttribute("work_list", workService.findByZipcodeReverseOrder(Integer.parseInt(zip)));
         }
         else if((interest != null) && (zip == null)) {
@@ -100,10 +138,9 @@ public class AdController {
             model.addAttribute("work",new Work());
             model.addAttribute("work_list", workService.findAllReverseOrder());
         }
-
-        return "AllAds";
+*/
+         return "AllAds";
     }
-
 
     @RequestMapping(value = "/new_ad", method = RequestMethod.GET)
     public String newAdForm(Model model, HttpSession httpSession) {
@@ -133,6 +170,7 @@ public class AdController {
         }
 
         User currUser = userService.findOne(userID);
+        work.setOrganization(currUser.getName());
 
         MultipartFile imagefile = work.getImage();
         String fileName;

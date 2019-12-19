@@ -27,6 +27,7 @@ public class Work {
     @Column(length=2048)
     private String description;
     private Long owner;
+    private String organization;
     private int payout;
     private String interest;
     private Integer zipcode;
@@ -96,6 +97,14 @@ public class Work {
 
     public void setOwner(Long owner) {
         this.owner = owner;
+    }
+
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
     }
 
     public int getPayout() {

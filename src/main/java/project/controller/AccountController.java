@@ -124,8 +124,13 @@ public class AccountController {
 
         if (userService.findByEmail(user.getEmail()) != null) {
             model.addAttribute("error", "A user with the email address " + user.getEmail() + " already exists");
+            model.addAttribute("header_type", "red_bar");
+        } else if (userService.findByName(user.getName()) != null) {
+            model.addAttribute("error", "An organization with the name " + user.getName() + " already exists");
+            model.addAttribute("header_type", "red_bar");
         } else if(!(user.getPassword().equals(user.getConfirmPassword()))) {
             model.addAttribute("error", "Passwords don't match.");
+            model.addAttribute("header_type", "red_bar");
         } else {
             user.setOrgi(true);
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));

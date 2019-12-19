@@ -82,6 +82,8 @@ public interface WorkService {
      */
     List<Work> findByOwner(Long owner);
 
+    List<Work> findByOrganization(String organization);
+
     /**
      * Find all {@link Work}s with {@link String interest}
      * @param interest {@link String}

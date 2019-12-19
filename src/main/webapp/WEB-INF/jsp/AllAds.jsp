@@ -45,6 +45,13 @@
                 <sf:option value="Clothing">Clothing</sf:option>
                 <sf:option value="Food">Food</sf:option>
             </sf:select>
+
+            <sf:select id="selectBox" path="organization" class="ad_text" onChange="this.form.submit()">
+                <sf:option value="Category" style="display: none;">${organization}</sf:option>
+                <sf:option value="none" disabled="true">Organization</sf:option>
+                <sf:option value="All">All organizations</sf:option>
+                <sf:options items="${organizationValues}"/>
+            </sf:select>
             </div>
         </sf:form>
         </div>

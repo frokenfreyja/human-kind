@@ -1,6 +1,7 @@
 package project.service;
 
 import project.persistence.entities.User;
+import java.util.List;
 
 public interface UserService {
 
@@ -17,6 +18,10 @@ public interface UserService {
      */
     void delete(User user);
 
+    List<User> findAll();
+
+    List<User> findAllByOrderByNameAsc();
+
     /**
      * Find a {@link User} based on {@link Long id}
      * @param id {@link Long}
@@ -30,4 +35,6 @@ public interface UserService {
      * @return A {@link User} with {@link String email}
      */
     User findByEmail(String email);
+
+    User findByName(String name);
 }

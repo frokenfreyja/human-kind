@@ -84,6 +84,11 @@ public class WorkServiceImplementation implements WorkService {
     }
 
     @Override
+    public List<Work> findByOrganization(String organization) {
+        return repository.findByOrganization(organization);
+    }
+
+    @Override
     public List<Work> findByInterest(String interest) {
         return repository.findByInterest(interest);
     }

@@ -35,6 +35,8 @@ public interface WorkRepository extends JpaRepository<Work, Long> {
 
     List<Work> findByOwner(Long owner);
 
+    List<Work> findByOrganization(String organization);
+
     List<Work> findByInterest(String interest);
 
     List<Work> findByNameContainsIgnoreCaseOrDescriptionContainsIgnoreCase(String title, String description);
