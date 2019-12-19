@@ -2,11 +2,14 @@ package project.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.LinkedHashMap;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -26,7 +29,6 @@ import project.persistence.entities.User;
 import project.service.ApplicantService;
 import project.service.UserService;
 import project.service.WorkService;
-import java.util.Date;
 
 @Controller
 public class AdController {
@@ -49,9 +51,11 @@ public class AdController {
     @RequestMapping(value = "/all_ads", method = RequestMethod.GET)
     public String viewAllAds(Model model, HttpSession httpSession) {
 
-        model.addAttribute("work", new Work());
-        model.addAttribute("work_list", workService.findAllReverseOrder());
+        Date currentDate = new Date();
 
+        model.addAttribute("work", new Work());
+        //model.addAttribute("work_list", workService.findAllReverseOrder());
+        model.addAttribute("work_list", workService.findAllActive(currentDate));
         httpSession.removeAttribute("interest");
         httpSession.removeAttribute("organization");
 
@@ -235,9 +239,9 @@ public class AdController {
         Work ad = new Work();
         ad = workService.findOne(id);
         User owner = userService.findOne(ad.getOwner());
-        ArrayList<Applicant> app = applicantService.findAllApplicants(id);
-        ArrayList<User> use = new ArrayList<User>(app.size());
-        for (Applicant applicant : app) use.add(userService.findOne(applicant.getUser()));
+        ArrayList<Applicant> applicantList = applicantService.findAllApplicants(id);
+        ArrayList<User> userList = new ArrayList<User>(applicantList.size());
+        for (Applicant applicant : applicantList) userList.add(userService.findOne(applicant.getUser()));
 
         Long userID = (Long) httpSession.getAttribute("currentUser");
         User currUser = userService.findOne(userID);
@@ -252,7 +256,8 @@ public class AdController {
         }
 
         if(owner == currUser) {
-            model.addAttribute("applicants", use);
+            model.addAttribute("applicants", userList);
+            model.addAttribute("accepted", applicantList);
         }
 
         return "AdDetail";
@@ -291,13 +296,35 @@ public class AdController {
         return "redirect:/ad/{id}";
     }
 
-    //@RequestMapping
-    public String acceptApplicant(Work work, User user, Model model) {
-        return "";
+    @RequestMapping(value = "/ad/{id}/{userid}/accept", method = RequestMethod.GET)
+    public String acceptApplicant(@PathVariable Long id, @PathVariable Long userid, HttpSession httpSession) {
+        Long userID = (Long) httpSession.getAttribute("currentUser");
+        if(userID == null){
+            return "redirect:/login";
+        }
+
+        Applicant applicant = applicantService.findByWorkAndUser(id,userid);
+
+        applicant.setAccepted(true);
+
+        applicantService.save(applicant);
+
+        return "redirect:/ad/{id}";
     }
 
-    //@RequestMapping
-    public String rejectApplicant(Work work, User user, Model model) {
-        return "";
+    @RequestMapping(value = "ad/{id}/{userid}/reject")
+    public String rejectApplicant(@PathVariable Long id, @PathVariable Long userid, HttpSession httpSession) {
+        Long userID = (Long) httpSession.getAttribute("currentUser");
+        if(userID == null){
+            return "redirect:/login";
+        }
+
+        Applicant applicant = applicantService.findByWorkAndUser(id,userid);
+
+        applicant.setAccepted(false);
+
+        applicantService.save(applicant);
+
+        return "redirect:/ad/{id}";
     }
 }

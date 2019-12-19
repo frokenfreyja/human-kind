@@ -10,9 +10,10 @@ public class Applicant {
     private Long id;
     private Long work;
     private Long users;
+    private boolean accepted;
 
     public Applicant(){
-
+        this.accepted = false;
     }
 
     public Long getId() {
@@ -35,12 +36,21 @@ public class Applicant {
         this.users = users;
     }
 
+    public boolean isAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
+    }
+
     @Override
     public String toString() {
         return "Applicant{" +
                 "id=" + id +
-                ", workID=" + work +
-                ", userID=" + users +
+                ", work=" + work +
+                ", users=" + users +
+                ", accepted=" + accepted +
                 '}';
     }
 }

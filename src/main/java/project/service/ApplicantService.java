@@ -1,7 +1,6 @@
 package project.service;
 
 import project.persistence.entities.Applicant;
-import project.persistence.entities.User;
 
 import java.util.ArrayList;
 import java.util.List;

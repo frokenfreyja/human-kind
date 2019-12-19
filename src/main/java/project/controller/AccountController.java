@@ -10,19 +10,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
-import project.persistence.entities.Applicant;
-import project.persistence.entities.User;
-import project.persistence.entities.Work;
-import project.service.UserService;
+import project.persistence.entities.*;
+import project.service.*;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import project.service.WorkService;
-import project.service.ApplicantService;
-
 
 @Controller
 public class AccountController {
@@ -30,18 +26,26 @@ public class AccountController {
     // Instance Variables
     private UserService userService;
     private WorkService workService;
+    private CourseService courseService;
     private ApplicantService applicantService;
+    private CourseNameService courseNameService;
+
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     // Dependency Injection
     @Autowired
-    public AccountController(UserService userService, WorkService workService, ApplicantService applicantService) {
+    public AccountController(UserService userService, WorkService workService, ApplicantService applicantService, CourseService courseService, CourseNameService courseNameService) {
 
         this.userService = userService;
         this.workService = workService;
+        this.courseService = courseService;
         this.applicantService = applicantService;
+        this.courseNameService = courseNameService;
+
+
+
     }
 
     @RequestMapping(value ="/user/{id}", method = RequestMethod.GET)
@@ -64,6 +68,19 @@ public class AccountController {
 
         if(!user.getOrgi()) {
             model.addAttribute("jobs", jobs);
+
+            // get all user's courses
+            ArrayList<CourseName> courseNames = courseNameService.findAllUsers(user.getId());
+            ArrayList<Course> courses = new ArrayList<Course>(courseNames.size());
+            for(int i=0; i<courseNames.size(); i++) {
+                Long courseID = courseNames.get(i).getCourse();
+                Course courseItem = courseService.findOne(courseID);
+                courses.add(courseItem);
+                System.out.println("test:");
+                System.out.println(courseItem.toString());
+            }
+
+            model.addAttribute("courses", courses);
         }
 
         if(user.getOrgi()) {
@@ -228,7 +245,7 @@ public class AccountController {
      * Edit account - GET
      */
     @RequestMapping(value ="/edit_user/{id}", method = RequestMethod.GET)
-    public String editAccount(@PathVariable Long id, @ModelAttribute("user") User user, Model model, HttpSession session){
+    public String editAccount(@PathVariable Long id, @ModelAttribute("user") User user, @ModelAttribute("course") Course course, Model model, HttpSession session){
 
         Long userID = (Long)session.getAttribute("currentUser");
         User currUser = userService.findOne(userID);
@@ -238,6 +255,8 @@ public class AccountController {
 
         user = userService.findOne(id);
         model.addAttribute("user", user);
+
+        model.addAttribute("course", course);
 
         // Get all of user's applications
         ArrayList<Work> jobs = new ArrayList<>(applicantService.findAllApplications(user.getId()).size());
@@ -250,6 +269,19 @@ public class AccountController {
 
         if(!user.getOrgi()) {
             model.addAttribute("jobs", jobs);
+
+            // get all user's courses
+            ArrayList<CourseName> courseNames = courseNameService.findAllUsers(user.getId());
+            ArrayList<Course> courses = new ArrayList<Course>(courseNames.size());
+            for(int i=0; i<courseNames.size(); i++) {
+                Long courseID = courseNames.get(i).getCourse();
+                Course courseItem = courseService.findOne(courseID);
+                courses.add(courseItem);
+                System.out.println("test:");
+                System.out.println(courseItem.toString());
+            }
+
+            model.addAttribute("courses", courses);
         }
 
         if(user.getOrgi()) {
@@ -314,5 +346,22 @@ public class AccountController {
         return "redirect:/user/{id}";
     }
 
+    @RequestMapping(value = "/add_course/{id}", method = RequestMethod.POST)
+    public String addCoursePost(@PathVariable Long id, Course course, Model model, HttpSession httpSession) {
+        Long userID = (Long) httpSession.getAttribute("currentUser");
 
+        if(userID==null)
+            return "Login";
+
+        courseService.save(course);
+        courseService.findByName(course.getCname());
+
+        CourseName courseName = new CourseName();
+        courseName.setCourse(course.getId());
+        courseName.setUsers(userID);
+
+        courseNameService.save(courseName);
+
+        return "redirect:/edit_user/{id}";
+    }
 }

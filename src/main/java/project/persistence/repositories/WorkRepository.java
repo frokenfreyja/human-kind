@@ -19,6 +19,9 @@ public interface WorkRepository extends JpaRepository<Work, Long> {
     @Query(value = "SELECT w FROM Work w WHERE w.id = ?1")
     Work findOne(Long id);
 
+    @Query(value = "SELECT w FROM Work w WHERE w.date >= ?1")
+    List<Work> findAllActive(Date date);
+
     List<Work> findByName(String name);
 
     List<Work> findByDescription(String description);

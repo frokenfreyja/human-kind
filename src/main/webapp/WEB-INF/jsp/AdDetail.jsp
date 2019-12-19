@@ -64,12 +64,28 @@
                 <c:when test="${not empty applicants}">
                 <div class="info_section">
                     <p class="info_section_title">List of applicants</p>
-                        <c:forEach var="applicant_list" items="${applicants}" varStatus="status">
-                            <p class="applicants">
-                                <a href="/user/${applicant_list.id}">
-                                        ${status.index+1}. ${applicant_list.name}
-                                </a>
-                        </c:forEach>
+                    <c:forEach var="applicant_list" items="${applicants}" varStatus="status">
+                        <p class="applicants">
+                        <div  class="applicant_item">
+                            <a href="/user/${applicant_list.id}">
+                                ${status.index+1}. ${applicant_list.name}
+                            </a>
+
+                            <c:if test="${not empty currUser && currUser.orgi && not accepted[status.index].accepted}">
+                                <c:if test="${not accepted[status.index].accepted}">
+                                <div class="accept_btn">
+                                    <a href="/ad/${id}/${applicant_list.id}/accept">Accept</a>
+                                </div>
+                                </c:if>
+                            </c:if>
+                            <c:if test="${not empty currUser && currUser.orgi && accepted[status.index].accepted}">
+                                <div class ="accept_btn">
+                                    <a href="/ad/${id}/${applicant_list.id}/reject">Reject</a>
+                                </div>
+                            </c:if>
+
+                        </div>
+                    </c:forEach>
                 </div>
                 </c:when>
             </c:choose>
