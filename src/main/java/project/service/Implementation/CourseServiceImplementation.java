@@ -21,6 +21,9 @@ public class CourseServiceImplementation implements CourseService {
     }
 
     @Override
+    public Course save(Course course) { return this.repository.save(course); }
+
+    @Override
     public List<Course> findAll() {
         return repository.findAll();
     }
@@ -29,4 +32,7 @@ public class CourseServiceImplementation implements CourseService {
     public Course findOne(Long id) {
         return repository.findOne(id);
     }
+
+    @Override
+    public Course findByName(String name) { return repository.findByName(name); }
 }

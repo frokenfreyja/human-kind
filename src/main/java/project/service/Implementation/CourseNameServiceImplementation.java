@@ -1,6 +1,7 @@
 package project.service.Implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import project.persistence.entities.CourseName;
 import project.persistence.repositories.CourseNameRepository;
 import project.service.CourseNameService;
@@ -8,6 +9,7 @@ import project.service.CourseNameService;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class CourseNameServiceImplementation implements CourseNameService {
 
     CourseNameRepository repository;

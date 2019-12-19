@@ -91,6 +91,27 @@
                                         </div>
                                     </div>
                                 </sf:form>
+
+                                <sf:form method="POST" modelAttribute="course" action="/add_course/${currUser.id}">
+                                    <div>
+                                        <p> Courses: </p>
+                                    </div>
+                                    <div>
+                                        <sf:input path="cname" type="text" placeholder="Course name" class="edit_text"/>
+                                        <div class="course_list">
+                                            <c:forEach var="course" items="${courses}" varStatus="status">
+                                                <div class="course_item">
+                                                    <p>${course.cname}</p>
+                                                </div>
+                                            </c:forEach>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <input class="btn" type="submit" VALUE="Add"/>
+                                    </div>
+                                </sf:form>
+
+
                             </c:when>
                             <c:otherwise>
                                 <div class="col">
@@ -115,8 +136,18 @@
                                                  class="icon"/>
                                             <p>${fn:substring(user.birthDate, 0, 10)}</p>
                                         </div>
-                                        <div class "row_info"
+
+                                        <%-- Course List --%>
+
+                                        <div class="row_info">
                                             <p>Courses:</p>
+                                            <div class="course_list">
+                                                <c:forEach var="course" items="${courses}" varStatus="status">
+                                                    <div class="course_item">
+                                                        <p>${course.cname}</p>
+                                                    </div>
+                                                </c:forEach>
+                                            </div>
                                         </div>
                                     </c:if>
                                     <c:if test="${organization}">

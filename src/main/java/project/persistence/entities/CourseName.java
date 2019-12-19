@@ -11,9 +11,7 @@ public class CourseName {
     private Long course;
     private Long users;
 
-    public CourseName(){
-
-    }
+    public CourseName(){ }
 
     public Long getId() {
         return id;
@@ -24,7 +22,7 @@ public class CourseName {
     }
 
     public void setCourse(Long course) {
-        course = course;
+        this.course = course;
     }
 
     public Long getUsers() {
