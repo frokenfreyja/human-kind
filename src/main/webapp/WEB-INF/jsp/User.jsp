@@ -115,6 +115,9 @@
                                                  class="icon"/>
                                             <p>${fn:substring(user.birthDate, 0, 10)}</p>
                                         </div>
+                                        <div class "row_info"
+                                            <p>Courses:</p>
+                                        </div>
                                     </c:if>
                                     <c:if test="${organization}">
                                         <div class="row_info">

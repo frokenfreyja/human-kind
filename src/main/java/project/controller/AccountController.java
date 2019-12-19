@@ -13,15 +13,18 @@ import org.springframework.web.multipart.MultipartFile;
 import project.persistence.entities.Applicant;
 import project.persistence.entities.User;
 import project.persistence.entities.Work;
+import project.service.ApplicantService;
+import project.service.CourseNameService;
 import project.service.UserService;
+import project.service.WorkService;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import project.service.WorkService;
-import project.service.ApplicantService;
+
 
 
 @Controller
@@ -42,6 +45,7 @@ public class AccountController {
         this.userService = userService;
         this.workService = workService;
         this.applicantService = applicantService;
+
     }
 
     @RequestMapping(value ="/user/{id}", method = RequestMethod.GET)
