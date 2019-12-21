@@ -190,9 +190,28 @@ public class AdController {
         return "redirect:/";
     }
 
-    //@RequestMapping
-    public String editAd(Work work, Model model) {
-        return "";
+    @RequestMapping(value = "/ad/{id}/edit_ad", method = RequestMethod.GET)
+    public String editAd(@PathVariable Long id, Work work, Model model, HttpSession httpSession) {
+        Work ad = workService.findOne(id);
+        Long userID = (Long) httpSession.getAttribute("currentUser");
+
+        if(userID == null) {
+            return "redirect:/login";
+        }
+
+        if(!ad.getOwner().equals(userID))
+            return "redirect:/ad/{id}";
+
+        model.addAttribute("ad", ad);
+
+        return "AdEdit";
+    }
+
+    @RequestMapping(value = "/ad/{id}/edit_ad", method = RequestMethod.POST)
+    public String editAdPost(@PathVariable Long id, Work work, Model model, HttpSession httpSession) {
+
+
+        return "redirect:/ad/{id}";
     }
 
     @RequestMapping(value = "/ad/{id}", method = RequestMethod.GET)
@@ -273,7 +292,7 @@ public class AdController {
         return "redirect:/ad/{id}";
     }
 
-    @RequestMapping(value = "ad/{id}/{userid}/reject")
+    @RequestMapping(value = "ad/{id}/{userid}/reject", method = RequestMethod.GET)
     public String rejectApplicant(@PathVariable Long id, @PathVariable Long userid, HttpSession httpSession) {
         Long userID = (Long) httpSession.getAttribute("currentUser");
         if(userID == null){

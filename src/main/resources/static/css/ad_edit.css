@@ -1,0 +1,159 @@
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    margin: auto;
+    overflow-x: hidden;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'IBM Plex Sans', sans-serif;
+    position: absolute;
+    overflow-y: auto;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    top: 8%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.row {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    margin-bottom: 60px;
+}
+
+.first_row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ad_img {
+    display: flex;
+    justify-items: center;
+    height: 40%;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.ad_img img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+}
+
+.ad_img img:hover {
+    object-fit: contain;
+}
+
+.ad_title {
+    color: dimgray;
+    font-size: 2em;
+}
+
+.ad_owner {
+    display: flex;
+    flex-direction: column;
+}
+
+.ad_owner a {
+    font-size: 13px;
+    text-decoration: none;
+    color: black;
+}
+
+.owner_img {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.img {
+    object-fit: cover;
+    background-color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+
+.ad_date {
+    padding-top: 20px;
+}
+
+.ad_duration {
+
+}
+
+.ad_location {
+
+}
+
+.ad_zip {
+
+}
+
+.ad_title {
+
+}
+
+.info_section {
+    margin: 10px 0;
+}
+
+.info_section_title {
+    color: dimgray;
+    font-weight: 600;
+}
+
+.applicants a {
+    text-decoration: none;
+    color: black;
+}
+
+.apply_btn {
+    margin-top: 30px;
+}
+
+
+
+.btn {
+    position: relative;
+    color: white;
+    padding: 7px 30px;
+    border-radius: 30px;
+    background-color: #5548f8;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.1s ease;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: black;
+    text-decoration: none;
+}
+
+.input_desc{
+    width: 70%;
+    height: 100px;
+
+}

@@ -93,6 +93,9 @@
                 <div class="apply_btn">
                     <a href="/ad/${id}/delete" class="btn">Remove</a>
                 </div>
+                <div class="apply_btn">
+                    <a href="/ad/${id}/edit_ad" class="btn">Edit</a>
+                </div>
             </c:if>
             <div>
         </div>
