@@ -13,6 +13,8 @@
            <title>${ad.name}</title>
            <link rel="stylesheet" type="text/css" href="<c:url value="/css/ad_edit.css"/>"/>
            <link rel="stylesheet" type="text/css" href="<c:url value="/css/grid.css"/>"/>
+           <link rel="stylesheet" type="text/css" href="<c:url value="/css/button.css"/>"/>
+
     </head>
 
     <body>
@@ -21,8 +23,7 @@
             <div class="ad_img">
                 <img src="${pageContext.request.contextPath}/resources/images/${ad.imageName}" />
             </div>
-            <sf:form method="POST" modelAttribute="ad" action="/ad/${id}/"  enctype="multipart/form-data">
-
+            <sf:form method="POST" modelAttribute="ad" action="/ad/${id}/edit_ad"  enctype="multipart/form-data">
 
                     <div class="ad_info">
 

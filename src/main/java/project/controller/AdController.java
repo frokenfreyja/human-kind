@@ -192,12 +192,13 @@ public class AdController {
 
     @RequestMapping(value = "/ad/{id}/edit_ad", method = RequestMethod.GET)
     public String editAd(@PathVariable Long id, Work work, Model model, HttpSession httpSession) {
-        Work ad = workService.findOne(id);
         Long userID = (Long) httpSession.getAttribute("currentUser");
 
         if(userID == null) {
             return "redirect:/login";
         }
+
+        Work ad = workService.findOne(id);
 
         if(!ad.getOwner().equals(userID))
             return "redirect:/ad/{id}";
@@ -209,7 +210,28 @@ public class AdController {
 
     @RequestMapping(value = "/ad/{id}/edit_ad", method = RequestMethod.POST)
     public String editAdPost(@PathVariable Long id, Work work, Model model, HttpSession httpSession) {
+        Long userID = (Long) httpSession.getAttribute("currentUser");
 
+        if(userID == null) {
+            return "redirect:/login";
+        }
+
+        Work ad = workService.findOne(id);
+
+        if(!ad.getOwner().equals(userID))
+            return "redirect:/ad/{id}";
+
+        System.out.println("test");
+        System.out.println(work.toString());
+
+        ad.setName(work.getName());
+        ad.setDate(work.getDate());
+        ad.setInterest(work.getInterest());
+        ad.setLocation(work.getLocation());
+        ad.setZipcode(work.getZipcode());
+        ad.setDescription(work.getDescription());
+
+        workService.save(ad);
 
         return "redirect:/ad/{id}";
     }
