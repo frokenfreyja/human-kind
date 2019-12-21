@@ -54,14 +54,10 @@ main {
 }
 
 .ad_img img {
-    object-fit: cover;
+    object-fit: contain;
     width: 100%;
     height: 100%;
     border-radius: 4px;
-}
-
-.ad_img img:hover {
-    object-fit: contain;
 }
 
 .ad_title {
@@ -110,5 +106,10 @@ main {
 .input_desc{
     width: 70%;
     height: 100px;
+}
 
+.output {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }

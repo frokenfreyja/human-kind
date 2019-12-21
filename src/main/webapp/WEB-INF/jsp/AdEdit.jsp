@@ -15,15 +15,26 @@
            <link rel="stylesheet" type="text/css" href="<c:url value="/css/grid.css"/>"/>
            <link rel="stylesheet" type="text/css" href="<c:url value="/css/button.css"/>"/>
 
+            <script>
+                   var loadFile = function(event) {
+                       var image = document.getElementById('currentImg');
+                       image.src = URL.createObjectURL(event.target.files[0]);
+                   }
+            </script>
+
     </head>
 
     <body>
     <main>
         <div class="row">
             <div class="ad_img">
-                <img src="${pageContext.request.contextPath}/resources/images/${ad.imageName}" />
+                <img id="currentImg" src="${pageContext.request.contextPath}/resources/images/${ad.imageName}" />
             </div>
             <sf:form method="POST" modelAttribute="ad" action="/ad/${id}/edit_ad"  enctype="multipart/form-data">
+                <div class="btn_img">
+                    <sf:label for="image" path="image" style="cursor: pointer;" class="label">Change ad image </sf:label>
+                </div>
+                <sf:input path="image" type="file" id="image" accept="image/*" name="image" onchange="loadFile(event)" style="display: none;" multiple="multiple" />
 
                     <div class="ad_info">
 

@@ -209,7 +209,7 @@ public class AdController {
     }
 
     @RequestMapping(value = "/ad/{id}/edit_ad", method = RequestMethod.POST)
-    public String editAdPost(@PathVariable Long id, Work work, Model model, HttpSession httpSession) {
+    public String editAdPost(@PathVariable Long id, Work work, Model model, HttpSession httpSession, HttpServletRequest httpServletRequest) throws IOException {
         Long userID = (Long) httpSession.getAttribute("currentUser");
 
         if(userID == null) {
@@ -230,6 +230,29 @@ public class AdController {
         ad.setLocation(work.getLocation());
         ad.setZipcode(work.getZipcode());
         ad.setDescription(work.getDescription());
+
+        MultipartFile imagefile = work.getImage();
+        String fileName;
+
+        imagefile.getInputStream();
+
+        if (work.getImage()==null) throw new NullPointerException("unable to fetch"+imagefile);
+        String rootDirectory = httpServletRequest.getSession().getServletContext().getRealPath("/");
+        if(work.getImage() != null && !work.getImage().isEmpty())
+            try {
+                File path = new File(rootDirectory + "resources/images/"+imagefile.getOriginalFilename());
+                imagefile.transferTo(path);
+
+                fileName = imagefile.getOriginalFilename();
+                work.setImageName(fileName);
+
+            } catch (IllegalStateException | IOException e) {
+                e.printStackTrace();
+            }
+
+        if (work.getImageName() != null) {
+            ad.setImageName(work.getImageName());
+        }
 
         workService.save(ad);
 
