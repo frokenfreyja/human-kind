@@ -31,6 +31,7 @@ public class Work {
     private int payout;
     private String interest;
     private Integer zipcode;
+    private String genLoc;
     @Transient
     private MultipartFile image;
     private String imageName;
@@ -65,6 +66,14 @@ public class Work {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getGenLoc() {
+        return genLoc;
+    }
+
+    public void setGenLoc(String genLoc) {
+        this.genLoc = genLoc;
     }
 
     public Date getDate() {
@@ -176,6 +185,12 @@ public class Work {
         }
         return generalLocation;
     }
+
+    /*
+    public List<Integer> getZipFromGenLoc(String generalLoc) {
+
+    }
+*/
 
   /*  public List<User> getApplicants() {
         return applicants;

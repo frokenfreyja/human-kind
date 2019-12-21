@@ -54,10 +54,11 @@ public class AdController {
         Date currentDate = new Date();
 
         model.addAttribute("work", new Work());
-        //model.addAttribute("work_list", workService.findAllReverseOrder());
         model.addAttribute("work_list", workService.findAllActive(currentDate));
+
         httpSession.removeAttribute("interest");
         httpSession.removeAttribute("organization");
+        httpSession.removeAttribute("genLoc");
 
         // Get list of organizations and send to view
         Map<Long, String> organizationList = new LinkedHashMap<Long, String>();
@@ -70,70 +71,6 @@ public class AdController {
         model.addAttribute("organizationValues", organizationList.values());
 
         return "AllAds";
-    }
-
-    /**
-     * Search for ads that contain search word in title or description
-     */
-    @RequestMapping(value = "searchlistx", method = RequestMethod.GET)
-    public String searchItems(@RequestParam (value = "searching", required = false) String searchwords, Model model) {
-
-        model.addAttribute("work", new Work());
-        model.addAttribute("work_list", workService.findByNameContainsIgnoreCaseOrDescriptionContainsIgnoreCase(searchwords, searchwords));
-
-        return "AllAds";
-    }
-
-    @RequestMapping(value = "sortcategory" , method = RequestMethod. POST)
-    public String selectInterest(@RequestParam("interest") String interest, @RequestParam("organization") String organization, @ModelAttribute("work") Work work, HttpSession httpSession, Model model)
-    {
-        httpSession.setAttribute("interest", interest);
-        if (interest.equals("All") || interest.equals("Category")) {
-            httpSession.removeAttribute("interest");
-        }
-
-        httpSession.setAttribute("organization", organization);
-        if (organization.equals("All") || organization.equals("Organization")) {
-            httpSession.removeAttribute("organization");
-        }
-
-        return "redirect:sorter";
-    }
-
-    @RequestMapping(value = "sorter" , method = RequestMethod. GET)
-    public String sortZipTag(HttpSession httpSession, Model model, Work work) {
-
-        // Get list of organizations and send to view
-        Map<Long, String> organizationList = new LinkedHashMap<Long, String>();
-        List<User> users = userService.findAllByOrderByNameAsc();
-        for (int i=0; i<users.size(); i++) {
-            if(users.get(i).getOrgi()) {
-                organizationList.put(users.get(i).getId(), users.get(i).getName());
-            }
-        }
-        model.addAttribute("organizationValues", organizationList.values());
-
-        // Sort by functionality
-        String interest = (String)httpSession.getAttribute("interest");
-        String zip = (String)httpSession.getAttribute("zip");
-        String orgi = (String) httpSession.getAttribute("organization");
-
-        if ((interest != null) && (orgi == null)) {
-            System.out.println("1: " + interest + " : " + orgi);
-            model.addAttribute("work_list", workService.findByInterestReverseOrder(interest));
-        } else if ((orgi != null) && (interest == null)) {
-            System.out.println("2: " + interest + " : " + orgi);
-            model.addAttribute("work_list", workService.findByOrganization(orgi));
-        } else if((orgi != null) && (interest != null)) {
-            System.out.println("3: " + interest + " : " + orgi);
-            model.addAttribute("work_list", workService.findByOrOrganizationAndInterest(orgi, interest));
-        } else {
-            System.out.println("4: " + interest + " : " + orgi);
-            model.addAttribute("work",new Work());
-            model.addAttribute("work_list", workService.findAllReverseOrder());
-        }
-
-         return "AllAds";
     }
 
     @RequestMapping(value = "/new_ad", method = RequestMethod.GET)
@@ -188,6 +125,8 @@ public class AdController {
         if (work.getImageName() == null) {
             work.setImageName(currUser.getImageName());
         }
+        String genLoc = work.getGeneralLoc(work.getZipcode());
+        work.setGenLoc(genLoc);
 
         workService.save(work);
         model.addAttribute("work_list", workService.findAllReverseOrder());

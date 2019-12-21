@@ -46,7 +46,7 @@ main {
     border: 1px solid black;
     font-size: 1em;
     padding: 0 5px;
-    width: calc(15% + 10px);
+    width: 192px;
     line-height: 1.5em;
 }
 
@@ -56,18 +56,10 @@ main {
     padding: 10px 0;
 }
 
-/*
-select {
-    -webkit-appearance: inherit;
-    cursor: pointer;
-    border: none!important;
-    background-color: white;
-}
-*/
 .dropdwn {
     font-size: 1em;
     padding: 0 5px;
-    width: calc(15% + 10px);
+    width: 192px;
 }
 
 select {
@@ -76,7 +68,7 @@ select {
     /* styling */
     background-color: white;
     border: thin solid black;
-    border-radius: 4px;
+    border-radius: 5px;
     display: inline-block;
     font: inherit;
     line-height: 1.5em;

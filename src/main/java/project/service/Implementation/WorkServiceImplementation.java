@@ -110,11 +110,24 @@ public class WorkServiceImplementation implements WorkService {
     }
 
     @Override
-    public List<Work> findByOrOrganizationAndInterest(String organization, String interest) {
-        return repository.findByOrOrganizationAndInterest(organization, interest);
+    public List<Work> findByOrganizationAndInterest(String organization, String interest) {
+        return repository.findByOrganizationAndInterest(organization, interest);
     }
 
+    @Override
+    public List<Work> findByOrganizationAndGenLoc(String organization, String genLoc) {
+        return repository.findByOrganizationAndGenLoc(organization, genLoc);
+    }
 
+    @Override
+    public List<Work> findByInterestAndGenLoc(String interest, String genLoc) {
+        return repository.findByInterestAndGenLoc(interest, genLoc);
+    }
+
+    @Override
+    public List<Work> findByOrganizationAndInterestAndGenLoc(String organization, String interest, String genLoc) {
+        return repository.findByOrganizationAndInterestAndGenLoc(organization, interest, genLoc);
+    }
 
     @Override
     public List<Work> findByZipcodeAndInterestReverseOrder(Integer zipcode, String interest) {
@@ -138,5 +151,10 @@ public class WorkServiceImplementation implements WorkService {
         // Reverse the list
         Collections.reverse(items);
         return items;
+    }
+
+    @Override
+    public List<Work> findByGenLoc(String genLoc) {
+        return repository.findByGenLoc(genLoc);
     }
 }

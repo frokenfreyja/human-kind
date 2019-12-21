@@ -111,9 +111,18 @@ public interface WorkService {
 
     List<Work> findByZipcodeAndInterestReverseOrder(Integer zipcode, String interest);
 
-    List<Work> findByOrOrganizationAndInterest(String organization, String interest);
+    List<Work> findByOrganizationAndInterest(String organization, String interest);
+
+    List<Work> findByOrganizationAndGenLoc(String organization, String genLoc);
+
+    List<Work> findByInterestAndGenLoc(String interest, String genLoc);
+
+    List<Work> findByOrganizationAndInterestAndGenLoc(String organization, String interest, String genLoc);
 
     List<Work> findByZipcodeReverseOrder(Integer zipcode);
 
     List<Work> findByInterestReverseOrder(String interest);
+
+    List<Work> findByGenLoc(String genLoc);
+
 }

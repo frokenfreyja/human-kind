@@ -28,11 +28,19 @@ public interface WorkRepository extends JpaRepository<Work, Long> {
 
     List<Work> findByLocation(String location);
 
+    List<Work> findByGenLoc(String genLoc);
+
     List<Work> findByZipcode(Integer zipcode);
 
     List<Work> findByZipcodeAndInterest(Integer zipcode, String interest);
 
-    List<Work> findByOrOrganizationAndInterest(String organization, String interest);
+    List<Work> findByOrganizationAndInterest(String organization, String interest);
+
+    List<Work> findByOrganizationAndGenLoc(String organization, String genLoc);
+
+    List<Work> findByInterestAndGenLoc(String interest, String genLoc);
+
+    List<Work> findByOrganizationAndInterestAndGenLoc(String organization, String interest, String genLoc);
 
     List<Work> findByDate(Date date);
 

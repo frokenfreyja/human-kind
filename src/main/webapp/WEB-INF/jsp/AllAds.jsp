@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
 
 <html lang="en">
@@ -32,28 +33,46 @@
                 </sf:form>
         </div>
         <div class="row">
-        <sf:form action="sortcategory" name="formcategory" modelAttribute="work">
             <div class="sort">
             <h4 class="label">Sort by:</h4>
-            <sf:select class="dropdwn" path="interest" onChange="this.form.submit()">
-                <sf:option value="Category" style="display: none;">${interest}</sf:option>
-                <sf:option value="none" disabled="true">Category</sf:option>
-                <sf:option value="All">All categories</sf:option>
-                <sf:option value="Nature">Nature</sf:option>
-                <sf:option value="Animals">Animals</sf:option>
-                <sf:option value="People">People</sf:option>
-                <sf:option value="Clothing">Clothing</sf:option>
-                <sf:option value="Food">Food</sf:option>
-            </sf:select>
+                <sf:form action="sortloc" modelAttribute="work">
+                    <sf:select class="dropdwn" path="genLoc" onChange="this.form.submit()">
+                        <sf:option value="Location" style="display: none;">${genLoc}</sf:option>
+                        <sf:option value="none" disabled="true">Location</sf:option>
+                        <sf:option value="All">All locations</sf:option>
+                        <sf:option value="Höfuðborgarsvæðið">Höfuðborgarsvæðið</sf:option>
+                        <sf:option value="Vesturland">Vesturland</sf:option>
+                        <sf:option value="Vestfirðir">Vestfirðir</sf:option>
+                        <sf:option value="Norðurland">Norðurland</sf:option>
+                        <sf:option value="Austurland">Austurland</sf:option>
+                        <sf:option value="Suðurland">Suðurland</sf:option>
+                        <sf:option value="Suðurnes">Suðurnes</sf:option>
+                    </sf:select>
+                </sf:form>
 
-            <sf:select class="dropdwn" path="organization" onChange="this.form.submit()">
-                <sf:option value="Organization" style="display: none;">${organization}</sf:option>
-                <sf:option value="none" disabled="true">Organization</sf:option>
-                <sf:option value="All">All organizations</sf:option>
-                <sf:options items="${organizationValues}"/>
-            </sf:select>
+                <sf:form action="sortcat" modelAttribute="work">
+                    <sf:select class="dropdwn" path="interest" onChange="this.form.submit()">
+                        <sf:option value="Category" style="display: none;">${interest}</sf:option>
+                        <sf:option value="none" disabled="true">Category</sf:option>
+                        <sf:option value="All">All categories</sf:option>
+                        <sf:option value="Nature">Nature</sf:option>
+                        <sf:option value="Animals">Animals</sf:option>
+                        <sf:option value="People">People</sf:option>
+                        <sf:option value="Clothing">Clothing</sf:option>
+                        <sf:option value="Food">Food</sf:option>
+                    </sf:select>
+                </sf:form>
+
+                <sf:form action="sortorg" modelAttribute="work">
+                    <sf:select class="dropdwn" path="organization" onChange="this.form.submit()">
+                        <sf:option value="Organization" style="display: none;">${organization}</sf:option>
+                        <sf:option value="none" disabled="true">Organization</sf:option>
+                        <sf:option value="All">All organizations</sf:option>
+                        <sf:options items="${organizationValues}"/>
+                    </sf:select>
+                </sf:form>
+
             </div>
-        </sf:form>
         </div>
         </div>
         <c:choose>
