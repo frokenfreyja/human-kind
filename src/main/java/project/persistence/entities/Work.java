@@ -204,4 +204,23 @@ public class Work {
         return rejected;
     }
 */
+
+    @Override
+    public String toString() {
+        return "Work{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", date=" + date +
+                ", duration='" + duration + '\'' +
+                ", description='" + description + '\'' +
+                ", owner=" + owner +
+                ", payout=" + payout +
+                ", interest='" + interest + '\'' +
+                ", zipcode=" + zipcode +
+                ", image=" + image +
+                ", imageName='" + imageName + '\'' +
+                ", generalLoc='" + generalLoc + '\'' +
+                '}';
+    }
 }
