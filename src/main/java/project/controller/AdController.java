@@ -190,9 +190,73 @@ public class AdController {
         return "redirect:/";
     }
 
-    //@RequestMapping
-    public String editAd(Work work, Model model) {
-        return "";
+    @RequestMapping(value = "/ad/{id}/edit_ad", method = RequestMethod.GET)
+    public String editAd(@PathVariable Long id, Work work, Model model, HttpSession httpSession) {
+        Long userID = (Long) httpSession.getAttribute("currentUser");
+
+        if(userID == null) {
+            return "redirect:/login";
+        }
+
+        Work ad = workService.findOne(id);
+
+        if(!ad.getOwner().equals(userID))
+            return "redirect:/ad/{id}";
+
+        model.addAttribute("ad", ad);
+
+        return "AdEdit";
+    }
+
+    @RequestMapping(value = "/ad/{id}/edit_ad", method = RequestMethod.POST)
+    public String editAdPost(@PathVariable Long id, Work work, Model model, HttpSession httpSession, HttpServletRequest httpServletRequest) throws IOException {
+        Long userID = (Long) httpSession.getAttribute("currentUser");
+
+        if(userID == null) {
+            return "redirect:/login";
+        }
+
+        Work ad = workService.findOne(id);
+
+        if(!ad.getOwner().equals(userID))
+            return "redirect:/ad/{id}";
+
+        System.out.println("test");
+        System.out.println(work.toString());
+
+        ad.setName(work.getName());
+        ad.setDate(work.getDate());
+        ad.setInterest(work.getInterest());
+        ad.setLocation(work.getLocation());
+        ad.setZipcode(work.getZipcode());
+        ad.setDescription(work.getDescription());
+
+        MultipartFile imagefile = work.getImage();
+        String fileName;
+
+        imagefile.getInputStream();
+
+        if (work.getImage()==null) throw new NullPointerException("unable to fetch"+imagefile);
+        String rootDirectory = httpServletRequest.getSession().getServletContext().getRealPath("/");
+        if(work.getImage() != null && !work.getImage().isEmpty())
+            try {
+                File path = new File(rootDirectory + "resources/images/"+imagefile.getOriginalFilename());
+                imagefile.transferTo(path);
+
+                fileName = imagefile.getOriginalFilename();
+                work.setImageName(fileName);
+
+            } catch (IllegalStateException | IOException e) {
+                e.printStackTrace();
+            }
+
+        if (work.getImageName() != null) {
+            ad.setImageName(work.getImageName());
+        }
+
+        workService.save(ad);
+
+        return "redirect:/ad/{id}";
     }
 
     @RequestMapping(value = "/ad/{id}", method = RequestMethod.GET)
@@ -273,7 +337,7 @@ public class AdController {
         return "redirect:/ad/{id}";
     }
 
-    @RequestMapping(value = "ad/{id}/{userid}/reject")
+    @RequestMapping(value = "ad/{id}/{userid}/reject", method = RequestMethod.GET)
     public String rejectApplicant(@PathVariable Long id, @PathVariable Long userid, HttpSession httpSession) {
         Long userID = (Long) httpSession.getAttribute("currentUser");
         if(userID == null){
