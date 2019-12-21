@@ -85,15 +85,15 @@ public class AdController {
     }
 
     @RequestMapping(value = "sortcategory" , method = RequestMethod. POST)
-    public String selectInterest(@RequestParam("interest") String Value, @RequestParam("organization") String organization, @ModelAttribute("work") Work work, HttpSession httpSession, Model model)
+    public String selectInterest(@RequestParam("interest") String interest, @RequestParam("organization") String organization, @ModelAttribute("work") Work work, HttpSession httpSession, Model model)
     {
-        httpSession.setAttribute("interest", Value);
-        if (Value.equals("All")) {
+        httpSession.setAttribute("interest", interest);
+        if (interest.equals("All") || interest.equals("Category")) {
             httpSession.removeAttribute("interest");
         }
 
         httpSession.setAttribute("organization", organization);
-        if (organization.equals("All")) {
+        if (organization.equals("All") || organization.equals("Organization")) {
             httpSession.removeAttribute("organization");
         }
 
@@ -102,6 +102,7 @@ public class AdController {
 
     @RequestMapping(value = "sorter" , method = RequestMethod. GET)
     public String sortZipTag(HttpSession httpSession, Model model, Work work) {
+
         // Get list of organizations and send to view
         Map<Long, String> organizationList = new LinkedHashMap<Long, String>();
         List<User> users = userService.findAllByOrderByNameAsc();
@@ -116,33 +117,22 @@ public class AdController {
         String interest = (String)httpSession.getAttribute("interest");
         String zip = (String)httpSession.getAttribute("zip");
         String orgi = (String) httpSession.getAttribute("organization");
-        User user = userService.findByName(orgi);
 
-        if(orgi != null) {
-            //model.addAttribute("work_list", workService.findByOwner(user.getId()));
-            //model.addAttribute("work_list", workService.findByOwner(Long.parseLong(orgi)));
-            model.addAttribute("work_list", workService.findByOrganization(orgi));
-        } else {
-            model.addAttribute("work",new Work());
-            model.addAttribute("work_list", workService.findAllReverseOrder());
-        }
-
-         /*
-
-        if( (zip != null) && ( interest == null)) {
-            model.addAttribute("work_list", workService.findByZipcodeReverseOrder(Integer.parseInt(zip)));
-        }
-        else if((interest != null) && (zip == null)) {
+        if ((interest != null) && (orgi == null)) {
+            System.out.println("1: " + interest + " : " + orgi);
             model.addAttribute("work_list", workService.findByInterestReverseOrder(interest));
-        }
-        else if((interest != null) && (zip != null)) {
-            model.addAttribute("work_list", workService.findByZipcodeAndInterestReverseOrder(Integer.parseInt(zip), interest));
-        }
-        else {
+        } else if ((orgi != null) && (interest == null)) {
+            System.out.println("2: " + interest + " : " + orgi);
+            model.addAttribute("work_list", workService.findByOrganization(orgi));
+        } else if((orgi != null) && (interest != null)) {
+            System.out.println("3: " + interest + " : " + orgi);
+            model.addAttribute("work_list", workService.findByOrOrganizationAndInterest(orgi, interest));
+        } else {
+            System.out.println("4: " + interest + " : " + orgi);
             model.addAttribute("work",new Work());
             model.addAttribute("work_list", workService.findAllReverseOrder());
         }
-*/
+
          return "AllAds";
     }
 

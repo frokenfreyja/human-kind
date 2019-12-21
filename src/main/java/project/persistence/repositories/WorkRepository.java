@@ -32,6 +32,8 @@ public interface WorkRepository extends JpaRepository<Work, Long> {
 
     List<Work> findByZipcodeAndInterest(Integer zipcode, String interest);
 
+    List<Work> findByOrOrganizationAndInterest(String organization, String interest);
+
     List<Work> findByDate(Date date);
 
     List<Work> findByDuration(int duration);

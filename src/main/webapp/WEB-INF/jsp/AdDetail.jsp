@@ -34,6 +34,10 @@
                 </div>
             </div>
             <div class="info_section">
+                <p class="info_section_title">Category</p>
+                <p>${ad.interest}</p>
+            </div>
+            <div class="info_section">
                 <p class="info_section_title">Date and time</p>
                 <fmt:formatDate type="both" value="${ad.date}"/>
             </div>

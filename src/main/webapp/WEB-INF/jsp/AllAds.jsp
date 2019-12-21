@@ -35,7 +35,7 @@
         <sf:form action="sortcategory" name="formcategory" modelAttribute="work">
             <div class="sort">
             <h4 class="label">Sort by:</h4>
-            <sf:select id="selectBox" path="interest" class="ad_text" onChange="this.form.submit()">
+            <sf:select class="dropdwn" path="interest" onChange="this.form.submit()">
                 <sf:option value="Category" style="display: none;">${interest}</sf:option>
                 <sf:option value="none" disabled="true">Category</sf:option>
                 <sf:option value="All">All categories</sf:option>
@@ -46,8 +46,8 @@
                 <sf:option value="Food">Food</sf:option>
             </sf:select>
 
-            <sf:select id="selectBox" path="organization" class="ad_text" onChange="this.form.submit()">
-                <sf:option value="Category" style="display: none;">${organization}</sf:option>
+            <sf:select class="dropdwn" path="organization" onChange="this.form.submit()">
+                <sf:option value="Organization" style="display: none;">${organization}</sf:option>
                 <sf:option value="none" disabled="true">Organization</sf:option>
                 <sf:option value="All">All organizations</sf:option>
                 <sf:options items="${organizationValues}"/>

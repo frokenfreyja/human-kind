@@ -109,6 +109,12 @@ public class WorkServiceImplementation implements WorkService {
         return repository.findByZipcodeAndInterest(zipcode, interest);
     }
 
+    @Override
+    public List<Work> findByOrOrganizationAndInterest(String organization, String interest) {
+        return repository.findByOrOrganizationAndInterest(organization, interest);
+    }
+
+
 
     @Override
     public List<Work> findByZipcodeAndInterestReverseOrder(Integer zipcode, String interest) {
