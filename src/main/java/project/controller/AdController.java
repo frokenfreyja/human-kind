@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -37,6 +38,7 @@ public class AdController {
     private WorkService workService;
     private UserService userService;
     private ApplicantService applicantService;
+    private JavaMailSender javaMailSender;
 
     /*
      * MUNA AÐ SETJA NÝ SERVICE Í SMIÐ
@@ -301,6 +303,8 @@ public class AdController {
         applicant.setAccepted(true);
 
         applicantService.save(applicant);
+
+        
 
         return "redirect:/ad/{id}";
     }
