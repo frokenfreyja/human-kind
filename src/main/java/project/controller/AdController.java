@@ -304,7 +304,7 @@ public class AdController {
 
         applicantService.save(applicant);
 
-        
+
 
         return "redirect:/ad/{id}";
     }
