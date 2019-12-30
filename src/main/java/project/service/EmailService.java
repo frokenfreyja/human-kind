@@ -1,9 +1,11 @@
 package project.service;
 
+import project.persistence.entities.User;
+
 public interface EmailService {
     /**
-     * Sends and acceptance email to {@link String email}
-     * @param email
+     * Sends and acceptance email to {@link User}
+     * @param user
      */
-    void sendAcceptMail(String email);
+    void sendAcceptMail(User user);
 }

@@ -28,6 +28,7 @@ import project.persistence.entities.Applicant;
 import project.persistence.entities.Work;
 import project.persistence.entities.User;
 import project.service.ApplicantService;
+import project.service.EmailService;
 import project.service.UserService;
 import project.service.WorkService;
 
@@ -38,16 +39,17 @@ public class AdController {
     private WorkService workService;
     private UserService userService;
     private ApplicantService applicantService;
-    private JavaMailSender javaMailSender;
+    private EmailService emailService;
 
     /*
      * MUNA AÐ SETJA NÝ SERVICE Í SMIÐ
      */
     @Autowired
-    public AdController(WorkService workService, UserService userService, ApplicantService applicantService) {
+    public AdController(WorkService workService, UserService userService, ApplicantService applicantService, EmailService emailService) {
         this.workService = workService;
         this.userService = userService;
         this.applicantService = applicantService;
+        this.emailService = emailService;
     }
 
     @RequestMapping(value = "/all_ads", method = RequestMethod.GET)
@@ -303,8 +305,7 @@ public class AdController {
         applicant.setAccepted(true);
 
         applicantService.save(applicant);
-
-
+        emailService.sendAcceptMail(userService.findOne(userid));
 
         return "redirect:/ad/{id}";
     }
