@@ -1,0 +1,74 @@
+/* setjum box-sizing: border-box; á allt */
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    margin: auto;
+    overflow-x: hidden;
+    font-family: 'IBM Plex Sans', sans-serif;
+    width: 100vw;
+    height: 100vh;
+}
+/* SECTION - AD LIST */
+main {
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 0 20px 0;
+}
+
+.advertlist {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+}
+
+.list {
+    height: 100%;
+    font-size: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+.organization {
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.organization a {
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    transition: all 0.1s ease;
+}
+
+.organization a:hover {
+    color: #f85548;
+}
+
+.owner_img {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 10px 0;
+}
+
+.img {
+    object-fit: cover;
+    background-color: white;
+    border-radius: 50%;
+    width: 190px;
+    height: 190px;
+    //border: 1px solid gray;
+}

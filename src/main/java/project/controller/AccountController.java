@@ -43,9 +43,6 @@ public class AccountController {
         this.courseService = courseService;
         this.applicantService = applicantService;
         this.courseNameService = courseNameService;
-
-
-
     }
 
     @RequestMapping(value ="/user/{id}", method = RequestMethod.GET)
