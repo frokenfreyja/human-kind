@@ -9,6 +9,22 @@
     color: #f1f1f1;
 }
 
+#red2 {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-start;
+
+    position: fixed;
+    width: 100vw;
+    height: auto;
+    font-family: 'IBM Plex Sans', sans-serif;
+    padding: 13px 0 10px 20px;
+    z-index: 1;
+
+    background: #F85548;
+}
+
 #red {
     display: flex;
     align-content: center;

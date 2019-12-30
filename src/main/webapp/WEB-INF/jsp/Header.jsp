@@ -16,6 +16,7 @@
     <c:choose>
         <c:when test="${header_type eq 'red_bar'}">
             <h3 class="home_btn" id="red"><a href="/">HUMAN-KIND</a></h3>
+            <h3 id="red2"><a href="/orgi">The organizations</a></h3>
         </c:when>
         <c:otherwise>
             <h3 class="home_btn" id="not_red"><a href="/">HUMAN-KIND</a></h3>
