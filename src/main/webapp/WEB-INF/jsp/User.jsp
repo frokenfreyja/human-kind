@@ -72,7 +72,11 @@
                                         </c:if>
                                         <c:if test="${organization}">
                                             <div class="row_info">
-                                                <sf:input path="bio" type="text" placeholder="Bio" class="edit_text"/>
+                                                <div class="edit_icon">
+                                                    <img src="${pageContext.request.contextPath}/resources/images/bio.png"
+                                                         class="icon"/>
+                                                </div>
+                                                <sf:input path="bio" type="text" placeholder="About" class="edit_text"/>
                                             </div>
                                         </c:if>
                                     </div>
@@ -152,7 +156,9 @@
                                     </c:if>
                                     <c:if test="${organization}">
                                         <div class="row_info">
-                                            <p>Bio: ${user.bio}</p>
+                                            <img src="${pageContext.request.contextPath}/resources/images/bio.png"
+                                                 class="icon"/>
+                                            <p>${user.bio}</p>
                                         </div>
                                     </c:if>
                                 </div>
@@ -231,7 +237,34 @@
                     </div>
                 </c:when>
                 <c:otherwise>
-
+                    <div class="banner">
+                        <h3>About</h3>
+                    </div>
+                    <p class="about">${user.bio}</p>
+                    <c:choose>
+                        <c:when test="${not empty own_ads}">
+                            <div class="banner">
+                                <h3>List of ads</h3>
+                            </div>
+                            <c:forEach var="job" items="${own_ads}" varStatus="status">
+                                <div class="list">
+                                    <div class="list_item">
+                                        <a href="/ad/${job.id}" class="ad_info">
+                                            <div class="col2">
+                                                <div class="job_img"><img
+                                                        src="${pageContext.request.contextPath}/resources/images/${job.imageName}">
+                                                </div>
+                                            </div>
+                                            <div class="col2">
+                                                <h3 class="job_title">${job.name}</h3>
+                                                <p class="job_desc">${fn:substring(job.description, 0,210)}</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </c:when>
+                    </c:choose>
                 </c:otherwise>
             </c:choose>
     </div>

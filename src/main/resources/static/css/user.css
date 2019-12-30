@@ -82,13 +82,11 @@ form {
 }
 
 .edit_col {
-    width: 50%;
     display: flex;
     flex-direction: column;
 }
 
 .edit_col:nth-child(1) {
-    width: 80%;
 }
 
 .error {
@@ -138,6 +136,14 @@ form {
 .edit_btn .btn {
     border: none;
     font-size: 1em;
+}
+
+.edit_text {
+    padding: 0 5px;
+}
+
+.about {
+    padding: 10px;
 }
 
 .list a {

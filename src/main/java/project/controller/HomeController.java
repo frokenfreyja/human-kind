@@ -28,11 +28,6 @@ public class HomeController {
         this.workService = workService;
     }
 
-    //@RequestMapping
-    public String home(Work work, Model model) {
-        return "";
-    }
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String workList(Model model, HttpSession httpSession){
 
@@ -41,7 +36,6 @@ public class HomeController {
         model.addAttribute("userID", httpSession.getAttribute("currentUser"));
         model.addAttribute("userName", httpSession.getAttribute("currentUsername"));
         model.addAttribute("userOrgi", httpSession.getAttribute("currentUserOrgi"));
-        //model.addAttribute("work_list", workService.findAllReverseOrder());
         model.addAttribute("work_list", workService.findAllActive(currentDate));
         model.addAttribute("header_type", "red_bar");
 

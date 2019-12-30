@@ -88,6 +88,7 @@ public class AccountController {
             model.addAttribute("own_ads", workService.findByOwner(user.getId()));
         }
 
+        model.addAttribute("header_type", "red_bar");
         model.addAttribute("currUser", currUser);
 
         return "User";

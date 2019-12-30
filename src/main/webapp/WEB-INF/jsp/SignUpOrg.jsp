@@ -43,6 +43,11 @@
             </div>
 
             <div class="input">
+                <img src="${pageContext.request.contextPath}/resources/images/bio.png" class="img"/>
+                <sf:input path="bio" type="text" placeholder="About organization" class="signup_text"/>
+            </div>
+
+            <div class="input">
                 <img src="${pageContext.request.contextPath}/resources/images/lock2.png" class="img"/>
                 <sf:input path="password" type="password" placeholder="Password" class="signup_text"
                           required="required"/>

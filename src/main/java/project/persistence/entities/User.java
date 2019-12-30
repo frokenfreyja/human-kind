@@ -31,6 +31,8 @@ public class User{
     @Transient
     private MultipartFile image;
     private String imageName;
+
+    @Column(columnDefinition="text")
     private String bio;
     private int points;
     private Boolean orgi;
