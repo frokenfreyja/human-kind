@@ -170,8 +170,8 @@ public class AccountController {
 
             emailService.sendEmail(mailMessage);
 
-            model.addAttribute("email", user.getEmail());
-            return "SuccessfulRegistration";
+            model.addAttribute("verification", "A verification email has been sent to: "+ user.getEmail());
+            model.addAttribute("header_type", "red_bar");
         }
         return "SignUpOrg";
     }
@@ -234,8 +234,8 @@ public class AccountController {
 
             emailService.sendEmail(mailMessage);
 
-            model.addAttribute("email", user.getEmail());
-            return "SuccessfulRegistration";
+            model.addAttribute("verification", "A verification email has been sent to: "+ user.getEmail());
+            model.addAttribute("header_type", "red_bar");
         }
         return "SignUpVol";
     }
@@ -244,9 +244,10 @@ public class AccountController {
     public String confirmUserAccount(Model model, @RequestParam("token") String confirmationToken)
     {
         ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
+        User user = userService.findByEmail(token.getUser().getEmail());
+
         if(token != null)
         {
-            User user = userService.findByEmail(token.getUser().getEmail());
             user.setEnabled(true);
             userService.save(user);
             model.addAttribute("message", "Congratulations! Your account has been activated and email is verified!");
@@ -256,7 +257,12 @@ public class AccountController {
             return "Login";
         } else {
             model.addAttribute("message", "The link is invalid or broken!");
-            return "SuccessfulRegistration";
+
+            if(user.getOrgi()) {
+                return "SignUpOrg";
+            } else {
+                return "SignUpVol";
+            }
         }
     }
 

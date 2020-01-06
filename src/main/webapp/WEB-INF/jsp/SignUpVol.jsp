@@ -23,6 +23,7 @@
 <main>
     <div class="row">
     <h1 class="title">VOLUNTEER</h1>
+        <p>${verification}</p>
     <sf:form method="POST" modelAttribute="user" action="/vol" enctype="multipart/form-data" class="form">
         <div class="input">
             <img src="${pageContext.request.contextPath}/resources/images/name.png" class="img"/>
