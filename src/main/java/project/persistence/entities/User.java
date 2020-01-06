@@ -37,8 +37,7 @@ public class User{
     private int points;
     private Boolean orgi;
 
-    // Þarf að finna leið til að búa til list í db
-   // private List<Course> courses;
+    private boolean isEnabled;
 
     public User(){
 
@@ -155,6 +154,14 @@ public class User{
 
     public void setImageName(String imageName) {
         this.imageName = imageName;
+    }
+
+    public boolean isEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
     }
 
     /*  public List<Course> getCourses() {

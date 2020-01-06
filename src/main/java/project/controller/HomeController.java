@@ -55,13 +55,15 @@ public class HomeController {
         Map<Long, String> organizationList = new LinkedHashMap<Long, String>();
         List<User> users = userService.findAllByOrderByNameAsc();
         List<User> organization_list = new ArrayList<User>();
-        for (int i=0; i<users.size(); i++) {
-            if(users.get(i).getOrgi()) {
-                organizationList.put(users.get(i).getId(), users.get(i).getName());
-                organization_list.add(users.get(i));
+
+        if(users.size() > 0) {
+            for (int i=0; i<users.size(); i++) {
+                if(users.get(i).getOrgi()) {
+                    organizationList.put(users.get(i).getId(), users.get(i).getName());
+                    organization_list.add(users.get(i));
+                }
             }
         }
-        System.out.println("organization_list: " + organization_list.get(0).getName());
 
         model.addAttribute("organization_list", organization_list);
         model.addAttribute("organizationValues", organizationList.values());

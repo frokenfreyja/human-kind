@@ -39,6 +39,10 @@ main {
 }
 
 /* CONTENT */
+form {
+    width: 305px;
+}
+
 .title {
     letter-spacing: 2px;
 }
@@ -48,7 +52,7 @@ main {
     align-content: center;
 
     padding: 15px 5px 15px 20px;
-    margin: 30px 0 50px 0;
+    margin: 30px 0 30px 0;
 
     border-radius: 3px;
     background-color: white;
@@ -79,9 +83,7 @@ img .img {
 }
 
 .error {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+    text-align: center;
 }
 
 .login_btn {

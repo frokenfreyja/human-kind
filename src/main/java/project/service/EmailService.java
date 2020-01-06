@@ -1,5 +1,6 @@
 package project.service;
 
+import org.springframework.mail.SimpleMailMessage;
 import project.persistence.entities.User;
 
 public interface EmailService {
@@ -8,4 +9,6 @@ public interface EmailService {
      * @param user
      */
     void sendAcceptMail(User user, String message);
+
+    void sendEmail(SimpleMailMessage email);
 }

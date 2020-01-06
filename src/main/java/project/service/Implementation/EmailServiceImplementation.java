@@ -4,6 +4,7 @@ import org.apache.logging.log4j.message.SimpleMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import project.persistence.entities.User;
 import project.service.EmailService;
@@ -24,4 +25,8 @@ public class EmailServiceImplementation implements EmailService {
         javaMailSender.send(msg);
     }
 
+    @Async
+    public void sendEmail(SimpleMailMessage email) {
+        javaMailSender.send(email);
+    }
 }
