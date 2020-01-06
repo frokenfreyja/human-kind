@@ -44,8 +44,6 @@ public class LoginController {
         if(!user.getEmail().isEmpty()) {
             User loginUser = userService.findByEmail(user.getEmail());
 
-            System.out.println("hallo : " + loginUser.isEnabled());
-
             if(loginUser != null && bCryptPasswordEncoder.matches(user.getPassword(), loginUser.getPassword()) && loginUser.isEnabled()){
                 httpSession.setAttribute("currentUser", loginUser.getId());
                 httpSession.setAttribute("currentUsername", loginUser.getName());

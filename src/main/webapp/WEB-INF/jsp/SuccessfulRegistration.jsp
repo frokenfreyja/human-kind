@@ -11,6 +11,7 @@
 <body>
 <center>
     <h3>A verification email has been sent to: ${email}</h3>
+    <p>${message}</p>
 </center>
 </body>
 </html>

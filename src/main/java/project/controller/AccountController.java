@@ -172,8 +172,6 @@ public class AccountController {
 
             model.addAttribute("email", user.getEmail());
             return "SuccessfulRegistration";
-
-            //return "redirect:/login";
         }
         return "SignUpOrg";
     }
@@ -238,8 +236,6 @@ public class AccountController {
 
             model.addAttribute("email", user.getEmail());
             return "SuccessfulRegistration";
-
-            //return "redirect:/login";
         }
         return "SignUpVol";
     }
@@ -248,19 +244,20 @@ public class AccountController {
     public String confirmUserAccount(Model model, @RequestParam("token") String confirmationToken)
     {
         ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
-
         if(token != null)
         {
             User user = userService.findByEmail(token.getUser().getEmail());
             user.setEnabled(true);
             userService.save(user);
             model.addAttribute("message", "Congratulations! Your account has been activated and email is verified!");
-        }
-        else
-        {
+
+            model.addAttribute("user", new User());
+            model.addAttribute("header_type", "red_bar");
+            return "Login";
+        } else {
             model.addAttribute("message", "The link is invalid or broken!");
+            return "SuccessfulRegistration";
         }
-        return "ActivatedAccount";
     }
 
     /*

@@ -19,6 +19,7 @@
     <main>
         <div class="row">
             <h1 class="title">LOG IN</h1>
+            <p>${message}</p>
             <sf:form method="POST" modelAttribute="user" action="/login">
                 <div class="login_table">
                     <div class="input">
