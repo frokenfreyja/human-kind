@@ -36,11 +36,7 @@ public class Work {
     private MultipartFile image;
     private String imageName;
     private String generalLoc;
-
-    // Þarf að finna leið til að búa til list í db
-   // private List<User> applicants;
-  //  private List<User> accepted;
-  //  private List<User> rejected;
+    private String msg;
 
 
     public Work(){
@@ -186,24 +182,20 @@ public class Work {
         return generalLocation;
     }
 
-    /*
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+/*
     public List<Integer> getZipFromGenLoc(String generalLoc) {
 
     }
 */
 
-  /*  public List<User> getApplicants() {
-        return applicants;
-    }
-
-    public List<User> getAccepted() {
-        return accepted;
-    }
-
-    public List<User> getRejected() {
-        return rejected;
-    }
-*/
 
     @Override
     public String toString() {
@@ -215,12 +207,15 @@ public class Work {
                 ", duration='" + duration + '\'' +
                 ", description='" + description + '\'' +
                 ", owner=" + owner +
+                ", organization='" + organization + '\'' +
                 ", payout=" + payout +
                 ", interest='" + interest + '\'' +
                 ", zipcode=" + zipcode +
+                ", genLoc='" + genLoc + '\'' +
                 ", image=" + image +
                 ", imageName='" + imageName + '\'' +
                 ", generalLoc='" + generalLoc + '\'' +
+                ", msg='" + msg + '\'' +
                 '}';
     }
 }

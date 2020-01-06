@@ -202,6 +202,7 @@ public class AdController {
         ad.setLocation(work.getLocation());
         ad.setZipcode(work.getZipcode());
         ad.setDescription(work.getDescription());
+        ad.setMsg(work.getMsg());
 
         MultipartFile imagefile = work.getImage();
         String fileName;
@@ -305,7 +306,8 @@ public class AdController {
         applicant.setAccepted(true);
 
         applicantService.save(applicant);
-        emailService.sendAcceptMail(userService.findOne(userid));
+
+        emailService.sendAcceptMail(userService.findOne(userid), workService.findOne(id).getMsg());
 
         return "redirect:/ad/{id}";
     }
