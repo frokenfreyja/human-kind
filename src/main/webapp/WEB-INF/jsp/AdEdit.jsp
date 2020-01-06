@@ -88,6 +88,13 @@
                                 <sf:textarea path="description" class="input_desc" type="text" placeholder="${description}" required="required"/>
                             </div>
                         </div>
+
+                        <div class="info_section">
+                            <p class="info_section_title">Description</p>
+                            <div class="input">
+                                <sf:textarea path="msg" class="input_desc" type="text" placeholder="Acceptence Message" required="required"/>
+                            </div>
+                        </div>
                     </div>
 
                 <div class="ad_btn">

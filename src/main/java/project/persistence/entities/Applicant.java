@@ -11,9 +11,11 @@ public class Applicant {
     private Long work;
     private Long users;
     private boolean accepted;
+    private boolean rejected;
 
     public Applicant(){
         this.accepted = false;
+        this.rejected = false;
     }
 
     public Long getId() {
@@ -44,6 +46,14 @@ public class Applicant {
         this.accepted = accepted;
     }
 
+    public boolean isRejected() {
+        return rejected;
+    }
+
+    public void setRejected(boolean rejected) {
+        this.rejected = rejected;
+    }
+
     @Override
     public String toString() {
         return "Applicant{" +
@@ -51,6 +61,7 @@ public class Applicant {
                 ", work=" + work +
                 ", users=" + users +
                 ", accepted=" + accepted +
+                ", rejected=" + rejected +
                 '}';
     }
 }

@@ -13,13 +13,14 @@ public class EmailServiceImplementation implements EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    public void sendAcceptMail(User user) {
+    public void sendAcceptMail(User user, String message) {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(user.getEmail());
-
         msg.setSubject("You've been accepted");
-        msg.setText("Congratulations " + user.getName() + ", you've been accepted to take part in applied volunteer work");
-
+        if(message == null)
+            msg.setText("Congratulations " + user.getName() + ", you've been accepted to take part in applied volunteer work.");
+        else
+            msg.setText(message);
         javaMailSender.send(msg);
     }
 
