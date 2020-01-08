@@ -41,6 +41,12 @@ public interface WorkService {
     List<Work> findAllActive(Date date);
 
     /**
+     * Get all {@link Work}s that are active
+     * @return A list of still active {@link Work}s
+     */
+    List<Work> findAllOpen();
+
+    /**
      * Find a {@link Work} based on {@link Long id}
      * @param id {@link Long}
      * @return A {@link Work} with {@link Long id}
@@ -74,13 +80,6 @@ public interface WorkService {
      * @return All {@link Work}s with the {@link Date date} passed
      */
     List<Work> findByDate(Date date);
-
-    /**
-     * Find all {@link Work}s with {@link int duration}
-     * @param duration {@link int}
-     * @return All {@link Work}s with the {@link int duration} passed
-     */
-    List<Work> findByDuration(int duration);
 
     /**
      * Find all {@link Work}s with {@link Long owner}

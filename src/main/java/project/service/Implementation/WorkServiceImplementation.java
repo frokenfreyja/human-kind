@@ -55,6 +55,9 @@ public class WorkServiceImplementation implements WorkService {
     }
 
     @Override
+    public List<Work> findAllOpen(){return  repository.findAllOpen();}
+
+    @Override
     public Work findOne(Long id) {
         return repository.findOne(id);
     }
@@ -77,11 +80,6 @@ public class WorkServiceImplementation implements WorkService {
     @Override
     public List<Work> findByDate(Date date) {
         return repository.findByDate(date);
-    }
-
-    @Override
-    public List<Work> findByDuration(int duration) {
-        return repository.findByDuration(duration);
     }
 
     @Override

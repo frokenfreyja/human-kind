@@ -181,20 +181,45 @@
                                     <h3>List of applications</h3>
                                 </div>
                                 <c:forEach var="job" items="${jobs}" varStatus="status">
+                                    <c:if test="${not job.closed}">
+                                        <div class="list">
+                                            <div class="list_item">
+                                                <a href="/ad/${job.id}" class="ad_info">
+                                                    <div class="col2">
+                                                        <div class="job_img"><img
+                                                                src="${pageContext.request.contextPath}/resources/images/${job.imageName}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col2">
+                                                        <h3 class="job_title">${job.name}</h3>
+                                                        <p class="job_desc">${fn:substring(job.description, 0,210)}</p>
+                                                    </div>
+                                                </a>
+                                                <div class="ad_btn"><a href="/ad/${job.id}/unapply" class="btn">Unapply</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:if>
+                                </c:forEach>
+                                <div class="banner">
+                                    <h3>List of Completed Jobs</h3>
+                                </div>
+                                <c:forEach var="cjob" items="${compJobs}" varStatus="status">
                                     <div class="list">
                                         <div class="list_item">
-                                            <a href="/ad/${job.id}" class="ad_info">
+                                            <a href="/ad/${cjob.id}" class="ad_info">
                                                 <div class="col2">
-                                                    <div class="job_img"><img
-                                                            src="${pageContext.request.contextPath}/resources/images/${job.imageName}">
+                                                    <div class="job_img">
+                                                        <img src="${pageContext.request.contextPath}/resources/images/${cjob.imageName}">
                                                     </div>
                                                 </div>
                                                 <div class="col2">
-                                                    <h3 class="job_title">${job.name}</h3>
-                                                    <p class="job_desc">${fn:substring(job.description, 0,210)}</p>
+                                                    <h3 class="job_title">${cjob.name}</h3>
+                                                    <p class="job_desc">${fn:substring(cjob.description, 0,210)}</p>
                                                 </div>
                                             </a>
-                                            <div class="ad_btn"><a href="/ad/${job.id}/unapply" class="btn">Unapply</a>
+                                            <div class="ad_btn">
+                                                <a href="/ad/${cjob.id}/unapply" class="btn">Unapply</a>
                                             </div>
                                         </div>
                                     </div>

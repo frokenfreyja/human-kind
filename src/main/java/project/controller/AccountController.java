@@ -56,16 +56,21 @@ public class AccountController {
 
         // Get all of user's applications
         ArrayList<Work> jobs = new ArrayList<>(applicantService.findAllApplications(user.getId()).size());
+        ArrayList<Work> completedJobs = new ArrayList<>(jobs.size());
         ArrayList<Applicant> applications = applicantService.findAllApplications(user.getId());
         for(int i=0; i<applications.size(); i++) {
             Long workID = applications.get(i).getWork();
             Work work = workService.findOne(workID);
+            System.out.println(work.getClosed());
+            if(work.getClosed())
+                completedJobs.add(work);
+            System.out.println(completedJobs.toString());
             jobs.add(work);
         }
 
         if(!user.getOrgi()) {
             model.addAttribute("jobs", jobs);
-
+            model.addAttribute("compJobs", completedJobs);
             // get all user's courses
             ArrayList<CourseName> courseNames = courseNameService.findAllUsers(user.getId());
             ArrayList<Course> courses = new ArrayList<Course>(courseNames.size());
