@@ -4,7 +4,6 @@ import javax.persistence.*;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Date;
@@ -27,7 +26,6 @@ public class Ad {
     private String description;
     private Long owner;
     private String organization;
-    private int payout;
     private String interest;
     private Integer zipcode;
     private String genLoc;
@@ -105,14 +103,6 @@ public class Ad {
         this.organization = organization;
     }
 
-    public int getPayout() {
-        return payout;
-    }
-
-    public void setPayout(int payout) {
-        this.payout = payout;
-    }
-
     public String getInterest() {
         return interest;
     }
@@ -142,7 +132,6 @@ public class Ad {
     }
 
     public String getGeneralLoc(Integer zip) {
-        String generalLocation = "";
         List<Integer> hofudborg = Arrays.asList(101, 103, 104, 105, 107, 108, 109, 110, 111, 112, 113, 114, 116,
                 170, 200, 201, 203, 210, 225, 220, 221, 270, 271, 276);
         List<Integer> vesturland = Arrays.asList(300, 301, 310, 311, 320, 340, 345, 350, 355, 356, 360, 370, 371,
@@ -158,21 +147,21 @@ public class Ad {
         List<Integer> sudurnes = Arrays.asList(190, 230, 233, 235, 240, 245, 250, 260);
 
         if(hofudborg.contains(zip)) {
-            generalLocation = "Höfuðborgarsvæðið";
+            generalLoc = "Höfuðborgarsvæðið";
         } else if(vesturland.contains(zip)) {
-            generalLocation = "Vesturland";
+            generalLoc = "Vesturland";
         } else if(vestfirdir.contains(zip)) {
-            generalLocation = "Vestfirðir";
+            generalLoc = "Vestfirðir";
         } else if(nordurland.contains(zip)) {
-            generalLocation = "Norðurland";
+            generalLoc = "Norðurland";
         } else if(austurland.contains(zip)) {
-            generalLocation = "Austurland";
+            generalLoc = "Austurland";
         } else if(sudurland.contains(zip)) {
-            generalLocation = "Suðurland";
+            generalLoc = "Suðurland";
         } else if(sudurnes.contains(zip)) {
-            generalLocation = "Suðurnes";
+            generalLoc = "Suðurnes";
         }
-        return generalLocation;
+        return generalLoc;
     }
 
     public String getMsg() {
@@ -202,7 +191,6 @@ public class Ad {
                 ", description='" + description + '\'' +
                 ", owner=" + owner +
                 ", organization='" + organization + '\'' +
-                ", payout=" + payout +
                 ", interest='" + interest + '\'' +
                 ", zipcode=" + zipcode +
                 ", genLoc='" + genLoc + '\'' +
