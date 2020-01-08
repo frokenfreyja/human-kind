@@ -218,9 +218,6 @@
                                                     <p class="job_desc">${fn:substring(cjob.description, 0,210)}</p>
                                                 </div>
                                             </a>
-                                            <div class="ad_btn">
-                                                <a href="/ad/${cjob.id}/unapply" class="btn">Unapply</a>
-                                            </div>
                                         </div>
                                     </div>
                                 </c:forEach>
@@ -245,10 +242,14 @@
                                                     <h3 class="job_title">${job.name}</h3>
                                                     <p class="job_desc">${fn:substring(job.description, 0,210)}</p>
                                                 </div>
-                                            </a>
-                                            <div class="ad_btn"><a href="/ad/${job.id}/delete" class="btn">Remove</a>
-                                            </div>
 
+                                            </a>
+                                            <%-- þetta á að vera not ad.closed en að ehv ástæðu virkar þetta --%>
+                                            <c:if test="${ad.closed}">
+                                                <div class="ad_btn">
+                                                    <a href="/ad/${job.id}/delete" class="btn">Remove</a>
+                                                </div>
+                                            </c:if>
                                         </div>
                                     </div>
                                 </c:forEach>
