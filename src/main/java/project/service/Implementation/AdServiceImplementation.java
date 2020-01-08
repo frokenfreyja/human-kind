@@ -68,21 +68,6 @@ public class AdServiceImplementation implements AdService {
     }
 
     @Override
-    public List<Ad> findByDescription(String description) {
-        return repository.findByName(description);
-    }
-
-    @Override
-    public List<Ad> findByLocation(String location) {
-        return repository.findByLocation(location);
-    }
-
-    @Override
-    public List<Ad> findByDate(Date date) {
-        return repository.findByDate(date);
-    }
-
-    @Override
     public List<Ad> findByOwner(Long owner) {
         return repository.findByOwner(owner);
     }
@@ -103,11 +88,6 @@ public class AdServiceImplementation implements AdService {
     }
 
     @Override
-    public List<Ad> findByZipcodeAndInterest(Integer zipcode, String interest) {
-        return repository.findByZipcodeAndInterest(zipcode, interest);
-    }
-
-    @Override
     public List<Ad> findByOrganizationAndInterest(String organization, String interest) {
         return repository.findByOrganizationAndInterest(organization, interest);
     }
@@ -125,22 +105,6 @@ public class AdServiceImplementation implements AdService {
     @Override
     public List<Ad> findByOrganizationAndInterestAndGenLoc(String organization, String interest, String genLoc) {
         return repository.findByOrganizationAndInterestAndGenLoc(organization, interest, genLoc);
-    }
-
-    @Override
-    public List<Ad> findByZipcodeAndInterestReverseOrder(Integer zipcode, String interest) {
-        List<Ad> items = repository.findByZipcodeAndInterest(zipcode, interest);
-        // Reverse the list
-        Collections.reverse(items);
-        return items;
-    }
-
-    @Override
-    public List<Ad> findByZipcodeReverseOrder(Integer zipcode) {
-        List<Ad> items = repository.findByZipcode(zipcode);
-        // Reverse the list
-        Collections.reverse(items);
-        return items;
     }
 
     @Override

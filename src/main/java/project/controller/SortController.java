@@ -41,7 +41,7 @@ public class SortController {
     }
 
     @RequestMapping(value = "sortcat" , method = RequestMethod. POST)
-    public String sortCat(@RequestParam("interest") String interest, @ModelAttribute("ad") Ad ad, HttpSession httpSession, Model model)
+    public String catSort(@RequestParam("interest") String interest, @ModelAttribute("ad") Ad ad, HttpSession httpSession)
     {
         httpSession.setAttribute("interest", interest);
         if (interest.equals("All") || interest.equals("Category")) {
@@ -52,7 +52,7 @@ public class SortController {
     }
 
     @RequestMapping(value = "sortloc" , method = RequestMethod. POST)
-    public String sortLoc(@RequestParam("genLoc") String genLoc, @ModelAttribute("ad") Ad ad, HttpSession httpSession, Model model)
+    public String locSort(@RequestParam("genLoc") String genLoc, @ModelAttribute("ad") Ad ad, HttpSession httpSession)
     {
         httpSession.setAttribute("genLoc", genLoc);
         if(genLoc.equals("All") || genLoc.equals("Location")) {
@@ -63,7 +63,7 @@ public class SortController {
     }
 
     @RequestMapping(value = "sortorg" , method = RequestMethod. POST)
-    public String sortOrg(@RequestParam("organization") String organization, @ModelAttribute("ad") Ad ad, HttpSession httpSession, Model model)
+    public String orgSort(@RequestParam("organization") String organization, @ModelAttribute("ad") Ad ad, HttpSession httpSession)
     {
         httpSession.setAttribute("organization", organization);
         if (organization.equals("All") || organization.equals("Organization")) {
@@ -74,7 +74,7 @@ public class SortController {
     }
 
     @RequestMapping(value = "sorter" , method = RequestMethod. GET)
-    public String sortZipTag(HttpSession httpSession, Model model, Ad ad) {
+    public String allSort(HttpSession httpSession, Model model) {
 
         // Get list of organizations and send to view
         Map<Long, String> organizationList = new LinkedHashMap<Long, String>();

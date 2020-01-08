@@ -90,7 +90,7 @@ public class AdController {
     }
 
     @RequestMapping(value = "/new_ad", method = RequestMethod.POST)
-    public String newItem(@ModelAttribute("ad") Ad ad, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) throws IOException {
+    public String newAdPost(@ModelAttribute("ad") Ad ad, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) throws IOException {
 
         Long userID = (Long) httpSession.getAttribute("currentUser");
         ad.setOwner(userID);
@@ -178,7 +178,7 @@ public class AdController {
 
 
     @RequestMapping(value = "/ad/{id}/edit_ad", method = RequestMethod.POST)
-    public String editAdPost(@PathVariable Long id, Ad ad, Model model, HttpSession httpSession, HttpServletRequest httpServletRequest) throws IOException {
+    public String editAdPost(@PathVariable Long id, Ad ad, HttpSession httpSession, HttpServletRequest httpServletRequest) throws IOException {
         Long userID = (Long) httpSession.getAttribute("currentUser");
 
         if(userID == null) {
@@ -227,7 +227,7 @@ public class AdController {
     }
 
     @RequestMapping(value = "/ad/{id}/close", method = RequestMethod.GET)
-    public String closeAd(@PathVariable Long id, Model model, HttpSession httpSession) {
+    public String closeAd(@PathVariable Long id, HttpSession httpSession) {
         Long userID = (Long) httpSession.getAttribute("currentUser");
         if (userID == null) {
             return "redirect:/login";
@@ -271,7 +271,7 @@ public class AdController {
     }
 
     @RequestMapping(value = "/ad/{id}/apply", method = RequestMethod.GET)
-    public String register(@PathVariable Long id, HttpSession httpSession) {
+    public String apply(@PathVariable Long id, HttpSession httpSession) {
         Long userID = (Long) httpSession.getAttribute("currentUser");
         if(userID == null){
             return "redirect:/login";
@@ -289,7 +289,7 @@ public class AdController {
     }
 
     @RequestMapping(value = "/ad/{id}/unapply", method = RequestMethod.GET)
-    public String deregister(@PathVariable Long id, HttpSession httpSession) {
+    public String unapply(@PathVariable Long id, HttpSession httpSession) {
         Long userID = (Long) httpSession.getAttribute("currentUser");
         if(userID == null){
             return "redirect:/login";

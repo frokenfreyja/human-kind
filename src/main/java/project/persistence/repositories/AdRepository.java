@@ -4,8 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import project.persistence.entities.Ad;
 import java.util.Date;
-
-
 import java.util.List;
 
 public interface AdRepository extends JpaRepository<Ad, Long> {
@@ -27,15 +25,7 @@ public interface AdRepository extends JpaRepository<Ad, Long> {
 
     List<Ad> findByName(String name);
 
-    List<Ad> findByDescription(String description);
-
-    List<Ad> findByLocation(String location);
-
     List<Ad> findByGenLoc(String genLoc);
-
-    List<Ad> findByZipcode(Integer zipcode);
-
-    List<Ad> findByZipcodeAndInterest(Integer zipcode, String interest);
 
     List<Ad> findByOrganizationAndInterest(String organization, String interest);
 
@@ -44,8 +34,6 @@ public interface AdRepository extends JpaRepository<Ad, Long> {
     List<Ad> findByInterestAndGenLoc(String interest, String genLoc);
 
     List<Ad> findByOrganizationAndInterestAndGenLoc(String organization, String interest, String genLoc);
-
-    List<Ad> findByDate(Date date);
 
     List<Ad> findByOwner(Long owner);
 

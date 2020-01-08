@@ -61,25 +61,11 @@ public interface AdService {
     List<Ad> findByName(String name);
 
     /**
-     * Find all {@link Ad}s with {@link String description}
-     * @param description {@link String}
-     * @return All {@link Ad}s with the {@link String description} passed
+     * Find all {@link Ad}s with {@link String interest}
+     * @param interest {@link String}
+     * @return All {@link Ad}s with the {@link String interest} passed
      */
-    List<Ad> findByDescription(String description);
-
-    /**
-     * Find all {@link Ad}s with {@link String location}
-     * @param location {@link String}
-     * @return All {@link Ad}s with the {@link String location} passed
-     */
-    List<Ad> findByLocation(String location);
-
-    /**
-     * Find all {@link Ad}s with {@link Date date}
-     * @param date {@link Date}
-     * @return All {@link Ad}s with the {@link Date date} passed
-     */
-    List<Ad> findByDate(Date date);
+    List<Ad> findByInterest(String interest);
 
     /**
      * Find all {@link Ad}s with {@link Long owner}
@@ -91,24 +77,12 @@ public interface AdService {
     List<Ad> findByOrganization(String organization);
 
     /**
-     * Find all {@link Ad}s with {@link String interest}
-     * @param interest {@link String}
-     * @return All {@link Ad}s with the {@link String interest} passed
-     */
-    List<Ad> findByInterest(String interest);
-
-    /**
      * Find all {@link Ad}s with {@link String title, @link String description}
      * @param title {@link String}
      * @param description {@link String}
      * @return All {@link Ad}s with the {@link String title, @link description} passed
      */
     List<Ad> findByNameContainsIgnoreCaseOrDescriptionContainsIgnoreCase(String title, String description);
-
-
-    List<Ad> findByZipcodeAndInterest(Integer zipcode, String interest);
-
-    List<Ad> findByZipcodeAndInterestReverseOrder(Integer zipcode, String interest);
 
     List<Ad> findByOrganizationAndInterest(String organization, String interest);
 
@@ -117,8 +91,6 @@ public interface AdService {
     List<Ad> findByInterestAndGenLoc(String interest, String genLoc);
 
     List<Ad> findByOrganizationAndInterestAndGenLoc(String organization, String interest, String genLoc);
-
-    List<Ad> findByZipcodeReverseOrder(Integer zipcode);
 
     List<Ad> findByInterestReverseOrder(String interest);
 

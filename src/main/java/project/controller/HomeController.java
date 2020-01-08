@@ -34,7 +34,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String adList(Model model, HttpSession httpSession){
+    public String home(Model model, HttpSession httpSession){
 
         Date currentDate = new Date();
 
@@ -48,7 +48,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/organizations" , method = RequestMethod. GET)
-    public String viewOrganizations(HttpSession httpSession, Model model, Ad ad) {
+    public String viewOrganizations(Model model) {
         // Get list of organizations and send to view
         Map<Long, String> organizationList = new LinkedHashMap<Long, String>();
         List<User> users = userService.findAllByOrderByNameAsc();

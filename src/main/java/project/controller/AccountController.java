@@ -55,12 +55,12 @@ public class AccountController {
     }
 
     @RequestMapping(value ="/user/{id}", method = RequestMethod.GET)
-    public String accountView(@PathVariable Long id, @ModelAttribute("user") User user, Model model, HttpSession session){
+    public String viewAccount(@PathVariable Long id, Model model, HttpSession session){
 
         Long userID = (Long)session.getAttribute("currentUser");
         User currUser = userService.findOne(userID);
 
-        user = userService.findOne(id);
+        User user = userService.findOne(id);
         model.addAttribute("user", user);
 
         // Get all of user's applications
@@ -178,6 +178,9 @@ public class AccountController {
 
             model.addAttribute("verification", "A verification email has been sent to: "+ user.getEmail());
             model.addAttribute("header_type", "red_bar");
+            model.addAttribute("user", new User());
+
+            return "SignUpOrg";
         }
         return "SignUpOrg";
     }
@@ -242,6 +245,9 @@ public class AccountController {
 
             model.addAttribute("verification", "A verification email has been sent to: "+ user.getEmail());
             model.addAttribute("header_type", "red_bar");
+            model.addAttribute("user", new User());
+
+            return "SignUpVol";
         }
         return "SignUpVol";
     }
@@ -276,7 +282,7 @@ public class AccountController {
      * Delete account - POST
      */
     @RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
-    public String deleteAccount(@PathVariable Long id, @ModelAttribute("user") User user, Model model, HttpSession httpSession) {
+    public String deleteAccount(@PathVariable Long id, @ModelAttribute("user") User user, HttpSession httpSession) {
         Long userID = (Long)httpSession.getAttribute("currentUser");
         User currUser = userService.findOne(userID);
         // Delete user
@@ -311,7 +317,7 @@ public class AccountController {
      * Edit account - GET
      */
     @RequestMapping(value ="/edit_user/{id}", method = RequestMethod.GET)
-    public String editAccount(@PathVariable Long id, @ModelAttribute("user") User user, @ModelAttribute("course") Course course, Model model, HttpSession session){
+    public String editAccount(@PathVariable Long id, @ModelAttribute("course") Course course, Model model, HttpSession session){
 
         Long userID = (Long)session.getAttribute("currentUser");
         User currUser = userService.findOne(userID);
@@ -319,7 +325,7 @@ public class AccountController {
         if(userID==null)
             return "Login";
 
-        user = userService.findOne(id);
+        User user = userService.findOne(id);
         model.addAttribute("user", user);
 
         model.addAttribute("course", course);
@@ -364,14 +370,12 @@ public class AccountController {
      * Edit account - POST
      */
     @RequestMapping(value = "/edit_user/{id}", method = RequestMethod.POST)
-    public String editAccountPost(@PathVariable Long id, User user, Model model, HttpSession httpSession) {
+    public String editAccountPost(User user, Model model, HttpSession httpSession) {
         Long userID = (Long) httpSession.getAttribute("currentUser");
         User currUser = userService.findOne(userID);
 
         if(userID==null)
             return "Login";
-
-        System.out.println(user.getId() + " : " + user.getName());
 
         model.addAttribute("currUser", currUser);
 
@@ -413,7 +417,7 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/add_course/{id}", method = RequestMethod.POST)
-    public String addCoursePost(@PathVariable Long id, Course course, Model model, HttpSession httpSession) {
+    public String addCoursePost(Course course, HttpSession httpSession) {
         Long userID = (Long) httpSession.getAttribute("currentUser");
 
         if(userID==null)
