@@ -22,7 +22,6 @@ public class Work {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
-    private String duration;
 
     @Column(length=2048)
     private String description;
@@ -37,10 +36,11 @@ public class Work {
     private String imageName;
     private String generalLoc;
     private String msg;
+    private Boolean closed;
 
 
     public Work(){
-
+        this.closed = false;
     }
 
 
@@ -80,13 +80,6 @@ public class Work {
         this.date = date;
     }
 
-    public String getDuration() {
-        return duration;
-    }
-
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
 
     public String getDescription() {
         return description;
@@ -190,7 +183,15 @@ public class Work {
         this.msg = msg;
     }
 
-/*
+    public Boolean getClosed() {
+        return closed;
+    }
+
+    public void setClosed(Boolean closed) {
+        this.closed = closed;
+    }
+
+    /*
     public List<Integer> getZipFromGenLoc(String generalLoc) {
 
     }
@@ -204,7 +205,6 @@ public class Work {
                 ", name='" + name + '\'' +
                 ", location='" + location + '\'' +
                 ", date=" + date +
-                ", duration='" + duration + '\'' +
                 ", description='" + description + '\'' +
                 ", owner=" + owner +
                 ", organization='" + organization + '\'' +

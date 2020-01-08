@@ -22,6 +22,9 @@ public interface WorkRepository extends JpaRepository<Work, Long> {
     @Query(value = "SELECT w FROM Work w WHERE w.date >= ?1")
     List<Work> findAllActive(Date date);
 
+    @Query(value = "SELECT w FROM Work w WHERE w.closed = f")
+    List<Work> findAllOpen();
+
     List<Work> findByName(String name);
 
     List<Work> findByDescription(String description);
@@ -43,8 +46,6 @@ public interface WorkRepository extends JpaRepository<Work, Long> {
     List<Work> findByOrganizationAndInterestAndGenLoc(String organization, String interest, String genLoc);
 
     List<Work> findByDate(Date date);
-
-    List<Work> findByDuration(int duration);
 
     List<Work> findByOwner(Long owner);
 
