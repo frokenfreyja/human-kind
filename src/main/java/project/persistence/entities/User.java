@@ -31,7 +31,6 @@ public class User{
 
     @Column(columnDefinition="text")
     private String bio;
-    private int points;
     private Boolean orgi;
 
     private boolean isEnabled;
@@ -121,14 +120,6 @@ public class User{
         this.bio = bio;
     }
 
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
-    }
-
     public Boolean getOrgi() {
         return orgi;
     }
@@ -180,7 +171,6 @@ public class User{
                 ", image=" + image +
                 ", imageName='" + imageName + '\'' +
                 ", bio='" + bio + '\'' +
-                ", points=" + points +
                 ", orgi=" + orgi +
                 '}';
     }
