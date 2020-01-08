@@ -50,7 +50,7 @@
                 <div class="textbox_title">PROBLEM</div>
                 <p>Forests on fire, polluted ocean, animal extinction, growing inequality. It's the beginning of the end of our world and the need for volunteers has never been more urgent.</p>
                 <div class="textbox_title">MARKET</div>
-                <p>An estimated 31.6% of Icelandic adults volunteered in 2014. More than 1 billion people volunteer worldwide, most of them working in their own countries.</p>
+                <p>An estimated 31.6% of Icelandic adults volunteered in 2014. More than 1 billion people volunteer worldwide, most of them ading in their own countries.</p>
                 <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget</p>
             </div>
             <div class="col">
@@ -85,16 +85,16 @@
             <%--Fyrir hvert Item, sem er á listanum sem var sett í módelið er búin til röð í töflunni--%>
                 <h2 class="advert">AVAILABLE JOBS</h2>
                 <c:choose>
-                    <c:when test="${not empty work_list}">
+                    <c:when test="${not empty ad_list}">
                         <div class="advertlist">
                             <div class="list">
-                                <c:forEach begin="0" end="9" var="work" items="${work_list}">
+                                <c:forEach begin="0" end="9" var="ad" items="${ad_list}">
                                     <div class="ad">
-                                        <a href="/ad/${work.id}">
-                                            <div class="img"><img src="${pageContext.request.contextPath}/resources/images/${work.imageName}" /></div>
-                                                ${fn:substring(work.date, 0,10)}
+                                        <a href="/ad/${ad.id}">
+                                            <div class="img"><img src="${pageContext.request.contextPath}/resources/images/${ad.imageName}" /></div>
+                                                ${fn:substring(ad.date, 0,10)}
                                             <div class="card_title">
-                                                    ${work.name}
+                                                    ${ad.name}
                                             </div>
                                         </a>
 

@@ -35,7 +35,7 @@
         <div class="row">
             <div class="sort">
             <h4 class="label">Sort by:</h4>
-                <sf:form action="sortloc" modelAttribute="work">
+                <sf:form action="sortloc" modelAttribute="ad">
                     <sf:select class="dropdwn" path="genLoc" onChange="this.form.submit()">
                         <sf:option value="Location" style="display: none;">${genLoc}</sf:option>
                         <sf:option value="none" disabled="true">Location</sf:option>
@@ -50,7 +50,7 @@
                     </sf:select>
                 </sf:form>
 
-                <sf:form action="sortcat" modelAttribute="work">
+                <sf:form action="sortcat" modelAttribute="ad">
                     <sf:select class="dropdwn" path="interest" onChange="this.form.submit()">
                         <sf:option value="Category" style="display: none;">${interest}</sf:option>
                         <sf:option value="none" disabled="true">Category</sf:option>
@@ -63,7 +63,7 @@
                     </sf:select>
                 </sf:form>
 
-                <sf:form action="sortorg" modelAttribute="work">
+                <sf:form action="sortorg" modelAttribute="ad">
                     <sf:select class="dropdwn" path="organization" onChange="this.form.submit()">
                         <sf:option value="Organization" style="display: none;">${organization}</sf:option>
                         <sf:option value="none" disabled="true">Organization</sf:option>
@@ -76,16 +76,16 @@
         </div>
         </div>
         <c:choose>
-            <c:when test="${not empty work_list}">
+            <c:when test="${not empty ad_list}">
         <div class="advertlist">
                 <div class="list">
-                    <c:forEach var="work" items="${work_list}">
+                    <c:forEach var="ad" items="${ad_list}">
                         <div class="ad">
-                            <a href="/ad/${work.id}">
-                                <div class="img"><img src="${pageContext.request.contextPath}/resources/images/${work.imageName}" /></div>
-                                    ${fn:substring(work.date, 0,10)}
+                            <a href="/ad/${ad.id}">
+                                <div class="img"><img src="${pageContext.request.contextPath}/resources/images/${ad.imageName}" /></div>
+                                    ${fn:substring(ad.date, 0,10)}
                                 <div class="card_title">
-                                        ${work.name}
+                                        ${ad.name}
                                 </div>
                             </a>
 

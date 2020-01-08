@@ -18,14 +18,14 @@ public interface ApplicantRepository extends JpaRepository<Applicant, Long> {
     @Query(value = "SELECT a FROM Applicant a WHERE a.id = ?1")
     Applicant findOne(Long id);
 
-    @Query(value = "SELECT a FROM Applicant a WHERE a.work = ?1")
-    ArrayList<Applicant> findAllApplicants(Long work);
+    @Query(value = "SELECT a FROM Applicant a WHERE a.ad = ?1")
+    ArrayList<Applicant> findAllApplicants(Long ad);
 
     @Query(value = "SELECT a FROM Applicant a WHERE a.users =?1")
     ArrayList<Applicant> findAllApplications(Long users);
 
-    @Query(value = "SELECT a FROM Applicant a WHERE a.work = ?1 and a.users = ?2")
-    Applicant findByWorkAndUser(Long work, Long users);
+    @Query(value = "SELECT a FROM Applicant a WHERE a.ad = ?1 and a.users = ?2")
+    Applicant findByAdAndUser(Long ad, Long users);
 
 
 

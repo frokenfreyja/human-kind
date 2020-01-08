@@ -37,10 +37,10 @@ public interface ApplicantService {
 
     /**
      * Get list of {@link Applicant}s
-     * @param work {@link Long}
-     * @return list of {@link Applicant}s with {@link Long work}
+     * @param ad {@link Long}
+     * @return list of {@link Applicant}s with {@link Long ad}
      */
-    ArrayList<Applicant> findAllApplicants(Long work);
+    ArrayList<Applicant> findAllApplicants(Long ad);
 
     /**
      * Get list of {@link Applicant}s
@@ -51,10 +51,10 @@ public interface ApplicantService {
 
     /**
      * Get list of {@link Applicant}s
-     * @param work {@link Long}
+     * @param ad {@link Long}
      * @param users {@link Long}
-     * @return list of {@link Applicant}s with {@link Long work} and {@link Long users}
+     * @return list of {@link Applicant}s with {@link Long ad} and {@link Long users}
      */
-    Applicant findByWorkAndUser(Long work, Long users);
+    Applicant findByAdAndUser(Long ad, Long users);
 
 }

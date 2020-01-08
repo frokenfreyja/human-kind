@@ -26,7 +26,7 @@
     <div class="row">
         <%-- Form til þess að skrá nýja auglýsingu--%>
         <h1 class="title">CREATE JOB AD</h1>
-            <sf:form method="POST" modelAttribute="work" action="/new_ad" enctype="multipart/form-data">
+            <sf:form method="POST" modelAttribute="ad" action="/new_ad" enctype="multipart/form-data">
                     <div class="input">
                         <sf:input path="name" class="ad_text" type="text" placeholder="Title" required="required" autofocus="autofocus"/>
                     </div>

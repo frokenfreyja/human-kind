@@ -5,14 +5,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import project.persistence.entities.User;
-import project.persistence.entities.Work;
+import project.persistence.entities.Ad;
 import project.service.UserService;
-import project.service.WorkService;
+import project.service.AdService;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -25,32 +23,32 @@ import java.util.ArrayList;
 public class HomeController {
 
     // Instance Variables
-    private WorkService workService;
+    private AdService adService;
     private UserService userService;
 
     // Dependency Injection
     @Autowired
-    public HomeController(WorkService workService, UserService userService) {
-        this.workService = workService;
+    public HomeController(AdService adService, UserService userService) {
+        this.adService = adService;
         this.userService = userService;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String workList(Model model, HttpSession httpSession){
+    public String adList(Model model, HttpSession httpSession){
 
         Date currentDate = new Date();
 
         model.addAttribute("userID", httpSession.getAttribute("currentUser"));
         model.addAttribute("userName", httpSession.getAttribute("currentUsername"));
         model.addAttribute("userOrgi", httpSession.getAttribute("currentUserOrgi"));
-        model.addAttribute("work_list", workService.findAllActive(currentDate));
+        model.addAttribute("ad_list", adService.findAllActive(currentDate));
         model.addAttribute("header_type", "red_bar");
 
         return "Home";
     }
 
     @RequestMapping(value = "/organizations" , method = RequestMethod. GET)
-    public String viewOrganizations(HttpSession httpSession, Model model, Work work) {
+    public String viewOrganizations(HttpSession httpSession, Model model, Ad ad) {
         // Get list of organizations and send to view
         Map<Long, String> organizationList = new LinkedHashMap<Long, String>();
         List<User> users = userService.findAllByOrderByNameAsc();

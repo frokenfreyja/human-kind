@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import project.persistence.entities.Ad;
 import project.persistence.entities.*;
 import project.persistence.repositories.ConfirmationTokenRepository;
 import project.service.*;
@@ -28,7 +29,7 @@ public class AccountController {
 
     // Instance Variables
     private UserService userService;
-    private WorkService workService;
+    private AdService adService;
     private CourseService courseService;
     private ApplicantService applicantService;
     private CourseNameService courseNameService;
@@ -44,10 +45,10 @@ public class AccountController {
 
     // Dependency Injection
     @Autowired
-    public AccountController(UserService userService, WorkService workService, ApplicantService applicantService, CourseService courseService, CourseNameService courseNameService) {
+    public AccountController(UserService userService, AdService adService, ApplicantService applicantService, CourseService courseService, CourseNameService courseNameService) {
 
         this.userService = userService;
-        this.workService = workService;
+        this.adService = adService;
         this.courseService = courseService;
         this.applicantService = applicantService;
         this.courseNameService = courseNameService;
@@ -63,17 +64,17 @@ public class AccountController {
         model.addAttribute("user", user);
 
         // Get all of user's applications
-        ArrayList<Work> jobs = new ArrayList<>(applicantService.findAllApplications(user.getId()).size());
-        ArrayList<Work> completedJobs = new ArrayList<>(jobs.size());
+        ArrayList<Ad> jobs = new ArrayList<>(applicantService.findAllApplications(user.getId()).size());
+        ArrayList<Ad> completedJobs = new ArrayList<>(jobs.size());
         ArrayList<Applicant> applications = applicantService.findAllApplications(user.getId());
         for(int i=0; i<applications.size(); i++) {
-            Long workID = applications.get(i).getWork();
-            Work work = workService.findOne(workID);
-            System.out.println(work.getClosed());
-            if(work.getClosed())
-                completedJobs.add(work);
+            Long adID = applications.get(i).getAd();
+            Ad ad = adService.findOne(adID);
+            System.out.println(ad.getClosed());
+            if(ad.getClosed())
+                completedJobs.add(ad);
             System.out.println(completedJobs.toString());
-            jobs.add(work);
+            jobs.add(ad);
         }
 
         if(!user.getOrgi()) {
@@ -95,7 +96,7 @@ public class AccountController {
 
         if(user.getOrgi()) {
             model.addAttribute("organization", true);
-            model.addAttribute("own_ads", workService.findByOwner(user.getId()));
+            model.addAttribute("own_ads", adService.findByOwner(user.getId()));
         }
 
         model.addAttribute("header_type", "red_bar");
@@ -286,13 +287,13 @@ public class AccountController {
         for (Applicant application : applications) applicantService.delete(application);
 
         // Delete all of user's ads
-        List<Work> works = workService.findByOwner(currUser.getId());
-        if(works.size() != 0) {
-            for (Work work : works) {
-                workService.delete(work);
+        List<Ad> ads = adService.findByOwner(currUser.getId());
+        if(ads.size() != 0) {
+            for (Ad ad : ads) {
+                adService.delete(ad);
 
                 // Delete all applicants of user's ads
-                ArrayList<Applicant> applicants = applicantService.findAllApplicants(work.getId());
+                ArrayList<Applicant> applicants = applicantService.findAllApplicants(ad.getId());
                 if(applicants.size() != 0) {
                     for (Applicant applicant : applicants) {
                         applicantService.delete(applicant);
@@ -324,12 +325,12 @@ public class AccountController {
         model.addAttribute("course", course);
 
         // Get all of user's applications
-        ArrayList<Work> jobs = new ArrayList<>(applicantService.findAllApplications(user.getId()).size());
+        ArrayList<Ad> jobs = new ArrayList<>(applicantService.findAllApplications(user.getId()).size());
         ArrayList<Applicant> applications = applicantService.findAllApplications(user.getId());
         for(int i=0; i<applications.size(); i++) {
-            Long workID = applications.get(i).getWork();
-            Work work = workService.findOne(workID);
-            jobs.add(work);
+            Long adID = applications.get(i).getAd();
+            Ad ad = adService.findOne(adID);
+            jobs.add(ad);
         }
 
         if(!user.getOrgi()) {
@@ -351,7 +352,7 @@ public class AccountController {
 
         if(user.getOrgi()) {
             model.addAttribute("organization", true);
-            model.addAttribute("own_ads", workService.findByOwner(user.getId()));
+            model.addAttribute("own_ads", adService.findByOwner(user.getId()));
         }
 
         model.addAttribute("edit", true);
@@ -375,12 +376,12 @@ public class AccountController {
         model.addAttribute("currUser", currUser);
 
         // Get all of user's applications
-        ArrayList<Work> jobs = new ArrayList<>(applicantService.findAllApplications(currUser.getId()).size());
+        ArrayList<Ad> jobs = new ArrayList<>(applicantService.findAllApplications(currUser.getId()).size());
         ArrayList<Applicant> applications = applicantService.findAllApplications(currUser.getId());
         for(int i=0; i<applications.size(); i++) {
-            Long workID = applications.get(i).getWork();
-            Work work = workService.findOne(workID);
-            jobs.add(work);
+            Long adID = applications.get(i).getAd();
+            Ad ad = adService.findOne(adID);
+            jobs.add(ad);
         }
 
         if(!currUser.getOrgi()) {
@@ -389,7 +390,7 @@ public class AccountController {
 
         if(currUser.getOrgi()) {
             model.addAttribute("organization", true);
-            model.addAttribute("own_ads", workService.findByOwner(user.getId()));
+            model.addAttribute("own_ads", adService.findByOwner(user.getId()));
         }
 
         if (userService.findByEmail(user.getEmail()) != null && !currUser.getEmail().equals(user.getEmail())) {

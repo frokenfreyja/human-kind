@@ -5,10 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import project.persistence.entities.User;
-import project.persistence.entities.Work;
-import project.service.ApplicantService;
+import project.persistence.entities.Ad;
 import project.service.UserService;
-import project.service.WorkService;
+import project.service.AdService;
 
 import javax.servlet.http.HttpSession;
 import java.util.LinkedHashMap;
@@ -19,13 +18,13 @@ import java.util.Map;
 public class SortController {
 
     // Instance Variables
-    private WorkService workService;
+    private AdService adService;
     private UserService userService;
 
     // Dependency Injection
     @Autowired
-    public SortController(WorkService workService, UserService userService) {
-        this.workService = workService;
+    public SortController(AdService adService, UserService userService) {
+        this.adService = adService;
         this.userService = userService;
     }
 
@@ -35,14 +34,14 @@ public class SortController {
     @RequestMapping(value = "searchlistx", method = RequestMethod.GET)
     public String searchItems(@RequestParam(value = "searching", required = false) String searchwords, Model model) {
 
-        model.addAttribute("work", new Work());
-        model.addAttribute("work_list", workService.findByNameContainsIgnoreCaseOrDescriptionContainsIgnoreCase(searchwords, searchwords));
+        model.addAttribute("ad", new Ad());
+        model.addAttribute("ad_list", adService.findByNameContainsIgnoreCaseOrDescriptionContainsIgnoreCase(searchwords, searchwords));
 
         return "AllAds";
     }
 
     @RequestMapping(value = "sortcat" , method = RequestMethod. POST)
-    public String sortCat(@RequestParam("interest") String interest, @ModelAttribute("work") Work work, HttpSession httpSession, Model model)
+    public String sortCat(@RequestParam("interest") String interest, @ModelAttribute("ad") Ad ad, HttpSession httpSession, Model model)
     {
         httpSession.setAttribute("interest", interest);
         if (interest.equals("All") || interest.equals("Category")) {
@@ -53,7 +52,7 @@ public class SortController {
     }
 
     @RequestMapping(value = "sortloc" , method = RequestMethod. POST)
-    public String sortLoc(@RequestParam("genLoc") String genLoc, @ModelAttribute("work") Work work, HttpSession httpSession, Model model)
+    public String sortLoc(@RequestParam("genLoc") String genLoc, @ModelAttribute("ad") Ad ad, HttpSession httpSession, Model model)
     {
         httpSession.setAttribute("genLoc", genLoc);
         if(genLoc.equals("All") || genLoc.equals("Location")) {
@@ -64,7 +63,7 @@ public class SortController {
     }
 
     @RequestMapping(value = "sortorg" , method = RequestMethod. POST)
-    public String sortOrg(@RequestParam("organization") String organization, @ModelAttribute("work") Work work, HttpSession httpSession, Model model)
+    public String sortOrg(@RequestParam("organization") String organization, @ModelAttribute("ad") Ad ad, HttpSession httpSession, Model model)
     {
         httpSession.setAttribute("organization", organization);
         if (organization.equals("All") || organization.equals("Organization")) {
@@ -75,7 +74,7 @@ public class SortController {
     }
 
     @RequestMapping(value = "sorter" , method = RequestMethod. GET)
-    public String sortZipTag(HttpSession httpSession, Model model, Work work) {
+    public String sortZipTag(HttpSession httpSession, Model model, Ad ad) {
 
         // Get list of organizations and send to view
         Map<Long, String> organizationList = new LinkedHashMap<Long, String>();
@@ -94,22 +93,22 @@ public class SortController {
 
 
         if ((interest != null) && (orgi == null) && (genLoc == null)) {
-            model.addAttribute("work_list", workService.findByInterestReverseOrder(interest));
+            model.addAttribute("ad_list", adService.findByInterestReverseOrder(interest));
         } else if ((orgi != null) && (interest == null) && (genLoc == null)) {
-            model.addAttribute("work_list", workService.findByOrganization(orgi));
+            model.addAttribute("ad_list", adService.findByOrganization(orgi));
         } else if ((genLoc != null) && (orgi == null) && (interest == null)) {
-            model.addAttribute("work_list", workService.findByGenLoc(genLoc));
+            model.addAttribute("ad_list", adService.findByGenLoc(genLoc));
         } else if ((orgi != null) && (interest != null) && (genLoc == null)) {
-            model.addAttribute("work_list", workService.findByOrganizationAndInterest(orgi, interest));
+            model.addAttribute("ad_list", adService.findByOrganizationAndInterest(orgi, interest));
         } else if ((orgi != null) && (genLoc != null) && (interest == null)) {
-            model.addAttribute("work_list", workService.findByOrganizationAndGenLoc(orgi, genLoc));
+            model.addAttribute("ad_list", adService.findByOrganizationAndGenLoc(orgi, genLoc));
         } else if ((interest != null) && (genLoc != null) && (orgi == null)) {
-            model.addAttribute("work_list", workService.findByInterestAndGenLoc(interest, genLoc));
+            model.addAttribute("ad_list", adService.findByInterestAndGenLoc(interest, genLoc));
         } else if ((orgi != null) && (interest != null) && (genLoc != null)) {
-            model.addAttribute("work_list", workService.findByOrganizationAndInterestAndGenLoc(orgi, interest, genLoc));
+            model.addAttribute("ad_list", adService.findByOrganizationAndInterestAndGenLoc(orgi, interest, genLoc));
         } else {
-            model.addAttribute("work",new Work());
-            model.addAttribute("work_list", workService.findAllReverseOrder());
+            model.addAttribute("ad",new Ad());
+            model.addAttribute("ad_list", adService.findAllReverseOrder());
         }
 
         return "AllAds";

@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Date;
 
 @Entity
-@Table(name = "work")
-public class Work {
+@Table(name = "ad")
+public class Ad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +39,7 @@ public class Work {
     private Boolean closed;
 
 
-    public Work(){
+    public Ad(){
         this.closed = false;
     }
 
@@ -191,16 +191,10 @@ public class Work {
         this.closed = closed;
     }
 
-    /*
-    public List<Integer> getZipFromGenLoc(String generalLoc) {
-
-    }
-*/
-
 
     @Override
     public String toString() {
-        return "Work{" +
+        return "Ad{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", location='" + location + '\'' +

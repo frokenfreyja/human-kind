@@ -2,10 +2,7 @@ package project.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.LinkedHashMap;
@@ -15,28 +12,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import project.persistence.entities.Applicant;
-import project.persistence.entities.Work;
+import project.persistence.entities.Ad;
 import project.persistence.entities.User;
 import project.service.ApplicantService;
 import project.service.EmailService;
 import project.service.UserService;
-import project.service.WorkService;
+import project.service.AdService;
 
 @Controller
 public class AdController {
 
     // Instance Variables
-    private WorkService workService;
+    private AdService adService;
     private UserService userService;
     private ApplicantService applicantService;
     private EmailService emailService;
@@ -45,8 +40,8 @@ public class AdController {
      * MUNA AÐ SETJA NÝ SERVICE Í SMIÐ
      */
     @Autowired
-    public AdController(WorkService workService, UserService userService, ApplicantService applicantService, EmailService emailService) {
-        this.workService = workService;
+    public AdController(AdService adService, UserService userService, ApplicantService applicantService, EmailService emailService) {
+        this.adService = adService;
         this.userService = userService;
         this.applicantService = applicantService;
         this.emailService = emailService;
@@ -57,8 +52,8 @@ public class AdController {
 
         Date currentDate = new Date();
 
-        model.addAttribute("work", new Work());
-        model.addAttribute("work_list", workService.findAllActive(currentDate));
+        model.addAttribute("ad", new Ad());
+        model.addAttribute("ad_list", adService.findAllActive(currentDate));
 
         httpSession.removeAttribute("interest");
         httpSession.removeAttribute("organization");
@@ -86,8 +81,8 @@ public class AdController {
         }
         User currUser = userService.findOne(userID);
 
-        model.addAttribute("work", new Work());
-        model.addAttribute("work_list", workService.findAllReverseOrder());
+        model.addAttribute("ad", new Ad());
+        model.addAttribute("ad_list", adService.findAllReverseOrder());
         model.addAttribute("header_type", "red_bar");
         model.addAttribute("currUser", currUser);
 
@@ -95,60 +90,60 @@ public class AdController {
     }
 
     @RequestMapping(value = "/new_ad", method = RequestMethod.POST)
-    public String newItem(@ModelAttribute("work") Work work, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) throws IOException {
+    public String newItem(@ModelAttribute("ad") Ad ad, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) throws IOException {
 
         Long userID = (Long) httpSession.getAttribute("currentUser");
-        work.setOwner(userID);
+        ad.setOwner(userID);
 
         if (userID == null) {
             return "redirect:/login";
         }
 
         User currUser = userService.findOne(userID);
-        work.setOrganization(currUser.getName());
+        ad.setOrganization(currUser.getName());
 
-        MultipartFile imagefile = work.getImage();
+        MultipartFile imagefile = ad.getImage();
         String fileName;
 
         imagefile.getInputStream();
 
-        if (work.getImage()==null) throw new NullPointerException("unable to fetch"+imagefile);
+        if (ad.getImage()==null) throw new NullPointerException("unable to fetch"+imagefile);
         String rootDirectory = httpServletRequest.getSession().getServletContext().getRealPath("/");
-        if(work.getImage() != null && !work.getImage().isEmpty())
+        if(ad.getImage() != null && !ad.getImage().isEmpty())
             try {
                 File path = new File(rootDirectory + "resources/images/"+imagefile.getOriginalFilename());
                 imagefile.transferTo(path);
 
                 fileName = imagefile.getOriginalFilename();
-                work.setImageName(fileName);
+                ad.setImageName(fileName);
 
             } catch (IllegalStateException | IOException e) {
                 e.printStackTrace();
             }
 
-        if (work.getImageName() == null) {
-            work.setImageName(currUser.getImageName());
+        if (ad.getImageName() == null) {
+            ad.setImageName(currUser.getImageName());
         }
-        String genLoc = work.getGeneralLoc(work.getZipcode());
-        work.setGenLoc(genLoc);
+        String genLoc = ad.getGeneralLoc(ad.getZipcode());
+        ad.setGenLoc(genLoc);
 
-        workService.save(work);
-        model.addAttribute("work_list", workService.findAllReverseOrder());
-        model.addAttribute("work", new Work());
+        adService.save(ad);
+        model.addAttribute("ad_list", adService.findAllReverseOrder());
+        model.addAttribute("ad", new Ad());
 
         return "redirect:/";
     }
 
     @RequestMapping(value = "/ad/{id}/delete", method = RequestMethod.GET)
-    public String deleteAd(@PathVariable Long id, Work work, Model model, HttpSession httpSession) {
+    public String deleteAd(@PathVariable Long id, HttpSession httpSession) {
         Long userID = (Long) httpSession.getAttribute("currentUser");
         if(userID == null){
             return "redirect:/login";
         }
 
-        Work ad = workService.findOne(id);
+        Ad ad = adService.findOne(id);
         if(ad != null) {
-            workService.delete(ad);
+            adService.delete(ad);
 
             // Delete all applicants of ad
             ArrayList<Applicant> applicants = applicantService.findAllApplicants(ad.getId());
@@ -163,14 +158,14 @@ public class AdController {
     }
 
     @RequestMapping(value = "/ad/{id}/edit_ad", method = RequestMethod.GET)
-    public String editAd(@PathVariable Long id, Work work, Model model, HttpSession httpSession) {
+    public String editAd(@PathVariable Long id, Model model, HttpSession httpSession) {
         Long userID = (Long) httpSession.getAttribute("currentUser");
 
         if(userID == null) {
             return "redirect:/login";
         }
 
-        Work ad = workService.findOne(id);
+        Ad ad = adService.findOne(id);
 
         if(!ad.getOwner().equals(userID))
             return "redirect:/ad/{id}";
@@ -183,76 +178,73 @@ public class AdController {
 
 
     @RequestMapping(value = "/ad/{id}/edit_ad", method = RequestMethod.POST)
-    public String editAdPost(@PathVariable Long id, Work work, Model model, HttpSession httpSession, HttpServletRequest httpServletRequest) throws IOException {
+    public String editAdPost(@PathVariable Long id, Ad ad, Model model, HttpSession httpSession, HttpServletRequest httpServletRequest) throws IOException {
         Long userID = (Long) httpSession.getAttribute("currentUser");
 
         if(userID == null) {
             return "redirect:/login";
         }
 
-        Work ad = workService.findOne(id);
+        Ad edit_ad = adService.findOne(id);
 
-        if(!ad.getOwner().equals(userID))
+        if(!edit_ad.getOwner().equals(userID))
             return "redirect:/ad/{id}";
 
-        System.out.println("test");
-        System.out.println(work.toString());
+        edit_ad.setName(ad.getName());
+        edit_ad.setDate(ad.getDate());
+        edit_ad.setInterest(ad.getInterest());
+        edit_ad.setLocation(ad.getLocation());
+        edit_ad.setZipcode(ad.getZipcode());
+        edit_ad.setDescription(ad.getDescription());
+        edit_ad.setMsg(ad.getMsg());
 
-        ad.setName(work.getName());
-        ad.setDate(work.getDate());
-        ad.setInterest(work.getInterest());
-        ad.setLocation(work.getLocation());
-        ad.setZipcode(work.getZipcode());
-        ad.setDescription(work.getDescription());
-        ad.setMsg(work.getMsg());
-
-        MultipartFile imagefile = work.getImage();
+        MultipartFile imagefile = ad.getImage();
         String fileName;
 
         imagefile.getInputStream();
 
-        if (work.getImage()==null) throw new NullPointerException("unable to fetch"+imagefile);
+        if (ad.getImage()==null) throw new NullPointerException("unable to fetch"+imagefile);
         String rootDirectory = httpServletRequest.getSession().getServletContext().getRealPath("/");
-        if(work.getImage() != null && !work.getImage().isEmpty())
+        if(ad.getImage() != null && !ad.getImage().isEmpty())
             try {
                 File path = new File(rootDirectory + "resources/images/"+imagefile.getOriginalFilename());
                 imagefile.transferTo(path);
 
                 fileName = imagefile.getOriginalFilename();
-                work.setImageName(fileName);
+                ad.setImageName(fileName);
 
             } catch (IllegalStateException | IOException e) {
                 e.printStackTrace();
             }
 
-        if (work.getImageName() != null) {
-            ad.setImageName(work.getImageName());
+        if (ad.getImageName() != null) {
+            edit_ad.setImageName(ad.getImageName());
         }
 
-        workService.save(ad);
+        adService.save(edit_ad);
 
         return "redirect:/ad/{id}";
     }
 
     @RequestMapping(value = "/ad/{id}/close", method = RequestMethod.GET)
-    public String closeAd(@PathVariable Long id, Work work, Model model, HttpSession httpSession) {
+    public String closeAd(@PathVariable Long id, Model model, HttpSession httpSession) {
         Long userID = (Long) httpSession.getAttribute("currentUser");
         if (userID == null) {
             return "redirect:/login";
         }
 
-        Work ad = workService.findOne(id);
+        Ad ad = adService.findOne(id);
         ad.setClosed(true);
 
-        workService.save(ad);
+        adService.save(ad);
 
         return "redirect:/ad/{id}";
     }
 
     @RequestMapping(value = "/ad/{id}", method = RequestMethod.GET)
     public String viewAd(@PathVariable Long id, Model model, HttpSession httpSession) {
-        Work ad = new Work();
-        ad = workService.findOne(id);
+        Ad ad = new Ad();
+        ad = adService.findOne(id);
         User owner = userService.findOne(ad.getOwner());
         ArrayList<Applicant> applicantList = applicantService.findAllApplicants(id);
         ArrayList<User> userList = new ArrayList<User>(applicantList.size());
@@ -266,7 +258,7 @@ public class AdController {
         model.addAttribute("currUser", currUser);
         model.addAttribute("genLoc", ad.getGeneralLoc(ad.getZipcode()));
 
-        if(currUser != null && applicantService.findByWorkAndUser(ad.getId(), currUser.getId()) != null) {
+        if(currUser != null && applicantService.findByAdAndUser(ad.getId(), currUser.getId()) != null) {
             model.addAttribute("alreadyApplied", true);
         }
 
@@ -286,10 +278,10 @@ public class AdController {
         }
 
         Applicant applicant = new Applicant();
-        applicant.setWork(id);
+        applicant.setAd(id);
         applicant.setUser(userID);
 
-        if(applicantService.findByWorkAndUser(id,userID) == null) {
+        if(applicantService.findByAdAndUser(id,userID) == null) {
             applicantService.save(applicant);
         }
 
@@ -303,7 +295,7 @@ public class AdController {
             return "redirect:/login";
         }
 
-        Applicant applicant = applicantService.findByWorkAndUser(id, userID);
+        Applicant applicant = applicantService.findByAdAndUser(id, userID);
         if(applicant != null) {
             applicantService.delete(applicant);
         }
@@ -318,13 +310,13 @@ public class AdController {
             return "redirect:/login";
         }
 
-        Applicant applicant = applicantService.findByWorkAndUser(id,userid);
+        Applicant applicant = applicantService.findByAdAndUser(id,userid);
 
         applicant.setAccepted(true);
 
         applicantService.save(applicant);
 
-        emailService.sendAcceptMail(userService.findOne(userid), workService.findOne(id).getMsg());
+        emailService.sendAcceptMail(userService.findOne(userid), adService.findOne(id).getMsg());
 
         return "redirect:/ad/{id}";
     }
@@ -336,7 +328,7 @@ public class AdController {
             return "redirect:/login";
         }
 
-        Applicant applicant = applicantService.findByWorkAndUser(id,userid);
+        Applicant applicant = applicantService.findByAdAndUser(id,userid);
 
         applicant.setAccepted(false);
 

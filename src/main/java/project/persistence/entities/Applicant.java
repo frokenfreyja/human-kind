@@ -8,7 +8,7 @@ public class Applicant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long work;
+    private Long ad;
     private Long users;
     private boolean accepted;
     private boolean rejected;
@@ -22,12 +22,12 @@ public class Applicant {
         return id;
     }
 
-    public Long getWork() {
-        return work;
+    public Long getAd() {
+        return ad;
     }
 
-    public void setWork(Long work) {
-        this.work = work;
+    public void setAd(Long ad) {
+        this.ad = ad;
     }
 
     public Long getUser() {
@@ -58,7 +58,7 @@ public class Applicant {
     public String toString() {
         return "Applicant{" +
                 "id=" + id +
-                ", work=" + work +
+                ", ad=" + ad +
                 ", users=" + users +
                 ", accepted=" + accepted +
                 ", rejected=" + rejected +
