@@ -54,15 +54,20 @@
                 <p>${ad.description}</p>
             </div>
 
-                <c:if test="${not empty currUser && not currUser.orgi && not alreadyApplied}">
+                <c:if test="${not empty currUser && not currUser.orgi && not alreadyApplied && not ad.closed}">
                     <div class="apply_btn">
                         <a href="/ad/${id}/apply" class="btn">Apply</a>
                     </div>
                 </c:if>
-                <c:if test="${not empty currUser && not currUser.orgi && alreadyApplied}">
+                <c:if test="${not empty currUser && not currUser.orgi && alreadyApplied && not ad.closed}">
                     <div class="apply_btn">
                         <a href="/ad/${id}/unapply" class="btn">Unapply</a>
                     </div>
+                </c:if>
+                <c:if test="${ad.closed}">
+                   <div class="closed_txt">
+                        <p> Sorry but this ad has been close </p>
+                   </div>
                 </c:if>
             <c:choose>
                 <c:when test="${not empty applicants}">
@@ -75,14 +80,14 @@
                                 ${status.index+1}. ${applicant_list.name}
                             </a>
 
-                            <c:if test="${not empty currUser && currUser.orgi && not accepted[status.index].accepted}">
+                            <c:if test="${not empty currUser && currUser.orgi && not accepted[status.index].accepted && not ad.closed}">
                                 <c:if test="${not accepted[status.index].accepted}">
                                 <div class="accept_btn">
                                     <a href="/ad/${id}/${applicant_list.id}/accept">Accept</a>
                                 </div>
                                 </c:if>
                             </c:if>
-                            <c:if test="${not empty currUser && currUser.orgi && accepted[status.index].accepted}">
+                            <c:if test="${not empty currUser && currUser.orgi && accepted[status.index].accepted && not ad.closed}">
                                 <div class ="accept_btn">
                                     <a href="/ad/${id}/${applicant_list.id}/reject">Reject</a>
                                 </div>
@@ -93,12 +98,15 @@
                 </div>
                 </c:when>
             </c:choose>
-            <c:if test="${currUser.orgi && currUser eq owner}">
+            <c:if test="${currUser.orgi && currUser eq owner && not ad.closed}">
                 <div class="apply_btn">
                     <a href="/ad/${id}/delete" class="btn">Remove</a>
                 </div>
                 <div class="apply_btn">
                     <a href="/ad/${id}/edit_ad" class="btn">Edit</a>
+                </div>
+                <div class="apply_btn">
+                    <a href="/ad/${id}/close" class="btn">Close</a>
                 </div>
             </c:if>
             <div>

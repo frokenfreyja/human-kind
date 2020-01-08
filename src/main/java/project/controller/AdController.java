@@ -180,6 +180,8 @@ public class AdController {
         return "AdEdit";
     }
 
+
+
     @RequestMapping(value = "/ad/{id}/edit_ad", method = RequestMethod.POST)
     public String editAdPost(@PathVariable Long id, Work work, Model model, HttpSession httpSession, HttpServletRequest httpServletRequest) throws IOException {
         Long userID = (Long) httpSession.getAttribute("currentUser");
@@ -226,6 +228,21 @@ public class AdController {
         if (work.getImageName() != null) {
             ad.setImageName(work.getImageName());
         }
+
+        workService.save(ad);
+
+        return "redirect:/ad/{id}";
+    }
+
+    @RequestMapping(value = "/ad/{id}/close", method = RequestMethod.GET)
+    public String closeAd(@PathVariable Long id, Work work, Model model, HttpSession httpSession) {
+        Long userID = (Long) httpSession.getAttribute("currentUser");
+        if (userID == null) {
+            return "redirect:/login";
+        }
+
+        Work ad = workService.findOne(id);
+        ad.setClosed(true);
 
         workService.save(ad);
 
