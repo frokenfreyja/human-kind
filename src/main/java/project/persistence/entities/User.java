@@ -18,6 +18,8 @@ public class User{
     private String email;
     private String gender;
     private String password;
+    private String confirmationToken;
+
     @Transient
     private String confirmPassword;
     private String phone;
@@ -78,6 +80,14 @@ public class User{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConfirmationToken() {
+        return confirmationToken;
+    }
+
+    public void setConfirmationToken(String confirmationToken) {
+        this.confirmationToken = confirmationToken;
     }
 
     public String getConfirmPassword() {

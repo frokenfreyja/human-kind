@@ -175,7 +175,15 @@ public class AccountController {
             userService.save(user);
 
             /*
-            ConfirmationToken confirmationToken = new ConfirmationToken(user);
+            confirmationToken = new ConfirmationToken(user);
+
+            // Create expiry date for token
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(new Timestamp(cal.getTime().getTime()));
+            cal.add(Calendar.MINUTE, EXPIRATION);
+
+            confirmationToken.setExpiryDate(new Date(cal.getTime().getTime()));
+
             confirmationTokenRepository.save(confirmationToken);
 
             SimpleMailMessage mailMessage = new SimpleMailMessage();
@@ -242,14 +250,16 @@ public class AccountController {
         } else {
             user.setOrgi(false);
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-            userService.save(user);
 
             confirmationToken = new ConfirmationToken(user);
+            user.setConfirmationToken(confirmationToken.getConfirmationToken());
+            System.out.println(user.getConfirmationToken() + " : " + confirmationToken.getConfirmationToken());
+            userService.save(user);
 
             // Create expiry date for token
             Calendar cal = Calendar.getInstance();
             cal.setTime(new Timestamp(cal.getTime().getTime()));
-            cal.add(Calendar.MINUTE, 1);
+            cal.add(Calendar.MINUTE, EXPIRATION);
 
             confirmationToken.setExpiryDate(new Date(cal.getTime().getTime()));
 
@@ -277,8 +287,8 @@ public class AccountController {
     {
         confirmationToken = confirmationTokenRepository.findByConfirmationToken(confirmationTokenString);
         User user = userService.findByEmail(confirmationToken.getUser().getEmail());
-
         Calendar cal = Calendar.getInstance();
+
         if ((confirmationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
             if(user.getOrgi()) {
                 model.addAttribute("message", "Your confirmation token has expired. Please register again.");
@@ -327,6 +337,15 @@ public class AccountController {
     public String deleteAccount(@PathVariable Long id, @ModelAttribute("user") User user, HttpSession httpSession) {
         Long userID = (Long)httpSession.getAttribute("currentUser");
         User currUser = userService.findOne(userID);
+
+        // Delete token if it still exists
+        if(currUser.getConfirmationToken() != null) {
+            String confirmationTokenString = currUser.getConfirmationToken();
+            ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationTokenString);
+            confirmationTokenRepository.delete(token);
+        }
+        
+        System.out.println("CURRUSER TOKEN: " + currUser.getConfirmationToken());
 
         // Delete user
         userService.delete(currUser);
