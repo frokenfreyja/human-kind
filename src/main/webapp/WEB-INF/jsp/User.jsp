@@ -30,11 +30,19 @@
                     <div class="section1">
                     <div class="banner">
                         <h3>Personal details</h3>
+                        <c:choose>
+                            <c:when test="${empty edit}">
+                                <a href="/edit_user/${currUser.id}" class="edit__btn">Edit</a>
+                            </c:when>
+                            <c:otherwise>
+                                <input class="edit__btn" type="submit" form="edit_form" value="OK"/>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                     <div class="user_info">
                         <c:choose>
                             <c:when test="${edit}">
-                                <sf:form method="POST" modelAttribute="user" action="/edit_user/${currUser.id}">
+                                <sf:form id="edit_form" method="POST" modelAttribute="user" action="/edit_user/${currUser.id}">
                                     <div class="edit_col">
                                         <div class="row_info">
                                             <div class="edit_icon">
@@ -86,13 +94,6 @@
                                                     ${error}
                                             </div>
                                         </c:if>
-                                    </div>
-                                    <div class="edit_col">
-                                        <div class="edit">
-                                            <div class="edit_btn">
-                                                <input class="btn" type="submit" VALUE="OK"/>
-                                            </div>
-                                        </div>
                                     </div>
                                 </sf:form>
 
@@ -163,13 +164,6 @@
                                     </c:if>
                                 </div>
                                 <div class="col"></div>
-                                <div class="col">
-                                    <div class="edit">
-                                        <div class="edit_btn">
-                                            <a href="/edit_user/${currUser.id}" class="btn">Edit</a>
-                                        </div>
-                                    </div>
-                                </div>
                             </c:otherwise>
                         </c:choose>
                     </div>

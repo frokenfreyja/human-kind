@@ -39,9 +39,12 @@ main {
 
 .banner {
     width: 100%;
+    padding-left: 10px;
     background-color: #F85548;
     color: white;
-    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .row_info {
@@ -136,6 +139,28 @@ form {
 .edit_btn .btn {
     border: none;
     font-size: 1em;
+}
+
+.edit__btn {
+    border: none;
+    width: 15%;
+    height: 100%;
+    padding: 5px 0;
+    background-color: black;
+    text-decoration: none;
+    font-size: 1em;
+    cursor: pointer;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.1s ease;
+    display: flex;
+    justify-content: center;
+}
+
+.edit__btn:hover {
+    background-color: #F85548;
+    text-decoration: none;
 }
 
 .edit_text {
