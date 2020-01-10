@@ -6,7 +6,7 @@ import project.persistence.entities.ConfirmationToken;
 
 public interface ConfirmationTokenRepository extends JpaRepository<ConfirmationToken, String> {
 
-    ConfirmationToken save(String confirmationToken);
+    void delete(ConfirmationToken confirmationToken);
 
     ConfirmationToken findByConfirmationToken(String confirmationToken);
 }

@@ -24,7 +24,8 @@
     <div class="row">
     <h1 class="title">VOLUNTEER</h1>
         <p>${verification}</p>
-    <sf:form method="POST" modelAttribute="user" action="/vol" enctype="multipart/form-data" class="form">
+        <p>${message}</p>
+        <sf:form method="POST" modelAttribute="user" action="/vol" enctype="multipart/form-data" class="form">
         <div class="input">
             <img src="${pageContext.request.contextPath}/resources/images/name.png" class="img"/>
             <sf:input path="name" type="text" placeholder="Full name" class="signup_text"/>

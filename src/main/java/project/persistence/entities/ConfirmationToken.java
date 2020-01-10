@@ -2,6 +2,9 @@ package project.persistence.entities;
 
 import javax.persistence.*;
 import java.util.*;
+import java.sql.Timestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "confirmationtoken")
@@ -20,6 +23,9 @@ public class ConfirmationToken {
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "id")
     private User user;
+
+    private Date expiryDate;
+
 
     public ConfirmationToken(){
     }
@@ -52,6 +58,14 @@ public class ConfirmationToken {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public Date getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(Date expiryDate) {
+        this.expiryDate = expiryDate;
     }
 
     public User getUser() {

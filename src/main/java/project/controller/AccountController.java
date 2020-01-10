@@ -21,7 +21,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -42,6 +45,12 @@ public class AccountController {
 
     @Autowired
     private EmailService emailService;
+
+    // Set token expiration time to 24 hours
+    private static final int EXPIRATION = 60 * 24;
+
+    ConfirmationToken confirmationToken;
+
 
     // Dependency Injection
     @Autowired
@@ -235,7 +244,15 @@ public class AccountController {
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             userService.save(user);
 
-            ConfirmationToken confirmationToken = new ConfirmationToken(user);
+            confirmationToken = new ConfirmationToken(user);
+
+            // Create expiry date for token
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(new Timestamp(cal.getTime().getTime()));
+            cal.add(Calendar.MINUTE, 1);
+
+            confirmationToken.setExpiryDate(new Date(cal.getTime().getTime()));
+
             confirmationTokenRepository.save(confirmationToken);
 
             SimpleMailMessage mailMessage = new SimpleMailMessage();
@@ -256,22 +273,36 @@ public class AccountController {
     }
 
     @RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
-    public String confirmUserAccount(Model model, @RequestParam("token") String confirmationToken)
+    public String confirmUserAccount(Model model, @RequestParam("token") String confirmationTokenString)
     {
-        ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
-        User user = userService.findByEmail(token.getUser().getEmail());
+        confirmationToken = confirmationTokenRepository.findByConfirmationToken(confirmationTokenString);
+        User user = userService.findByEmail(confirmationToken.getUser().getEmail());
 
-        if(token != null)
-        {
-            user.setEnabled(true);
-            userService.save(user);
-            model.addAttribute("message", "Congratulations! Your account has been activated and email is verified!");
+        Calendar cal = Calendar.getInstance();
+        if ((confirmationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
+            if(user.getOrgi()) {
+                model.addAttribute("message", "Your confirmation token has expired. Please register again.");
+                model.addAttribute("user", new User());
+                model.addAttribute("header_type", "red_bar");
 
+                confirmationTokenRepository.delete(confirmationToken);
+                userService.delete(user);
+                return "SignUpOrg";
+            } else {
+                model.addAttribute("message", "Your confirmation token has expired. Please register again.");
+                model.addAttribute("user", new User());
+                model.addAttribute("header_type", "red_bar");
+
+                confirmationTokenRepository.delete(confirmationToken);
+                userService.delete(user);
+                return "SignUpVol";
+            }
+        }
+
+        if(confirmationToken == null) {
+            model.addAttribute("message", "The link is invalid or broken!");
             model.addAttribute("user", new User());
             model.addAttribute("header_type", "red_bar");
-            return "Login";
-        } else {
-            model.addAttribute("message", "The link is invalid or broken!");
 
             if(user.getOrgi()) {
                 return "SignUpOrg";
@@ -279,6 +310,14 @@ public class AccountController {
                 return "SignUpVol";
             }
         }
+
+        user.setEnabled(true);
+        userService.save(user);
+        model.addAttribute("message", "Congratulations! Your account has been activated and email is verified!");
+
+        model.addAttribute("user", new User());
+        model.addAttribute("header_type", "red_bar");
+        return "Login";
     }
 
     /*
@@ -288,6 +327,7 @@ public class AccountController {
     public String deleteAccount(@PathVariable Long id, @ModelAttribute("user") User user, HttpSession httpSession) {
         Long userID = (Long)httpSession.getAttribute("currentUser");
         User currUser = userService.findOne(userID);
+
         // Delete user
         userService.delete(currUser);
 
