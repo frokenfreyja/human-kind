@@ -75,6 +75,7 @@ public class SortController {
 
     @RequestMapping(value = "sorter" , method = RequestMethod. GET)
     public String allSort(HttpSession httpSession, Model model) {
+        model.addAttribute("ad",new Ad());
 
         // Get list of organizations and send to view
         Map<Long, String> organizationList = new LinkedHashMap<Long, String>();
@@ -107,7 +108,7 @@ public class SortController {
         } else if ((orgi != null) && (interest != null) && (genLoc != null)) {
             model.addAttribute("ad_list", adService.findByOrganizationAndInterestAndGenLoc(orgi, interest, genLoc));
         } else {
-            model.addAttribute("ad",new Ad());
+            model.addAttribute("ad", new Ad());
             model.addAttribute("ad_list", adService.findAllReverseOrder());
         }
 

@@ -41,8 +41,7 @@
             </div>
         </div>
     </div>
-
-
+<%--
     <div class="section2">
         <div class="row">
             <h2 class="sub">MAKING IT EASIER FOR ORGANIZATIONS TO RECRUIT VOLUNTEERS AND INSPIRE NON-VOLUNTEERS TO VOLUNTEER</h2>
@@ -78,7 +77,7 @@
         </div>
         <h3 class="quote">"We believe our platform can help bridge the gap between organizations and potential volunteers."</h3>
     </div>
-
+--%>
     <div class="section3">
         <div class="section3_content">
             <%-- Ef til eru auglýsingar, birtir lista af öllum auglýsingum í töflu --%>

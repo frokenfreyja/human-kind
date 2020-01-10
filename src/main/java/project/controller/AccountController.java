@@ -165,6 +165,7 @@ public class AccountController {
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             userService.save(user);
 
+            /*
             ConfirmationToken confirmationToken = new ConfirmationToken(user);
             confirmationTokenRepository.save(confirmationToken);
 
@@ -181,6 +182,8 @@ public class AccountController {
             model.addAttribute("user", new User());
 
             return "SignUpOrg";
+             */
+            return "Login";
         }
         return "SignUpOrg";
     }

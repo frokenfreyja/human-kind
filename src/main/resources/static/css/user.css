@@ -236,5 +236,9 @@ input {
     text-decoration: none;
 }
 
+.bio {
+    width: 100%;
+}
+
 .course_list {
 }
