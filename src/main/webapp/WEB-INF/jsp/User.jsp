@@ -237,33 +237,72 @@
                     </div>
                 </c:when>
                 <c:otherwise>
-                    <div class="banner">
-                        <h3>About</h3>
-                    </div>
-                    <p class="about">${user.bio}</p>
                     <c:choose>
-                        <c:when test="${not empty own_ads}">
+                        <c:when test="${organization}">
                             <div class="banner">
-                                <h3>List of ads</h3>
+                                <h3>About</h3>
                             </div>
-                            <c:forEach var="job" items="${own_ads}" varStatus="status">
-                                <div class="list">
-                                    <div class="list_item">
-                                        <a href="/ad/${job.id}" class="ad_info">
-                                            <div class="col2">
-                                                <div class="job_img"><img
-                                                        src="${pageContext.request.contextPath}/resources/images/${job.imageName}">
-                                                </div>
+                            <p class="about">${user.bio}</p>
+                            <c:choose>
+                                <c:when test="${not empty own_ads}">
+                                    <div class="banner">
+                                        <h3>List of ads</h3>
+                                    </div>
+                                    <c:forEach var="job" items="${own_ads}" varStatus="status">
+                                        <div class="list">
+                                            <div class="list_item">
+                                                <a href="/ad/${job.id}" class="ad_info">
+                                                    <div class="col2">
+                                                        <div class="job_img"><img
+                                                                src="${pageContext.request.contextPath}/resources/images/${job.imageName}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col2">
+                                                        <h3 class="job_title">${job.name}</h3>
+                                                        <p class="job_desc">${fn:substring(job.description, 0,210)}</p>
+                                                    </div>
+                                                </a>
                                             </div>
-                                            <div class="col2">
-                                                <h3 class="job_title">${job.name}</h3>
-                                                <p class="job_desc">${fn:substring(job.description, 0,210)}</p>
+                                        </div>
+                                    </c:forEach>
+                                </c:when>
+                            </c:choose>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="banner">
+                                <h3>Personal information</h3>
+                            </div>
+                            <div class="user_info">
+                                <div class="row_info">
+                                    <h4>Name:</h4>
+                                    <p>${user.name}</p>
+                                </div>
+                                <div class="row_info">
+                                    <h4>Email:</h4>
+                                    <p>${user.email}</p>
+                                </div>
+                                <div class="row_info">
+                                    <h4>Phone:</h4>
+                                    <p>${user.phone}</p>
+                                </div>
+                                <div class="row_info">
+                                    <h4>Birthdate:</h4>
+                                    <p>${fn:substring(user.birthDate, 0, 10)}</p>
+                                </div>
+
+                                <%-- Course List --%>
+
+                                <div class="row_info">
+                                    <h4>Courses:</h4>
+                                    <div class="course_list">
+                                        <c:forEach var="course" items="${courses}" varStatus="status">
+                                            <div class="course_item">
+                                                <p>${course.cname}</p>
                                             </div>
-                                        </a>
+                                        </c:forEach>
                                     </div>
                                 </div>
-                            </c:forEach>
-                        </c:when>
+                        </c:otherwise>
                     </c:choose>
                 </c:otherwise>
             </c:choose>
