@@ -84,19 +84,17 @@
 
                                 <c:if test="${not organization}">
                                     <sf:form method="POST" modelAttribute="course" action="/add_course/${currUser.id}">
+                                        <div class="row_info">
+
                                         <h4>Courses:</h4>
-                                        <div>
+                                        <div class="add_course">
                                             <sf:input path="cname" type="text" placeholder="Course name" class="edit_text"/>
-                                            <div class="course_list">
-                                                <c:forEach var="course" items="${courses}" varStatus="status">
-                                                    <div class="course_item">
-                                                        <p>${course.cname}</p>
-                                                    </div>
-                                                </c:forEach>
-                                            </div>
+                                            <input class="course_btn" type="submit" VALUE="Add"/>
                                         </div>
-                                        <div>
-                                            <input class="btn" type="submit" VALUE="Add"/>
+
+                                        <c:forEach var="course" items="${courses}" varStatus="status">
+                                            <p>${course.cname}</p>
+                                        </c:forEach>
                                         </div>
                                     </sf:form>
                                 </c:if>
@@ -172,6 +170,11 @@
                                         </div>
                                     </c:if>
                                 </c:forEach>
+                            </c:when>
+                        </c:choose>
+
+                        <c:choose>
+                            <c:when test="${not empty compJobs}">
                                 <div class="banner">
                                     <h3>List of Completed Jobs</h3>
                                 </div>

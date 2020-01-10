@@ -250,5 +250,29 @@ input {
     text-decoration: none;
 }
 
-.course_list {
+.add_course {
+    display: flex;
+    flex-direction: row;
+    width: 250px;
+}
+
+.course_btn {
+    border: none;
+    width: 30%;
+    padding: 5px 10px;
+    background-color: black;
+    text-decoration: none;
+    font-size: 1em;
+    cursor: pointer;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.1s ease;
+    display: flex;
+    justify-content: center;
+}
+
+.course_btn:hover {
+    background-color: #F85548;
+    text-decoration: none;
 }
