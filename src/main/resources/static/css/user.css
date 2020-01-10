@@ -49,25 +49,14 @@ main {
 
 .row_info {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     margin: 8px 0;
     padding: 0 10px;
 }
 
-.icon {
-    width: 20px;
-    height: 20px;
-}
-
-.edit_icon {
-    margin-right: 10px;
-}
-
 .user_info {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    justify-items: center;
+    flex-direction: column;
 }
 
 form {
@@ -259,10 +248,6 @@ input {
 .btn:hover {
     background-color: black;
     text-decoration: none;
-}
-
-.bio {
-    width: 100%;
 }
 
 .course_list {

@@ -45,45 +45,30 @@
                                 <sf:form id="edit_form" method="POST" modelAttribute="user" action="/edit_user/${currUser.id}">
                                     <div class="edit_col">
                                         <div class="row_info">
-                                            <div class="edit_icon">
-                                                <img src="${pageContext.request.contextPath}/resources/images/name.png"
-                                                 class="icon"/>
-                                            </div>
+                                            <h4>Name:</h4>
                                             <sf:input path="name" type="text" placeholder="Name"
                                                       class="edit_text"/>
                                         </div>
                                         <div class="row_info">
-                                            <div class="edit_icon">
-                                                <img src="${pageContext.request.contextPath}/resources/images/email.png"
-                                                 class="icon"/>
-                                            </div>
+                                            <h4>Email:</h4>
                                             <sf:input path="email" type="email" placeholder="Email Address"
                                                       class="edit_text"/>
                                         </div>
                                         <div class="row_info">
-                                            <div class="edit_icon">
-                                                <img src="${pageContext.request.contextPath}/resources/images/phone.png"
-                                                 class="icon"/>
-                                            </div>
+                                            <h4>Phone:</h4>
                                             <sf:input path="phone" type="number" placeholder="Phone number"
                                                       class="edit_text" required="required"/>
                                         </div>
                                         <c:if test="${not organization}">
                                             <div class="row_info">
-                                                <div class="edit_icon">
-                                                    <img src="${pageContext.request.contextPath}/resources/images/calendar.png"
-                                                     class="icon"/>
-                                                </div>
+                                                <h4>Birthdate:</h4>
                                                 <sf:input path="birthDate" type="date" placeholder="Date of birth"
                                                           class="edit_text"/>
                                             </div>
                                         </c:if>
                                         <c:if test="${organization}">
                                             <div class="row_info">
-                                                <div class="edit_icon">
-                                                    <img src="${pageContext.request.contextPath}/resources/images/bio.png"
-                                                         class="icon"/>
-                                                </div>
+                                                <h4>About:</h4>
                                                 <sf:input path="bio" type="text" placeholder="About" class="edit_text"/>
                                             </div>
                                         </c:if>
@@ -97,55 +82,49 @@
                                     </div>
                                 </sf:form>
 
-                                <sf:form method="POST" modelAttribute="course" action="/add_course/${currUser.id}">
-                                    <div>
-                                        <p> Courses: </p>
-                                    </div>
-                                    <div>
-                                        <sf:input path="cname" type="text" placeholder="Course name" class="edit_text"/>
-                                        <div class="course_list">
-                                            <c:forEach var="course" items="${courses}" varStatus="status">
-                                                <div class="course_item">
-                                                    <p>${course.cname}</p>
-                                                </div>
-                                            </c:forEach>
+                                <c:if test="${not organization}">
+                                    <sf:form method="POST" modelAttribute="course" action="/add_course/${currUser.id}">
+                                        <h4>Courses:</h4>
+                                        <div>
+                                            <sf:input path="cname" type="text" placeholder="Course name" class="edit_text"/>
+                                            <div class="course_list">
+                                                <c:forEach var="course" items="${courses}" varStatus="status">
+                                                    <div class="course_item">
+                                                        <p>${course.cname}</p>
+                                                    </div>
+                                                </c:forEach>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <input class="btn" type="submit" VALUE="Add"/>
-                                    </div>
-                                </sf:form>
-
-
+                                        <div>
+                                            <input class="btn" type="submit" VALUE="Add"/>
+                                        </div>
+                                    </sf:form>
+                                </c:if>
                             </c:when>
                             <c:otherwise>
-                                <div class="col">
+                                <div class="user_info">
                                     <div class="row_info">
-                                        <img src="${pageContext.request.contextPath}/resources/images/name.png"
-                                             class="icon"/>
+                                        <h4>Name:</h4>
                                         <p>${user.name}</p>
                                     </div>
                                     <div class="row_info">
-                                        <img src="${pageContext.request.contextPath}/resources/images/email.png"
-                                             class="icon"/>
+                                        <h4>Email:</h4>
                                         <p>${user.email}</p>
                                     </div>
                                     <div class="row_info">
-                                        <img src="${pageContext.request.contextPath}/resources/images/phone.png"
-                                             class="icon"/>
+                                        <h4>Phone:</h4>
                                         <p>${user.phone}</p>
                                     </div>
                                     <c:if test="${not organization}">
                                         <div class="row_info">
-                                            <img src="${pageContext.request.contextPath}/resources/images/calendar.png"
-                                                 class="icon"/>
+                                            <h4>Birthdate:</h4>
                                             <p>${fn:substring(user.birthDate, 0, 10)}</p>
                                         </div>
 
                                         <%-- Course List --%>
 
                                         <div class="row_info">
-                                            <p>Courses:</p>
+                                            <h4>Courses:</h4>
                                             <div class="course_list">
                                                 <c:forEach var="course" items="${courses}" varStatus="status">
                                                     <div class="course_item">
@@ -157,13 +136,11 @@
                                     </c:if>
                                     <c:if test="${organization}">
                                         <div class="row_info">
-                                            <img src="${pageContext.request.contextPath}/resources/images/bio.png"
-                                                 class="icon"/>
+                                            <h4>About:</h4>
                                             <p>${user.bio}</p>
                                         </div>
                                     </c:if>
                                 </div>
-                                <div class="col"></div>
                             </c:otherwise>
                         </c:choose>
                     </div>
