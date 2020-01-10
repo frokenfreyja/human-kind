@@ -42,7 +42,7 @@ public class LoginController {
         if(!user.getEmail().isEmpty()) {
             User loginUser = userService.findByEmail(user.getEmail());
 
-            if(loginUser != null && bCryptPasswordEncoder.matches(user.getPassword(), loginUser.getPassword())) { /*&& loginUser.isEnabled()){*/
+            if(loginUser != null && bCryptPasswordEncoder.matches(user.getPassword(), loginUser.getPassword()) && loginUser.isEnabled()){
                 httpSession.setAttribute("currentUser", loginUser.getId());
                 httpSession.setAttribute("currentUsername", loginUser.getName());
                 httpSession.setAttribute("currentUserEmail", loginUser.getEmail());
@@ -51,13 +51,9 @@ public class LoginController {
                 return "redirect:/user/{id}";
             } else if (loginUser == null) {
                 model.addAttribute("loginDenied", "This account does not exist");
-            }
-            /*
-            else if(!loginUser.isEnabled()) {
+            } else if(!loginUser.isEnabled()) {
                 model.addAttribute("loginDenied", "This account hasn't been activated. A verification email has been sent to: " + loginUser.getEmail());
-            }
-             */
-            else {
+            } else {
                 model.addAttribute("loginDenied", "The email or password you entered is incorrect");
             }
         }
