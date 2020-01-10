@@ -174,7 +174,6 @@ public class AccountController {
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             userService.save(user);
 
-            /*
             confirmationToken = new ConfirmationToken(user);
 
             // Create expiry date for token
@@ -199,8 +198,6 @@ public class AccountController {
             model.addAttribute("user", new User());
 
             return "SignUpOrg";
-             */
-            return "Login";
         }
         return "SignUpOrg";
     }
@@ -253,7 +250,7 @@ public class AccountController {
 
             confirmationToken = new ConfirmationToken(user);
             user.setConfirmationToken(confirmationToken.getConfirmationToken());
-            System.out.println(user.getConfirmationToken() + " : " + confirmationToken.getConfirmationToken());
+
             userService.save(user);
 
             // Create expiry date for token
@@ -344,8 +341,6 @@ public class AccountController {
             ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationTokenString);
             confirmationTokenRepository.delete(token);
         }
-        
-        System.out.println("CURRUSER TOKEN: " + currUser.getConfirmationToken());
 
         // Delete user
         userService.delete(currUser);
