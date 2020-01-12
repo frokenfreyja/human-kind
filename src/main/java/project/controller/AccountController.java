@@ -69,6 +69,9 @@ public class AccountController {
         Long userID = (Long)session.getAttribute("currentUser");
         User currUser = userService.findOne(userID);
 
+        if(userID==null)
+            return "Login";
+
         User user = userService.findOne(id);
         model.addAttribute("user", user);
 
@@ -418,6 +421,7 @@ public class AccountController {
             model.addAttribute("own_ads", adService.findByOwner(user.getId()));
         }
 
+        model.addAttribute("header_type", "red_bar");
         model.addAttribute("edit", true);
         model.addAttribute("currUser", currUser);
 

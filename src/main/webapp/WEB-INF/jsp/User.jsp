@@ -45,25 +45,24 @@
                                 <sf:form id="edit_form" method="POST" modelAttribute="user" action="/edit_user/${currUser.id}">
                                     <div class="edit_col">
                                         <div class="row_info">
-                                            <h4>Name:</h4>
-                                            <sf:input path="name" type="text" placeholder="Name"
-                                                      class="edit_text"/>
+                                            <h4 class="info">Name:</h4>
+                                            <sf:input path="name" type="text" placeholder="Name" class="user"/>
                                         </div>
                                         <div class="row_info">
-                                            <h4>Email:</h4>
+                                            <h4 class="info">Email:</h4>
                                             <sf:input path="email" type="email" placeholder="Email Address"
-                                                      class="edit_text"/>
+                                                      class="user"/>
                                         </div>
                                         <div class="row_info">
-                                            <h4>Phone:</h4>
+                                            <h4 class="info">Phone:</h4>
                                             <sf:input path="phone" type="number" placeholder="Phone number"
-                                                      class="edit_text" required="required"/>
+                                                      class="user" required="required"/>
                                         </div>
                                         <c:if test="${not organization}">
                                             <div class="row_info">
-                                                <h4>Birthdate:</h4>
+                                                <h4 class="info">Birthdate:</h4>
                                                 <sf:input path="birthDate" type="date" placeholder="Date of birth"
-                                                          class="edit_text"/>
+                                                          class="user" />
                                             </div>
                                         </c:if>
                                         <c:if test="${organization}">
@@ -84,49 +83,53 @@
 
                                 <c:if test="${not organization}">
                                     <sf:form method="POST" modelAttribute="course" action="/add_course/${currUser.id}">
-                                        <div class="row_info">
+                                                <div class="row_info">
+                                                    <h4 class="info">Courses:</h4>
+                                                    <div class="course_add">
+                                                        <sf:input path="cname" type="text" placeholder="Course name" class="user_course"/>
+                                                        <input class="course_btn" type="submit" VALUE="Add"/>
+                                                    </div>
+                                                </div>
+                                                <div class="row_info">
+                                                    <h4 class="info">Finished courses:</h4>
+                                                    <div class="course_list">
+                                                        <c:forEach var="course" items="${courses}" varStatus="status">
+                                                                <p class="user">${course.cname}</p>
+                                                        </c:forEach>
+                                                    </div>
+                                                </div>
 
-                                        <h4>Courses:</h4>
-                                        <div class="add_course">
-                                            <sf:input path="cname" type="text" placeholder="Course name" class="edit_text"/>
-                                            <input class="course_btn" type="submit" VALUE="Add"/>
-                                        </div>
-
-                                        <c:forEach var="course" items="${courses}" varStatus="status">
-                                            <p>${course.cname}</p>
-                                        </c:forEach>
-                                        </div>
                                     </sf:form>
                                 </c:if>
                             </c:when>
                             <c:otherwise>
-                                <div class="user_info">
+                                <div class="information">
                                     <div class="row_info">
-                                        <h4>Name:</h4>
-                                        <p>${user.name}</p>
+                                        <h4 class="info">Name:</h4>
+                                        <p class="user">${user.name}</p>
                                     </div>
                                     <div class="row_info">
-                                        <h4>Email:</h4>
-                                        <p>${user.email}</p>
+                                        <h4 class="info">Email:</h4>
+                                        <p class="user">${user.email}</p>
                                     </div>
                                     <div class="row_info">
-                                        <h4>Phone:</h4>
-                                        <p>${user.phone}</p>
+                                        <h4 class="info">Phone:</h4>
+                                        <p class="user">${user.phone}</p>
                                     </div>
                                     <c:if test="${not organization}">
                                         <div class="row_info">
-                                            <h4>Birthdate:</h4>
-                                            <p>${fn:substring(user.birthDate, 0, 10)}</p>
+                                            <h4 class="info">Birthdate:</h4>
+                                            <p class="user">${fn:substring(user.birthDate, 0, 10)}</p>
                                         </div>
 
                                         <%-- Course List --%>
 
                                         <div class="row_info">
-                                            <h4>Courses:</h4>
+                                            <h4 class="info">Finished courses:</h4>
                                             <div class="course_list">
                                                 <c:forEach var="course" items="${courses}" varStatus="status">
                                                     <div class="course_item">
-                                                        <p>${course.cname}</p>
+                                                        <p class="user">${course.cname}</p>
                                                     </div>
                                                 </c:forEach>
                                             </div>

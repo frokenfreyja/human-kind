@@ -41,43 +41,7 @@
             </div>
         </div>
     </div>
-<%--
-    <div class="section2">
-        <div class="row">
-            <h2 class="sub">MAKING IT EASIER FOR ORGANIZATIONS TO RECRUIT VOLUNTEERS AND INSPIRE NON-VOLUNTEERS TO VOLUNTEER</h2>
-            <div class="col">
-                <div class="textbox_title">PROBLEM</div>
-                <p>Forests on fire, polluted ocean, animal extinction, growing inequality. It's the beginning of the end of our world and the need for volunteers has never been more urgent.</p>
-                <div class="textbox_title">MARKET</div>
-                <p>An estimated 31.6% of Icelandic adults volunteered in 2014. More than 1 billion people volunteer worldwide, most of them ading in their own countries.</p>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget</p>
-            </div>
-            <div class="col">
-                <p>volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-                <div class="textbox_title">SOLUTION</div>
-                <p>We aim to streamline the process of</p>
-                <div class="bil"></div>
-                <p>becoming a volunteer by creating a digital platform that connects organizations with</p>
-                <p> potential volunteers in a simple yet fun way! HUMAN-KIND is a free to use web-application and mobile application with advertising based revenue model.</p>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac</p>
 
-            </div>
-            <div class="onepager"><img src="${pageContext.request.contextPath}/resources/images/onepager.png" class="onepager_img"/></div>
-
-            <div class="col">
-                <p>condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.
-                <div class="bil"></div>
-                Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat</p>
-                <p>volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam,</p>
-
-            </div>
-            <div class="col">
-                <p> sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis.</p>
-            </div>
-        </div>
-        <h3 class="quote">"We believe our platform can help bridge the gap between organizations and potential volunteers."</h3>
-    </div>
---%>
     <div class="section3">
         <div class="section3_content">
             <%-- Ef til eru auglýsingar, birtir lista af öllum auglýsingum í töflu --%>
