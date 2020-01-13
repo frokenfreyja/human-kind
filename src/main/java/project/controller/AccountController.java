@@ -109,6 +109,7 @@ public class AccountController {
             model.addAttribute("own_ads", adService.findByOwner(user.getId()));
         }
 
+        session.setAttribute("account", true);
         model.addAttribute("header_type", "red_bar");
         model.addAttribute("currUser", currUser);
 

@@ -167,7 +167,8 @@
                                                         <p class="job_desc">${fn:substring(job.description, 0,210)}</p>
                                                     </div>
                                                 </a>
-                                                <div class="ad_btn"><a href="/ad/${job.id}/unapply" class="btn">Unapply</a>
+                                                <div class="ad_btn">
+                                                    <a href="/ad/${job.id}/unapply" class="btn">Unapply</a>
                                                 </div>
                                             </div>
                                         </div>
