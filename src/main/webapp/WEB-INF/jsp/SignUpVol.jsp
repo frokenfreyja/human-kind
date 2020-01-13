@@ -23,72 +23,73 @@
 <main>
     <div class="row">
     <h1 class="title">VOLUNTEER</h1>
-        <p>${verification}</p>
         <p>${message}</p>
-        <sf:form method="POST" modelAttribute="user" action="/vol" enctype="multipart/form-data" class="form">
-        <div class="input">
-            <img src="${pageContext.request.contextPath}/resources/images/name.png" class="img"/>
-            <sf:input path="name" type="text" placeholder="Full name" class="signup_text"/>
-        </div>
+        <c:if test="${not verification}">
+            <sf:form method="POST" modelAttribute="user" action="/vol" enctype="multipart/form-data" class="form">
+                <div class="input">
+                    <img src="${pageContext.request.contextPath}/resources/images/name.png" class="img"/>
+                    <sf:input path="name" type="text" placeholder="Full name" class="signup_text"/>
+                </div>
 
-        <div class="input">
-            <img src="${pageContext.request.contextPath}/resources/images/name.png" class="img"/>
-            <sf:select path="gender" class="signup_text">
-                <sf:option value="gender" style="display: none;">Gender</sf:option>
-                <sf:option value="none" disabled="true">Gender</sf:option>
-                <sf:option value="Female">Female</sf:option>
-                <sf:option value="Male">Male</sf:option>
-                <sf:option value="Other">Not specified</sf:option>
-            </sf:select>
-        </div>
+                <div class="input">
+                    <img src="${pageContext.request.contextPath}/resources/images/name.png" class="img"/>
+                    <sf:select path="gender" class="signup_text">
+                        <sf:option value="gender" style="display: none;">Gender</sf:option>
+                        <sf:option value="none" disabled="true">Gender</sf:option>
+                        <sf:option value="Female">Female</sf:option>
+                        <sf:option value="Male">Male</sf:option>
+                        <sf:option value="Other">Not specified</sf:option>
+                    </sf:select>
+                </div>
 
-        <div class="input">
-            <img src="${pageContext.request.contextPath}/resources/images/email.png" class="img"/>
-            <sf:input path="email" type="email" placeholder="Email" class="signup_text" required="required"/>
-        </div>
+                <div class="input">
+                    <img src="${pageContext.request.contextPath}/resources/images/email.png" class="img"/>
+                    <sf:input path="email" type="email" placeholder="Email" class="signup_text" required="required"/>
+                </div>
 
-        <div class="input">
-            <img src="${pageContext.request.contextPath}/resources/images/lock2.png" class="img"/>
-            <sf:input path="password" type="password" placeholder="Password" class="signup_text" required="required"/>
-        </div>
+                <div class="input">
+                    <img src="${pageContext.request.contextPath}/resources/images/lock2.png" class="img"/>
+                    <sf:input path="password" type="password" placeholder="Password" class="signup_text" required="required"/>
+                </div>
 
-        <div class="input">
-            <img src="${pageContext.request.contextPath}/resources/images/lock2.png" class="img"/>
-            <sf:input path="confirmPassword" type="password" placeholder="Confirm password" class="signup_text" required="required"/>
-        </div>
+                <div class="input">
+                    <img src="${pageContext.request.contextPath}/resources/images/lock2.png" class="img"/>
+                    <sf:input path="confirmPassword" type="password" placeholder="Confirm password" class="signup_text" required="required"/>
+                </div>
 
-        <div class="input">
-            <img src="${pageContext.request.contextPath}/resources/images/phone.png" class="img"/>
-            <sf:input path="phone" type="number" placeholder="Phone number" class="signup_text" required="required"/>
-        </div>
+                <div class="input">
+                    <img src="${pageContext.request.contextPath}/resources/images/phone.png" class="img"/>
+                    <sf:input path="phone" type="number" placeholder="Phone number" class="signup_text" required="required"/>
+                </div>
 
-        <div class="input">
-            <img src="${pageContext.request.contextPath}/resources/images/calendar.png" class="img"/>
-            <sf:input path="birthDate" type="date" placeholder="Date of birth" class="signup_text"/>
-        </div>
+                <div class="input">
+                    <img src="${pageContext.request.contextPath}/resources/images/calendar.png" class="img"/>
+                    <sf:input path="birthDate" type="date" placeholder="Date of birth" class="signup_text"/>
+                </div>
 
-        <c:if test="${not empty error}">
-            <div class="error">
-                    ${error}
-            </div>
-        </c:if>
-
-        <div class="account_img">
-            <div class="imgbutton">
-                <sf:label for="image" path="image" style="cursor: pointer;">Upload photo
-                    <div class="output">
-                        <img path="output" id="output" class="user_img" src="${pageContext.request.contextPath}/resources/images/account.png">
+                <c:if test="${not empty error}">
+                    <div class="error">
+                            ${error}
                     </div>
-                </sf:label>
-            </div>
-            <sf:input path="image" type="file" id="image" accept="image/*" name="image" onchange="loadFile(event)" style="display: none;" multiple="multiple" />
-        </div>
+                </c:if>
 
-        <div class="signup_btn">
-            <input class="btn" type="submit" VALUE="SIGN UP"/>
-        </div>
+                <div class="account_img">
+                    <div class="imgbutton">
+                        <sf:label for="image" path="image" style="cursor: pointer;">Upload photo
+                            <div class="output">
+                                <img path="output" id="output" class="user_img" src="${pageContext.request.contextPath}/resources/images/account.png">
+                            </div>
+                        </sf:label>
+                    </div>
+                    <sf:input path="image" type="file" id="image" accept="image/*" name="image" onchange="loadFile(event)" style="display: none;" multiple="multiple" />
+                </div>
 
-    </sf:form>
+                <div class="signup_btn">
+                    <input class="btn" type="submit" VALUE="SIGN UP"/>
+                </div>
+
+            </sf:form>
+        </c:if>
     </div>
 </main>
 </body>

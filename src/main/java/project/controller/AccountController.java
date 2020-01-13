@@ -194,8 +194,9 @@ public class AccountController {
 
             emailService.sendEmail(mailMessage);
 
-            model.addAttribute("verification", "A verification email has been sent to: "+ user.getEmail());
+            model.addAttribute("message", "A verification email has been sent to: "+ user.getEmail());
             model.addAttribute("header_type", "red_bar");
+            model.addAttribute("verification", true);
             model.addAttribute("user", new User());
 
             return "SignUpOrg";
@@ -271,8 +272,9 @@ public class AccountController {
 
             emailService.sendEmail(mailMessage);
 
-            model.addAttribute("verification", "A verification email has been sent to: "+ user.getEmail());
+            model.addAttribute("message", "A verification email has been sent to: "+ user.getEmail());
             model.addAttribute("header_type", "red_bar");
+            model.addAttribute("verification", true);
             model.addAttribute("user", new User());
 
             return "SignUpVol";

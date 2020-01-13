@@ -25,66 +25,67 @@
 <main>
     <div class="row">
         <h1 class="title">ORGANIZATION</h1>
-        <p>${verification}</p>
-        <p>${message}</p>
-        <sf:form method="POST" modelAttribute="user" action="/org" enctype="multipart/form-data" class="form">
-            <div class="input">
-                <img src="${pageContext.request.contextPath}/resources/images/name.png" class="img"/>
-                <sf:input path="name" type="text" placeholder="Full name" class="signup_text" required="required"/>
-            </div>
-
-            <div class="input">
-                <img src="${pageContext.request.contextPath}/resources/images/email.png" class="img"/>
-                <sf:input path="email" type="email" placeholder="Email" class="signup_text" required="required"/>
-            </div>
-
-            <div class="input">
-                <img src="${pageContext.request.contextPath}/resources/images/phone.png" class="img"/>
-                <sf:input path="phone" type="number" placeholder="Phone number" class="signup_text"
-                          required="required"/>
-            </div>
-
-            <div class="input">
-                <img src="${pageContext.request.contextPath}/resources/images/bio.png" class="img"/>
-                <sf:input path="bio" type="text" placeholder="About organization" class="signup_text"/>
-            </div>
-
-            <div class="input">
-                <img src="${pageContext.request.contextPath}/resources/images/lock2.png" class="img"/>
-                <sf:input path="password" type="password" placeholder="Password" class="signup_text"
-                          required="required"/>
-            </div>
-
-            <div class="input">
-                <img src="${pageContext.request.contextPath}/resources/images/lock2.png" class="img"/>
-                <sf:input path="confirmPassword" type="password" placeholder="Confirm password" class="signup_text"
-                          required="required"/>
-            </div>
-
-            <c:if test="${not empty error}">
-                <div class="error">
-                        ${error}
+        <h4>${message}</h4>
+        <c:if test="${not verification}">
+            <sf:form method="POST" modelAttribute="user" action="/org" enctype="multipart/form-data" class="form">
+                <div class="input">
+                    <img src="${pageContext.request.contextPath}/resources/images/name.png" class="img"/>
+                    <sf:input path="name" type="text" placeholder="Full name" class="signup_text" required="required"/>
                 </div>
-            </c:if>
 
-            <div class="account_img">
-                <div class="imgbutton">
-                    <sf:label for="image" path="image" style="cursor: pointer;">Upload photo
-                        <div class="output">
-                            <img path="output" id="output" class="user_img"
-                                 src="${pageContext.request.contextPath}/resources/images/account.png">
-                        </div>
-                    </sf:label>
+                <div class="input">
+                    <img src="${pageContext.request.contextPath}/resources/images/email.png" class="img"/>
+                    <sf:input path="email" type="email" placeholder="Email" class="signup_text" required="required"/>
                 </div>
-                <sf:input path="image" type="file" id="image" accept="image/*" name="image" onchange="loadFile(event)"
-                          style="display: none;" multiple="multiple"/>
-            </div>
 
-            <div class="signup_btn">
-                <input class="btn" type="submit" VALUE="SIGN UP"/>
-            </div>
+                <div class="input">
+                    <img src="${pageContext.request.contextPath}/resources/images/phone.png" class="img"/>
+                    <sf:input path="phone" type="number" placeholder="Phone number" class="signup_text"
+                              required="required"/>
+                </div>
 
-        </sf:form>
+                <div class="input">
+                    <img src="${pageContext.request.contextPath}/resources/images/bio.png" class="img"/>
+                    <sf:input path="bio" type="text" placeholder="About organization" class="signup_text"/>
+                </div>
+
+                <div class="input">
+                    <img src="${pageContext.request.contextPath}/resources/images/lock2.png" class="img"/>
+                    <sf:input path="password" type="password" placeholder="Password" class="signup_text"
+                              required="required"/>
+                </div>
+
+                <div class="input">
+                    <img src="${pageContext.request.contextPath}/resources/images/lock2.png" class="img"/>
+                    <sf:input path="confirmPassword" type="password" placeholder="Confirm password" class="signup_text"
+                              required="required"/>
+                </div>
+
+                <c:if test="${not empty error}">
+                    <div class="error">
+                            ${error}
+                    </div>
+                </c:if>
+
+                <div class="account_img">
+                    <div class="imgbutton">
+                        <sf:label for="image" path="image" style="cursor: pointer;">Upload photo
+                            <div class="output">
+                                <img path="output" id="output" class="user_img"
+                                     src="${pageContext.request.contextPath}/resources/images/account.png">
+                            </div>
+                        </sf:label>
+                    </div>
+                    <sf:input path="image" type="file" id="image" accept="image/*" name="image" onchange="loadFile(event)"
+                              style="display: none;" multiple="multiple"/>
+                </div>
+
+                <div class="signup_btn">
+                    <input class="btn" type="submit" VALUE="SIGN UP"/>
+                </div>
+
+            </sf:form>
+        </c:if>
     </div>
 </main>
 </body>
