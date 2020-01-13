@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import project.persistence.entities.Applicant;
 import project.persistence.entities.Ad;
 import project.persistence.entities.User;
@@ -257,6 +259,8 @@ public class AdController {
         model.addAttribute("owner", owner);
         model.addAttribute("currUser", currUser);
         model.addAttribute("genLoc", ad.getGeneralLoc(ad.getZipcode()));
+        httpSession.setAttribute("account", false);
+
 
         if(currUser != null && applicantService.findByAdAndUser(ad.getId(), currUser.getId()) != null) {
             model.addAttribute("alreadyApplied", true);
@@ -289,8 +293,9 @@ public class AdController {
     }
 
     @RequestMapping(value = "/ad/{id}/unapply", method = RequestMethod.GET)
-    public String unapply(@PathVariable Long id, HttpSession httpSession) {
+    public String unapply(@PathVariable Long id, HttpSession httpSession, RedirectAttributes redirectAttrs) {
         Long userID = (Long) httpSession.getAttribute("currentUser");
+        User currUser = userService.findOne(userID);
         if(userID == null){
             return "redirect:/login";
         }
@@ -298,6 +303,12 @@ public class AdController {
         Applicant applicant = applicantService.findByAdAndUser(id, userID);
         if(applicant != null) {
             applicantService.delete(applicant);
+        }
+
+        // Redirect to user account if already there
+        if(httpSession.getAttribute("account").equals(true)) {
+            redirectAttrs.addAttribute("userid", currUser.getId());
+            return "redirect:/user/{userid}";
         }
 
         return "redirect:/ad/{id}";

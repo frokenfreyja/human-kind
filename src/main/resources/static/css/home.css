@@ -86,13 +86,6 @@ body {
     color: black;
     position: relative;
 }
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-    position: relative;
-}
 
 .sub {
     color: #5548f8;

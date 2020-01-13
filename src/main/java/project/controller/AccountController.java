@@ -69,6 +69,9 @@ public class AccountController {
         Long userID = (Long)session.getAttribute("currentUser");
         User currUser = userService.findOne(userID);
 
+        if(userID==null)
+            return "Login";
+
         User user = userService.findOne(id);
         model.addAttribute("user", user);
 
@@ -96,8 +99,6 @@ public class AccountController {
                 Long courseID = courseNames.get(i).getCourse();
                 Course courseItem = courseService.findOne(courseID);
                 courses.add(courseItem);
-                System.out.println("test:");
-                System.out.println(courseItem.toString());
             }
 
             model.addAttribute("courses", courses);
@@ -108,6 +109,7 @@ public class AccountController {
             model.addAttribute("own_ads", adService.findByOwner(user.getId()));
         }
 
+        session.setAttribute("account", true);
         model.addAttribute("header_type", "red_bar");
         model.addAttribute("currUser", currUser);
 
@@ -193,8 +195,9 @@ public class AccountController {
 
             emailService.sendEmail(mailMessage);
 
-            model.addAttribute("verification", "A verification email has been sent to: "+ user.getEmail());
+            model.addAttribute("message", "A verification email has been sent to: "+ user.getEmail());
             model.addAttribute("header_type", "red_bar");
+            model.addAttribute("verification", true);
             model.addAttribute("user", new User());
 
             return "SignUpOrg";
@@ -270,8 +273,9 @@ public class AccountController {
 
             emailService.sendEmail(mailMessage);
 
-            model.addAttribute("verification", "A verification email has been sent to: "+ user.getEmail());
+            model.addAttribute("message", "A verification email has been sent to: "+ user.getEmail());
             model.addAttribute("header_type", "red_bar");
+            model.addAttribute("verification", true);
             model.addAttribute("user", new User());
 
             return "SignUpVol";
@@ -366,6 +370,9 @@ public class AccountController {
         }
 
         httpSession.removeAttribute("currentUser");
+        httpSession.removeAttribute("currentUsername");
+        httpSession.removeAttribute("currentUserEmail");
+        httpSession.removeAttribute("currentUserOrgi");
 
         return "redirect:/";
     }
@@ -406,8 +413,6 @@ public class AccountController {
                 Long courseID = courseNames.get(i).getCourse();
                 Course courseItem = courseService.findOne(courseID);
                 courses.add(courseItem);
-                System.out.println("test:");
-                System.out.println(courseItem.toString());
             }
 
             model.addAttribute("courses", courses);
@@ -418,6 +423,7 @@ public class AccountController {
             model.addAttribute("own_ads", adService.findByOwner(user.getId()));
         }
 
+        model.addAttribute("header_type", "red_bar");
         model.addAttribute("edit", true);
         model.addAttribute("currUser", currUser);
 
@@ -480,8 +486,10 @@ public class AccountController {
         if(userID==null)
             return "Login";
 
-        courseService.save(course);
-        courseService.findByName(course.getCname());
+        if(!course.getCname().isEmpty()) {
+            courseService.save(course);
+            courseService.findByName(course.getCname());
+        }
 
         CourseName courseName = new CourseName();
         courseName.setCourse(course.getId());
