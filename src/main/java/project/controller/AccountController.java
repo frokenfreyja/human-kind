@@ -369,6 +369,9 @@ public class AccountController {
         }
 
         httpSession.removeAttribute("currentUser");
+        httpSession.removeAttribute("currentUsername");
+        httpSession.removeAttribute("currentUserEmail");
+        httpSession.removeAttribute("currentUserOrgi");
 
         return "redirect:/";
     }

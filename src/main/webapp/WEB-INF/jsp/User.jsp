@@ -67,8 +67,8 @@
                                         </c:if>
                                         <c:if test="${organization}">
                                             <div class="row_info">
-                                                <h4>About:</h4>
-                                                <sf:input path="bio" type="text" placeholder="About" class="edit_text"/>
+                                                <h4 class="info">About:</h4>
+                                                <sf:input path="bio" type="text" placeholder="About" class="user"/>
                                             </div>
                                         </c:if>
                                     </div>
@@ -137,8 +137,8 @@
                                     </c:if>
                                     <c:if test="${organization}">
                                         <div class="row_info">
-                                            <h4>About:</h4>
-                                            <p>${user.bio}</p>
+                                            <h4 class="info">About:</h4>
+                                            <p class="user">${user.bio}</p>
                                         </div>
                                     </c:if>
                                 </div>
