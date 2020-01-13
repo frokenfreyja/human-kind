@@ -94,7 +94,7 @@
                                                     <h4 class="info">Finished courses:</h4>
                                                     <div class="course_list">
                                                         <c:forEach var="course" items="${courses}" varStatus="status">
-                                                                <p class="user">${course.cname}</p>
+                                                                <p class="user_course">${course.cname}</p>
                                                         </c:forEach>
                                                     </div>
                                                 </div>

@@ -99,8 +99,6 @@ public class AccountController {
                 Long courseID = courseNames.get(i).getCourse();
                 Course courseItem = courseService.findOne(courseID);
                 courses.add(courseItem);
-                System.out.println("test:");
-                System.out.println(courseItem.toString());
             }
 
             model.addAttribute("courses", courses);
@@ -412,8 +410,6 @@ public class AccountController {
                 Long courseID = courseNames.get(i).getCourse();
                 Course courseItem = courseService.findOne(courseID);
                 courses.add(courseItem);
-                System.out.println("test:");
-                System.out.println(courseItem.toString());
             }
 
             model.addAttribute("courses", courses);
@@ -487,8 +483,10 @@ public class AccountController {
         if(userID==null)
             return "Login";
 
-        courseService.save(course);
-        courseService.findByName(course.getCname());
+        if(!course.getCname().isEmpty()) {
+            courseService.save(course);
+            courseService.findByName(course.getCname());
+        }
 
         CourseName courseName = new CourseName();
         courseName.setCourse(course.getId());
