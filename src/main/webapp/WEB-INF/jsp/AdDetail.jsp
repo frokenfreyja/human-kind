@@ -13,6 +13,7 @@
            <title>${ad.name}</title>
            <link rel="stylesheet" type="text/css" href="<c:url value="/css/ad_detail.css"/>"/>
            <link rel="stylesheet" type="text/css" href="<c:url value="/css/grid.css"/>"/>
+           <link rel="stylesheet" type="text/css" href="<c:url value="/css/button.css"/>"/>
     </head>
 
     <body>
@@ -71,28 +72,32 @@
                 </c:if>
             <c:choose>
                 <c:when test="${not empty applicants}">
-                <div class="info_section">
+                <div class="applicant_list">
                     <p class="info_section_title">List of applicants</p>
                     <c:forEach var="applicant_list" items="${applicants}" varStatus="status">
-                        <p class="applicants">
-                        <div  class="applicant_item">
+
+                        <div class="applicant_item">
+
+                            <div class="col1">
                             <a href="/user/${applicant_list.id}">
-                                ${status.index+1}. ${applicant_list.name}
+                                <p>${status.index+1}. ${applicant_list.name}</p>
                             </a>
+                            </div>
 
-                            <c:if test="${not empty currUser && currUser.orgi && not accepted[status.index].accepted && not ad.closed}">
-                                <c:if test="${not accepted[status.index].accepted}">
-                                <div class="accept_btn">
-                                    <a href="/ad/${id}/${applicant_list.id}/accept">Accept</a>
-                                </div>
+                            <div class="col2">
+                                <c:if test="${not empty currUser && currUser.orgi && not ad.closed}">
+                                    <c:if test="${not accepted[status.index].accepted}">
+                                     <div class="accept_btn">
+                                         <a href="/ad/${id}/${applicant_list.id}/accept">Accept</a>
+                                     </div>
+                                    </c:if>
+                                    <c:if test="${not accepted[status.index].rejected}">
+                                        <div class ="reject_btn">
+                                            <a href="/ad/${id}/${applicant_list.id}/reject">Reject</a>
+                                        </div>
+                                    </c:if>
                                 </c:if>
-                            </c:if>
-                            <c:if test="${not empty currUser && currUser.orgi && accepted[status.index].accepted && not ad.closed}">
-                                <div class ="accept_btn">
-                                    <a href="/ad/${id}/${applicant_list.id}/reject">Reject</a>
-                                </div>
-                            </c:if>
-
+                            </div>
                         </div>
                     </c:forEach>
                 </div>
