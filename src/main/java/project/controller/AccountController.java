@@ -41,7 +41,7 @@ public class AccountController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    private ConfirmationTokenRepository confirmationTokenRepository;
+    private ConfirmationTokenService confirmationTokenService;
 
     @Autowired
     private EmailService emailService;
@@ -174,9 +174,11 @@ public class AccountController {
         } else {
             user.setOrgi(true);
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-            userService.save(user);
 
             confirmationToken = new ConfirmationToken(user);
+            user.setConfirmationToken(confirmationToken.getConfirmationToken());
+
+            userService.save(user);
 
             // Create expiry date for token
             Calendar cal = Calendar.getInstance();
@@ -185,7 +187,7 @@ public class AccountController {
 
             confirmationToken.setExpiryDate(new Date(cal.getTime().getTime()));
 
-            confirmationTokenRepository.save(confirmationToken);
+            confirmationTokenService.save(confirmationToken);
 
             SimpleMailMessage mailMessage = new SimpleMailMessage();
             mailMessage.setTo(user.getEmail());
@@ -263,7 +265,7 @@ public class AccountController {
 
             confirmationToken.setExpiryDate(new Date(cal.getTime().getTime()));
 
-            confirmationTokenRepository.save(confirmationToken);
+            confirmationTokenService.save(confirmationToken);
 
             SimpleMailMessage mailMessage = new SimpleMailMessage();
             mailMessage.setTo(user.getEmail());
@@ -286,7 +288,8 @@ public class AccountController {
     @RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
     public String confirmUserAccount(Model model, @RequestParam("token") String confirmationTokenString)
     {
-        confirmationToken = confirmationTokenRepository.findByConfirmationToken(confirmationTokenString);
+        confirmationToken = confirmationTokenService.findByConfirmationToken(confirmationTokenString);
+
         User user = userService.findByEmail(confirmationToken.getUser().getEmail());
         Calendar cal = Calendar.getInstance();
 
@@ -296,7 +299,7 @@ public class AccountController {
                 model.addAttribute("user", new User());
                 model.addAttribute("header_type", "red_bar");
 
-                confirmationTokenRepository.delete(confirmationToken);
+                confirmationTokenService.delete(confirmationToken);
                 userService.delete(user);
                 return "SignUpOrg";
             } else {
@@ -304,7 +307,7 @@ public class AccountController {
                 model.addAttribute("user", new User());
                 model.addAttribute("header_type", "red_bar");
 
-                confirmationTokenRepository.delete(confirmationToken);
+                confirmationTokenService.delete(confirmationToken);
                 userService.delete(user);
                 return "SignUpVol";
             }
@@ -336,14 +339,12 @@ public class AccountController {
      */
     @RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
     public String deleteAccount(@PathVariable Long id, @ModelAttribute("user") User user, HttpSession httpSession) {
-        Long userID = (Long)httpSession.getAttribute("currentUser");
-        User currUser = userService.findOne(userID);
+        User currUser = userService.findOne(id);
 
         // Delete token if it still exists
         if(currUser.getConfirmationToken() != null) {
-            String confirmationTokenString = currUser.getConfirmationToken();
-            ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationTokenString);
-            confirmationTokenRepository.delete(token);
+            ConfirmationToken token = confirmationTokenService.findByConfirmationToken(currUser.getConfirmationToken());
+            confirmationTokenService.delete(token);
         }
 
         // Delete user
@@ -370,9 +371,6 @@ public class AccountController {
         }
 
         httpSession.removeAttribute("currentUser");
-        httpSession.removeAttribute("currentUsername");
-        httpSession.removeAttribute("currentUserEmail");
-        httpSession.removeAttribute("currentUserOrgi");
 
         return "redirect:/";
     }
