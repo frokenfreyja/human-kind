@@ -342,6 +342,7 @@ public class AdController {
         Applicant applicant = applicantService.findByAdAndUser(id,userid);
 
         applicant.setAccepted(false);
+        applicant.setRejected(true);
 
         applicantService.save(applicant);
 
