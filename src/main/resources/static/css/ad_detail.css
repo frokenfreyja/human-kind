@@ -142,8 +142,6 @@ main {
     margin-top: 30px;
 }
 
-
-
 .btn {
     position: relative;
     color: white;
@@ -162,3 +160,48 @@ main {
     text-decoration: none;
 }
 
+.applicant_item {
+    display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 30px;
+        background-color: #D3D3D3;
+
+}
+
+.applicant_item_green {
+    display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 30px;
+        background-color: #91ed95;
+
+}
+.applicant_item_red {
+    display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 30px;
+        background-color: #e89595;
+
+}
+
+.applicant_item:hover {
+    background-color: #E8E8E8;
+        cursor: pointer;
+}
+
+.col1 {
+ height: 100%;
+ width: 50%;
+}
+
+
+
+.col2 {
+    display: flex;
+    flex-direction: row;
+    flex-flow: row-reverse;
+    height: 100%;
+    width: 50%;
+}
