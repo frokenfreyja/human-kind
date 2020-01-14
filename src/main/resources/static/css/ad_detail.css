@@ -169,6 +169,23 @@ main {
 
 }
 
+.applicant_item_green {
+    display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 30px;
+        background-color: #91ed95;
+
+}
+.applicant_item_red {
+    display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 30px;
+        background-color: #e89595;
+
+}
+
 .applicant_item:hover {
     background-color: #E8E8E8;
         cursor: pointer;
@@ -178,6 +195,8 @@ main {
  height: 100%;
  width: 50%;
 }
+
+
 
 .col2 {
     display: flex;
