@@ -99,6 +99,9 @@ main {
     border-radius: 50%;
     width: 240px;
     height: 240px;
+
+    border: 1px #B13C33;
+    box-shadow: 2px 2px 3px 3px #B13C33;
 }
 
 .section2 {
