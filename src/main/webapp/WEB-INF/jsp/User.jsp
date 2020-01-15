@@ -164,7 +164,7 @@
                                                     </div>
                                                     <div class="col2">
                                                         <h3 class="job_title">${job.name}</h3>
-                                                        <p class="job_desc">${fn:substring(job.description, 0,210)}</p>
+                                                        <p class="job_desc">${fn:substring(job.description, 0,140)}</p>
                                                     </div>
                                                 </a>
                                                 <div class="ad_btn">
@@ -193,7 +193,7 @@
                                                 </div>
                                                 <div class="col2">
                                                     <h3 class="job_title">${cjob.name}</h3>
-                                                    <p class="job_desc">${fn:substring(cjob.description, 0,210)}</p>
+                                                    <p class="job_desc">${fn:substring(cjob.description, 0,140)}</p>
                                                 </div>
                                             </a>
                                         </div>
@@ -218,7 +218,7 @@
                                                 </div>
                                                 <div class="col2">
                                                     <h3 class="job_title">${job.name}</h3>
-                                                    <p class="job_desc">${fn:substring(job.description, 0,210)}</p>
+                                                    <p class="job_desc">${fn:substring(job.description, 0,140)}</p>
                                                 </div>
 
                                             </a>
@@ -234,19 +234,31 @@
                             </c:when>
                         </c:choose>
                     </div>
+                    <c:choose>
+                        <c:when test="${edit}">
+                            <div class="delete_btn">
+                                <a href="/delete/${user.id}" class="d_btn" onclick="return confirm('Are you sure you want to delete this account?');">Delete account</a>
+                            </div>
+                        </c:when>
+                    </c:choose>
+
+                    <%--
                     <div class="logout_btn">
-                        <a href="/delete/${user.id}" class="btn"
-                           onclick="return confirm('Are you sure you want to delete this account?');">Delete account</a>
+                        <a href="/delete/${user.id}" class="btn" onclick="return confirm('Are you sure you want to delete this account?');">Delete account</a>
                         <a href="/logout" class="btn">Log out</a>
                     </div>
+                    --%>
                 </c:when>
                 <c:otherwise>
                     <c:choose>
                         <c:when test="${organization}">
-                            <div class="banner">
-                                <h3>About</h3>
+                            <div class="section1">
+                                <div class="banner">
+                                    <h3>About</h3>
+                                </div>
+                                <p class="about">${user.bio}</p>
                             </div>
-                            <p class="about">${user.bio}</p>
+                        <div class="section2">
                             <c:choose>
                                 <c:when test="${not empty own_ads}">
                                     <div class="banner">
@@ -263,7 +275,7 @@
                                                     </div>
                                                     <div class="col2">
                                                         <h3 class="job_title">${job.name}</h3>
-                                                        <p class="job_desc">${fn:substring(job.description, 0,210)}</p>
+                                                        <p class="job_desc">${fn:substring(job.description, 0,140)}</p>
                                                     </div>
                                                 </a>
                                             </div>
@@ -271,42 +283,46 @@
                                     </c:forEach>
                                 </c:when>
                             </c:choose>
+                        </div>
                         </c:when>
-                        <c:otherwise>
-                            <div class="banner">
-                                <h3>Personal information</h3>
-                            </div>
-                            <div class="user_info">
-                                <div class="row_info">
-                                    <h4>Name:</h4>
-                                    <p>${user.name}</p>
-                                </div>
-                                <div class="row_info">
-                                    <h4>Email:</h4>
-                                    <p>${user.email}</p>
-                                </div>
-                                <div class="row_info">
-                                    <h4>Phone:</h4>
-                                    <p>${user.phone}</p>
-                                </div>
-                                <div class="row_info">
-                                    <h4>Birthdate:</h4>
-                                    <p>${fn:substring(user.birthDate, 0, 10)}</p>
-                                </div>
+                            <c:otherwise>
+                                <div class="section1">
 
-                                <%-- Course List --%>
-
-                                <div class="row_info">
-                                    <h4>Courses:</h4>
-                                    <div class="course_list">
-                                        <c:forEach var="course" items="${courses}" varStatus="status">
-                                            <div class="course_item">
-                                                <p>${course.cname}</p>
-                                            </div>
-                                        </c:forEach>
+                                    <div class="banner">
+                                        <h3>Personal information</h3>
                                     </div>
-                                </div>
-                        </c:otherwise>
+                                    <div class="about">
+                                        <div class="row_info">
+                                            <h4 class="info">Name:</h4>
+                                            <p class="user">${user.name}</p>
+                                        </div>
+                                        <div class="row_info">
+                                            <h4 class="info">Email:</h4>
+                                            <p class="user">${user.email}</p>
+                                        </div>
+                                        <div class="row_info">
+                                            <h4 class="info">Phone:</h4>
+                                            <p class="user">${user.phone}</p>
+                                        </div>
+                                        <div class="row_info">
+                                            <h4 class="info">Birthdate:</h4>
+                                            <p clas="user">${fn:substring(user.birthDate, 0, 10)}</p>
+                                        </div>
+
+                                        <%-- Course List --%>
+
+                                        <div class="row_info">
+                                            <h4 class="info">Finished courses:</h4>
+                                            <div class="course_list">
+                                                <c:forEach var="course" items="${courses}" varStatus="status">
+                                                    <div class="course_item">
+                                                        <p class="user">${course.cname}</p>
+                                                    </div>
+                                                </c:forEach>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:otherwise>
                     </c:choose>
                 </c:otherwise>
             </c:choose>

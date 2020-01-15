@@ -63,6 +63,7 @@ public class HomeController {
             }
         }
 
+        model.addAttribute("header_type", "red_bar");
         model.addAttribute("organization_list", organization_list);
         model.addAttribute("organizationValues", organizationList.values());
 

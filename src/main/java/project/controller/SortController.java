@@ -34,6 +34,7 @@ public class SortController {
     @RequestMapping(value = "searchlistx", method = RequestMethod.GET)
     public String searchItems(@RequestParam(value = "searching", required = false) String searchwords, Model model) {
 
+        model.addAttribute("header_type", "red_bar");
         model.addAttribute("ad", new Ad());
         model.addAttribute("ad_list", adService.findByNameContainsIgnoreCaseOrDescriptionContainsIgnoreCase(searchwords, searchwords));
 
@@ -85,6 +86,7 @@ public class SortController {
                 organizationList.put(users.get(i).getId(), users.get(i).getName());
             }
         }
+        model.addAttribute("header_type", "red_bar");
         model.addAttribute("organizationValues", organizationList.values());
 
         // Sort by functionality

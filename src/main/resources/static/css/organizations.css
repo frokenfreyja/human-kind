@@ -28,13 +28,31 @@ body {
     width: 100vw;
     height: 100vh;
 }
+
 /* SECTION - AD LIST */
 main {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
     background-position: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 60px 0 20px 0;
+    background-color: #F85548;
+
+/*
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    background-color: #F85548;
+
+ */
+}
+.advert {
+    color: white;
 }
 
 .advertlist {
@@ -60,12 +78,12 @@ main {
 .organization a {
     text-decoration: none;
     text-align: center;
-    color: black;
+    color: white;
     transition: all 0.1s ease;
 }
 
 .organization a:hover {
-    color: #f85548;
+    color: black;
 }
 
 .owner_img {
@@ -80,5 +98,6 @@ main {
     border-radius: 50%;
     width: 190px;
     height: 190px;
-    //border: 1px solid gray;
+    border: 1px #B13C33;
+    box-shadow: 2px 2px 3px 2px #B13C33;
 }
