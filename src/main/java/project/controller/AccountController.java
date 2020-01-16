@@ -65,12 +65,8 @@ public class AccountController {
 
     @RequestMapping(value ="/user/{id}", method = RequestMethod.GET)
     public String viewAccount(@PathVariable Long id, Model model, HttpSession session){
-
         Long userID = (Long)session.getAttribute("currentUser");
         User currUser = userService.findOne(userID);
-
-        if(userID==null)
-            return "Login";
 
         User user = userService.findOne(id);
         model.addAttribute("user", user);
