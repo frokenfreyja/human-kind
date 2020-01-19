@@ -62,7 +62,7 @@ public class Ad {
         this.location = location;
     }
 
-    public String getGenLoc() {
+   public String getGenLoc() {
         return genLoc;
     }
 
@@ -193,7 +193,7 @@ public class Ad {
                 ", organization='" + organization + '\'' +
                 ", interest='" + interest + '\'' +
                 ", zipcode=" + zipcode +
-                ", genLoc='" + genLoc + '\'' +
+              //  ", genLoc='" + genLoc + '\'' +
                 ", image=" + image +
                 ", imageName='" + imageName + '\'' +
                 ", generalLoc='" + generalLoc + '\'' +
