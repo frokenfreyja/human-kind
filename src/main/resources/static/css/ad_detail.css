@@ -18,8 +18,9 @@ html {
     box-sizing: inherit;
     padding: 0;
     margin: 0;
+    font-family: 'IBM Plex Sans', sans-serif;
 }
-
+/*
 body {
     margin: auto;
     overflow-x: hidden;
@@ -29,59 +30,215 @@ body {
     position: absolute;
     overflow-y: auto;
 }
+ */
 
 main {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    background-color: #F85548;
+    /*
     width: 100%;
     height: 100%;
     top: 8%;
     display: flex;
     justify-content: center;
     position: relative;
+     */
 }
 
 .row {
+    margin-top: 60px;
+    width: 50%;
+
+    /*
     width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
     position: absolute;
     margin-bottom: 60px;
+     */
 }
+.banner {
+    width: 100%;
+    padding-left: 10px;
+    background-color: #b13c33;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit__btn {
+    border: none;
+    width: 15%;
+    height: 100%;
+    padding: 5px 0;
+    background-color: #8D3029;
+    text-decoration: none;
+    font-size: 1em;
+    cursor: pointer;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.1s ease;
+    display: flex;
+    justify-content: center;
+}
+
+.edit__btn:hover {
+    background-color: #B13C33;
+    text-decoration: none;
+}
+
 
 .first_row {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
+
+    background-color: white;
+    border-radius: 3px;
+    border: 1px #B13C33;
+    box-shadow: 2px 2px 3px 3px #B13C33;
+    margin-bottom: 15px;
+}
+
+.first_info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+}
+
+.second_row {
+    background-color: white;
+    border-radius: 3px;
+    border: 1px #B13C33;
+    box-shadow: 2px 2px 3px 3px #B13C33;
+}
+
+.second_info {
+    padding: 10px;
+
+}
+
+.third_row {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+.content {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: #E8E8E8;
+    border-radius: 5px;
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 50%;
+}
+
+.icon {
+    margin: 5px 8px 0 0;
+
+    height: 20px;
+    width: 20px;
 }
 
 .ad_img {
     display: flex;
     justify-items: center;
-    height: 40%;
+    height: 300px;
     width: 100%;
-    border-radius: 4px;
 }
 
 .ad_img img {
     object-fit: cover;
+    object-position: top;
     width: 100%;
     height: 100%;
-    border-radius: 4px;
+    background-color: white;
+    /*transition: all 0.1s ease;*/
 }
 
-.ad_img img:hover {
-    object-fit: contain;
+.delete_btn {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    font-size: 0.9em;
+}
+
+.d_btn {
+    position: relative;
+    color: black;
+    margin-top: 10px;
+    padding: 7px 50px;
+    border-radius: 30px;
+    background-color: white;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.1s ease;
+    text-decoration: none;
+
+    border: 1px #B13C33;
+    box-shadow: 2px 2px 3px 2px #B13C33;
+}
+
+.d_btn:hover {
+    color: white;
+    background-color: #5548f8;
+    text-decoration: none;
+}
+
+input, textarea {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    font-size: 1em;
+}
+
+.input {
+    padding: 5px;
+}
+
+.btn_img {
+    background-color: black;
+}
+
+.img_btn {
+    color: white;
+}
+
+select {
+    cursor: pointer;
+    border: none!important;
+    background-color: white;
+    width: 100%;
+}
+
+.select {
+    font-size: 1em;
 }
 
 .ad_title {
-    color: dimgray;
     font-size: 2em;
-}
-
-.ad_owner {
-    display: flex;
-    flex-direction: column;
 }
 
 .ad_owner a {
@@ -106,31 +263,6 @@ main {
 
 .ad_date {
     padding-top: 20px;
-}
-
-.ad_duration {
-
-}
-
-.ad_location {
-
-}
-
-.ad_zip {
-
-}
-
-.ad_title {
-
-}
-
-.info_section {
-    margin: 10px 0;
-}
-
-.info_section_title {
-    color: dimgray;
-    font-weight: 600;
 }
 
 .applicants a {
@@ -204,4 +336,83 @@ main {
     flex-flow: row-reverse;
     height: 100%;
     width: 50%;
+}
+
+/* Style the Image Used to Trigger the Modal */
+#myImg {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
 }

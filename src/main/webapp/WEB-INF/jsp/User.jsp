@@ -68,7 +68,7 @@
                                         <c:if test="${organization}">
                                             <div class="row_info">
                                                 <h4 class="info">About:</h4>
-                                                <sf:input path="bio" type="text" placeholder="About" class="user"/>
+                                                <sf:textarea path="bio" type="text" placeholder="About" class="user"/>
                                             </div>
                                         </c:if>
                                     </div>
@@ -241,13 +241,6 @@
                             </div>
                         </c:when>
                     </c:choose>
-
-                    <%--
-                    <div class="logout_btn">
-                        <a href="/delete/${user.id}" class="btn" onclick="return confirm('Are you sure you want to delete this account?');">Delete account</a>
-                        <a href="/logout" class="btn">Log out</a>
-                    </div>
-                    --%>
                 </c:when>
                 <c:otherwise>
                     <c:choose>

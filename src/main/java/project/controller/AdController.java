@@ -170,11 +170,16 @@ public class AdController {
         }
 
         Ad ad = adService.findOne(id);
+        User owner = userService.findOne(ad.getOwner());
+
 
         if(!ad.getOwner().equals(userID))
             return "redirect:/ad/{id}";
 
+        model.addAttribute("edit_ad", true);
         model.addAttribute("ad", ad);
+        model.addAttribute("owner", owner);
+        model.addAttribute("header_type", "red_bar");
 
         return "AdEdit";
     }
@@ -257,6 +262,7 @@ public class AdController {
         Long userID = (Long) httpSession.getAttribute("currentUser");
         User currUser = userService.findOne(userID);
 
+        model.addAttribute("header_type", "red_bar");
         model.addAttribute("ad", ad);
         model.addAttribute("owner", owner);
         model.addAttribute("currUser", currUser);
