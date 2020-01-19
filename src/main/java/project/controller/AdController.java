@@ -69,6 +69,8 @@ public class AdController {
                 organizationList.put(users.get(i).getId(), users.get(i).getName());
             }
         }
+
+        model.addAttribute("header_type", "red_bar");
         model.addAttribute("organizationValues", organizationList.values());
 
         return "AllAds";

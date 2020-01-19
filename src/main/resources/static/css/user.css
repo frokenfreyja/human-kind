@@ -99,10 +99,13 @@ main {
     border-radius: 50%;
     width: 240px;
     height: 240px;
+
+    border: 1px #B13C33;
+    box-shadow: 2px 2px 3px 3px #B13C33;
 }
 
 .section2 {
-    margin-top: 20px;
+    margin: 20px 0;
 }
 
 .info_title {
@@ -225,28 +228,59 @@ input {
     height: 100%;
 }
 
-.logout_btn {
+.delete_btn {
+    text-align: center;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin: 20px 0;
+    font-size: 0.9em;
 }
 
-.btn {
+.d_btn {
     position: relative;
-    color: white;
-    padding: 7px 30px;
+    color: black;
+    margin-top: 10px;
+    padding: 7px 50px;
     border-radius: 30px;
-    background-color: #5548f8;
+    background-color: white;
     cursor: pointer;
     font-weight: 600;
     letter-spacing: 1px;
     transition: all 0.1s ease;
     text-decoration: none;
+
+    border: 1px #B13C33;
+    box-shadow: 2px 2px 3px 2px #B13C33;
+}
+
+.d_btn:hover {
+    color: white;
+    background-color: #5548f8;
+    text-decoration: none;
+}
+
+
+.btn {
+    position: relative;
+    padding: 7px 20px;
+    color: black;
+    border-radius: 30px;
+    background-color: #8D3029;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.1s ease;
+    text-decoration: none;
+
+    font-size: 0.8em;
 }
 
 .btn:hover {
-    background-color: black;
+    background-color: #B13C33;
     text-decoration: none;
+    color: white;
 }
 
 .course_list {
@@ -269,7 +303,7 @@ input {
     padding: 5px 0;
     background-color: #8D3029;
     text-decoration: none;
-    font-size: 1em;
+    font-size: 0.8em;
     cursor: pointer;
     color: white;
     font-weight: 600;

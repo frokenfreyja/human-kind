@@ -25,7 +25,7 @@
 <main>
     <div class="row">
         <h1 class="title">ORGANIZATION</h1>
-        <h4>${message}</h4>
+        <p>${message}</p>
         <c:if test="${not verification}">
             <sf:form method="POST" modelAttribute="user" action="/org" enctype="multipart/form-data" class="form">
                 <div class="input">

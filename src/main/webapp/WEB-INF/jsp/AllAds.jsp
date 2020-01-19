@@ -19,6 +19,7 @@
 </head>
 <body>
 <main>
+    <div class="content">
     <%-- Ef til eru auglýsingar, birtir lista af öllum auglýsingum í töflu --%>
     <%--Fyrir hvert Item, sem er á listanum sem var sett í módelið er búin til röð í töflunni--%>
     <h2 class="advert">AVAILABLE JOBS</h2>
@@ -95,9 +96,10 @@
             </c:when>
             <%--If all tests are false, then do this--%>
             <c:otherwise>
-                <h3>No available job ads</h3>
+                <h3 class="no_available">No available job ads</h3>
             </c:otherwise>
         </c:choose>
+        </div>
 </main>
 </body>
 </html>
