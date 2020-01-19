@@ -692,7 +692,7 @@ VALUES
      'Hér kemur lýsing um starf',
      'Norðurland',
      'Norðurland',
-     '',
+     'dogs.jpg',
      'Animals',
      'Akureyri',
      'þetta we samþykkjunarskilaboð',
@@ -706,7 +706,7 @@ VALUES
      'Hér kemur lýsing um starf',
      'Austurland',
      'Austurland',
-     '',
+     'kan.jpg',
      'Animals',
      'Egilstaðir',
      'þetta er samþykkjunarskilaboð',
@@ -853,8 +853,8 @@ VALUES
      'Píeta',
      5,
      201
-    ),
-    ('',
+    );
+    /*,('',
      false,
      TO_DATE('2020-07-19', 'YYYY-MM-DD'),
      'Hér kemur lýsing um starf',
@@ -965,9 +965,7 @@ VALUES
      'Hjálparstraf Kirkjunnar',
      7,
      101
-    );
-
-
+    );*/
 
 
 
