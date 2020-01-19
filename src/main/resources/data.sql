@@ -1,10 +1,11 @@
 /*Data about user that are organization*/
 INSERT INTO users
-    (name, bio, email, image_name, is_enabled, orgi, phone)
+    (name, bio, email, password, image_name, is_enabled, orgi, phone)
 VALUES
     ('Rauði Krossinn',
      'Rauði krossinn á Íslandi er hluti af stærstu mannúðar- og hjálparsamtökum heims. Allt starf Rauða krossins miðar að því að bregðast við og aðstoða þar sem neyðin er mest.',
      'central@redcross.is',
+     '$2a$10$YRAcO8NcVOLYMv9H0nCDNus4qsM6BaM/TSjm1bSSvsZjzfKIJ4.4K',
      'Raudikrossinn_png.png',
      true,
      true,
@@ -13,6 +14,7 @@ VALUES
     ('Dýra Hjálp',
      'Markmið félagsins er að leitast við að sjá dýrum sem þarfnast heimilis fyrir skjóli og stofna til þess dýraathvarf og að vinna almenning í landinu til fylgis og stuðnings við dýravernd. Mun dýraathvarfið taka við öllum dýrum sem þarfnast nýs heimilis og reyna að finna þeim nýtt heimili. Þangað til hægt verði að stofna til slíks athvarfs mun félagið leitast við að finna þeim dýrum sem annars væri lógað ný heimili, hvort sem það er fósturheimili eða varanlegt heimili.',
      'dyrahjalp@dyrahjalp.is',
+     '$2a$10$YRAcO8NcVOLYMv9H0nCDNus4qsM6BaM/TSjm1bSSvsZjzfKIJ4.4K',
      'dýrahjálp.PNG',
      true,
      true,
@@ -21,6 +23,7 @@ VALUES
     ('UNICEF',
      'UNICEF á Íslandi er íslensk landsnefnd Barnahjálpar Sameinuðu þjóðanna. UNICEF er leiðandi í hjálparstarfi fyrir börn í heiminum. Við berjumst fyrir réttindum allra barna og sinnum bæði langtímauppbyggingu og neyðaraðstoð. Við erum á vettvangi í yfir 190 löndum og höfum að leiðarljósi að börn njóti velferðar – hvar sem þau er að finna.',
      'unicef@unicef.is',
+     '$2a$10$YRAcO8NcVOLYMv9H0nCDNus4qsM6BaM/TSjm1bSSvsZjzfKIJ4.4K',
      'unicef.jpg',
      true,
      true,
@@ -29,6 +32,7 @@ VALUES
     ('Amnesty International',
      'Amnesty Internati­onal er alþjóðleg mann­rétt­inda­hreyfing rúmlega sjö milljóna einstak­linga í meira en 150 löndum. Við berj­umst fyrir heimi þar sem sérhver einstak­lingur nýtur mann­rétt­inda sinna.',
      'amnesty@amnesty.is',
+     '$2a$10$YRAcO8NcVOLYMv9H0nCDNus4qsM6BaM/TSjm1bSSvsZjzfKIJ4.4K',
      'amnesty.png',
      true,
      true,
@@ -40,6 +44,7 @@ VALUES
      Starfsemin er rekin að fyrirmynd og eftir hugmyndafræði Pieta House á Írlandi.
      Meðferð okkar er mótuð af samúð og virðingu fyrir hverjum þeim sem til okkar leitar og áhersla lögð á lausnir og uppbyggingu. Miðað er að því að leysa yfirstandandi krísu með viðkomandi og glæða von um líf sem er þess virði að lifa. Kennd eru ýmis bjargráð til að fást við erfiðar tilfinningar ásamt streitu- og tilfinningastjórnun og samskiptafærni. Gefinn er kostur á allt að 15 viðtölum, en þörfin er metin í hverju tilviki fyrir sig. Þegar við á er fjölskyldu og/eða nánustu aðstandendum boðið að taka þátt í meðferðinni, með það að markmiði að styrkja stuðningsnet einstaklingsins. Gefinn er kostur á allt að 5 viðtölum fyrir aðstandendur.',
      'pieta@pieta.is',
+     '$2a$10$YRAcO8NcVOLYMv9H0nCDNus4qsM6BaM/TSjm1bSSvsZjzfKIJ4.4K',
      'pieta.png',
      true,
      true,
@@ -48,6 +53,7 @@ VALUES
     ('Landvernd',
      'Landvernd eru frjáls félagasamtök sem starfa að umhverfismálum til að vernda og bæta lífsgæðin í landinu. Hlutverk Landverndar er að standa vörð um íslenska náttúru og vera virkur þátttakandi í stefnumótun, fræðslu og upplýstri ákvarðanatöku í málum er varða landnotkun, auðlindir og umhverfi.',
      'landvernd@landvernd.is',
+     '$2a$10$YRAcO8NcVOLYMv9H0nCDNus4qsM6BaM/TSjm1bSSvsZjzfKIJ4.4K',
      'landvernd.png',
      true,
      true,
@@ -56,6 +62,7 @@ VALUES
     ('Hjálparstraf Kirkjunnar',
      'Hlutverk Hjálparstarfs kirkjunnar er að hafa forgöngu um og samhæfa mannúðar- og hjálparstarf íslensku þjóðkirkjunnar innanlands sem utan.',
      'help@help.is',
+     '$2a$10$YRAcO8NcVOLYMv9H0nCDNus4qsM6BaM/TSjm1bSSvsZjzfKIJ4.4K',
      'help.PNG',
       true,
       true,
@@ -854,7 +861,8 @@ VALUES
      5,
      201
     );
-    /*,('',
+    /* eftir að fylla meira
+    ,('',
      false,
      TO_DATE('2020-07-19', 'YYYY-MM-DD'),
      'Hér kemur lýsing um starf',
@@ -966,6 +974,101 @@ VALUES
      7,
      101
     );*/
+
+/*Data about published ads*/
+INSERT INTO applicant
+    (accepted, ad, rejected, users)
+VALUES
+    (false,
+    1,
+    false,
+    8
+    ),
+    (false,
+    1,
+    false,
+    11
+    ),
+    (false,
+    1,
+    false,
+    18
+    ),
+    (false,
+    1,
+    false,
+    20
+    ),(false,
+    1,
+    false,
+    54
+    ),
+    (false,
+    1,
+    false,
+    34
+    ),
+    (false,
+    2,
+    false,
+    9
+    ),
+    (false,
+    2,
+    false,
+    66
+    ),
+    (false,
+    2,
+    false,
+    47
+    ),
+    (false,
+    2,
+    false,
+    40
+    ),
+    (false,
+    2,
+    false,
+    39
+    ),
+    (false,
+    2,
+    false,
+    37
+    ),
+    (false,
+    2,
+    false,
+    27
+    ),
+    (false,
+    3,
+    false,
+    22
+    ),
+    (false,
+    3,
+    false,
+    20
+    ),
+    (false,
+    3,
+    false,
+    19
+    ),
+    (false,
+    3,
+    false,
+    16
+    ),
+    (false,
+    3,
+    false,
+    15
+    );
+
 
 
 
