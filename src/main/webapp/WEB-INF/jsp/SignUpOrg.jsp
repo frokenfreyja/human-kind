@@ -46,7 +46,7 @@
 
                 <div class="input">
                     <img src="${pageContext.request.contextPath}/resources/images/bio.png" class="img"/>
-                    <sf:input path="bio" type="text" placeholder="About organization" class="signup_text"/>
+                    <sf:textarea path="bio" type="text" placeholder="About organization" class="signup_text"/>
                 </div>
 
                 <div class="input">
