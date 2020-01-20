@@ -3,7 +3,7 @@ INSERT INTO users
     (name, bio, email, password, image_name, is_enabled, orgi, phone)
 VALUES
     ('Rauði Krossinn',
-     'Rauði krossinn á Íslandi er hluti af stærstu mannúðar- og hjálparsamtökum heims. Allt starf Rauða krossins miðar að því að bregðast við og aðstoða þar sem neyðin er mest.',
+     'Rauði krossinn á Íslandi er hluti af stærstu mannúðar- og hjálparsamtökum heims. Allt starf Rauða Krossins miðar að því að bregðast við og aðstoða þar sem neyðin er mest.',
      'central@redcross.is',
      '$2a$10$YRAcO8NcVOLYMv9H0nCDNus4qsM6BaM/TSjm1bSSvsZjzfKIJ4.4K',
      'Raudikrossinn_png.png',
@@ -11,7 +11,7 @@ VALUES
      true,
      '5704000'
     ),
-    ('Dýra Hjálp',
+    ('Dýrahjálp',
      'Markmið félagsins er að leitast við að sjá dýrum sem þarfnast heimilis fyrir skjóli og stofna til þess dýraathvarf og að vinna almenning í landinu til fylgis og stuðnings við dýravernd. Mun dýraathvarfið taka við öllum dýrum sem þarfnast nýs heimilis og reyna að finna þeim nýtt heimili. Þangað til hægt verði að stofna til slíks athvarfs mun félagið leitast við að finna þeim dýrum sem annars væri lógað ný heimili, hvort sem það er fósturheimili eða varanlegt heimili.',
      'dyrahjalp@dyrahjalp.is',
      '$2a$10$YRAcO8NcVOLYMv9H0nCDNus4qsM6BaM/TSjm1bSSvsZjzfKIJ4.4K',
@@ -59,8 +59,8 @@ VALUES
      true,
      '5525242'
     ),
-    ('Hjálparstraf Kirkjunnar',
-     'Hlutverk Hjálparstarfs kirkjunnar er að hafa forgöngu um og samhæfa mannúðar- og hjálparstarf íslensku þjóðkirkjunnar innanlands sem utan.',
+    ('Hjálparstarf Kirkjunnar',
+     'Hlutverk Hjálparstarfs Kirkjunnar er að hafa forgöngu um og samhæfa mannúðar- og hjálparstarf íslensku þjóðkirkjunnar innanlands sem utan.',
      'help@help.is',
      '$2a$10$YRAcO8NcVOLYMv9H0nCDNus4qsM6BaM/TSjm1bSSvsZjzfKIJ4.4K',
      'help.PNG',
@@ -679,7 +679,7 @@ VALUES
 INSERT INTO ad
     (name, closed, date, description, gen_loc, general_loc, image_name, interest, location, msg, organization, owner, zipcode)
 VALUES
-    ('Kisu Pössun',
+    ('Kisupössun',
      false,
      TO_DATE('2020-07-19', 'YYYY-MM-DD'),
      'Hér kemur lýsing um starf',
@@ -693,7 +693,7 @@ VALUES
      2,
      101
     ),
-    ('Hunda Pössun',
+    ('Hundapössun',
      false,
      TO_DATE('2020-07-19', 'YYYY-MM-DD'),
      'Hér kemur lýsing um starf',
@@ -707,7 +707,7 @@ VALUES
      2,
      531
     ),
-    ('Kanínu Pössun',
+    ('Kanínupössun',
      false,
      TO_DATE('2020-07-19', 'YYYY-MM-DD'),
      'Hér kemur lýsing um starf',
@@ -763,7 +763,7 @@ VALUES
      1,
      640
     ),
-    ('Styrktar söfnun',
+    ('Styrktarsöfnun',
      false,
      TO_DATE('2020-07-19', 'YYYY-MM-DD'),
      'Hér kemur lýsing um starf',
