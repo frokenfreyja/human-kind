@@ -17,13 +17,70 @@
     <jsp:include page="Header.jsp"/>
 
     <title>Account</title>
+
+    <script>
+        var loadFile = function(event) {
+            var image = document.getElementById('myImg');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        }
+    </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            // Get the modal
+            var modal = document.getElementById("myModal");
+
+            // Get the image and insert it inside the modal - use its "alt" text as a caption
+            var img = document.getElementById("myImg");
+            var modalImg = document.getElementById("img01");
+            var captionText = document.getElementById("caption");
+            img.onclick = function(){
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </head>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- The Close Button -->
+    <span class="close">&times;</span>
+
+    <!-- Modal Content (The Image) -->
+    <img class="modal-content" id="img01">
+
+    <!-- Modal Caption (Image Text) -->
+    <div id="caption"></div>
+</div>
+
 <body>
 <main>
     <div class="row">
         <div class="user_img">
-            <img src="${pageContext.request.contextPath}/resources/images/${user.imageName}" class="img">
-            <h3 class="user_title">${user.name}</h3>
+            <c:choose>
+                <c:when test="${empty edit}">
+                    <img id="myImg" alt="${user.name}" src="${pageContext.request.contextPath}/resources/images/${user.imageName}" class="img">
+                    <h3 class="user_title">${user.name}</h3>
+                </c:when>
+                <c:otherwise>
+                    <img id="myImg" alt="${user.name}" src="${pageContext.request.contextPath}/resources/images/${user.imageName}" class="img">
+                    <label for="file-upload" class="custom-file-upload">
+                        <i class="fa fa-cloud-upload"></i> Change Image
+                    </label>
+                    <input type="file" form="edit_form" id="file-upload" accept="image/*" name="image" onchange="loadFile(event)" multiple="multiple"/>
+                </c:otherwise>
+            </c:choose>
+
         </div>
             <c:choose>
                 <c:when test="${user.id eq currUser.id}">
@@ -42,7 +99,7 @@
                     <div class="user_info">
                         <c:choose>
                             <c:when test="${edit}">
-                                <sf:form id="edit_form" method="POST" modelAttribute="user" action="/edit_user/${currUser.id}">
+                                <sf:form id="edit_form" method="POST" modelAttribute="user" action="/edit_user/${currUser.id}" enctype="multipart/form-data">
                                     <div class="edit_col">
                                         <div class="row_info">
                                             <h4 class="info">Name:</h4>

@@ -427,7 +427,7 @@ public class AccountController {
      * Edit account - POST
      */
     @RequestMapping(value = "/edit_user/{id}", method = RequestMethod.POST)
-    public String editAccountPost(User user, Model model, HttpSession httpSession) {
+    public String editAccountPost(User user, Model model, HttpSession httpSession, HttpServletRequest httpServletRequest) throws IOException {
         Long userID = (Long) httpSession.getAttribute("currentUser");
         User currUser = userService.findOne(userID);
 
@@ -464,6 +464,29 @@ public class AccountController {
         currUser.setPhone(user.getPhone());
         currUser.setBirthDate(user.getBirthDate());
         currUser.setBio(user.getBio());
+
+        MultipartFile imagefile = user.getImage();
+        String fileName;
+
+        imagefile.getInputStream();
+
+        if (user.getImage()==null) throw new NullPointerException("unable to fetch"+imagefile);
+        String rootDirectory = httpServletRequest.getSession().getServletContext().getRealPath("/");
+        if(user.getImage() != null && !user.getImage().isEmpty())
+            try {
+                File path = new File(rootDirectory + "resources/images/"+imagefile.getOriginalFilename());
+                imagefile.transferTo(path);
+
+                fileName = imagefile.getOriginalFilename();
+                user.setImageName(fileName);
+
+            } catch (IllegalStateException | IOException e) {
+                e.printStackTrace();
+            }
+
+        if (user.getImageName() != null) {
+            currUser.setImageName(user.getImageName());
+        }
 
         httpSession.setAttribute("currentUser", currUser.getId());
         httpSession.setAttribute("currentUsername", currUser.getName());
