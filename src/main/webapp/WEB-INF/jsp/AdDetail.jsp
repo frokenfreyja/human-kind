@@ -13,7 +13,6 @@
            <title>${ad.name}</title>
            <link rel="stylesheet" type="text/css" href="<c:url value="/css/ad_detail.css"/>"/>
            <link rel="stylesheet" type="text/css" href="<c:url value="/css/grid.css"/>"/>
-           <link rel="stylesheet" type="text/css" href="<c:url value="/css/button.css"/>"/>
     <script type="text/javascript">
         window.onload = function() {
             // Get the modal
@@ -128,13 +127,13 @@
             </div>
 
                 <c:if test="${not empty currUser && not currUser.orgi && not alreadyApplied && not ad.closed}">
-                    <div class="apply_btn">
-                        <a href="/ad/${id}/apply" class="btn">Apply</a>
+                    <div class="delete_btn">
+                        <a href="/ad/${id}/apply" class="d_btn">Apply</a>
                     </div>
                 </c:if>
                 <c:if test="${not empty currUser && not currUser.orgi && alreadyApplied && not ad.closed}">
-                    <div class="apply_btn">
-                        <a href="/ad/${id}/unapply" class="btn">Unapply</a>
+                    <div class="delete_btn">
+                        <a href="/ad/${id}/unapply" class="d_btn">Unapply</a>
                     </div>
                 </c:if>
                 <c:if test="${ad.closed}">
@@ -144,25 +143,27 @@
                 </c:if>
             <c:choose>
                 <c:when test="${not empty applicants}">
-                <div class="applicant_list">
-                    <p class="info_section_title">List of applicants</p>
+                <div class="fourth_row">
+                    <div class="banner">
+                        <h3>List of applicants</h3>
+                    </div>
                     <c:forEach var="applicant_list" items="${applicants}" varStatus="status">
                         <c:choose>
                             <c:when test="${accepted[status.index].accepted}">
                                 <div class="applicant_item_green">
                                     <div class="col1">
-                                            <a href="/user/${applicant_list.id}">
-                                                <p>${status.index+1}. ${applicant_list.name}</p>
-                                            </a>
+                                        <a href="/user/${applicant_list.id}" class="user_a">
+                                            <p>${status.index+1}. ${applicant_list.name}</p>
+                                        </a>
                                     </div>
 
                                     <div class="col2">
                                         <c:if test="${not empty currUser && currUser.orgi && not ad.closed}">
                                             <c:if test="${not accepted[status.index].accepted && not accepted[status.index].rejected}">
-                                             <div class="accept_btn">
+                                             <div class="applicant_btn">
                                                  <a href="/ad/${id}/${applicant_list.id}/accept">Accept</a>
                                              </div>
-                                                <div class ="reject_btn">
+                                                <div class ="applicant_btn">
                                                     <a href="/ad/${id}/${applicant_list.id}/reject">Reject</a>
                                                 </div>
                                             </c:if>
@@ -173,7 +174,7 @@
                             <c:when test ="${accepted[status.index].rejected}">
                                 <div class="applicant_item_red">
                                     <div class="col1">
-                                            <a href="/user/${applicant_list.id}">
+                                            <a href="/user/${applicant_list.id}" class="user_a">
                                                 <p>${status.index+1}. ${applicant_list.name}</p>
                                             </a>
                                     </div>
@@ -181,10 +182,10 @@
                                     <div class="col2">
                                         <c:if test="${not empty currUser && currUser.orgi && not ad.closed}">
                                             <c:if test="${not accepted[status.index].accepted && not accepted[status.index].rejected}">
-                                             <div class="accept_btn">
+                                             <div class="applicant_btn">
                                                  <a href="/ad/${id}/${applicant_list.id}/accept">Accept</a>
                                              </div>
-                                                <div class ="reject_btn">
+                                                <div class ="applicant_btn">
                                                     <a href="/ad/${id}/${applicant_list.id}/reject">Reject</a>
                                                 </div>
                                             </c:if>
@@ -195,7 +196,7 @@
                             <c:otherwise>
                                 <div class="applicant_item">
                                     <div class="col1">
-                                            <a href="/user/${applicant_list.id}">
+                                            <a href="/user/${applicant_list.id}" class="user_a">
                                                 <p>${status.index+1}. ${applicant_list.name}</p>
                                             </a>
                                     </div>
@@ -203,11 +204,11 @@
                                     <div class="col2">
                                         <c:if test="${not empty currUser && currUser.orgi && not ad.closed}">
                                             <c:if test="${not accepted[status.index].accepted && not accepted[status.index].rejected}">
-                                             <div class="accept_btn">
-                                                 <a href="/ad/${id}/${applicant_list.id}/accept">Accept</a>
+                                             <div class="applicant_btn">
+                                                 <a href="/ad/${id}/${applicant_list.id}/accept" class="btn">Accept</a>
                                              </div>
-                                                <div class ="reject_btn">
-                                                    <a href="/ad/${id}/${applicant_list.id}/reject">Reject</a>
+                                                <div class ="applicant_btn">
+                                                    <a href="/ad/${id}/${applicant_list.id}/reject" class="btn">Reject</a>
                                                 </div>
                                             </c:if>
                                         </c:if>

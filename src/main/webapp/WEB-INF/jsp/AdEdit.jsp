@@ -148,9 +148,6 @@
             <div class="delete_btn">
                 <a href="/ad/${id}/delete" class="d_btn" onclick="return confirm('Are you sure you want to delete this ad?');">Remove ad</a>
             </div>
-            <div class="delete_btn">
-                <a href="/ad/${id}/close" class="d_btn" onclick="return confirm('Are you sure you want to close this ad?');">Close</a>
-            </div>
         </div>
     </main>
     </body>

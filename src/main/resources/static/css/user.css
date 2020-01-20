@@ -74,6 +74,7 @@ main {
     border-radius: 3px;
     border: 1px #B13C33;
     box-shadow: 2px 2px 3px 3px #B13C33;
+    overflow: hidden;
 }
 
 .error {
@@ -176,6 +177,7 @@ main {
     border-radius: 3px;
     border: 1px #B13C33;
     box-shadow: 2px 2px 3px 3px #B13C33;
+    overflow: hidden;
 }
 
 .list_item:hover {
@@ -190,8 +192,8 @@ main {
 }
 
 .ad_btn .btn {
-    color: white;
-}
+     color: white;
+ }
 
 .col2:nth-child(1) {
     width: 35%;

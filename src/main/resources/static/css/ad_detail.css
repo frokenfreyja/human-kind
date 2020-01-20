@@ -20,17 +20,6 @@ html {
     margin: 0;
     font-family: 'IBM Plex Sans', sans-serif;
 }
-/*
-body {
-    margin: auto;
-    overflow-x: hidden;
-    width: 100vw;
-    height: 100vh;
-    font-family: 'IBM Plex Sans', sans-serif;
-    position: absolute;
-    overflow-y: auto;
-}
- */
 
 main {
     width: 100vw;
@@ -39,29 +28,14 @@ main {
     display: flex;
     justify-content: center;
     background-color: #F85548;
-    /*
-    width: 100%;
-    height: 100%;
-    top: 8%;
-    display: flex;
-    justify-content: center;
-    position: relative;
-     */
 }
 
 .row {
     margin-top: 60px;
     width: 50%;
-
-    /*
-    width: 50%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    margin-bottom: 60px;
-     */
 }
+
 .banner {
     width: 100%;
     padding-left: 10px;
@@ -105,6 +79,8 @@ main {
     border: 1px #B13C33;
     box-shadow: 2px 2px 3px 3px #B13C33;
     margin-bottom: 15px;
+
+    overflow: hidden;
 }
 
 .first_info {
@@ -112,7 +88,6 @@ main {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-
 }
 
 .second_row {
@@ -120,11 +95,12 @@ main {
     border-radius: 3px;
     border: 1px #B13C33;
     box-shadow: 2px 2px 3px 3px #B13C33;
+
+    overflow: hidden;
 }
 
 .second_info {
     padding: 10px;
-
 }
 
 .third_row {
@@ -132,8 +108,18 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: center;
-
 }
+
+.fourth_row {
+    margin: 15px 0;
+    background-color: white;
+    border-radius: 3px;
+    border: 1px #B13C33;
+    box-shadow: 2px 2px 3px 3px #B13C33;
+
+    overflow: hidden;
+}
+
 .content {
     padding: 10px;
     display: flex;
@@ -170,7 +156,6 @@ main {
     width: 100%;
     height: 100%;
     background-color: white;
-    /*transition: all 0.1s ease;*/
 }
 
 .delete_btn {
@@ -265,7 +250,7 @@ select {
     padding-top: 20px;
 }
 
-.applicants a {
+.user_a {
     text-decoration: none;
     color: black;
 }
@@ -274,61 +259,85 @@ select {
     margin-top: 30px;
 }
 
+.applicant_btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border: 1px solid white;
+}
+
+.applicant_btn .btn {
+    color: white;
+}
+
 .btn {
     position: relative;
-    color: white;
-    padding: 7px 30px;
-    border-radius: 30px;
-    background-color: #5548f8;
+    padding: 5px 15px;
+    color: black;
+    background-color: #8D3029;
     cursor: pointer;
-    font-weight: 600;
     letter-spacing: 1px;
     transition: all 0.1s ease;
     text-decoration: none;
+    width: 100%;
+
+    font-size: 0.8em;
 }
 
 .btn:hover {
-    background-color: black;
+    background-color: #B13C33;
     text-decoration: none;
+    color: white;
 }
+
 
 .applicant_item {
     display: flex;
-        flex-direction: row;
-        align-items: center;
-        height: 30px;
-        background-color: #D3D3D3;
+    flex-direction: row;
+    align-items: center;
+    height: 30px;
+    background-color: white;
+    padding-left: 10px;
+}
 
+.applicant_item a {
+    text-decoration: none;
+    color: black;
+}
+
+.applicant_item:nth-child(even) {
+    background-color: #E8E8E8;
 }
 
 .applicant_item_green {
     display: flex;
-        flex-direction: row;
-        align-items: center;
-        height: 30px;
-        background-color: #91ed95;
+    flex-direction: row;
+    align-items: center;
+    height: 30px;
+    background-color: #91ed95;
+    padding-left: 10px;
 
 }
 .applicant_item_red {
     display: flex;
-        flex-direction: row;
-        align-items: center;
-        height: 30px;
-        background-color: #e89595;
-
+    flex-direction: row;
+    align-items: center;
+    height: 30px;
+    background-color: #e89595;
+    padding-left: 10px;
 }
 
 .applicant_item:hover {
-    background-color: #E8E8E8;
-        cursor: pointer;
+    background-color: #cccccc;
+    cursor: pointer;
 }
 
 .col1 {
- height: 100%;
- width: 50%;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
 }
-
-
 
 .col2 {
     display: flex;
