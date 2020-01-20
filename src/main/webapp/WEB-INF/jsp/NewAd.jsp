@@ -32,7 +32,7 @@
                     </div>
 
                     <div class="input">
-                        <sf:input path="description" class="ad_text" type="text" placeholder="Description" required="required" />
+                        <sf:textarea path="description" class="ad_text" type="text" placeholder="Description" required="required" />
                     </div>
 
                     <div class="input">
