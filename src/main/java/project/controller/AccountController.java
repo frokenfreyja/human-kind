@@ -502,8 +502,9 @@ public class AccountController {
 
         if(userID==null)
             return "Login";
+        
 
-        if(!course.getCname().isEmpty()) {
+        if(!course.getCname().isEmpty() && courseService.findByName(course.getCname()) == null) {
             courseService.save(course);
             courseService.findByName(course.getCname());
         }
