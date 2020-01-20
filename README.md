@@ -2,7 +2,7 @@
 Final year project (TÖL261L) in Computer Science at the University of Iceland.
 
 ## About
-This web application allows its users to create an account as either a volunteer or an organization. Users can browse through the site's job ads and apply for volunteer job openings. Organizations can post job ads and accept (or reject) applicants. 
+This web application allows its users to create an account as either a volunteer or an organization. Users can browse through the site's job ads based on interest, location or organization and finally apply for volunteer job openings. Organizations can post job ads and accept (or reject) applicants. 
 <br/>
 Making it easier for organizations to recruit volunteers and inspire non-volunteers to volunteer. 
 
