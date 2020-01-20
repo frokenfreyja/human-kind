@@ -193,7 +193,7 @@ public class Ad {
                 ", organization='" + organization + '\'' +
                 ", interest='" + interest + '\'' +
                 ", zipcode=" + zipcode +
-              //  ", genLoc='" + genLoc + '\'' +
+                ", genLoc='" + genLoc + '\'' +
                 ", image=" + image +
                 ", imageName='" + imageName + '\'' +
                 ", generalLoc='" + generalLoc + '\'' +
