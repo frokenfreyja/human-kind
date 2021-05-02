@@ -2,6 +2,7 @@ package project.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -246,13 +247,8 @@ public class AccountController {
             model.addAttribute("error", "Passwords don't match.");
             model.addAttribute("header_type", "red_bar");
         } else {
-            user.setOrgi(false);
-            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
             confirmationToken = new ConfirmationToken(user);
-            user.setConfirmationToken(confirmationToken.getConfirmationToken());
-
-            userService.save(user);
 
             // Create expiry date for token
             Calendar cal = Calendar.getInstance();
@@ -261,15 +257,29 @@ public class AccountController {
 
             confirmationToken.setExpiryDate(new Date(cal.getTime().getTime()));
 
-            confirmationTokenService.save(confirmationToken);
-
             SimpleMailMessage mailMessage = new SimpleMailMessage();
             mailMessage.setTo(user.getEmail());
             mailMessage.setSubject("Complete Registration!");
             mailMessage.setFrom("Humankindnotification@gmail.com");
             mailMessage.setText("To confirm your account, please click here: " +"http://localhost:8080/confirm-account?token="+confirmationToken.getConfirmationToken());
 
-            emailService.sendEmail(mailMessage);
+            try{
+                emailService.sendEmail(mailMessage);
+            } catch (MailException e) {
+                e.printStackTrace();
+
+                model.addAttribute("error", "Something went wrong, user not created");
+                model.addAttribute("header_type", "red_bar");
+
+                return "SignUpVol";
+            }
+
+            user.setOrgi(false);
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+            user.setConfirmationToken(confirmationToken.getConfirmationToken());
+
+            userService.save(user);
+            confirmationTokenService.save(confirmationToken);
 
             model.addAttribute("message", "A verification email has been sent to: "+ user.getEmail());
             model.addAttribute("header_type", "red_bar");
